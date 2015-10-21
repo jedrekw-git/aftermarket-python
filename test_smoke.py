@@ -115,6 +115,73 @@ class SmokeTest(unittest.TestCase):
         Assert.equal(settings_page._change_company_data_company_name_value, settings_page.edit_company_data_company_name_text())
         Assert.equal(settings_page._change_company_data_nip_value, settings_page.edit_company_data_nip_text())
 
+    def test_add_new_bank_account_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        bank_accounts_page = settings_page.open_add_bank_account_page()
+        settings_page.add_bank_account()
+
+        Assert.contains("Lista kont bankowych", settings_page.get_page_source())
+        Assert.contains(u"Na tej liście znajdują się konta bankowe, na które możesz zlecać wypłaty.", settings_page.get_page_source())
+        Assert.contains("Oto lista twoich kont bankowych.", settings_page.get_page_source())
+        Assert.equal(settings_page._add_bank_account_account_number_value, settings_page.added_bank_account_number_text())
+        Assert.equal(settings_page._add_bank_account_account_name_value, settings_page.added_bank_account_name_text())
+
+        settings_page.remove_added_bank_account()
+
+        Assert.contains("Lista kont bankowych", settings_page.get_page_source())
+        Assert.contains(u"Na tej liście znajdują się konta bankowe, na które możesz zlecać wypłaty.", settings_page.get_page_source())
+        Assert.contains("Oto lista twoich kont bankowych.", settings_page.get_page_source())
+        Assert.not_contains(settings_page._add_bank_account_account_number_value, settings_page.get_page_source())
+        Assert.not_contains(settings_page._add_bank_account_account_name_value, settings_page.get_page_source())
+
+    def test_change_DNS_servers_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        bank_accounts_page = settings_page.open_change_DNS_servers_page()
+        settings_page.change_DNS_servers()
+
+        Assert.equal("ns1.aftermarket.pl", settings_page.change_DNS_servers_DNS1_text())
+        Assert.equal("ns2.aftermarket.pl", settings_page.change_DNS_servers_DNS2_text())
+        Assert.equal(settings_page._change_DNS_servers_DNS3_value, settings_page.change_DNS_servers_DNS3_text())
+        Assert.equal(settings_page._change_DNS_servers_DNS4_value, settings_page.change_DNS_servers_DNS4_text())
+        Assert.equal("Operacja wykonana poprawnie", settings_page.change_DNS_servers_operation_successful_text())
+
+    def test_new_DNS_profile_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        bank_accounts_page = settings_page.open_new_DNS_profile_page()
+        settings_page.new_DNS_profile()
+
+        Assert.equal("Operacja wykonana poprawnie", settings_page.new_DNS_profile_successful_operation_text())
+        Assert.equal(settings_page._new_DNS_profile_name_value, settings_page.new_DNS_profile_successtul_opertation_profile_text())
+        Assert.equal(settings_page._new_DNS_profile_host_value, settings_page.new_DNS_profile_successtul_opertation_host_text())
+        Assert.equal(settings_page._new_DNS_profile_address_value, settings_page.new_DNS_profile_successtul_opertation_address_text())
+
+        settings_page = account_page.header.open_settings_page()
+        bank_accounts_page = settings_page.open_new_DNS_profile_page()
+
+        Assert.contains("Lista profili DNS", settings_page.get_page_source())
+        Assert.equal(settings_page._new_DNS_profile_name_value, settings_page.new_DNS_profile_name_text())
+
+        settings_page.delete_added_profile()
+
+        Assert.not_contains(settings_page._new_DNS_profile_name_value, settings_page.get_page_source())
+
+    def test_register_domain_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        register_domain_page = account_page.header.open_register_domain_page()
+        register_domain_page.enter_domain_to_register()
+        # sleep(10)
+        WebDriverWait(self.driver, 100).until(EC.text_to_be_present_in_element(register_domain_page.chuj, u"Dostępnych: <b>1</b>))"))
+        # WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located(register_domain_page._teczka))
+        register_domain_page.register_domain()
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_text_field,"Domena zarejestrowana poprawnie"))
+
     def tally(self):
         return len(self._resultForDoCleanups.errors) + len(self._resultForDoCleanups.failures)
 
