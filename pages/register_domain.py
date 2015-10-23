@@ -20,7 +20,7 @@ class RegisterDomainPage(BasePage):
     _register_domain_button = (By.XPATH, "/html/body/div[7]/div/div/form/div[11]/div[3]/button[2]")
     _registration_effect_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[3]")
     _first_domain = (By.XPATH, "//input[@value='%s']" %_domain_name_value)
-    _domain_price_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[4]/span")
+    _domain_status_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[3]/label/span")
 
     def __init__(self, driver):
         super(RegisterDomainPage, self).__init__(driver, self._title)

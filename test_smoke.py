@@ -176,7 +176,7 @@ class SmokeTest(unittest.TestCase):
         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         register_domain_page = account_page.header.open_register_domain_page()
         register_domain_page.enter_domain_to_register()
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(register_domain_page._domain_price_field, "USD"))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(register_domain_page._domain_status_field, u"Dostępna do rejestracji"))
         register_domain_page.register_domain()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_text_field,"Domena zarejestrowana poprawnie"))
 
