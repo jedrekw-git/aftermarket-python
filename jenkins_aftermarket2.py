@@ -255,7 +255,7 @@ class SmokeTest(unittest.TestCase):
 
         # The slices will be ordered and plotted counter-clockwise.
         labels = 'Errors', 'Passes'
-        sizes = [err, 86-err]
+        sizes = [err, 11-err]
         colors = ['red', 'gold']
         explode = (0, 0.1)
 
