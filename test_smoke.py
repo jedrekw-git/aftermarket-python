@@ -104,7 +104,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_change_company_data_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER, PASSWORD)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         settings_page = account_page.header.open_settings_page()
         change_company_data_page = settings_page.open_change_company_data_page()
         settings_page.edit_company_data()

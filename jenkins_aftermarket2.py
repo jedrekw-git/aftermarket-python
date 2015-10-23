@@ -75,8 +75,8 @@ class SmokeTest(unittest.TestCase):
 
         settings_page.remove_added_email_address()
 
-        Assert.not_contains(settings_page._add_email_address_value, settings_page.get_page_source())
-        Assert.not_contains("Niepotwierdzony", settings_page.get_page_source())
+        self.not_contains(settings_page._add_email_address_value, settings_page.get_page_source())
+        self.not_contains("Niepotwierdzony", settings_page.get_page_source())
 
     def test_add_other_users_to_account_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -90,8 +90,8 @@ class SmokeTest(unittest.TestCase):
 
         settings_page.remove_added_user()
 
-        Assert.not_contains(settings_page._add_other_user_login_value, settings_page.get_page_source())
-        Assert.not_contains(settings_page._add_other_user_description_value, settings_page.get_page_source())
+        self.not_contains(settings_page._add_other_user_login_value, settings_page.get_page_source())
+        self.not_contains(settings_page._add_other_user_description_value, settings_page.get_page_source())
 
     def test_change_company_address_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -107,7 +107,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_change_company_data_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER, PASSWORD)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         settings_page = account_page.header.open_settings_page()
         change_company_data_page = settings_page.open_change_company_data_page()
         settings_page.edit_company_data()
@@ -136,8 +136,8 @@ class SmokeTest(unittest.TestCase):
         Assert.contains("Lista kont bankowych", settings_page.get_page_source())
         Assert.contains(u"Na tej liście znajdują się konta bankowe, na które możesz zlecać wypłaty.", settings_page.get_page_source())
         Assert.contains("Oto lista twoich kont bankowych.", settings_page.get_page_source())
-        Assert.not_contains(settings_page._add_bank_account_account_number_value, settings_page.get_page_source())
-        Assert.not_contains(settings_page._add_bank_account_account_name_value, settings_page.get_page_source())
+        self.not_contains(settings_page._add_bank_account_account_number_value, settings_page.get_page_source())
+        self.not_contains(settings_page._add_bank_account_account_name_value, settings_page.get_page_source())
 
     def test_change_DNS_servers_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -172,7 +172,7 @@ class SmokeTest(unittest.TestCase):
 
         settings_page.delete_added_profile()
 
-        Assert.not_contains(settings_page._new_DNS_profile_name_value, settings_page.get_page_source())
+        self.not_contains(settings_page._new_DNS_profile_name_value, settings_page.get_page_source())
 
     def test_register_domain_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -301,6 +301,12 @@ class SmokeTest(unittest.TestCase):
 
         sender = Mailer('smtp.gmail.com', use_tls=True, usr='jedrzej.wojcieszczyk@testuj.pl', pwd='paluch88')
         sender.send(message)
+
+    def not_contains(self, needle, haystack, msg=''):
+        try:
+            assert not needle in haystack
+        except AssertionError:
+            raise AssertionError('%s is found in %s. %s' % (needle, haystack, msg))
 
 open("Aftermarket2RaportScreeny.txt", 'w').close()
 suite = unittest.TestLoader().loadTestsFromTestCase(SmokeTest)
