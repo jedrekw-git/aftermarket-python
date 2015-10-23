@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from pages.base import BasePage
 from utils.utils import *
 from random import randint
+from time import sleep
 
 
 class SettingsPage(BasePage):
@@ -251,6 +252,7 @@ class SettingsPage(BasePage):
         self.clear_field_and_send_keys(self._change_company_data_zip_value, self._change_company_data_zip_field)
         self.clear_field_and_send_keys(self._change_company_data_city_value, self._change_company_data_city_field)
         self.click(self._change_company_data_save_button)
+        sleep(2)
 
     def edit_company_data_operation_successful_text(self):
         return self.get_text(self._change_company_data_operation_succcessful)
