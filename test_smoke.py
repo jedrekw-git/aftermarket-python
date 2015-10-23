@@ -92,7 +92,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_change_company_address_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER, PASSWORD)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         settings_page = account_page.header.open_settings_page()
         change_company_address_page = settings_page.open_change_company_data_page()
         settings_page.edit_company_address()
@@ -176,7 +176,7 @@ class SmokeTest(unittest.TestCase):
         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         register_domain_page = account_page.header.open_register_domain_page()
         register_domain_page.enter_domain_to_register()
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(register_domain_page._domain_price_field, u"7.32 PLN"))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(register_domain_page._domain_price_field, u"1.52 USD"))
         register_domain_page.register_domain()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_text_field,"Domena zarejestrowana poprawnie"))
 
