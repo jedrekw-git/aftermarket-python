@@ -176,9 +176,7 @@ class SmokeTest(unittest.TestCase):
         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         register_domain_page = account_page.header.open_register_domain_page()
         register_domain_page.enter_domain_to_register()
-        # sleep(10)
-        WebDriverWait(self.driver, 100).until(EC.text_to_be_present_in_element(register_domain_page.chuj, u"Dostępnych: <b>1</b>))"))
-        # WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located(register_domain_page._teczka))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(register_domain_page._domain_price_field, u"7.32 PLN"))
         register_domain_page.register_domain()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_text_field,"Domena zarejestrowana poprawnie"))
 
