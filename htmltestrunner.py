@@ -802,7 +802,7 @@ class HTMLTestRunner(Template_mixin):
             return
 
     def _generate_ending(self):
-        f = open('AftermarketRaportScreeny.txt')
+        f = open('Aftermarket2RaportScreeny.txt')
         for line in f.readlines():
             return line
         # return self.ENDING_TMPL
