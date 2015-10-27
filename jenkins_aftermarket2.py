@@ -293,7 +293,7 @@ class SmokeTest(unittest.TestCase):
         from mailer import Message
 
         message = Message(From="jedrzej.wojcieszczyk@testuj.pl",
-                          To=["jedrzej.wojcieszczyk@testuj.pl", "nic@po7352672n.pl"])
+                          To=["kontakt@michau.name", "info@testuj.pl"])
         message.Subject = "Raport Jenkins Aftermarket2 Testy Automatyczne"
         message.Html = """<p>Cześć!<br>
            Oto wygenerowany automatycznie raport z testów Aftermarket2.pl<br><br>
