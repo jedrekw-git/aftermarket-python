@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from pages.settings import SettingsPage
 from pages.register_domain import RegisterDomainPage
+from pages.registered_domains_list import RegisteredDomainsListPage
 from pages.page import Page
 
 class HeaderRegion(Page):
@@ -29,3 +30,7 @@ class HeaderRegion(Page):
     def open_register_domain_page(self):
         self.get(self._base_url + "Domain/Check/")
         return RegisterDomainPage(self.get_driver())
+
+    def open_registered_domains_list(self):
+        self.get(self._base_url + "Domain/List/")
+        return RegisteredDomainsListPage(self.get_driver())
