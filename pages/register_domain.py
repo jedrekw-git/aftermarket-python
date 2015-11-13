@@ -18,7 +18,8 @@ class RegisterDomainPage(BasePage):
     _first_domain_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[1]/div/label/input")
     _realization_method_immediately_radio = (By.XPATH, "/html/body/div[7]/div/div/form/div[10]/div[3]/div/label[1]/span[2]")
     _register_domain_button = (By.XPATH, "/html/body/div[7]/div/div/form/div[11]/div[3]/button[2]")
-    _registration_effect_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[3]")
+    _registration_effect_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
+    _registration_effect_domain_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[2]/span")
     _first_domain = (By.XPATH, "//input[@value='%s']" %_domain_name_value)
     _domain_status_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[3]/label/span")
 

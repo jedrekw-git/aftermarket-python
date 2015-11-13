@@ -224,7 +224,8 @@ class SmokeTest(unittest.TestCase):
         register_domain_page.enter_domain_to_register()
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(register_domain_page._domain_status_field, u"Dostępna do rejestracji"))
         register_domain_page.register_domain()
-        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_text_field,"Domena zarejestrowana poprawnie"))
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_domain_field, register_domain_page._domain_name_value))
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_text_field, u"Domena zarejestrowana poprawnie"))
 
     def test_renew_domain_automatically_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
