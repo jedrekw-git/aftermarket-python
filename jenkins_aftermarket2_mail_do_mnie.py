@@ -75,8 +75,8 @@ class SmokeTest(unittest.TestCase):
 
         settings_page.remove_added_email_address()
 
-        Assert.not_contains(settings_page._add_email_address_value, settings_page.get_page_source())
-        Assert.not_contains("Niepotwierdzony", settings_page.get_page_source())
+        self.not_contains(settings_page._add_email_address_value, settings_page.get_page_source())
+        self.not_contains("Niepotwierdzony", settings_page.get_page_source())
 
     def test_add_other_users_to_account_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -90,8 +90,8 @@ class SmokeTest(unittest.TestCase):
 
         settings_page.remove_added_user()
 
-        Assert.not_contains(settings_page._add_other_user_login_value, settings_page.get_page_source())
-        Assert.not_contains(settings_page._add_other_user_description_value, settings_page.get_page_source())
+        self.not_contains(settings_page._add_other_user_login_value, settings_page.get_page_source())
+        self.not_contains(settings_page._add_other_user_description_value, settings_page.get_page_source())
 
     def test_change_company_address_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -136,8 +136,8 @@ class SmokeTest(unittest.TestCase):
         Assert.contains("Lista kont bankowych", settings_page.get_page_source())
         Assert.contains(u"Na tej liście znajdują się konta bankowe, na które możesz zlecać wypłaty.", settings_page.get_page_source())
         Assert.contains("Oto lista twoich kont bankowych.", settings_page.get_page_source())
-        Assert.not_contains(settings_page._add_bank_account_account_number_value, settings_page.get_page_source())
-        Assert.not_contains(settings_page._add_bank_account_account_name_value, settings_page.get_page_source())
+        self.not_contains(settings_page._add_bank_account_account_number_value, settings_page.get_page_source())
+        self.not_contains(settings_page._add_bank_account_account_name_value, settings_page.get_page_source())
 
     def test_change_DNS_servers_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -172,7 +172,7 @@ class SmokeTest(unittest.TestCase):
 
         settings_page.delete_added_profile()
 
-        Assert.not_contains(settings_page._new_DNS_profile_name_value, settings_page.get_page_source())
+        self.not_contains(settings_page._new_DNS_profile_name_value, settings_page.get_page_source())
 
     def test_notification_about_ending_auctions_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -364,8 +364,8 @@ class SmokeTest(unittest.TestCase):
         registered_domains_page.select_first_domain()
         registered_domains_page.new_dns_entry_for_senected_domain()
 
-        Assert.not_contains(registered_domains_page._add_dns_entry_host_name_value, registered_domains_page.get_page_source())
-        Assert.not_contains(registered_domains_page._add_dns_entry_address_value, registered_domains_page.get_page_source())
+        self.not_contains(registered_domains_page._add_dns_entry_host_name_value, registered_domains_page.get_page_source())
+        self.not_contains(registered_domains_page._add_dns_entry_address_value, registered_domains_page.get_page_source())
 
         registered_domains_page.new_dns_entry_for_senected_domain_details()
 
@@ -381,8 +381,8 @@ class SmokeTest(unittest.TestCase):
 
         registered_domains_page.delete_new_dns_entry_for_senected_domain()
 
-        Assert.not_contains(registered_domains_page._add_dns_entry_host_name_value, registered_domains_page.get_page_source())
-        Assert.not_contains(registered_domains_page._add_dns_entry_address_value, registered_domains_page.get_page_source())
+        self.not_contains(registered_domains_page._add_dns_entry_host_name_value, registered_domains_page.get_page_source())
+        self.not_contains(registered_domains_page._add_dns_entry_address_value, registered_domains_page.get_page_source())
 
     def test_new_dns_server_in_domain_should_succeed(self):
 
@@ -393,8 +393,8 @@ class SmokeTest(unittest.TestCase):
         registered_domains_page.select_first_domain()
         registered_domains_page.new_dns_server_in_domain()
 
-        Assert.not_contains(registered_domains_page._new_dns_server_in_domain_name_value+"."+registered_domains_page._first_domain_text_value, registered_domains_page.get_page_source())
-        Assert.not_contains(registered_domains_page._new_dns_server_in_domain_ip_value, registered_domains_page.get_page_source())
+        self.not_contains(registered_domains_page._new_dns_server_in_domain_name_value+"."+registered_domains_page._first_domain_text_value, registered_domains_page.get_page_source())
+        self.not_contains(registered_domains_page._new_dns_server_in_domain_ip_value, registered_domains_page.get_page_source())
 
         registered_domains_page.new_dns_server_in_domain_details()
 
@@ -403,8 +403,8 @@ class SmokeTest(unittest.TestCase):
 
         registered_domains_page.delete_new_dns_server_in_domain()
 
-        Assert.not_contains(registered_domains_page._new_dns_server_in_domain_name_value+"."+registered_domains_page._first_domain_text_value, registered_domains_page.get_page_source())
-        Assert.not_contains(registered_domains_page._new_dns_server_in_domain_ip_value, registered_domains_page.get_page_source())
+        self.not_contains(registered_domains_page._new_dns_server_in_domain_name_value+"."+registered_domains_page._first_domain_text_value, registered_domains_page.get_page_source())
+        self.not_contains(registered_domains_page._new_dns_server_in_domain_ip_value, registered_domains_page.get_page_source())
 
     def test_change_parking_service_should_succeed(self):
 
@@ -546,7 +546,7 @@ class SmokeTest(unittest.TestCase):
         message = Message(From="jedrzej.wojcieszczyk@testuj.pl",
                           To=["jedrzej.wojcieszczyk@testuj.pl"])
         message.Subject = "Raport Jenkins Aftermarket2 Testy Automatyczne"
-        message.Html = u"""<p>Cześć!<br>
+        message.Html = """<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></head><p>Cześć!<br>
            Oto wygenerowany automatycznie raport z testów Aftermarket2.pl<br><br>
            Tabela raportowa z logami wykonanych testów, a pod nią linki do screenshotów i kodu html testów które nie przeszły oraz wykres statystyczny: <a href="http://ci.testuj.pl/job/Aftermarket2/ws/Aftermarket2ReportLogi.html">Tabela z logami, screenshoty i wykres</a></p>"""
 
