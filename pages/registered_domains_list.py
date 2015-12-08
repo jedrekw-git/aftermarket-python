@@ -12,7 +12,8 @@ from random import randint
 class RegisteredDomainsListPage(BasePage):
     _title = "Registered domains"
 
-    _first_domain_checkbox = (By.XPATH, "//td[3]/span/label/span")
+    _first_domain_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form[2]/div/div[4]/table/tbody/tr[3]/td[3]/div/span/label/span")
+    _third_domain_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form[2]/div/div[4]/table/tbody/tr[9]/td[3]/div/span/label/span")
     _renew_button = (By.XPATH, "//div[7]/div/button")
     _renew_automatically_button = (By.XPATH, "//div[7]/div/div/div/div[2]")
     _renew_automatically_when_money_on_account_radio = (By.XPATH, "//div[3]/div/label")
@@ -25,6 +26,8 @@ class RegisteredDomainsListPage(BasePage):
     _result_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[2]/span")
     _result_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
     _move_button = (By.XPATH, "//div[7]/div/button[2]")
+    _move_to_other_account_button = (By.XPATH, "//div[7]/div/div/div[2]/div[4]")
+    _move_to_other_account_login_field = (By.NAME, "login")
     _change_profile_data_button = (By.XPATH, "//div[7]/div/div/div[2]/div")
     _change_profile_data_dont_send_results_radio = (By.XPATH, "/html/body/div[7]/div/div/form/div[3]/div[3]/div/label[2]/span[2]")
     _submit_button = (By.XPATH, "//button[2]")
@@ -33,11 +36,11 @@ class RegisteredDomainsListPage(BasePage):
     _get_authinfo_button = (By.XPATH, "//div[7]/div/div/div[2]/div[3]")
     _get_authinfo_dont_send_results_radio = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/div[3]/div/label[2]/span[2]")
     _redirect_button = (By.XPATH, "//div[7]/div/button[3]")
-    _change_dns_servers_button = (By.XPATH, "//div/div/div[3]/div")
+    _change_dns_servers_button = (By.XPATH, "//div[7]/div/div/div[3]/div")
     _change_dns_servers_dropdown = (By.XPATH, "//select")
     _change_dns_servers_dropdown_index = randint(1, 5)
     _change_dns_servers_dont_send_email_after_operation_radio = (By.XPATH, "/html/body/div[7]/div/div/form/div[7]/div[3]/div/label[2]/span[2]")
-    _change_redirection_button = (By.XPATH, "//div/div/div[3]/div[2]")
+    _change_redirection_button = (By.XPATH, "//div[7]/div/div/div[3]/div[2]")
     _change_redirection_dropdown = (By.XPATH, "//select")
     _change_redirection_url_field = (By.NAME, "url")
     _change_redirection_url_value = "http://www."+get_random_string(10)+".com"
@@ -56,7 +59,7 @@ class RegisteredDomainsListPage(BasePage):
     _add_dns_entry_priority_value = get_random_integer(2)
     _add_dns_entry_address_field = (By.XPATH, "//div[5]/div[3]/div/input")
     _add_dns_entry_address_value = "www."+get_random_string(10)+".com"
-    _add_dns_entry_host_name_result = (By.XPATH, "/html/body/div[7]/div/div/form[1]/div[2]/table/tbody/tr[5]/td[2]/span/label")
+    _add_dns_entry_host_name_result = (By.XPATH, "//label")
     _delete_first_dns_priofile_button = (By.XPATH, "//button[2]")
     _new_dns_server_in_domain_button = (By.XPATH, "//div[3]/div[5]")
     _new_dns_server_in_domain_add_server_button = (By.XPATH, "//button")
@@ -64,7 +67,7 @@ class RegisteredDomainsListPage(BasePage):
     _new_dns_server_in_domain_name_value = get_random_string(6)
     _new_dns_server_in_domain_ip_field = (By.XPATH, "//div[2]/div[3]/div/input")
     _new_dns_server_in_domain_ip_value = "192."+get_random_integer(2)+"."+get_random_integer(1)+"."+get_random_integer(1)
-    _new_dns_server_in_domain_name_result = (By.XPATH, "/html/body/div[7]/div/div/form[1]/div[2]/table/tbody/tr[3]/td[2]/span/label")
+    _new_dns_server_in_domain_name_result = (By.XPATH, "//label")
     _delete_first_dns_server = (By.XPATH, "//button[2]")
     _parking_button_first_domain = (By.XPATH, "//button[4]")
     _change_parking_service_button_first_domain = (By.XPATH, "//td/div[2]/div[4]/div")
@@ -74,7 +77,38 @@ class RegisteredDomainsListPage(BasePage):
     _change_keyword_field = (By.XPATH, "//div[3]/div/input")
     _change_keyword_value = get_random_string(10)
     _change_keyword_send_email_after_operation = (By.XPATH, "/html/body/div[7]/div/div/form/div[3]/div[3]/div/label[1]/span[2]")
-
+    _sell_first_domain_button = (By.XPATH, "//button[5]")
+    _sell_on_auction_first_domain_button = (By.XPATH, "//td/div[2]/div[5]/div[2]")
+    _sell_on_auction_price_start_field = (By.NAME, "price_start")
+    _sell_on_auction_price_start_value = randint(1, 20)
+    _sell_on_auction_currency_dropdown = (By.NAME, "currency")
+    _sell_on_auction_currency_value = randint(0, 3)
+    _sell_on_auction_end_date_field = (By.NAME, "end_date")
+    _sell_on_auction_end_date_index = randint(1, 29)
+    _sell_on_auction_end_time_field = (By.NAME, "end_time")
+    _sell_on_auction_end_time_index = randint(1, 22)
+    _sell_on_auction_minimal_price_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[5]/div[3]/div[1]/label")
+    _sell_on_auction_buy_now_price_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[5]/div[3]/div[2]/label")
+    _sell_on_auction_auction_description_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[5]/div[3]/div[3]/label")
+    _sell_on_auction_category_field = (By.XPATH, "//span[2]/input")
+    _sell_on_auction_category_technology = (By.XPATH, "//span[2]/div/div[2]/div[4]")
+    _sell_on_auction_category_technology_computers = (By.XPATH, "//span[2]/div/div[6]/div")
+    _sell_on_auction_price_minimum_field = (By.NAME, "price_minimum")
+    _sell_on_auction_price_minimum_value = randint(21, 40)
+    _sell_on_auction_price_buynow_field = (By.NAME, "price_buynow")
+    _sell_on_auction_price_buynow_value = randint(41, 60)
+    _sell_on_auction_description_field = (By.XPATH, "//div[10]/div[3]/div/div/div")
+    _sell_on_auction_description_value = get_random_string(10)+" "+get_random_string(7)+" "+get_random_string(8)
+    _sell_on_auction_stage2_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/div[3]/div[1]/span")
+    _sell_on_auction_stage2_category_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[4]/div[3]/div[1]/span")
+    _sell_on_escrow_auction_first_domain_button = (By.XPATH, "//div[5]/div[3]")
+    _sell_on_escrow_auction_buyer_login_field = (By.NAME, "login")
+    _sell_on_escrow_auction_price_field = (By.NAME, "amount")
+    _sell_on_escrow_auction_days_to_pay_dropdown = (By.NAME, "days")
+    _sell_on_escrow_auction_days_to_pay_index = randint(0, 7)
+    _sell_on_escrow_auction_stage2_buyer_login_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[3]/div[3]/div[1]/span")
+    _delete_third_auction_button = (By.XPATH, "//tr[11]/td/div/span/button")
+    _delete_third_auction_accept_deletion_indicated_domains_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/div[3]/div[1]/label/span[2]")
 
     def __init__(self, driver):
         super(RegisteredDomainsListPage, self).__init__(driver, self._title)
@@ -111,8 +145,10 @@ class RegisteredDomainsListPage(BasePage):
     def change_profile_data(self):
         self.click(self._move_button)
         self.click(self._change_profile_data_button)
+        self.click(self._submit_button)
         self.click(self._change_profile_data_dont_send_results_radio)
         self.click(self._submit_button)
+        self.accept_alert()
 
     def result_text(self):
         return self.get_text(self._result_text_field)
@@ -193,6 +229,7 @@ class RegisteredDomainsListPage(BasePage):
         self.clear_field_and_send_keys(self._new_dns_server_in_domain_name_value, self._new_dns_server_in_domain_name_field)
         self.clear_field_and_send_keys(self._new_dns_server_in_domain_ip_value, self._new_dns_server_in_domain_ip_field)
         self.click(self._submit_button)
+        sleep(2)
 
     def delete_new_dns_server_in_domain(self):
         self.click(self._new_dns_server_in_domain_name_result)
@@ -212,3 +249,66 @@ class RegisteredDomainsListPage(BasePage):
         self.clear_field_and_send_keys(self._change_keyword_value, self._change_keyword_field)
         self.click(self._change_keyword_send_email_after_operation)
         self.click(self._submit_button)
+
+    def sell_on_auction(self):
+        self.click(self._sell_first_domain_button)
+        self.click(self._sell_on_auction_first_domain_button)
+        self.clear_field_and_send_keys(self._sell_on_auction_price_start_value, self._sell_on_auction_price_start_field)
+        self.select_index_from_dropdown(self._sell_on_auction_currency_value, self._sell_on_auction_currency_dropdown)
+        self.select_index_from_dropdown(self._sell_on_auction_end_date_index, self._sell_on_auction_end_date_field)
+        self.select_index_from_dropdown(self._sell_on_auction_end_time_index, self._sell_on_auction_end_time_field)
+        self.click(self._sell_on_auction_minimal_price_checkbox)
+        self.click(self._sell_on_auction_buy_now_price_checkbox)
+        self.click(self._sell_on_auction_auction_description_checkbox)
+        self.click(self._sell_on_auction_category_field)
+        self.click(self._sell_on_auction_category_technology)
+        self.click(self._sell_on_auction_category_technology_computers)
+        self.clear_field_and_send_keys(self._sell_on_auction_price_minimum_value, self._sell_on_auction_price_minimum_field)
+        self.clear_field_and_send_keys(self._sell_on_auction_price_buynow_value, self._sell_on_auction_price_buynow_field)
+        self.clear_field_and_send_keys(self._sell_on_auction_description_value, self._sell_on_auction_description_field)
+        self.click(self._submit_button)
+
+    def sell_on_auction_stage2_domain_text(self):
+        return self.get_text(self._sell_on_auction_stage2_domain_name_field)
+
+    def sell_on_auction_stage2_category_text(self):
+        return self.get_text(self._sell_on_auction_stage2_category_field)
+
+    def sell_on_auction_submit(self):
+        self.click(self._submit_button)
+        self.accept_alert()
+
+    def sell_on_escrow_auction(self, login_value, price):
+        self.click(self._sell_first_domain_button)
+        self.click(self._sell_on_escrow_auction_first_domain_button)
+        self.clear_field_and_send_keys(login_value, self._sell_on_escrow_auction_buyer_login_field)
+        self.clear_field_and_send_keys(price, self._sell_on_escrow_auction_price_field)
+        self.select_index_from_dropdown(self._sell_on_auction_currency_value, self._sell_on_auction_currency_dropdown)
+        self.select_index_from_dropdown(self._sell_on_escrow_auction_days_to_pay_index, self._sell_on_escrow_auction_days_to_pay_dropdown)
+        self.click(self._submit_button)
+
+    def sell_on_escrow_auction_stage2_buyer_login_text(self):
+        return self.get_text(self._sell_on_escrow_auction_stage2_buyer_login_field)
+
+    def delete_third_auction(self):
+        self.click(self._delete_third_auction_button)
+        self.click(self._delete_third_auction_accept_deletion_indicated_domains_checkbox)
+        self.click(self._submit_button)
+
+    def third_domain_text(self):
+        self._third_domain_text_value = self.get_text(self._third_domain_checkbox)
+
+    def select_third_domain(self):
+        self.click(self._third_domain_checkbox)
+
+    def store_authinfo(self):
+        self._result_text = self.get_text(self._result_text_field)
+        self._authinfo = self._result_text[14:]
+
+    def move_domain_from_account(self, login):
+        self.click(self._move_button)
+        self.click(self._move_to_other_account_button)
+        self.clear_field_and_send_keys(login, self._move_to_other_account_login_field)
+        self.click(self._submit_button)
+
+
