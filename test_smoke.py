@@ -274,8 +274,11 @@ class SmokeTest(unittest.TestCase):
         registered_domains_page.select_first_domain()
         registered_domains_page.change_profile_data()
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja wykonana poprawnie"))
-        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+        if u"Operacja wykonana poprawnie" in registered_domains_page._result_text_field:
+            Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+        else:
+            WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Domena jest zablokowana:"))
+            Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
 
     def test_privacy_settings_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -428,7 +431,7 @@ class SmokeTest(unittest.TestCase):
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
-        registered_domains_page.new_dns_server_in_domain()
+        registered_domains_page.dns_servers_in_domain()
 
         self.not_contains(registered_domains_page._new_dns_server_in_domain_name_value+"."+registered_domains_page._first_domain_text_value, registered_domains_page.get_page_source())
         self.not_contains(registered_domains_page._new_dns_server_in_domain_ip_value, registered_domains_page.get_page_source())

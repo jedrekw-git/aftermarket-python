@@ -61,7 +61,7 @@ class RegisteredDomainsListPage(BasePage):
     _add_dns_entry_address_value = "www."+get_random_string(10)+".com"
     _add_dns_entry_host_name_result = (By.XPATH, "//label")
     _delete_first_dns_priofile_button = (By.XPATH, "//button[2]")
-    _new_dns_server_in_domain_button = (By.XPATH, "//div[3]/div[5]")
+    _dns_servers_in_domain_button = (By.XPATH, "//div[2]/div[3]/div[5]")
     _new_dns_server_in_domain_add_server_button = (By.XPATH, "//button")
     _new_dns_server_in_domain_name_field = (By.XPATH, "//div/input")
     _new_dns_server_in_domain_name_value = get_random_string(6)
@@ -77,8 +77,8 @@ class RegisteredDomainsListPage(BasePage):
     _change_keyword_field = (By.XPATH, "//div[3]/div/input")
     _change_keyword_value = get_random_string(10)
     _change_keyword_send_email_after_operation = (By.XPATH, "/html/body/div[7]/div/div/form/div[3]/div[3]/div/label[1]/span[2]")
-    _sell_first_domain_button = (By.XPATH, "//button[5]")
-    _sell_on_auction_first_domain_button = (By.XPATH, "//td/div[2]/div[5]/div[2]")
+    _sell_first_domain_button = (By.XPATH, "//button[6]")
+    _sell_on_auction_first_domain_button = (By.XPATH, "//div[2]/div[6]/div[2]")
     _sell_on_auction_price_start_field = (By.NAME, "price_start")
     _sell_on_auction_price_start_value = randint(1, 20)
     _sell_on_auction_currency_dropdown = (By.NAME, "currency")
@@ -101,7 +101,7 @@ class RegisteredDomainsListPage(BasePage):
     _sell_on_auction_description_value = get_random_string(10)+" "+get_random_string(7)+" "+get_random_string(8)
     _sell_on_auction_stage2_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/div[3]/div[1]/span")
     _sell_on_auction_stage2_category_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[4]/div[3]/div[1]/span")
-    _sell_on_escrow_auction_first_domain_button = (By.XPATH, "//div[5]/div[3]")
+    _sell_on_escrow_auction_first_domain_button = (By.XPATH, "//div[6]/div[3]")
     _sell_on_escrow_auction_buyer_login_field = (By.NAME, "login")
     _sell_on_escrow_auction_price_field = (By.NAME, "amount")
     _sell_on_escrow_auction_days_to_pay_dropdown = (By.NAME, "days")
@@ -220,9 +220,9 @@ class RegisteredDomainsListPage(BasePage):
         self.click(self._delete_first_dns_priofile_button)
         self.click(self._delete_first_dns_priofile_button)
 
-    def new_dns_server_in_domain(self):
+    def dns_servers_in_domain(self):
         self.click(self._redirect_button_for_selected_domain)
-        self.click(self._new_dns_server_in_domain_button)
+        self.click(self._dns_servers_in_domain_button)
 
     def new_dns_server_in_domain_details(self):
         self.click(self._new_dns_server_in_domain_add_server_button)

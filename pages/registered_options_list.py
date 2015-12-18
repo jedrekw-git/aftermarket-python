@@ -38,8 +38,9 @@ class RegisteredOptionsListPage(BasePage):
         return self.get_text(self._stage2_option_name_field)
 
     def submit_and_accept_alert(self):
+        sleep(3)
         self.click(self._submit_button)
-        sleep(2)
+        sleep(3)
         self.accept_alert()
 
     def result_domain_text(self):
