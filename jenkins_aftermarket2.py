@@ -1,6 +1,7 @@
 # coding=utf-8
 import unittest
 from selenium import webdriver
+from htmltestrunner import HTMLTestRunner
 from unittestzero import Assert
 from pages.home import HomePage
 from utils.config import *
