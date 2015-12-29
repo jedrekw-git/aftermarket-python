@@ -281,6 +281,7 @@ class SettingsPage(BasePage):
     def remove_added_email_address(self):
         self.click(self._add_email_address_remove_added_email)
         self.click(self._add_email_address_remove_added_email_confirm)
+        self.accept_alert()
 
     def open_add_other_users_page(self):
         self.click(self._add_other_users_menu)
@@ -291,7 +292,8 @@ class SettingsPage(BasePage):
         self.clear_field_and_send_keys(self._add_other_user_password_value, self._add_other_user_password_field)
         self.clear_field_and_send_keys(self._add_other_user_password_value, self._add_other_user_repeat_password_field)
         self.clear_field_and_send_keys(self._add_other_user_description_value, self._add_other_user_description_field)
-        self.click(self._add_other_user_button)
+        self.click(self._add_other_user_save_button)
+        sleep(2)
 
     def add_other_user_change_priviledges(self):
         self.click(self._add_other_user_added_login_field)

@@ -21,10 +21,10 @@ class RegisteredDomainsListPage(BasePage):
     _renew_manually_button = (By.XPATH, "//div[7]/div/div/div/div")
     _second_stage_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[2]/label/span")
     _second_stage_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[3]/label/span")
-    _second_stage_send_email_after_oparation_radio = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/div[3]/div/label[1]/span[2]")
-    _second_stage_realize_immediately_radio = (By.XPATH, "/html/body/div[7]/div/div/form/div[3]/div[3]/div/label[1]/span[2]")
+    _second_stage_send_email_after_oparation_radio = (By.XPATH, "//label/span[2]")
+    _second_stage_stop_realization_until_manual_activation_radio = (By.XPATH, "//div[3]/div[3]/div/label[2]/span[2]")
     _result_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[2]/span")
-    _result_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
+    _result_text_field = (By.XPATH, "//td[3]")
     _move_button = (By.XPATH, "//div[7]/div/button[2]")
     _move_to_other_account_button = (By.XPATH, "//div[7]/div/div/div[2]/div[4]")
     _move_to_other_account_login_field = (By.NAME, "login")
@@ -109,6 +109,20 @@ class RegisteredDomainsListPage(BasePage):
     _sell_on_escrow_auction_stage2_buyer_login_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[3]/div[3]/div[1]/span")
     _delete_third_auction_button = (By.XPATH, "//tr[11]/td/div/span/button")
     _delete_third_auction_accept_deletion_indicated_domains_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/div[3]/div[1]/label/span[2]")
+    _add_on_marketplace_first_domain_button = (By.XPATH, "//div[2]/div[6]/div")
+    _add_on_marketplace_buynow_field = (By.NAME, 'buynow')
+    _add_on_marketplace_buynow_value = get_random_integer(2)
+    _add_on_marketplace_minimum_price_field = (By.NAME, "minimum")
+    _add_on_marketplace_minimum_price_value = get_random_integer(2)
+    _add_on_marketplace_currency_dropdown = (By.NAME, "currency")
+    _add_on_marketplace_currency_index = randint(0,3)
+    _add_on_marketplace_category_checkbox = (By.XPATH, "//div[6]/div[3]/div/label")
+    _add_on_marketplace_description_checkbox = (By.XPATH, "//div[6]/div[3]/div/label")
+    _add_on_marketplace_category_field = (By.XPATH, "//span[2]/input")
+    _add_on_marketplace_category_technology = (By.XPATH, "//span[2]/div/div[2]/div[4]")
+    _add_on_marketplace_category_technology_computers = (By.XPATH, "//span[2]/div/div[6]/div")
+    _add_on_marketplace_description_field = (By.XPATH, "//div[9]/div[3]/div/div/div")
+    _add_on_marketplace_description_value = get_random_string(10)+" "+get_random_string(15)
 
     def __init__(self, driver):
         super(RegisteredDomainsListPage, self).__init__(driver, self._title)
@@ -135,7 +149,7 @@ class RegisteredDomainsListPage(BasePage):
 
     def second_stage_checkboxes_and_submit(self):
         self.click(self._second_stage_send_email_after_oparation_radio)
-        self.click(self._second_stage_realize_immediately_radio)
+        self.click(self._second_stage_stop_realization_until_manual_activation_radio)
         self.click(self._submit_button)
         self.accept_alert()
 
@@ -148,7 +162,8 @@ class RegisteredDomainsListPage(BasePage):
         self.click(self._submit_button)
         self.click(self._change_profile_data_dont_send_results_radio)
         self.click(self._submit_button)
-        self.accept_alert()
+        if EC.alert_is_present():
+            self.accept_alert()
 
     def result_text(self):
         return self.get_text(self._result_text_field)
@@ -199,7 +214,7 @@ class RegisteredDomainsListPage(BasePage):
     def change_dns_profile(self):
         self.click(self._redirect_button)
         self.click(self._change_dns_profile_button)
-        self.select_index_from_dropdown(1, self._change_dns_profile_dropdown)
+        # self.select_index_from_dropdown(1, self._change_dns_profile_dropdown)
         self.click(self._change_dns_profile_dont_sent_results_after_operation_radio)
         self.click(self._submit_button)
 
@@ -239,6 +254,7 @@ class RegisteredDomainsListPage(BasePage):
     def change_parking_service(self):
         self.click(self._parking_button_first_domain)
         self.click(self._change_parking_service_button_first_domain)
+        sleep(2)
         self.click(self._change_parking_service_redirect_domains_to_dns_server_checkbox)
         self.click(self._change_parking_service_send_email_after_oparation_radio)
         self.click(self._submit_button)
@@ -300,6 +316,20 @@ class RegisteredDomainsListPage(BasePage):
 
     def select_third_domain(self):
         self.click(self._third_domain_checkbox)
+
+    def add_on_marketplace(self):
+        self.click(self._sell_first_domain_button)
+        self.click(self._add_on_marketplace_first_domain_button)
+        self.clear_field_and_send_keys(self._add_on_marketplace_buynow_value, self._add_on_marketplace_buynow_field)
+        self.select_index_from_dropdown(self._add_on_marketplace_currency_index, self._add_on_marketplace_currency_dropdown)
+        self.clear_field_and_send_keys(self._add_on_marketplace_minimum_price_value, self._add_on_marketplace_minimum_price_field)
+        self.check(self._add_on_marketplace_category_checkbox)
+        self.check(self._add_on_marketplace_description_checkbox)
+        self.click(self._add_on_marketplace_category_field)
+        self.click(self._add_on_marketplace_category_technology)
+        self.click(self._add_on_marketplace_category_technology_computers)
+        self.clear_field_and_send_keys(self._add_on_marketplace_description_value, self._add_on_marketplace_description_field)
+        self.click(self._submit_button)
 
     def store_authinfo(self):
         self._result_text = self.get_text(self._result_text_field)

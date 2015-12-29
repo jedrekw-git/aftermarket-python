@@ -33,7 +33,7 @@ class ProfileForDomainRegistrationList(BasePage):
     _delete_button = (By.XPATH, "//div[3]/div/button")
     _delete_submit = (By.XPATH, "//button[2]")
     _result_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
-    _back_from_results_page_button = (By.XPATH, "//div[3]/div/button")
+    _back_from_results_page_button = (By.XPATH, "//button")
     _added_profile_name_field = (By.XPATH, "//tr[7]/td[3]/div/span/label")
 
     def __init__(self, driver):

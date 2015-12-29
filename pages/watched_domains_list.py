@@ -19,7 +19,7 @@ class WatchedDomainsListPage(BasePage):
     _result_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[2]/span")
     _result_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
     _delete_first_domain_button = (By.XPATH, "//div/span/img")
-    _back_from_results_page_button = (By.XPATH, "//div[3]/div/button")
+    _back_from_results_page_button = (By.XPATH, "//button")
 
 
     def __init__(self, driver):
@@ -35,6 +35,7 @@ class WatchedDomainsListPage(BasePage):
 
     def delete_first_domain(self):
         self.click(self._delete_first_domain_button)
+        self.accept_alert()
 
     def back_from_results_page(self):
         self.click(self._back_from_results_page_button)

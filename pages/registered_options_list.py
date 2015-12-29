@@ -23,6 +23,9 @@ class RegisteredOptionsListPage(BasePage):
     _transfer_option_login_field = (By.XPATH, "//div[3]/div/input")
     _transfer_list_first_option_field = (By.XPATH, "//td[3]/div/span/label/span")
     _transfer_list_first_option_cancel_button = (By.XPATH, "//td/div/button")
+    _get_option_authinfo_button = (By.XPATH, "//button[3]")
+    _second_stage_send_email_after_oparation_radio = (By.XPATH, "//label/span[2]")
+    _second_stage_stop_realization_until_manual_activation_radio = (By.XPATH, "//div[3]/div[3]/div/label[2]/span[2]")
 
     def __init__(self, driver):
         super(RegisteredOptionsListPage, self).__init__(driver, self._title)
@@ -49,7 +52,7 @@ class RegisteredOptionsListPage(BasePage):
     def result_text(self):
         return self.get_text(self._result_text_field)
 
-    def transfer_option(self):
+    def transfer_option_from_account(self):
         self.click(self._first_option_checkbox)
         self.click(self._transfer_first_option_button)
 
@@ -66,5 +69,19 @@ class RegisteredOptionsListPage(BasePage):
         self.click(self._transfer_list_first_option_field)
         self.click(self._transfer_list_first_option_cancel_button)
 
+    def get_option_authinfo(self):
+        self.click(self._first_option_checkbox)
+        self.click(self._get_option_authinfo_button)
+        self.click(self._submit_button)
+
+    def store_option_authinfo(self):
+        self._result_text = self.get_text(self._result_text_field)
+        self._option_authinfo = self._result_text[14:]
+
+    def second_stage_checkboxes_and_submit(self):
+        self.click(self._second_stage_send_email_after_oparation_radio)
+        self.click(self._second_stage_stop_realization_until_manual_activation_radio)
+        self.click(self._submit_button)
+        self.accept_alert()
 
 

@@ -24,6 +24,7 @@ class DomainsToCatchList(BasePage):
     def delete_first_domain(self):
         self.click(self._first_domain_checkbox)
         self.click(self._delete_first_domain_button)
+        self.accept_alert()
 
     def first_domain_text(self):
         self._first_domain_text_value = self.get_text(self._first_domain_checkbox)

@@ -14,7 +14,7 @@ class SellingAuctionListPage(BasePage):
 
     _first_auction_delete_button = (By.XPATH, "//td[10]/div/span/img")
     _submit_button = (By.XPATH, "//button[2]")
-    _back_from_results_page_button = (By.XPATH, "//div[3]/div/button")
+    _back_from_results_page_button = (By.XPATH, "//button")
 
     def __init__(self, driver):
         super(SellingAuctionListPage, self).__init__(driver, self._title)
