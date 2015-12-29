@@ -16,7 +16,7 @@ class RegisterDomainPage(BasePage):
     _domain_name_value = get_random_uuid(10)+".waw.pl"
     _check_domain_availability_button = (By.XPATH, "//button")
     _first_domain_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[1]/div/label/input")
-    _realization_method_immediately_radio = (By.XPATH, "/html/body/div[7]/div/div/form/div[10]/div[3]/div/label[1]/span[2]")
+    _stop_realization_until_manual_activation_radio = (By.XPATH, "//label[2]/span[2]")
     _register_domain_button = (By.XPATH, "/html/body/div[7]/div/div/form/div[11]/div[3]/button[2]")
     _registration_effect_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
     _registration_effect_domain_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[2]/span")
@@ -32,10 +32,10 @@ class RegisterDomainPage(BasePage):
 
     def register_domain(self):
         # self.check(self._first_domain_checkbox)
-        self.click(self._realization_method_immediately_radio)
-        sleep(3)
+        self.click(self._stop_realization_until_manual_activation_radio)
+        sleep(2)
         self.click(self._register_domain_button)
-        sleep(3)
+        sleep(2)
         self.accept_alert()
 
 

@@ -230,10 +230,23 @@ class SmokeTest(unittest.TestCase):
         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         register_domain_page = account_page.header.open_register_domain_page()
         register_domain_page.enter_domain_to_register()
+
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(register_domain_page._domain_status_field, u"Dostępna do rejestracji"))
+
         register_domain_page.register_domain()
+
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_domain_field, register_domain_page._domain_name_value))
-        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_text_field, u"Domena zarejestrowana poprawnie"))
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_text_field, u"Domena zarezerwowana i oczekuje na opłacenie"))
+
+        to_pay_list = account_page.header.open_to_pay_list()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_title, register_domain_page._domain_name_value))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_type, u"Rejestracja domeny"))
+
+        to_pay_list.remove_first_payment()
+
+        self.not_contains(register_domain_page._domain_name_value, to_pay_list.get_page_source())
+        self.not_contains(u"Rejestracja domeny", to_pay_list.get_page_source())
 
     def test_renew_domain_automatically_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -822,7 +835,6 @@ class SmokeTest(unittest.TestCase):
         Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
 
         hosting_account_list.back_from_results_page()
-        hosting_account_list.add_domains_to_hosting_account()
 
         Assert.contains(registered_domains_page._first_domain_text_value, hosting_account_list.get_page_source())
         Assert.contains(strftime("%Y-%m-%d", gmtime()), hosting_account_list.get_page_source())

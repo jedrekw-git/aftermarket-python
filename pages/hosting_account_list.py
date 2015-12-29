@@ -26,8 +26,9 @@ class HostingAccountList(BasePage):
     _submit_button = (By.XPATH, "//button[2]")
     _first_hosting_account = (By.XPATH, "//label/b")
     _first_hosting_account_add_domains_button = (By.XPATH, "//td/div/button")
+    _add_domains_button = (By.XPATH, "//button")
     _add_domains_domain_field = (By.NAME, "domain")
-    _back_from_results_page_button = (By.XPATH, "//div[3]/div/button")
+    _back_from_results_page_button = (By.XPATH, "//button")
     _remove_first_domain_button = (By.XPATH, "//div/span/img")
 
 
@@ -58,6 +59,7 @@ class HostingAccountList(BasePage):
         self.click(self._first_hosting_account_add_domains_button)
 
     def add_domains_to_hosting_account_stage2(self, domain_name):
+        self.click(self._add_domains_button)
         self.clear_field_and_send_keys(domain_name, self._add_domains_domain_field)
         self.click(self._submit_button)
 
