@@ -113,7 +113,7 @@ class RegisteredDomainsListPage(BasePage):
     _add_on_marketplace_buynow_field = (By.NAME, 'buynow')
     _add_on_marketplace_buynow_value = get_random_integer(2)
     _add_on_marketplace_minimum_price_field = (By.NAME, "minimum")
-    _add_on_marketplace_minimum_price_value = get_random_integer(2)
+    _add_on_marketplace_minimum_price_value = get_random_integer(1)
     _add_on_marketplace_currency_dropdown = (By.NAME, "currency")
     _add_on_marketplace_currency_index = randint(0,3)
     _add_on_marketplace_category_checkbox = (By.XPATH, "//div[6]/div[3]/div/label")

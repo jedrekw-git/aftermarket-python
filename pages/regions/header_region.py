@@ -25,7 +25,7 @@ class HeaderRegion(Page):
     _login_field = (By.NAME, "login")
     _password_field = (By.NAME, "password")
     _login_button = (By.XPATH, "//div[4]/button")
-    _base_url = "http://testy.aftermarket2.pl/"
+    _base_url = "http://www.testy.aftermarket2.pl/"
     _logout_button = (By.PARTIAL_LINK_TEXT, "Wyloguj")
 
     _domain_menu = (By.XPATH, "//a[contains(@onclick,'domains')]")
