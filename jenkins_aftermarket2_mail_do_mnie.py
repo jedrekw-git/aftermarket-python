@@ -671,26 +671,26 @@ class SmokeTest(unittest.TestCase):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
-        registered_domains_page.third_domain_text()
+        registered_domains_page.second_domain_text()
         register_option_page = account_page.header.open_register_option_page()
-        register_option_page.enter_option_to_register(registered_domains_page._third_domain_text_value)
+        register_option_page.enter_option_to_register(registered_domains_page._second_domain_text_value)
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(register_option_page._stage2_result_field, u"Dostępna do rejestracji"))
-        Assert.equal(registered_domains_page._third_domain_text_value, register_option_page.stage2_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, register_option_page.stage2_domain_text())
 
         register_option_page.submit_and_accept_alert()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja zawieszona, oczekuje na aktywowanie"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
 
         to_pay_list = account_page.header.open_to_pay_list()
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_title, registered_domains_page._third_domain_text_value))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_title, registered_domains_page._second_domain_text_value))
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_type, u"Rejestracja opcji"))
 
         to_pay_list.remove_first_payment()
 
-        self.not_contains(registered_domains_page._third_domain_text_value, to_pay_list.get_page_source())
+        self.not_contains(registered_domains_page._second_domain_text_value, to_pay_list.get_page_source())
         self.not_contains(u"Rejestracja opcji", to_pay_list.get_page_source())
 
     def test_renew_option_should_succeed(self):
