@@ -62,7 +62,7 @@ class HostingAccountList(BasePage):
     def add_domains_to_hosting_account_stage2(self, domain_name):
         # self.click(self._add_domains_button)
         self.clear_field_and_send_keys(domain_name, self._add_domains_domain_field)
-        self.click(self._add_domains_DNS_checkbox)
+        # self.click(self._add_domains_DNS_checkbox)
         self.click(self._submit_button)
 
     def back_from_results_page(self):

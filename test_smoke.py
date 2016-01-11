@@ -108,7 +108,7 @@ class SmokeTest(unittest.TestCase):
 
     # def test_change_company_data_should_succeed(self):
     #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+    #     account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
     #     settings_page = account_page.header.open_settings_page()
     #     change_company_data_page = settings_page.open_change_company_data_page()
     #     settings_page.edit_company_data()
@@ -227,7 +227,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_register_domain_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         register_domain_page = account_page.header.open_register_domain_page()
         register_domain_page.enter_domain_to_register()
 
@@ -250,7 +250,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_renew_domain_automatically_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -261,7 +261,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_renew_domain_manually_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -290,7 +290,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_change_profile_data_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -304,7 +304,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_privacy_settings_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -320,7 +320,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_get_authinfo_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -334,36 +334,36 @@ class SmokeTest(unittest.TestCase):
         login = "alfa"
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
-        registered_domains_page.third_domain_text()
-        registered_domains_page.select_third_domain()
+        registered_domains_page.second_domain_text()
+        registered_domains_page.select_second_domain()
         registered_domains_page.move_domain_from_account(login)
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Transfer został zainicjowany"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
 
         transfer_domain_page = account_page.header.open_transfer_domain_from_account_list()
         transfer_domain_page.cancel_first_domain_transfer()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(transfer_domain_page._stage2_result_field, u"Transfer zostanie anulowany"))
-        Assert.equal(registered_domains_page._third_domain_text_value, transfer_domain_page.stage2_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, transfer_domain_page.stage2_domain_text())
 
         transfer_domain_page.submit_and_accept_alert()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Transfer został anulowany"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
 
         transfer_domain_page = account_page.header.open_transfer_domain_from_account_list()
 
-        self.not_contains(registered_domains_page._third_domain_text_value, transfer_domain_page.get_page_source())
+        self.not_contains(registered_domains_page._second_domain_text_value, transfer_domain_page.get_page_source())
 
 
 #SPRAWDZIC BO BYL BLAD BAZY DANYCH
 
     def test_change_DNS_servers_for_selected_domain_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -374,7 +374,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_change_redirection_direct_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -385,7 +385,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_change_redirection_hidden_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -396,7 +396,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_change_redirection_ip_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -408,7 +408,7 @@ class SmokeTest(unittest.TestCase):
     def test_change_dns_profile_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -420,7 +420,7 @@ class SmokeTest(unittest.TestCase):
     def test_new_dns_entry_for_selected_domain_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -449,7 +449,7 @@ class SmokeTest(unittest.TestCase):
     def test_new_dns_server_in_domain_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -471,7 +471,7 @@ class SmokeTest(unittest.TestCase):
     def test_change_parking_service_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -483,7 +483,7 @@ class SmokeTest(unittest.TestCase):
     def test_change_keyword_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -499,7 +499,7 @@ class SmokeTest(unittest.TestCase):
     def test_sell_on_auction_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -534,7 +534,7 @@ class SmokeTest(unittest.TestCase):
         price = get_random_integer(2)
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -569,7 +569,7 @@ class SmokeTest(unittest.TestCase):
     def test_add_on_marketplace_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -581,7 +581,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_delete_domain_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.third_domain_text()
         registered_domains_page.select_third_domain()
@@ -592,7 +592,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_transfer_domain_to_the_same_account_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.third_domain_text()
         registered_domains_page.select_third_domain()
@@ -609,7 +609,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_transfer_domain_to_the_other_account_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.third_domain_text()
         registered_domains_page.select_third_domain()
@@ -649,7 +649,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_add_profile_for_domain_registration_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         profile_list_page = account_page.header.open_profile_for_domain_registration_list()
         profile_list_page.register_new_profile()
 
@@ -666,7 +666,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_register_option_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.third_domain_text()
         register_option_page = account_page.header.open_register_option_page()
@@ -692,7 +692,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_renew_option_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_options_list = account_page.header.open_registered_options_list()
         registered_options_list.first_option_text()
         transfer_option = registered_options_list.renew_option()
@@ -722,7 +722,7 @@ class SmokeTest(unittest.TestCase):
         login = "alfa"
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
         registered_options_list = account_page.header.open_registered_options_list()
         registered_options_list.first_option_text()
         transfer_option = registered_options_list.transfer_option_from_account()
@@ -765,7 +765,7 @@ class SmokeTest(unittest.TestCase):
         registered_options_list.store_option_authinfo()
 
         home_page.header.logout()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         transfer_option_list = account_page.header.open_transfer_option_to_account_list()
         transfer_option_list.new_option_transfer(registered_options_list._first_option_text_value, registered_options_list._option_authinfo)
 
@@ -800,9 +800,9 @@ class SmokeTest(unittest.TestCase):
     def test_new_hosting_account_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         hosting_account_list = account_page.header.open_hosting_account_list()
-        hosting_account_list.new_hosting_account(PASSWORD_BETA)
+        hosting_account_list.new_hosting_account(PASSWORD_DELTA)
 
         Assert.equal("Pakiet Starter", hosting_account_list.get_text_packet_type_stage_2())
         Assert.equal(hosting_account_list._new_hosting_account_login_value, hosting_account_list.get_text_login_stage_2())
@@ -824,7 +824,7 @@ class SmokeTest(unittest.TestCase):
     def test_add_domain_to_hosting_account_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         hosting_account_list = account_page.header.open_hosting_account_list()
@@ -852,7 +852,7 @@ class SmokeTest(unittest.TestCase):
     def test_watch_new_domain_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         watched_domains_page = account_page.header.open_watched_domains_list()
         watched_domains_page.watch_new_domain()
 
@@ -879,7 +879,7 @@ class SmokeTest(unittest.TestCase):
         seller_name = "alfa"
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         watched_sellers_page = account_page.header.open_watched_sellers_list()
         watched_sellers_page.watch_new_seller(seller_name)
 
@@ -900,7 +900,7 @@ class SmokeTest(unittest.TestCase):
         login = "alfa"
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
         registered_options_list = account_page.header.open_registered_options_list()
         registered_options_list.first_option_text()
         escrow_option_transaction_page = account_page.header.open_escrow_option_transaction_list()
@@ -921,7 +921,6 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(login, escrow_option_transaction_page.get_page_source())
         Assert.contains("Nowa", escrow_option_transaction_page.get_page_source())
         Assert.contains(escrow_option_transaction_page._price_value, escrow_option_transaction_page.get_page_source())
-        Assert.contains(strftime("%Y-%m-%d", gmtime()), escrow_option_transaction_page.get_page_source())
 
         escrow_option_transaction_page.delete_first_auction()
 
@@ -946,7 +945,7 @@ class SmokeTest(unittest.TestCase):
         seller_name = "alfa"
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         blocked_sellers_page = account_page.header.open_blocked_sellers_list()
         blocked_sellers_page.block_seller(seller_name)
 
@@ -966,7 +965,7 @@ class SmokeTest(unittest.TestCase):
     def test_catch_domain_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         expiring_domains_list = account_page.header.open_expiring_domains_list()
         expiring_domains_list.first_domain_text()
         expiring_domains_list.catch_first_domain()

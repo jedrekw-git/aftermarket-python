@@ -14,6 +14,7 @@ class RegisteredDomainsListPage(BasePage):
 
     _first_domain_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form[2]/div/div[4]/table/tbody/tr[3]/td[3]/div/span/label/span")
     _third_domain_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form[2]/div/div[4]/table/tbody/tr[9]/td[3]/div/span/label/span")
+    _second_domain_checkbox = (By.XPATH, "//tr[6]/td[3]/div/span/label/span")
     _renew_button = (By.XPATH, "//div[7]/div/button")
     _renew_automatically_button = (By.XPATH, "//div[7]/div/div/div/div[2]")
     _renew_automatically_when_money_on_account_radio = (By.XPATH, "//div[3]/div/label")
@@ -316,6 +317,12 @@ class RegisteredDomainsListPage(BasePage):
 
     def select_third_domain(self):
         self.click(self._third_domain_checkbox)
+
+    def second_domain_text(self):
+        self._second_domain_text_value = self.get_text(self._second_domain_checkbox)
+
+    def select_second_domain(self):
+        self.click(self._second_domain_checkbox)
 
     def add_on_marketplace(self):
         self.click(self._sell_first_domain_button)
