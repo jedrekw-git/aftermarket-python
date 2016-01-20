@@ -12,7 +12,7 @@ from random import randint
 class SellingAuctionListPage(BasePage):
     _title = "Selling Auction"
 
-    _first_auction_delete_button = (By.XPATH, "//td[10]/div/span/img")
+    _first_auction_delete_button = (By.XPATH, "//td[11]/div/span/img")
     _submit_button = (By.XPATH, "//button[2]")
     _back_from_results_page_button = (By.XPATH, "//button")
 

@@ -19,6 +19,7 @@ from pages.domains_to_catch_list import DomainsToCatchList
 from pages.hosting_account_list import HostingAccountList
 from pages.to_pay_list import ToPayList
 from pages.transfer_option_to_account_list import TransferOptionToAccountList
+from pages.domains_on_marketplace_list import DomainsOnMarketplaceList
 
 class HeaderRegion(Page):
     _login_menu = (By.XPATH, "//button[2]")
@@ -121,4 +122,8 @@ class HeaderRegion(Page):
     def open_transfer_option_to_account_list(self):
         self.get(self._base_url + "Transferfuture/List/")
         return TransferOptionToAccountList(self.get_driver())
+
+    def open_domains_on_marketplace_list(self):
+        self.get(self._base_url + "Market/List/")
+        return DomainsOnMarketplaceList(self.get_driver())
 

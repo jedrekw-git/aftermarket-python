@@ -3,6 +3,8 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from unittestzero import Assert
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
 
 class Page(object):
@@ -73,7 +75,10 @@ class Page(object):
         dropdown.select_by_visible_text(text)
 
     def accept_alert(self):
-        return self.get_driver().switch_to_alert().accept()
+        if(WebDriverWait(self.get_driver(), 3).until(EC.alert_is_present())==0):
+            print "no alert"
+        else:
+            return self.get_driver().switch_to_alert().accept()
 
     def refresh(self):
         self.get_driver().refresh()
