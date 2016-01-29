@@ -25,6 +25,10 @@ class DomainsOnMarketplaceList(BasePage):
     _additional_message_value = get_random_string(10)+" "+get_random_string(12)+" "+get_random_string(14)
     _additional_message_field = (By.XPATH, "//div[3]/div/div/div")
     _submit_button_stage2 = (By.XPATH, "//button[2]")
+    _remove_first_offer_button = (By.XPATH, "//td[8]/div/span/img")
+    _remove_first_offer_additional_message_field = (By.XPATH, "//div[3]/div/div/div/p")
+    _remove_first_offer_additional_message_value = get_random_string(10)+" "+get_random_string(12)+" "+get_random_string(14)
+    _hide_offer_on_list_radio = (By.XPATH, "//label[2]")
 
     def __init__(self, driver):
         super(DomainsOnMarketplaceList, self).__init__(driver, self._title)
@@ -50,9 +54,14 @@ class DomainsOnMarketplaceList(BasePage):
         self.click(self._submit_button_stage2)
         self.accept_alert()
 
-    def first_domain_text(self):
-        self._first_domain_text_value = self.get_text(self._first_domain_checkbox)
+    def delete_offer_stage1(self):
+        self.click(self._submit_button_stage2)
+        self.click(self._remove_first_offer_button)
 
-    def result_domain_text(self):
-        return self.get_text(self._result_domain_name_field)
+    def delete_offer_stage2(self):
+        self.click(self._send_additional_message_chackbox)
+        self.clear_field_and_send_keys(self._remove_first_offer_additional_message_value, self._remove_first_offer_additional_message_field)
+        self.click(self._hide_offer_on_list_radio)
+        self.click(self._submit_button_stage2)
+        self.accept_alert()
 

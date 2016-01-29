@@ -75,7 +75,7 @@ class Page(object):
         dropdown.select_by_visible_text(text)
 
     def accept_alert(self):
-        if(WebDriverWait(self.get_driver(), 3).until(EC.alert_is_present())==0):
+        if(WebDriverWait(self.get_driver(), 10).until(EC.alert_is_present()))==0:
             print "no alert"
         else:
             return self.get_driver().switch_to_alert().accept()

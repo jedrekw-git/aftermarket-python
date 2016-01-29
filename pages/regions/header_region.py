@@ -28,6 +28,9 @@ class HeaderRegion(Page):
     _login_button = (By.XPATH, "//div[4]/button")
     _base_url = "http://www.testy.aftermarket2.pl/"
     _logout_button = (By.PARTIAL_LINK_TEXT, "Wyloguj")
+    _remind_password_button = (By.XPATH, "//div[5]/a")
+    _remind_password_login_field = (By.XPATH, "//div[3]/div/input")
+    _remind_password_submit = (By.XPATH, "//div[3]/button")
 
     _domain_menu = (By.XPATH, "//a[contains(@onclick,'domains')]")
     _domain_search_button = (By.XPATH, "//div[@id='menu_domains']//input[contains(@src, 'search.png')]")
@@ -42,6 +45,14 @@ class HeaderRegion(Page):
 
     def logout(self):
         self.click(self._logout_button)
+
+    def remind_password(self, login):
+        self.click(self._login_menu)
+        self.click(self._remind_password_button)
+        self.send_keys(login, self._remind_password_login_field)
+        self.click(self._remind_password_submit)
+        from pages.account import AccountPage
+        return AccountPage(self.get_driver())
 
     def open_settings_page(self):
         self.get(self._base_url + "User/Settings/")

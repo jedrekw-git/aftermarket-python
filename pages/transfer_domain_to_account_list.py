@@ -16,6 +16,8 @@ class TransferDomainToAccountList(BasePage):
     _submit_button = (By.XPATH, "//button[2]")
     _domain_name_field = (By.NAME, "domain")
     _authinfo_code_field = (By.NAME, "authinfo")
+    _renew_1_year_radio = (By.XPATH, "//div[5]/div[3]/div/label[2]")
+    _renew_without_renewal_radio = (By.XPATH, "//div[5]/div[3]/div/label")
     _stage2_result_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[3]/label/span")
     _stage2_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[2]/label/span")
     _stage2_change_DNS_servers_radio = (By.XPATH, "/html/body/div[7]/div/div/form/div[3]/div[3]/div[1]/label[2]/span[2]")
@@ -31,10 +33,21 @@ class TransferDomainToAccountList(BasePage):
         self.click(self._add_new_domain_transfer_button)
         self.clear_field_and_send_keys(domain, self._domain_name_field)
         self.clear_field_and_send_keys(authinfo, self._authinfo_code_field)
+        self.click(self._renew_without_renewal_radio)
+        self.click(self._submit_button)
+
+    def transfer_domain_and_renew(self, domain, authinfo):
+        self.click(self._add_new_domain_transfer_button)
+        self.clear_field_and_send_keys(domain, self._domain_name_field)
+        self.clear_field_and_send_keys(authinfo, self._authinfo_code_field)
+        self.click(self._renew_1_year_radio)
         self.click(self._submit_button)
 
     def stage2_domain_text(self):
         return self.get_text(self._stage2_domain_name_field)
+
+    def stage2_result_text(self):
+        return self.get_text(self._stage2_result_field)
 
     def stage2_change_dns_servers(self):
         self.click(self._stage2_change_DNS_servers_radio)

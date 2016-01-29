@@ -102,7 +102,7 @@ class SettingsPage(BasePage):
     _change_company_data_country_index = get_random_integer(2)
     _change_company_data_account_type_company_radio = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/div[3]/div[1]/label[2]")
     _change_company_data_nip_field = (By.XPATH, "//div/input")
-    _change_company_data_nip_value = "PL8567346215"
+    _change_company_data_nip_value = "PL1234567890"
     _change_company_data_nip_result = (By.XPATH, "/html/body/div[7]/div/div/form/div[6]/div[3]/div[1]/span")
     _change_company_data_company_name_result = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/div[3]/div[1]/span")
     _change_company_data_currency_index = randint(0, 3)
@@ -334,6 +334,7 @@ class SettingsPage(BasePage):
         self.click(self._change_company_data_menu)
 
     def edit_company_address(self):
+        self.clear_field_and_send_keys(self._change_company_data_company_name_value, self._change_company_data_company_name_field)
         self.clear_field_and_send_keys(self._change_company_data_street_value, self._change_company_data_street_field)
         self.clear_field_and_send_keys(self._change_company_data_zip_value, self._change_company_data_zip_field)
         self.clear_field_and_send_keys(self._change_company_data_city_value, self._change_company_data_city_field)

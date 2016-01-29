@@ -24,6 +24,7 @@ class RegisteredDomainsListPage(BasePage):
         By.XPATH, "/html/body/div[7]/div/div/form[2]/div/div[4]/table/tbody/tr[9]/td[3]/div/span/label/span")
     _second_domain_checkbox = (By.XPATH, "//tr[6]/td[3]/div/span/label/span")
     _fourth_domain_checkbox = (By.XPATH, "//tr[12]/td[3]/div/span/label/span")
+    _fifth_domain_checkbox = (By.XPATH, "//tr[15]/td[3]/div/span/label/span")
     _renew_button = (By.XPATH, "//div[7]/div/button")
     _renew_automatically_button = (By.XPATH, "//div[7]/div/div/div/div[2]")
     _renew_automatically_when_money_on_account_radio = (By.XPATH, "//div[3]/div/label")
@@ -104,6 +105,7 @@ class RegisteredDomainsListPage(BasePage):
     _sell_button = (By.XPATH, "//div[7]/div/button[4]")
     _sell_on_auction_button = (By.XPATH, "//div[7]/div/div/div[4]/div[2]")
     _add_on_marketplace_button = (By.XPATH, "//div[7]/div/div/div[4]/div")
+    _sell_on_escrow_auction_button = (By.XPATH, "//div/div/div[4]/div[3]")
     _sell_on_auction_first_domain_button = (By.XPATH, "//div[2]/div[6]/div[2]")
     _sell_on_auction_price_start_field = (By.NAME, "price_start")
     _sell_on_auction_price_start_value = randint(1, 20)
@@ -135,9 +137,9 @@ class RegisteredDomainsListPage(BasePage):
     _sell_on_escrow_auction_days_to_pay_index = randint(0, 7)
     _sell_on_escrow_auction_stage2_buyer_login_field = (
         By.XPATH, "/html/body/div[7]/div/div/form/div[3]/div[3]/div[1]/span")
-    _delete_fourth_auction_button = (By.XPATH, "//tr[14]/td/div/span/button")
-    _delete_fourth_auction_accept_deletion_indicated_domains_checkbox = (
-        By.XPATH, "/html/body/div[7]/div/div/form/div[2]/div[3]/div[1]/label/span[2]")
+    _delete_auction_button = (By.XPATH, "//div[7]/div/button[7]")
+    _delete_auction_accept_deletion_indicated_domains_checkbox = (
+        By.XPATH, "//label/span[2]")
     _add_on_marketplace_first_domain_button = (By.XPATH, "//div[2]/div[6]/div")
     _add_on_marketplace_buynow_field = (By.NAME, 'buynow')
     _add_on_marketplace_buynow_value = get_random_integer(2)
@@ -145,13 +147,17 @@ class RegisteredDomainsListPage(BasePage):
     _add_on_marketplace_minimum_price_value = get_random_integer(1)
     _add_on_marketplace_currency_dropdown = (By.NAME, "currency")
     _add_on_marketplace_currency_index = randint(0, 3)
-    _add_on_marketplace_category_checkbox = (By.XPATH, "//div[6]/div[3]/div/label")
+    _add_on_marketplace_category_checkbox = (By.XPATH, "//div[8]/div[3]/div/label")
     _add_on_marketplace_description_checkbox = (By.XPATH, "//div[3]/div[2]/label")
     _add_on_marketplace_category_field = (By.XPATH, "//span[2]/input")
     _add_on_marketplace_category_technology = (By.XPATH, "//span[2]/div/div[2]/div[4]")
     _add_on_marketplace_category_technology_computers = (By.XPATH, "//span[2]/div/div[6]/div")
-    _add_on_marketplace_description_field = (By.XPATH, "//div[9]/div[3]/div/div/div")
+    _add_on_marketplace_description_field = (By.XPATH, "//div[11]/div[3]/div/div/div")
     _add_on_marketplace_description_value = get_random_string(10) + " " + get_random_string(15)
+    _add_on_marketplace_instalment_schema_dropdown = (By.XPATH, "//div[6]/div[3]/div/span/select")
+    _add_on_marketplace_lease_field = (By.XPATH, "//div[7]/div[3]/div/input")
+    _add_on_marketplace_lease_value = get_random_integer(2)
+
 
     def __init__(self, driver):
         super(RegisteredDomainsListPage, self).__init__(driver, self._title)
@@ -191,8 +197,7 @@ class RegisteredDomainsListPage(BasePage):
         self.click(self._submit_button)
         self.click(self._change_profile_data_dont_send_results_radio)
         self.click(self._submit_button)
-        if EC.alert_is_present():
-            self.accept_alert()
+        self.accept_alert()
 
     def result_text(self):
         return self.get_text(self._result_text_field)
@@ -327,8 +332,8 @@ class RegisteredDomainsListPage(BasePage):
         self.accept_alert()
 
     def sell_on_escrow_auction(self, login_value, price):
-        self.click(self._sell_first_domain_button)
-        self.click(self._sell_on_escrow_auction_first_domain_button)
+        self.click(self._sell_button)
+        self.click(self._sell_on_escrow_auction_button)
         self.clear_field_and_send_keys(login_value, self._sell_on_escrow_auction_buyer_login_field)
         self.clear_field_and_send_keys(price, self._sell_on_escrow_auction_price_field)
         self.select_index_from_dropdown(self._sell_on_auction_currency_value, self._sell_on_auction_currency_dropdown)
@@ -339,9 +344,9 @@ class RegisteredDomainsListPage(BasePage):
     def sell_on_escrow_auction_stage2_buyer_login_text(self):
         return self.get_text(self._sell_on_escrow_auction_stage2_buyer_login_field)
 
-    def delete_fourth_auction(self):
-        self.click(self._delete_fourth_auction_button)
-        self.click(self._delete_fourth_auction_accept_deletion_indicated_domains_checkbox)
+    def delete_auction(self):
+        self.click(self._delete_auction_button)
+        self.click(self._delete_auction_accept_deletion_indicated_domains_checkbox)
         self.click(self._submit_button)
 
     def third_domain_text(self):
@@ -362,6 +367,12 @@ class RegisteredDomainsListPage(BasePage):
     def select_second_domain(self):
         self.click(self._second_domain_checkbox)
 
+    def fifth_domain_text(self):
+        self._fifth_domain_text_value = self.get_text(self._fifth_domain_checkbox)
+
+    def select_fifth_domain(self):
+        self.click(self._fifth_domain_checkbox)
+
     def add_on_marketplace(self):
         self.click(self._sell_button)
         self.click(self._add_on_marketplace_button)
@@ -370,6 +381,8 @@ class RegisteredDomainsListPage(BasePage):
                                         self._add_on_marketplace_currency_dropdown)
         self.clear_field_and_send_keys(self._add_on_marketplace_minimum_price_value,
                                        self._add_on_marketplace_minimum_price_field)
+        self.select_index_from_dropdown(1, self._add_on_marketplace_instalment_schema_dropdown)
+        self.clear_field_and_send_keys(self._add_on_marketplace_lease_value, self._add_on_marketplace_lease_field)
         if (_element_is_visible(self.find_element(self._add_on_marketplace_category_field))):
             pass
         else:
