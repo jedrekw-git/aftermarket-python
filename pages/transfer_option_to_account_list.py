@@ -18,6 +18,8 @@ class TransferOptionToAccountList(BasePage):
     _submit_button = (By.XPATH, "//button[2]")
     _first_option_checkbox = (By.XPATH, "//td[3]/div/span/label/span")
     _first_option_remove_button = (By.XPATH, "//td/div/button")
+    _stage2_result_field = (By.XPATH, "//td[3]/label/span")
+    _stage2_option_name_field = (By.XPATH, "//td[2]/label/span")
 
     def __init__(self, driver):
         super(TransferOptionToAccountList, self).__init__(driver, self._title)
@@ -31,3 +33,6 @@ class TransferOptionToAccountList(BasePage):
     def remove_first_transfer(self):
         self.click(self._first_option_checkbox)
         self.click(self._first_option_remove_button)
+
+    def stage2_option_text(self):
+        return self.get_text(self._stage2_option_name_field)

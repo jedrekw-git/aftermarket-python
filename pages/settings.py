@@ -112,7 +112,6 @@ class SettingsPage(BasePage):
     _add_bank_account_account_name_field = (By.NAME, "name")
     _add_bank_account_account_name_value = get_random_string(10)
     _add_bank_account_account_number_field = (By.NAME, "account")
-    _add_bank_account_account_number_value = "26105014451000002276470461"
     _add_bank_account_receiver_name_field = (By.NAME, "recipient")
     _add_bank_account_receiver_name_value = get_random_string(15)
     _add_bank_account_submit_button = (By.XPATH, "//button[2]")
@@ -206,7 +205,16 @@ class SettingsPage(BasePage):
     _sending_notification_settings_domain_available_to_lease_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/div[3]/div[1]/div/div[19]/div[2]/label")
     _sending_notification_settings_domain_available_to_catch_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/div[3]/div[1]/div/div[21]/div[2]/label")
     _sending_notification_settings_submit_button = (By.XPATH, "//button[2]")
-
+    _sms_notification_settings_menu = (By.XPATH, "//div[3]/div[2]/span/a")
+    _sms_notification_settings_send_only_indicated = (By.XPATH, "//label[2]")
+    _sms_notification_settings_auction_ends_soon = (By.XPATH, "//div[3]/div[2]/label")
+    _sms_notification_settings_your_offer_was_gazumped = (By.XPATH, "//div[5]/div[2]/label")
+    _sms_notification_settings_you_won_an_auction = (By.XPATH, "//div[7]/div[2]/label")
+    _sms_notification_settings_successful_domain_catching = (By.XPATH, "//div[9]/div[2]/label")
+    _sms_notification_settings_catched_domain_auction_has_started = (By.XPATH, "//div[11]/div[2]/label")
+    _sms_notification_settings_payment_date_is_comming = (By.XPATH, "//div[13]/div[2]/label")
+    _sms_notification_settings_payment_date_is_exceeded = (By.XPATH, "//div[15]/div[2]/label")
+    _sms_notification_settings_submit = (By.XPATH, "//button[2]")
 
     def __init__(self, driver):
         super(SettingsPage, self).__init__(driver, self._title)
@@ -375,10 +383,10 @@ class SettingsPage(BasePage):
     def open_add_bank_account_page(self):
         self.click(self._add_bank_account_menu)
 
-    def add_bank_account(self):
+    def add_bank_account(self, number):
         self.click(self._add_bank_account_button)
         self.clear_field_and_send_keys(self._add_bank_account_account_name_value, self._add_bank_account_account_name_field)
-        self.clear_field_and_send_keys(self._add_bank_account_account_number_value,self._add_bank_account_account_number_field)
+        self.clear_field_and_send_keys(number ,self._add_bank_account_account_number_field)
         self.clear_field_and_send_keys(self._add_bank_account_receiver_name_value, self._add_bank_account_receiver_name_field)
         self.click(self._add_bank_account_submit_button)
 
@@ -533,3 +541,17 @@ class SettingsPage(BasePage):
         self.click(self._sending_notification_settings_domain_available_to_lease_checkbox)
         self.click(self._sending_notification_settings_domain_available_to_catch_checkbox)
         self.click(self._sending_notification_settings_submit_button)
+
+    def open_sms_notification_settings_page(self):
+        self.click(self._sms_notification_settings_menu)
+
+    def change_sms_notification_settings(self):
+        self.click(self._sms_notification_settings_send_only_indicated)
+        self.click(self._sms_notification_settings_auction_ends_soon)
+        self.click(self._sms_notification_settings_your_offer_was_gazumped)
+        self.click(self._sms_notification_settings_you_won_an_auction)
+        self.click(self._sms_notification_settings_successful_domain_catching)
+        self.click(self._sms_notification_settings_catched_domain_auction_has_started)
+        self.click(self._sms_notification_settings_payment_date_is_comming)
+        self.click(self._sms_notification_settings_payment_date_is_exceeded)
+        self.click(self._sms_notification_settings_submit)

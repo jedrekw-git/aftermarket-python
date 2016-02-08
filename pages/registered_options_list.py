@@ -14,6 +14,7 @@ class RegisteredOptionsListPage(BasePage):
 
     _first_option_checkbox = (By.XPATH, "//td[3]/div/span/label/span")
     _renew_first_option_button = (By.XPATH, "//button[2]")
+    _change_profile_data_button = (By.XPATH, "//div[7]/div/button[2]")
     _stage2_result_field = (By.XPATH, "//td[3]/label/span")
     _stage2_option_name_field = (By.XPATH, "//td[2]/label/span")
     _submit_button = (By.XPATH, "//button[2]")
@@ -32,6 +33,11 @@ class RegisteredOptionsListPage(BasePage):
 
     def first_option_text(self):
         self._first_option_text_value = self.get_text(self._first_option_checkbox)
+
+    def change_option_profile_data(self):
+        self.click(self._first_option_checkbox)
+        self.click(self._change_profile_data_button)
+        self.click(self._submit_button)
 
     def renew_option(self):
         self.click(self._first_option_checkbox)

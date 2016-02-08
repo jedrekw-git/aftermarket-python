@@ -130,6 +130,9 @@ class RegisteredDomainsListPage(BasePage):
     _sell_on_auction_description_value = get_random_string(10) + " " + get_random_string(7) + " " + get_random_string(8)
     _sell_on_auction_stage2_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/div[3]/div[1]/span")
     _sell_on_auction_stage2_category_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[4]/div[3]/div[1]/span")
+    # _sell_on_auction_stage2_stop_until_manual_activation_radio = (By.XPATH, "")
+    _sell_on_auction_stage2_realize_immediately_radio = (By.XPATH, "//label/span[2]")
+    _sell_on_auction_stage2_dont_send_email_radio = (By.XPATH, "//div[9]/div[3]/div/label[2]/span[2]")
     _sell_on_escrow_auction_first_domain_button = (By.XPATH, "//div[6]/div[3]")
     _sell_on_escrow_auction_buyer_login_field = (By.NAME, "login")
     _sell_on_escrow_auction_price_field = (By.NAME, "amount")
@@ -328,6 +331,9 @@ class RegisteredDomainsListPage(BasePage):
         return self.get_text(self._sell_on_auction_stage2_category_field)
 
     def sell_on_auction_submit(self):
+        self.click(self._sell_on_auction_stage2_realize_immediately_radio)
+        # self.click(self._sell_on_auction_stage2_stop_until_manual_activation_radio)
+        # self.click(self._sell_on_auction_stage2_dont_send_email_radio)
         self.click(self._submit_button)
         self.accept_alert()
 
