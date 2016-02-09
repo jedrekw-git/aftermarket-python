@@ -9,8 +9,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from random import randint
 
-class OptionEscrowTransactionList(BasePage):
-    _title = "Option Escrow Transaction"
+class OptionEscrowSellingTransactionList(BasePage):
+    _title = "Option Escrow Selling Transaction"
 
     _add_new_transaction_button = (By.XPATH, "//button")
     _option_name_field = (By.NAME, "domain")
@@ -26,9 +26,17 @@ class OptionEscrowTransactionList(BasePage):
     _stage2_login_text_field = (By.XPATH, "//div[3]/div[3]/div/span")
     _delete_first_auction_button = (By.XPATH, "//div/span/img")
     _filter_new_button = (By.XPATH, "//div[7]/div/div/ul/li[2]")
+    _third_domain_field = (By.XPATH, "//tr[7]/td[2]/div/span/label/span")
+    _third_domain_login_field = (By.XPATH, "//tr[7]/td[3]/div/span/span/a")
+    _third_domain_price_field = (By.XPATH, "//tr[7]/td[5]/div/span/b")
+    _first_domain_field = (By.XPATH, "//label/span")
+    _first_domain_login_field = (By.XPATH, "//span/span/a")
+    _first_domain_price_field = (By.XPATH, "//div/span/b")
+    _search_field = (By.NAME, "domain")
+    _search_button = (By.XPATH, "//div[3]/button")
 
     def __init__(self, driver):
-        super(OptionEscrowTransactionList, self).__init__(driver, self._title)
+        super(OptionEscrowSellingTransactionList, self).__init__(driver, self._title)
 
     def add_escrow_option_transaction(self, buyer_login, option_name):
         self.click(self._add_new_transaction_button)
@@ -54,4 +62,13 @@ class OptionEscrowTransactionList(BasePage):
 
     def filter_new(self):
         self.click(self._filter_new_button)
+
+    def get_text_third_domain_login_and_price(self):
+        self.third_domain_text = self.get_text(self._third_domain_field)
+        self.third_domain_login_text = self.get_text(self._third_domain_login_field)
+        self.third_domain_price_text = self.get_text(self._third_domain_price_field)
+
+    def search_for_auction(self, domain_name):
+        self.clear_field_and_send_keys(domain_name, self._search_field)
+        self.click(self._search_button)
 

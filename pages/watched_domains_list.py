@@ -20,7 +20,19 @@ class WatchedDomainsListPage(BasePage):
     _result_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
     _delete_first_domain_button = (By.XPATH, "//div/span/img")
     _back_from_results_page_button = (By.XPATH, "//button")
-
+    _first_domain_checkbox = (By.XPATH, "//td[3]/div/span/label/span")
+    _first_domain_change_settings_button = (By.XPATH, "//td/div/button")
+    _change_watching_settings_choose_type_of_sending_notifications_radio = (By.XPATH, "//label[2]")
+    _change_watching_settings_domain_issued_on_auction_checkbox = (By.XPATH, "//div[3]/div[2]/label")
+    _change_watching_settings_domain_issued_on_last_minute_auction_checkbox = (By.XPATH, "//div[3]/div[2]/label")
+    _change_watching_settings_domain_set_on_sale_checkbox = (By.XPATH, "//div[7]/div[2]/label")
+    _change_watching_settings_set_buynow_price_checkbox = (By.XPATH, "//div[9]/div[2]/label")
+    _change_watching_settings_lowered_buynow_price_checkbox = (By.XPATH, "//div[11]/div[2]/label")
+    _change_watching_settings_raised_buynow_price_checkbox = (By.XPATH, "//div[13]/div[2]/label")
+    _change_watching_settings_domain_deleted_from_marketplace_checkbox = (By.XPATH, "//div[15]/div[2]/label")
+    _change_watching_settings_domain_available_to_buy_on_installments_checkbox = (By.XPATH, "//div[17]/div[2]/label")
+    _change_watching_settings_domain_available_to_lease_checkbox = (By.XPATH, "//div[19]/div[2]/label")
+    _change_watching_settings_domain_available_to_catch_checkbox = (By.XPATH, "//div[21]/div[2]/label")
 
     def __init__(self, driver):
         super(WatchedDomainsListPage, self).__init__(driver, self._title)
@@ -39,3 +51,19 @@ class WatchedDomainsListPage(BasePage):
 
     def back_from_results_page(self):
         self.click(self._back_from_results_page_button)
+
+    def first_domain_change_watch_settings(self):
+        self.click(self._first_domain_checkbox)
+        self.click(self._first_domain_change_settings_button)
+        self.click(self._change_watching_settings_choose_type_of_sending_notifications_radio)
+        self.click(self._change_watching_settings_domain_issued_on_auction_checkbox)
+        self.click(self._change_watching_settings_domain_issued_on_last_minute_auction_checkbox)
+        self.click(self._change_watching_settings_domain_set_on_sale_checkbox)
+        self.click(self._change_watching_settings_set_buynow_price_checkbox)
+        self.click(self._change_watching_settings_lowered_buynow_price_checkbox)
+        self.click(self._change_watching_settings_raised_buynow_price_checkbox)
+        self.click(self._change_watching_settings_domain_deleted_from_marketplace_checkbox)
+        self.click(self._change_watching_settings_domain_available_to_buy_on_installments_checkbox)
+        self.click(self._change_watching_settings_domain_available_to_lease_checkbox)
+        self.click(self._change_watching_settings_domain_available_to_catch_checkbox)
+        self.click(self._watch_new_domain_submit)

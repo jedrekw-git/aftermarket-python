@@ -4,7 +4,8 @@ from pages.register_domain import RegisterDomainPage
 from pages.registered_domains_list import RegisteredDomainsListPage
 from pages.selling_auction_list import SellingAuctionListPage
 from pages.page import Page
-from pages.escrow_auction_list import EscrowAuctionListPage
+from pages.escrow_auction_seller_list import EscrowAuctionSellerListPage
+from pages.escrow_auction_buyer_list import EscrowAuctionBuyerListPage
 from pages.transfer_domain_to_account_list import TransferDomainToAccountList
 from pages.transfer_domain_from_account_list import TransferDomainFromAccountList
 from pages.profile_for_domain_registration_list import ProfileForDomainRegistrationList
@@ -12,7 +13,8 @@ from pages.register_option import RegisterOptionPage
 from pages.registered_options_list import RegisteredOptionsListPage
 from pages.watched_domains_list import WatchedDomainsListPage
 from pages.watched_sellers_list import WatchedSellersListPage
-from pages.escrow_option_transaction import OptionEscrowTransactionList
+from pages.escrow_option_selling_transaction import OptionEscrowSellingTransactionList
+from pages.escrow_option_buying_transaction import OptionEscrowBuyingTransactionList
 from pages.blocked_sellers_list import BlockedSellersListPage
 from pages.expiring_domains_list import ExpiringDomainsList
 from pages.domains_to_catch_list import DomainsToCatchList
@@ -24,7 +26,8 @@ from pages.expired_options_list import ExpiredOptionsList
 from pages.task_list import TaskList
 from pages.selling_history_list import SellingHistoryPage
 from pages.new_option_auction import NewOptionAuctionPage
-from pages.ended_auctions_list import EndedAuctionsList
+from pages.seller_ended_auctions_list import SellerEndedAuctionsList
+from pages.buyer_ended_auctions_list import BuyerEndedAuctionsList
 
 class HeaderRegion(Page):
     _login_menu = (By.XPATH, "//button[2]")
@@ -75,9 +78,13 @@ class HeaderRegion(Page):
         self.get(self._base_url + "Auction/Seller/List/")
         return SellingAuctionListPage(self.get_driver())
 
-    def open_escrow_transactions_list(self):
+    def open_escrow_transactions_seller_list(self):
         self.get(self._base_url + "Escrow/Seller/List/")
-        return EscrowAuctionListPage(self.get_driver())
+        return EscrowAuctionSellerListPage(self.get_driver())
+
+    def open_escrow_transactions_buyer_list(self):
+        self.get(self._base_url + "Escrow/Buyer/List/")
+        return EscrowAuctionBuyerListPage(self.get_driver())
 
     def open_transfer_domain_to_account_list(self):
         self.get(self._base_url + "Transfer/List/")
@@ -119,9 +126,13 @@ class HeaderRegion(Page):
         self.get(self._base_url + "Auction/Seller/AddFuture/")
         return NewOptionAuctionPage(self.get_driver())
 
-    def open_escrow_option_transaction_list(self):
+    def open_escrow_option_selling_transaction_list(self):
         self.get(self._base_url + "Escrowfuture/Seller/List/")
-        return OptionEscrowTransactionList(self.get_driver())
+        return OptionEscrowSellingTransactionList(self.get_driver())
+
+    def open_escrow_option_buying_transaction_list(self):
+        self.get(self._base_url + "Escrowfuture/Buyer/List/")
+        return OptionEscrowBuyingTransactionList(self.get_driver())
 
     def open_blocked_sellers_list(self):
         self.get(self._base_url + "Selling/Banned/List/")
@@ -131,9 +142,13 @@ class HeaderRegion(Page):
         self.get(self._base_url + "Selling/Sold/")
         return SellingHistoryPage(self.get_driver())
 
-    def open_ended_auctions_list(self):
+    def open_seller_ended_auctions_list(self):
         self.get(self._base_url + "Auction/Seller/Past/")
-        return EndedAuctionsList(self.get_driver())
+        return SellerEndedAuctionsList(self.get_driver())
+
+    def open_buyer_ended_auctions_list(self):
+        self.get(self._base_url + "Auction/Buyer/Past/")
+        return BuyerEndedAuctionsList(self.get_driver())
 
     def open_expiring_domains_list(self):
         self.get(self._base_url + "Deleted/List/")

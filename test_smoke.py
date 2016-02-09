@@ -642,7 +642,7 @@ class SmokeTest(unittest.TestCase):
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Transakcja Escrow została zainicjowana"))
         Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
 
-        escrow_auction_page = account_page.header.open_escrow_transactions_list()
+        escrow_auction_page = account_page.header.open_escrow_transactions_seller_list()
 
         Assert.equal(registered_domains_page._third_domain_text_value, escrow_auction_page.first_auction_domain_name_text())
         Assert.contains(price, escrow_auction_page.get_page_source())
@@ -658,6 +658,18 @@ class SmokeTest(unittest.TestCase):
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Transakcja została anulowana"))
         Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+
+    def test_search_selling_escrow_auctions_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        escrow_auction_page = account_page.header.open_escrow_transactions_seller_list()
+        escrow_auction_page.get_text_eighteenth_domain_login_and_price()
+        escrow_auction_page.search_for_auction(escrow_auction_page.eighteenth_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_auction_page._first_auction_domain_name_field, escrow_auction_page.eighteenth_domain_text))
+        Assert.equal(escrow_auction_page.eighteenth_domain_login_text, escrow_auction_page.first_auction_buyer_login_text())
+        Assert.equal(escrow_auction_page.eighteenth_domain_price_text, escrow_auction_page.first_auction_price_text())
 
     def test_sell_on_escrow_auction_the_same_login_should_succeed(self):
 
@@ -675,6 +687,18 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(price, registered_domains_page.get_page_source())
         Assert.contains(login_value, registered_domains_page.get_page_source())
         Assert.contains(u"Nie możesz przeprowadzić transakcji sam ze sobą", registered_domains_page.get_page_source())
+
+    def test_search_buyer_escrow_auctions_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        escrow_auction_page = account_page.header.open_escrow_transactions_buyer_list()
+        escrow_auction_page.get_text_second_domain_status_and_price()
+        escrow_auction_page.search_for_auction(escrow_auction_page.second_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_auction_page._first_auction_domain_name_field, escrow_auction_page.second_domain_text))
+        Assert.equal(escrow_auction_page.second_domain_status_text, escrow_auction_page.first_auction_buyer_status_text())
+        Assert.equal(escrow_auction_page.second_domain_price_text, escrow_auction_page.first_auction_price_text())
 
     def test_add_on_marketplace_should_succeed(self):
 
@@ -1130,6 +1154,12 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(watched_domains_page._domain_name_value, watched_domains_page.get_page_source())
         Assert.contains(strftime("%Y-%m-%d", gmtime()), watched_domains_page.get_page_source())
 
+        watched_domains_page.first_domain_change_watch_settings()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(watched_domains_page._result_text_field, u"Operacja wykonana poprawnie"))
+        Assert.equal(watched_domains_page._domain_name_value, watched_domains_page.result_domain_text())
+
+        account_page.header.open_watched_domains_list()
         watched_domains_page.delete_first_domain()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(watched_domains_page._result_text_field, u"Operacja wykonana poprawnie"))
@@ -1152,6 +1182,11 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(seller_name, watched_sellers_page.get_page_source())
         Assert.contains(strftime("%Y-%m-%d", gmtime()), watched_sellers_page.get_page_source())
 
+        watched_sellers_page.change_first_seller_settings()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(watched_sellers_page._result_text_field, u"Operacja wykonana poprawnie"))
+
+        account_page.header.open_watched_sellers_list()
         watched_sellers_page.delete_first_seller()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(watched_sellers_page._result_text_field, u"Operacja wykonana poprawnie"))
@@ -1160,6 +1195,17 @@ class SmokeTest(unittest.TestCase):
 
         self.not_contains(seller_name, watched_sellers_page.get_page_source())
         self.not_contains(strftime("%Y-%m-%d", gmtime()), watched_sellers_page.get_page_source())
+
+    def test_watch_new_seller_the_same_login_should_succeed(self):
+
+        seller_name = USER_DELTA
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        watched_sellers_page = account_page.header.open_watched_sellers_list()
+        watched_sellers_page.watch_new_seller(seller_name)
+
+        Assert.contains(u"Nie możesz obserwować samego siebie", watched_sellers_page.get_page_source())
 
     def test_new_option_auction_should_succeed(self):
 
@@ -1194,15 +1240,27 @@ class SmokeTest(unittest.TestCase):
 
         self.not_contains(new_option_auction_page._option_name, selling_auction_page.get_page_source())
 
-    def test_search_ended_auctions_should_succeed(self):
+    def test_search_seller_ended_auctions_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
-        ended_auctions_list = account_page.header.open_ended_auctions_list()
-        ended_auctions_list.get_twelfth_domain_text()
+        ended_auctions_list = account_page.header.open_seller_ended_auctions_list()
+        ended_auctions_list.get_twelfth_domain_and_price_text()
         ended_auctions_list.search_for_domain(ended_auctions_list._twelfth_domain_text)
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_checkbox, ended_auctions_list._twelfth_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_price_field, ended_auctions_list._twelfth_domain_price_text))
+
+    def test_search_buyer_ended_auctions_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        ended_auctions_list = account_page.header.open_buyer_ended_auctions_list()
+        ended_auctions_list.get_second_domain_and_price_text()
+        ended_auctions_list.search_for_domain(ended_auctions_list._second_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_checkbox, ended_auctions_list._second_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_price_field, ended_auctions_list._second_domain_price_text))
 
     def test_new_escrow_option_transaction_should_succeed(self):
 
@@ -1212,7 +1270,7 @@ class SmokeTest(unittest.TestCase):
         account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
         registered_options_list = account_page.header.open_registered_options_list()
         registered_options_list.first_option_text()
-        escrow_option_transaction_page = account_page.header.open_escrow_option_transaction_list()
+        escrow_option_transaction_page = account_page.header.open_escrow_option_selling_transaction_list()
         escrow_option_transaction_page.add_escrow_option_transaction(login, registered_options_list._first_option_text_value)
 
         Assert.equal(registered_options_list._first_option_text_value, escrow_option_transaction_page.stage2_option_text())
@@ -1224,7 +1282,7 @@ class SmokeTest(unittest.TestCase):
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_options_list._result_text_field, u"Transakcja Escrow została zainicjowana"))
         Assert.equal(registered_options_list._first_option_text_value, registered_options_list.result_domain_text())
 
-        account_page.header.open_escrow_option_transaction_list()
+        account_page.header.open_escrow_option_selling_transaction_list()
 
         Assert.contains(registered_options_list._first_option_text_value, escrow_option_transaction_page.get_page_source())
         Assert.contains(login, escrow_option_transaction_page.get_page_source())
@@ -1242,12 +1300,24 @@ class SmokeTest(unittest.TestCase):
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_options_list._result_text_field, u"Transakcja została anulowana"))
         Assert.equal(registered_options_list._first_option_text_value, registered_options_list.result_domain_text())
 
-        account_page.header.open_escrow_option_transaction_list()
+        account_page.header.open_escrow_option_selling_transaction_list()
         escrow_option_transaction_page.filter_new()
 
         self.not_contains(registered_options_list._first_option_text_value, escrow_option_transaction_page.get_page_source())
         self.not_contains(login, escrow_option_transaction_page.get_page_source())
         self.not_contains(strftime("%Y-%m-%d", gmtime()), escrow_option_transaction_page.get_page_source())
+
+    def test_search_escrow_option_selling_transactions_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        escrow_option_transaction_page = account_page.header.open_escrow_option_selling_transaction_list()
+        escrow_option_transaction_page.get_text_third_domain_login_and_price()
+        escrow_option_transaction_page.search_for_auction(escrow_option_transaction_page.third_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_option_transaction_page._first_domain_field, escrow_option_transaction_page.third_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_option_transaction_page._first_domain_login_field, escrow_option_transaction_page.third_domain_login_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_option_transaction_page._first_domain_price_field, escrow_option_transaction_page.third_domain_price_text))
 
     def test_new_escrow_option_transaction_the_same_login_should_succeed(self):
 
@@ -1257,13 +1327,25 @@ class SmokeTest(unittest.TestCase):
         account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
         registered_options_list = account_page.header.open_registered_options_list()
         registered_options_list.first_option_text()
-        escrow_option_transaction_page = account_page.header.open_escrow_option_transaction_list()
+        escrow_option_transaction_page = account_page.header.open_escrow_option_selling_transaction_list()
         escrow_option_transaction_page.add_escrow_option_transaction(login, registered_options_list._first_option_text_value)
 
         Assert.contains(registered_options_list._first_option_text_value, escrow_option_transaction_page.get_page_source())
         Assert.contains(login, escrow_option_transaction_page.get_page_source())
         Assert.contains(escrow_option_transaction_page._price_value, escrow_option_transaction_page.get_page_source())
         Assert.contains(u"Nie możesz przeprowadzić transakcji sam ze sobą", escrow_option_transaction_page.get_page_source())
+
+    def test_search_escrow_option_buying_transactions_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
+        escrow_option_transaction_page = account_page.header.open_escrow_option_buying_transaction_list()
+        escrow_option_transaction_page.get_text_second_domain_status_and_price()
+        escrow_option_transaction_page.search_for_auction(escrow_option_transaction_page.second_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_option_transaction_page._first_domain_field, escrow_option_transaction_page.second_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_option_transaction_page._first_domain_status_field, escrow_option_transaction_page.second_domain_status_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_option_transaction_page._first_domain_price_field, escrow_option_transaction_page.second_domain_price_text))
 
     def test_block_seller_should_succeed(self):
 
