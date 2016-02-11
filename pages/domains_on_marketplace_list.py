@@ -12,8 +12,14 @@ from random import randint
 class DomainsOnMarketplaceList(BasePage):
     _title = "Domains on marketplace"
 
+    _first_domain_checkbox = (By.XPATH, "//span/label/span")
+    _first_domain_price_field = (By.XPATH, "//div/span/b")
     _second_domain_checkbox = (By.XPATH, "//tr[9]/td[2]/div/span/label/span")
+    _fourth_domain_checkbox = (By.XPATH, "//tr[15]/td[2]/div/span/label/span")
+    _fourth_domain_price_field = (By.XPATH, "//tr[15]/td[5]/div/span/b")
     _add_offer_to_second_domain_button = (By.XPATH, "//tr[11]/td/div/button")
+    _submit_offer_domain_name_value = (By.XPATH, "//div[3]/div/span")
+    _submit_offer_price_value = (By.XPATH, "//div[3]/div[3]/div/span")
     _price_field = (By.NAME, "amount")
     _price_value = get_random_integer(2)
     _submit_button = (By.XPATH, "//button")
@@ -29,6 +35,8 @@ class DomainsOnMarketplaceList(BasePage):
     _remove_first_offer_additional_message_field = (By.XPATH, "//div[3]/div/div/div/p")
     _remove_first_offer_additional_message_value = get_random_string(10)+" "+get_random_string(12)+" "+get_random_string(14)
     _hide_offer_on_list_radio = (By.XPATH, "//label[2]")
+    _search_field = (By.NAME, "domain")
+    _search_button = (By.XPATH, "//div[3]/button")
 
     def __init__(self, driver):
         super(DomainsOnMarketplaceList, self).__init__(driver, self._title)
@@ -64,4 +72,12 @@ class DomainsOnMarketplaceList(BasePage):
         self.click(self._hide_offer_on_list_radio)
         self.click(self._submit_button_stage2)
         self.accept_alert()
+
+    def get_text_fourth_domain_and_price(self):
+        self._fourth_domain_text = self.get_text(self._fourth_domain_checkbox)
+        self._fourth_domain_price_text = self.get_text(self._fourth_domain_price_field)
+
+    def search_for_domain(self, domain_name):
+        self.clear_field_and_send_keys(domain_name, self._search_field)
+        self.click(self._search_button)
 

@@ -1139,6 +1139,16 @@ class SmokeTest(unittest.TestCase):
 
 # BŁĄD "BRAK DOSTEPU DO OBIEKTU"
 
+    def test_search_domains_on_marketplace_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
+        domains_on_marketplace_list.get_text_fourth_domain_and_price()
+        domains_on_marketplace_list.search_for_domain(domains_on_marketplace_list._fourth_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domains_on_marketplace_list._submit_offer_domain_name_value, domains_on_marketplace_list._fourth_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domains_on_marketplace_list._submit_offer_price_value, domains_on_marketplace_list._fourth_domain_price_text))
+
     def test_watch_new_domain_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
