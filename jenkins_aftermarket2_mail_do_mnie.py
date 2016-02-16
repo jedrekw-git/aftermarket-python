@@ -14,6 +14,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from time import gmtime, strftime
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 SCREEN_DUMP_LOCATION = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), 'screendumps'
@@ -77,7 +78,8 @@ class SmokeTest(unittest.TestCase):
     def setUp(self):
         self.timeout = 30
         if run_locally:
-            self.driver = webdriver.Firefox()
+            binary = FirefoxBinary('/__stare/firefox/firefox')
+            self.driver = webdriver.Firefox(firefox_binary=binary)
             self.driver.set_window_size(1024,768)
             self.driver.implicitly_wait(self.timeout)
             self.errors_and_failures = self.tally()
