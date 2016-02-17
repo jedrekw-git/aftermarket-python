@@ -33,7 +33,11 @@ class HostingAccountList(BasePage):
     _back_from_results_page_button = (By.XPATH, "//button")
     _remove_first_domain_button = (By.XPATH, "//div/span/img")
     _stage2_result_text_field = (By.XPATH, "//td[3]/label/span")
-
+    _stage2_result_domain_field = (By.XPATH, "//td[2]/label/span")
+    _stage2_dont_send_email_radio = (By.XPATH, "//label[2]/span[2]")
+    _stage2_stop_realization_until_manual_activation_radio = (By.XPATH, "//div[3]/div[3]/div/label[2]/span[2]")
+    _result_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[2]/span")
+    _result_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
 
     def __init__(self, driver):
         super(HostingAccountList, self).__init__(driver, self._title)
@@ -81,5 +85,15 @@ class HostingAccountList(BasePage):
         self.click(self._first_hosting_account)
         self.click(self._first_hosting_account_renew_button)
 
-    def stage2_
+    def stage2_result_domain_text(self):
+        return self.get_text(self._stage2_result_domain_field)
 
+    def renew_hosting_account_stage2(self):
+        # self.click(self._stage2_result_domain_field)
+        self.click(self._stage2_dont_send_email_radio)
+        self.click(self._stage2_stop_realization_until_manual_activation_radio)
+        self.click(self._submit_button)
+        self.accept_alert()
+
+    def result_domain_text(self):
+        return self.get_text(self._result_domain_name_field)

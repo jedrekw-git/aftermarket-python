@@ -1134,9 +1134,23 @@ class SmokeTest(unittest.TestCase):
         hosting_account_list.renew_first_hosting_account()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hosting_account_list._stage2_result_text_field, u"Konto hostingowe zostanie przedłużone"))
-        Assert.equal(hosting_account_list._first_hosting_account_text, registered_domains_page.result_domain_text())
+        Assert.equal(hosting_account_list._first_hosting_account_text, hosting_account_list.stage2_result_domain_text())
 
+        hosting_account_list.renew_hosting_account_stage2()
 
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hosting_account_list._result_text_field, u"Operacja zawieszona, oczekuje na aktywowanie"))
+        Assert.equal(hosting_account_list._first_hosting_account_text, hosting_account_list.result_domain_text())
+
+        to_pay_list = account_page.header.open_to_pay_list()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_title, hosting_account_list._first_hosting_account_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_type, u"Przedłużenie hostingu"))
+
+        to_pay_list.remove_first_payment()
+
+        self.not_contains(hosting_account_list._first_hosting_account_text, to_pay_list.get_page_source())
+        self.not_contains(u"Przedłużenie hostingu", to_pay_list.get_page_source())
+        
     def test_add_offer_on_marketplace_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
