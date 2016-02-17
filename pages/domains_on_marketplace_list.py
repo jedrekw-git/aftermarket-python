@@ -37,6 +37,19 @@ class DomainsOnMarketplaceList(BasePage):
     _hide_offer_on_list_radio = (By.XPATH, "//label[2]")
     _search_field = (By.NAME, "domain")
     _search_button = (By.XPATH, "//div[3]/button")
+    _more_filters_button = (By.XPATH, "//form/div/div/div/button")
+    _filter_length_from_field = (By.XPATH, "//div[3]/div[2]/input")
+    _filter_length_from_value = randint(1, 7)
+    _filter_length_to_field = (By.XPATH, "//div[3]/div[2]/input[2]")
+    _filter_length_to_value = randint(8, 15)
+    _filter_extension_dropdown = (By.XPATH, "//span[2]/input")
+    _filter_extension_com_pl_option = (By.XPATH, "//span[2]/div/div/div[2]/label")
+    _filter_submit = (By.XPATH, "//form/div[3]/button")
+    _subscribe_results_button = (By.XPATH, "//p/button")
+    _subscribe_results_subuscription_name_field = (By.XPATH, "//input")
+    _subscribe_results_subuscription_name_value = get_random_string(12)
+    _delete_first_subscription_button = (By.XPATH, "//div/span/img")
+
 
     def __init__(self, driver):
         super(DomainsOnMarketplaceList, self).__init__(driver, self._title)
@@ -81,3 +94,34 @@ class DomainsOnMarketplaceList(BasePage):
         self.clear_field_and_send_keys(domain_name, self._search_field)
         self.click(self._search_button)
 
+    def filter_results_12_characters_com_pl(self):
+        self.click(self._more_filters_button)
+        self.clear_field_and_send_keys("12", self._filter_length_from_field)
+        self.clear_field_and_send_keys("12", self._filter_length_to_field)
+        self.click(self._filter_extension_dropdown)
+        self.click(self._filter_extension_com_pl_option)
+        self.click(self._filter_submit)
+
+    def first_domain_text(self):
+        return self.get_text(self._first_domain_checkbox)
+
+    def filter_results_length_com_pl(self):
+        self.click(self._more_filters_button)
+        self.clear_field_and_send_keys(self._filter_length_from_value, self._filter_length_from_field)
+        self.clear_field_and_send_keys(self._filter_length_to_value, self._filter_length_to_field)
+        self.click(self._filter_extension_dropdown)
+        self.click(self._filter_extension_com_pl_option)
+        self.click(self._filter_submit)
+
+    def subscribe_results(self):
+        self.click(self._subscribe_results_button)
+
+    def subscribe_results_stage2(self):
+        self.clear_field_and_send_keys(self._subscribe_results_subuscription_name_value, self._subscribe_results_subuscription_name_field)
+        self.click(self._submit_button_stage2)
+
+    def delete_first_subscription(self):
+        self.click(self._delete_first_subscription_button)
+
+    def delete_subscription_stage2(self):
+        self.click(self._submit_button_stage2)

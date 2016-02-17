@@ -14,6 +14,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from time import gmtime, strftime
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 SCREEN_DUMP_LOCATION = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), 'screendumps'
@@ -1087,7 +1088,7 @@ class SmokeTest(unittest.TestCase):
     def test_add_domain_to_hosting_account_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         hosting_account_list = account_page.header.open_hosting_account_list()
@@ -1111,6 +1112,30 @@ class SmokeTest(unittest.TestCase):
 
         self.not_contains(registered_domains_page._first_domain_text_value, hosting_account_list.get_page_source())
         self.not_contains(strftime("%Y-%m-%d", gmtime()), hosting_account_list.get_page_source())
+
+    def test_add_domain_to_hosting_account_wrong_domain_name_should_succeed(self):
+
+        _wrong_domain_name = get_random_string(7)
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        hosting_account_list = account_page.header.open_hosting_account_list()
+        hosting_account_list.add_domains_to_hosting_account()
+        hosting_account_list.add_domains_to_hosting_account_stage2(_wrong_domain_name)
+
+        Assert.contains(u"Musisz podać poprawne nazwy domen", hosting_account_list.get_page_source())
+
+    def test_renew_hosting_account_manually_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        hosting_account_list = account_page.header.open_hosting_account_list()
+        hosting_account_list.first_hosting_account_get_text()
+        hosting_account_list.renew_first_hosting_account()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hosting_account_list._stage2_result_text_field, u"Konto hostingowe zostanie przedłużone"))
+        Assert.equal(hosting_account_list._first_hosting_account_text, registered_domains_page.result_domain_text())
+
 
     def test_add_offer_on_marketplace_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -1140,6 +1165,54 @@ class SmokeTest(unittest.TestCase):
         domains_on_marketplace_list.delete_offer_stage2()
 
 # BŁĄD "BRAK DOSTEPU DO OBIEKTU"
+
+    def test_search_domains_on_marketplace_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
+        domains_on_marketplace_list.get_text_fourth_domain_and_price()
+        domains_on_marketplace_list.search_for_domain(domains_on_marketplace_list._fourth_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domains_on_marketplace_list._submit_offer_domain_name_value, domains_on_marketplace_list._fourth_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domains_on_marketplace_list._submit_offer_price_value, domains_on_marketplace_list._fourth_domain_price_text))
+
+    def test_filter_domains_on_marketplace_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
+        domains_on_marketplace_list.filter_results_12_characters_com_pl()
+
+        Assert.true(re.compile(r"^\w{12}\.com\.pl$").match(domains_on_marketplace_list.first_domain_text()))
+
+    def test_subscribe_filtered_domains_on_marketplace_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
+        domains_on_marketplace_list.filter_results_length_com_pl()
+        domains_on_marketplace_list.subscribe_results()
+
+        Assert.contains(u"Długość:", domains_on_marketplace_list.get_page_source())
+        Assert.contains(str(domains_on_marketplace_list._filter_length_from_value), domains_on_marketplace_list.get_page_source())
+        Assert.contains(str(domains_on_marketplace_list._filter_length_to_value), domains_on_marketplace_list.get_page_source())
+
+        domains_on_marketplace_list.subscribe_results_stage2()
+
+        Assert.contains(domains_on_marketplace_list._subscribe_results_subuscription_name_value, domains_on_marketplace_list.get_page_source())
+        Assert.contains(strftime("%Y-%m-%d", gmtime()), domains_on_marketplace_list.get_page_source())
+
+        domains_on_marketplace_list.delete_first_subscription()
+
+        Assert.contains(domains_on_marketplace_list._subscribe_results_subuscription_name_value, domains_on_marketplace_list.get_page_source())
+        Assert.contains(u"Długość:", domains_on_marketplace_list.get_page_source())
+        Assert.contains(str(domains_on_marketplace_list._filter_length_from_value), domains_on_marketplace_list.get_page_source())
+        Assert.contains(str(domains_on_marketplace_list._filter_length_to_value), domains_on_marketplace_list.get_page_source())
+
+        domains_on_marketplace_list.delete_subscription_stage2()
+
+        Assert.contains(u"Brak subskrypcji domen na giełdzie", domains_on_marketplace_list.get_page_source())
+        self.not_contains(domains_on_marketplace_list._subscribe_results_subuscription_name_value, domains_on_marketplace_list.get_page_source())
 
     def test_watch_new_domain_should_succeed(self):
 
@@ -1483,8 +1556,9 @@ class SmokeTest(unittest.TestCase):
     def setUp(self):
         self.timeout = 30
         if run_locally:
-            self.driver = webdriver.Firefox()
-            self.driver.set_window_size(1024,768)
+            binary = FirefoxBinary('/__stare/firefox/firefox')
+            self.driver = webdriver.Firefox(firefox_binary=binary)
+            self.driver.set_window_size(1024, 768)
             self.driver.implicitly_wait(self.timeout)
             self.errors_and_failures = self.tally()
         else:

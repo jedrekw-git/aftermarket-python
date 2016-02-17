@@ -26,11 +26,13 @@ class HostingAccountList(BasePage):
     _submit_button = (By.XPATH, "//button[2]")
     _first_hosting_account = (By.XPATH, "//label/b")
     _first_hosting_account_add_domains_button = (By.XPATH, "//td/div/button")
+    _first_hosting_account_renew_button = (By.XPATH, "//button[3]")
     _add_domains_button = (By.XPATH, "//button")
     _add_domains_domain_field = (By.NAME, "domain")
     _add_domains_DNS_checkbox = (By.XPATH, "//div[6]/div[3]/div/label/span[3]")
     _back_from_results_page_button = (By.XPATH, "//button")
     _remove_first_domain_button = (By.XPATH, "//div/span/img")
+    _stage2_result_text_field = (By.XPATH, "//td[3]/label/span")
 
 
     def __init__(self, driver):
@@ -71,3 +73,13 @@ class HostingAccountList(BasePage):
     def remove_first_domain(self):
         self.click(self._remove_first_domain_button)
         self.accept_alert()
+
+    def first_hosting_account_get_text(self):
+        self._first_hosting_account_text = self.get_text(self._first_hosting_account)
+
+    def renew_first_hosting_account(self):
+        self.click(self._first_hosting_account)
+        self.click(self._first_hosting_account_renew_button)
+
+    def stage2_
+
