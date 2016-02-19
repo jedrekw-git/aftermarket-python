@@ -1150,7 +1150,7 @@ class SmokeTest(unittest.TestCase):
 
         self.not_contains(hosting_account_list._first_hosting_account_text, to_pay_list.get_page_source())
         self.not_contains(u"Przedłużenie hostingu", to_pay_list.get_page_source())
-        
+
     def test_add_offer_on_marketplace_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
@@ -1435,6 +1435,208 @@ class SmokeTest(unittest.TestCase):
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_option_transaction_page._first_domain_field, escrow_option_transaction_page.second_domain_text))
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_option_transaction_page._first_domain_status_field, escrow_option_transaction_page.second_domain_status_text))
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_option_transaction_page._first_domain_price_field, escrow_option_transaction_page.second_domain_price_text))
+
+    def test_search_rental_buyer_transactions_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        rental_buyer_list = account_page.header.open_rental_buyer_list()
+        rental_buyer_list.get_text_second_domain_status_and_price()
+        rental_buyer_list.search_for_domain(rental_buyer_list.second_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(rental_buyer_list._first_domain_field, rental_buyer_list.second_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(rental_buyer_list._first_domain_status_field, rental_buyer_list.second_domain_status_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(rental_buyer_list._first_domain_price_field, rental_buyer_list.second_domain_price_text))
+
+    def test_rental_buyer_transaction_details_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        rental_buyer_list = account_page.header.open_rental_buyer_list()
+        rental_buyer_list.get_text_second_domain_status_and_price()
+        rental_buyer_list.enter_second_domain_details()
+
+        Assert.contains(rental_buyer_list.second_domain_text, rental_buyer_list.get_page_source())
+        Assert.contains(rental_buyer_list.second_domain_price_text, rental_buyer_list.get_page_source())
+
+    def test_rental_buyer_transaction_add_note_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        rental_buyer_list = account_page.header.open_rental_buyer_list()
+        rental_buyer_list.get_text_second_domain_status_and_price()
+        rental_buyer_list.second_domain_enter_add_note()
+
+        Assert.contains(rental_buyer_list.second_domain_text, rental_buyer_list.get_page_source())
+
+        rental_buyer_list.add_note()
+        rental_buyer_list.second_domain_enter_add_note()
+
+        Assert.contains(rental_buyer_list._add_note_value, rental_buyer_list.get_page_source())
+
+    def test_search_rental_seller_transactions_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        rental_seller_list = account_page.header.open_rental_seller_list()
+        rental_seller_list.get_text_second_domain_login_status_and_price()
+        rental_seller_list.search_for_domain(rental_seller_list.second_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(rental_seller_list._first_domain_field, rental_seller_list.second_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(rental_seller_list._first_domain_login_field, rental_seller_list.second_domain_login_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(rental_seller_list._first_domain_status_field, rental_seller_list.second_domain_status_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(rental_seller_list._first_domain_price_field, rental_seller_list.second_domain_price_text))
+
+    def test_rental_seller_transaction_details_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        rental_seller_list = account_page.header.open_rental_seller_list()
+        rental_seller_list.get_text_second_domain_login_status_and_price()
+        rental_seller_list.enter_second_domain_details()
+
+        Assert.contains(rental_seller_list.second_domain_text, rental_seller_list.get_page_source())
+        Assert.contains(rental_seller_list.second_domain_login_text, rental_seller_list.get_page_source())
+        Assert.contains(rental_seller_list.second_domain_price_text, rental_seller_list.get_page_source())
+
+    def test_rental_seller_transaction_add_note_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        rental_seller_list = account_page.header.open_rental_seller_list()
+        rental_seller_list.get_text_second_domain_login_status_and_price()
+        rental_seller_list.second_domain_enter_add_note()
+
+        Assert.contains(rental_seller_list.second_domain_text, rental_seller_list.get_page_source())
+        Assert.contains(rental_seller_list.second_domain_login_text, rental_seller_list.get_page_source())
+
+        rental_seller_list.add_note()
+        rental_seller_list.second_domain_enter_add_note()
+
+        Assert.contains(rental_seller_list._add_note_value, rental_seller_list.get_page_source())
+
+    def test_new_rental_seller_transaction_should_succeed(self):
+
+        login= "alfa"
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        rental_seller_list = account_page.header.open_rental_seller_list()
+        rental_seller_list.add_rental_transaction(login)
+
+        Assert.contains(rental_seller_list._rental_domain_name_text, rental_seller_list.get_page_source())
+        Assert.contains(login, rental_seller_list.get_page_source())
+        Assert.contains(rental_seller_list._add_rental_transaction_monthly_rent_value, rental_seller_list.get_page_source())
+        Assert.contains(str(rental_seller_list._add_rental_transaction_rent_duration_value)+" miesi", rental_seller_list.get_page_source())
+        Assert.contains(u"Wydzierżawiający może wypowiedzieć dzierżawę", rental_seller_list.get_page_source())
+        Assert.contains(u"Dzierżawca może wypowiedzieć dzierżawę", rental_seller_list.get_page_source())
+        Assert.contains(str(rental_seller_list._add_rental_transaction_notice_period_value)+" miesi", rental_seller_list.get_page_source())
+        Assert.contains(str(rental_seller_list._add_rental_transaction_preemption_price_value), rental_seller_list.get_page_source())
+
+        rental_seller_list.add_rental_transaction_submit()
+        account_page.header.open_rental_seller_list()
+
+        Assert.contains(rental_seller_list._rental_domain_name_text, rental_seller_list.get_page_source())
+        Assert.contains(login, rental_seller_list.get_page_source())
+        Assert.contains(rental_seller_list._add_rental_transaction_monthly_rent_value, rental_seller_list.get_page_source())
+
+        rental_seller_list.cancel_first_rental_transaction()
+
+        Assert.contains(rental_seller_list._rental_domain_name_text, rental_seller_list.get_page_source())
+        Assert.contains(login, rental_seller_list.get_page_source())
+        Assert.contains(rental_seller_list._add_rental_transaction_monthly_rent_value, rental_seller_list.get_page_source())
+        Assert.contains(str(rental_seller_list._add_rental_transaction_rent_duration_value)+" miesi", rental_seller_list.get_page_source())
+        Assert.contains(u"Wydzierżawiający może wypowiedzieć dzierżawę", rental_seller_list.get_page_source())
+        Assert.contains(u"Dzierżawca może wypowiedzieć dzierżawę", rental_seller_list.get_page_source())
+        Assert.contains(str(rental_seller_list._add_rental_transaction_notice_period_value)+" miesi", rental_seller_list.get_page_source())
+        Assert.contains(str(rental_seller_list._add_rental_transaction_preemption_price_value), rental_seller_list.get_page_source())
+
+        rental_seller_list.cancel_first_rental_transaction_submit()
+
+        Assert.contains(u"Transakcja dzierżawy została anulowana.", rental_seller_list.get_page_source())
+
+    def test_search_hire_buyer_transactions_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        hire_buyer_list = account_page.header.open_hire_buyer_list()
+        hire_buyer_list.get_text_second_domain_status_price_and_installments()
+        hire_buyer_list.search_for_domain(hire_buyer_list.second_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_buyer_list._first_domain_field, hire_buyer_list.second_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_buyer_list._first_domain_status_field, hire_buyer_list.second_domain_status_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_buyer_list._first_domain_price_field, hire_buyer_list.second_domain_price_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_buyer_list._first_domain_installments_field, hire_buyer_list.second_domain_installments_text))
+
+    def test_hire_buyer_transaction_details_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        hire_buyer_list = account_page.header.open_hire_buyer_list()
+        hire_buyer_list.get_text_second_domain_status_price_and_installments()
+        hire_buyer_list.enter_second_domain_details()
+
+        Assert.contains(hire_buyer_list.second_domain_text, hire_buyer_list.get_page_source())
+        Assert.contains(hire_buyer_list.second_domain_price_text, hire_buyer_list.get_page_source())
+        Assert.contains(hire_buyer_list.second_domain_installments_text, hire_buyer_list.get_page_source())
+
+    def test_hire_buyer_transaction_add_note_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        hire_buyer_list = account_page.header.open_hire_buyer_list()
+        hire_buyer_list.get_text_second_domain_status_price_and_installments()
+        hire_buyer_list.second_domain_enter_add_note()
+
+        Assert.contains(hire_buyer_list.second_domain_text, hire_buyer_list.get_page_source())
+
+        hire_buyer_list.add_note()
+        hire_buyer_list.second_domain_enter_add_note()
+
+        Assert.contains(hire_buyer_list._add_note_value, hire_buyer_list.get_page_source())
+
+    def test_search_hire_seller_transactions_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        hire_seller_list = account_page.header.open_hire_seller_list()
+        hire_seller_list.get_text_second_domain_login_status_price_and_installments()
+        hire_seller_list.search_for_domain(hire_seller_list.second_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._first_domain_field, hire_seller_list.second_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._first_domain_login_field, hire_seller_list.second_domain_login_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._first_domain_status_field, hire_seller_list.second_domain_status_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._first_domain_price_field, hire_seller_list.second_domain_price_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._first_domain_installments_field, hire_seller_list.second_domain_installments_text))
+
+    def test_hire_seller_transaction_details_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        hire_seller_list = account_page.header.open_hire_seller_list()
+        hire_seller_list.get_text_second_domain_login_status_price_and_installments()
+        hire_seller_list.enter_second_domain_details()
+
+        Assert.contains(hire_seller_list.second_domain_text, hire_seller_list.get_page_source())
+        Assert.contains(hire_seller_list.second_domain_login_text, hire_seller_list.get_page_source())
+        Assert.contains(hire_seller_list.second_domain_price_text, hire_seller_list.get_page_source())
+        Assert.contains(hire_seller_list.second_domain_installments_text, hire_seller_list.get_page_source())
+
+    def test_hire_seller_transaction_add_note_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        hire_seller_list = account_page.header.open_hire_seller_list()
+        hire_seller_list.get_text_second_domain_login_status_price_and_installments()
+        hire_seller_list.second_domain_enter_add_note()
+
+        Assert.contains(hire_seller_list.second_domain_text, hire_seller_list.get_page_source())
+        Assert.contains(hire_seller_list.second_domain_login_text, hire_seller_list.get_page_source())
+
+        hire_seller_list.add_note()
+        hire_seller_list.second_domain_enter_add_note()
+
+        Assert.contains(hire_seller_list._add_note_value, hire_seller_list.get_page_source())
 
     def test_block_seller_should_succeed(self):
 

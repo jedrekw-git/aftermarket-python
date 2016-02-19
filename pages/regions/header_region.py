@@ -28,6 +28,11 @@ from pages.selling_history_list import SellingHistoryPage
 from pages.new_option_auction import NewOptionAuctionPage
 from pages.seller_ended_auctions_list import SellerEndedAuctionsList
 from pages.buyer_ended_auctions_list import BuyerEndedAuctionsList
+from pages.rental_buyer_list import RentalBuyerList
+from pages.rental_seller_list import RentalSellerList
+from pages.hire_buyer_list import HireBuyerList
+from pages.hire_seller_list import HireSellerList
+
 
 class HeaderRegion(Page):
     _login_menu = (By.XPATH, "//button[2]")
@@ -182,3 +187,18 @@ class HeaderRegion(Page):
         self.get(self._base_url + "Deleted/Subscriptions/")
         return ExpiringDomainsList(self.get_driver())
 
+    def open_rental_buyer_list(self):
+        self.get(self._base_url + "Rental/Buyer/List/")
+        return RentalBuyerList(self.get_driver())
+
+    def open_rental_seller_list(self):
+        self.get(self._base_url + "Rental/Seller/List/")
+        return RentalSellerList(self.get_driver())
+
+    def open_hire_buyer_list(self):
+        self.get(self._base_url + "Hire/Buyer/List/")
+        return HireBuyerList(self.get_driver())
+
+    def open_hire_seller_list(self):
+        self.get(self._base_url + "Hire/Seller/List/")
+        return HireSellerList(self.get_driver())
