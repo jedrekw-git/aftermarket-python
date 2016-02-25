@@ -32,6 +32,7 @@ from pages.rental_buyer_list import RentalBuyerList
 from pages.rental_seller_list import RentalSellerList
 from pages.hire_buyer_list import HireBuyerList
 from pages.hire_seller_list import HireSellerList
+from pages.monitor_domains_list import MonitorDomainsList
 
 
 class HeaderRegion(Page):
@@ -202,3 +203,7 @@ class HeaderRegion(Page):
     def open_hire_seller_list(self):
         self.get(self._base_url + "Hire/Seller/List/")
         return HireSellerList(self.get_driver())
+
+    def open_monitor_domains_list(self):
+        self.get(self._base_url + "Monitor/List/")
+        return MonitorDomainsList(self.get_driver())

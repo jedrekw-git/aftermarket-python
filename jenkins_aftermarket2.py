@@ -186,6 +186,8 @@ class SmokeTest(unittest.TestCase):
         Assert.equal(settings_page._change_DNS_servers_DNS4_value, settings_page.change_DNS_servers_DNS4_text())
         Assert.equal("Operacja wykonana poprawnie", settings_page.change_DNS_servers_operation_successful_text())
 
+# SERWERY 3 i 4 nie zapisują się, zgłoszone.
+
     def test_new_DNS_profile_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
@@ -403,7 +405,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_change_DNS_servers_for_selected_domain_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.second_domain_text()
         registered_domains_page.select_second_domain()
@@ -846,7 +848,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_add_profile_for_domain_registration_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER, PASSWORD)
         profile_list_page = account_page.header.open_profile_for_domain_registration_list()
         profile_list_page.register_new_profile()
 
@@ -1153,7 +1155,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_add_offer_on_marketplace_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER, PASSWORD)
         domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
         domains_on_marketplace_list.get_text_second_domain()
         domains_on_marketplace_list.add_offer_to_second_domain()
@@ -1555,6 +1557,40 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(u"Transakcja dzierżawy została anulowana.", rental_seller_list.get_page_source())
 
+    def test_new_rental_seller_transaction_wrong_login_should_succeed(self):
+
+        login= get_random_string(10)
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        rental_seller_list = account_page.header.open_rental_seller_list()
+        rental_seller_list.add_rental_transaction(login)
+
+        Assert.contains(u"Użytkownik o podanym loginie nie istnieje", rental_seller_list.get_page_source())
+
+    def test_new_rental_seller_transaction_the_same_login_should_succeed(self):
+
+        login = USER_DELTA
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        rental_seller_list = account_page.header.open_rental_seller_list()
+        rental_seller_list.add_rental_transaction(login)
+
+        Assert.contains(u"Nie możesz przeprowadzić transakcji sam ze sobą", rental_seller_list.get_page_source())
+
+    def test_new_rental_seller_transaction_wrong_domain_name_should_succeed(self):
+
+        login = "alfa"
+        domain_name = get_random_string(10)
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        rental_seller_list = account_page.header.open_rental_seller_list()
+        rental_seller_list.add_rental_transaction_wrong_domain_name(login, domain_name)
+
+        Assert.contains(u"Domena nie jest zarejestrowana", rental_seller_list.get_page_source())
+
     def test_search_hire_buyer_transactions_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
@@ -1637,6 +1673,86 @@ class SmokeTest(unittest.TestCase):
         hire_seller_list.second_domain_enter_add_note()
 
         Assert.contains(hire_seller_list._add_note_value, hire_seller_list.get_page_source())
+
+    def test_new_hire_seller_transaction_should_succeed(self):
+
+        login = "alfa"
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        hire_seller_list = account_page.header.open_hire_seller_list()
+        hire_seller_list.add_hire_transaction_stage1()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._add_hire_transaction_domain_name_first_checkbox, ".pl"))
+
+        hire_seller_list.add_hire_transaction_stage2(login)
+
+        Assert.contains(hire_seller_list._hire_domain_name_text, hire_seller_list.get_page_source())
+        Assert.contains(login, hire_seller_list.get_page_source())
+        Assert.contains(hire_seller_list._add_hire_transaction_monthly_installment_value, hire_seller_list.get_page_source())
+        Assert.contains(str(hire_seller_list._add_hire_transaction_number_of_installments_value)+" miesi", hire_seller_list.get_page_source())
+        Assert.contains(str(int(hire_seller_list._add_hire_transaction_monthly_installment_value) * int(hire_seller_list._add_hire_transaction_number_of_installments_value)), hire_seller_list.get_page_source())
+
+        hire_seller_list.add_hire_transaction_submit()
+        account_page.header.open_hire_seller_list()
+
+        Assert.contains(hire_seller_list._hire_domain_name_text, hire_seller_list.get_page_source())
+        Assert.contains(login, hire_seller_list.get_page_source())
+        Assert.contains(str(int(hire_seller_list._add_hire_transaction_monthly_installment_value) * int(hire_seller_list._add_hire_transaction_number_of_installments_value)), hire_seller_list.get_page_source())
+
+        hire_seller_list.cancel_first_hire_transaction()
+
+        Assert.contains(hire_seller_list._hire_domain_name_text, hire_seller_list.get_page_source())
+        Assert.contains(login, hire_seller_list.get_page_source())
+        Assert.contains(hire_seller_list._add_hire_transaction_monthly_installment_value, hire_seller_list.get_page_source())
+        Assert.contains(str(hire_seller_list._add_hire_transaction_number_of_installments_value)+" miesi", hire_seller_list.get_page_source())
+        Assert.contains(str(int(hire_seller_list._add_hire_transaction_monthly_installment_value) * int(hire_seller_list._add_hire_transaction_number_of_installments_value)), hire_seller_list.get_page_source())
+
+        hire_seller_list.cancel_first_hire_transaction_submit()
+
+        Assert.contains(u"Transakcja sprzedaży na raty została anulowana.", hire_seller_list.get_page_source())
+
+    def test_new_hire_seller_transaction_wrong_login_should_succeed(self):
+
+        login = get_random_string(9)
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        hire_seller_list = account_page.header.open_hire_seller_list()
+        hire_seller_list.add_hire_transaction_stage1()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._add_hire_transaction_domain_name_first_checkbox, ".pl"))
+
+        hire_seller_list.add_hire_transaction_stage2(login)
+
+        Assert.contains(u"Użytkownik o podanym loginie nie istnieje", hire_seller_list.get_page_source())
+
+    def test_new_hire_seller_transaction_the_same_login_should_succeed(self):
+
+        login = USER_DELTA
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        hire_seller_list = account_page.header.open_hire_seller_list()
+        hire_seller_list.add_hire_transaction_stage1()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._add_hire_transaction_domain_name_first_checkbox, ".pl"))
+
+        hire_seller_list.add_hire_transaction_stage2(login)
+
+        Assert.contains(u"Nie możesz przeprowadzić transakcji sam ze sobą", hire_seller_list.get_page_source())
+
+    def test_new_hire_seller_transaction_wrong_domain_name_should_succeed(self):
+
+        login = "alfa"
+        domain_name = get_random_string(9)
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        hire_seller_list = account_page.header.open_hire_seller_list()
+        hire_seller_list.add_hire_transaction_wrong_domain_name(login, domain_name)
+
+        Assert.contains(u"Domena nie jest zarejestrowana", hire_seller_list.get_page_source())
 
     def test_block_seller_should_succeed(self):
 
@@ -1761,6 +1877,71 @@ class SmokeTest(unittest.TestCase):
         self.not_contains(expiring_domains_list._subscription_name_value, expiring_domains_list.get_page_source())
 
 # DO SPRAWDZENIA BO BŁĄD PRZY DWUKROTNYM DODAWANIU SUBSKRYPCJI
+
+    def test_search_monitor_domains_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        monitor_domains_list = account_page.header.open_monitor_domains_list()
+        monitor_domains_list.get_text_second_domain_and_status()
+        monitor_domains_list.search_for_domain(monitor_domains_list.second_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(monitor_domains_list._first_domain_field, monitor_domains_list.second_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(monitor_domains_list._first_domain_status_field, monitor_domains_list.second_domain_status_text))
+
+    def test_change_first_monitored_domain_settings_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        monitor_domains_list = account_page.header.open_monitor_domains_list()
+        monitor_domains_list.get_text_first_domain()
+        monitor_domains_list.change_first_domain_settings()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(monitor_domains_list._result_text_field, u"Opcje monitorowania zmienione"))
+        Assert.equal(monitor_domains_list.first_domain_text, monitor_domains_list.result_domain_text())
+
+    def test_monitor_new_domain_should_succeed(self):
+
+        domain_name = "aaaaaa"+get_random_string(6)+".waw.pl"
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        monitor_domains_list = account_page.header.open_monitor_domains_list()
+        monitor_domains_list.monitor_new_domain(domain_name)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(monitor_domains_list._result_text_field, u"Monitorowanie domeny włączone"))
+        Assert.equal(domain_name, monitor_domains_list.result_domain_text())
+
+        account_page.header.open_monitor_domains_list()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(monitor_domains_list._first_domain_field, domain_name))
+
+        monitor_domains_list.remove_first_monitored_domain()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(monitor_domains_list._result_text_field, u"Monitorowanie domeny wyłączone"))
+        Assert.equal(domain_name, monitor_domains_list.result_domain_text())
+
+        account_page.header.open_monitor_domains_list()
+
+        self.not_contains(domain_name, monitor_domains_list.get_page_source())
+
+    def test_filter_monitored_domains_available_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        monitor_domains_list = account_page.header.open_monitor_domains_list()
+        monitor_domains_list.filter_available()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(monitor_domains_list._first_domain_status_field, u"Dostępna"))
+
+    def test_filter_monitored_domains_registered_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        monitor_domains_list = account_page.header.open_monitor_domains_list()
+        monitor_domains_list.filter_registered()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(monitor_domains_list._first_domain_status_field, u"Zarejestrowana"))
 
     def test_zz_generate_plot_and_send_email(self):
         self._save_plot()

@@ -29,6 +29,17 @@ class HireSellerList(BasePage):
     _add_note_field = (By.XPATH, "//div[3]/div[3]/div/div/div")
     _add_note_value = get_random_string(10)+" "+get_random_string(7)+" "+get_random_string(9)
     _submit_button = (By.XPATH, "//button[2]")
+    _add_hire_transaction_button = (By.XPATH, "//button")
+    _add_hire_transaction_domain_name_field = (By.XPATH, "//div/input")
+    _add_hire_transaction_domain_name_first_checkbox = (By.XPATH, "//label")
+    _add_hire_transaction_login_field = (By.XPATH, "//div[3]/div/input")
+    _add_hire_transaction_monthly_installment_field = (By.XPATH, "//div[3]/div[3]/div/input")
+    _add_hire_transaction_monthly_installment_value = get_random_integer(2)
+    _add_hire_transaction_currency_dropdown = (By.XPATH, "//select")
+    _add_hire_transaction_currency_index = randint(0, 3)
+    _add_hire_transaction_number_of_installments_field = (By.XPATH, "//div[6]/div[3]/div/input")
+    _add_hire_transaction_number_of_installments_value = randint(8, 15)
+    _cancel_first_hire_transaction_button = (By.XPATH, "//td[9]/div/span/img")
 
     def __init__(self, driver):
         super(HireSellerList, self).__init__(driver, self._title)
@@ -56,3 +67,40 @@ class HireSellerList(BasePage):
         self.clear_field_and_send_keys(self._add_note_value, self._add_note_field)
         self.click(self._submit_button)
 
+    def add_hire_transaction_stage1(self):
+        self.click(self._add_hire_transaction_button)
+        sleep(5)
+        self.click(self._add_hire_transaction_domain_name_field)
+
+    def add_hire_transaction_stage2(self, login):
+        self._hire_domain_name_text = self.get_text(self._add_hire_transaction_domain_name_first_checkbox)
+        self.click(self._add_hire_transaction_domain_name_first_checkbox)
+        sleep(5)
+        self.clear_field_and_send_keys(login, self._add_hire_transaction_login_field)
+        self.clear_field_and_send_keys(self._add_hire_transaction_monthly_installment_value, self._add_hire_transaction_monthly_installment_field)
+        self.select_index_from_dropdown(self._add_hire_transaction_currency_index, self._add_hire_transaction_currency_dropdown)
+        self.clear_field_and_send_keys(self._add_hire_transaction_number_of_installments_value, self._add_hire_transaction_number_of_installments_field)
+        self.click(self._submit_button)
+
+    def add_hire_transaction_wrong_domain_name(self, login, domain_name):
+        self.click(self._add_hire_transaction_button)
+        sleep(5)
+        self.clear_field_and_send_keys(domain_name, self._add_hire_transaction_domain_name_field)
+        self.clear_field_and_send_keys(login, self._add_hire_transaction_login_field)
+        self.clear_field_and_send_keys(self._add_hire_transaction_monthly_installment_value, self._add_hire_transaction_monthly_installment_field)
+        self.select_index_from_dropdown(self._add_hire_transaction_currency_index, self._add_hire_transaction_currency_dropdown)
+        self.clear_field_and_send_keys(self._add_hire_transaction_number_of_installments_value, self._add_hire_transaction_number_of_installments_field)
+        self.click(self._submit_button)
+
+    def add_hire_transaction_submit(self):
+        self.click(self._submit_button)
+        self.accept_alert()
+        sleep(10)
+
+    def cancel_first_hire_transaction(self):
+        self.click(self._cancel_first_hire_transaction_button)
+
+    def cancel_first_hire_transaction_submit(self):
+        self.click(self._submit_button)
+        self.accept_alert()
+        sleep(10)

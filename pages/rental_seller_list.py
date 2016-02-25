@@ -77,6 +77,7 @@ class RentalSellerList(BasePage):
         self.click(self._add_rental_transaction_domain_name_field)
         self._rental_domain_name_text = self.get_text(self._add_rental_transaction_domain_name_first_checkbox)
         self.click(self._add_rental_transaction_domain_name_first_checkbox)
+        sleep(2)
         self.clear_field_and_send_keys(login, self._add_rental_transaction_login_field)
         self.clear_field_and_send_keys(self._add_rental_transaction_monthly_rent_value, self._add_rental_transaction_monthly_rent_field)
         self.select_index_from_dropdown(self._add_rental_transaction_currency_index, self._add_rental_transaction_currency_dropdown)
@@ -87,6 +88,15 @@ class RentalSellerList(BasePage):
         self.clear_field_and_send_keys(self._add_rental_transaction_notice_period_value, self._add_rental_transaction_notice_period_field)
         self.click(self._add_rental_transaction_lessee_has_preemptive_right_checkbox)
         self.clear_field_and_send_keys(self._add_rental_transaction_preemption_price_value, self._add_rental_transaction_preemption_price_field)
+        self.click(self._submit_button)
+
+    def add_rental_transaction_wrong_domain_name(self, login, domain_name):
+        self.click(self._add_rental_transaction_button)
+        self.clear_field_and_send_keys(domain_name, self._add_rental_transaction_domain_name_field)
+        sleep(2)
+        self.clear_field_and_send_keys(login, self._add_rental_transaction_login_field)
+        self.clear_field_and_send_keys(self._add_rental_transaction_monthly_rent_value, self._add_rental_transaction_monthly_rent_field)
+        self.select_index_from_dropdown(self._add_rental_transaction_currency_index, self._add_rental_transaction_currency_dropdown)
         self.click(self._submit_button)
 
     def add_rental_transaction_submit(self):
