@@ -45,7 +45,7 @@ class SettingsPage(BasePage):
     _add_email_address_menu = (By.XPATH, "//div[2]/div[2]/span[3]/a")
     _add_email_address_button = (By.XPATH, "//button")
     _add_email_address_field = (By.NAME, "email")
-    _add_email_address_value = "z"+get_random_string(7)+"@ijasdnjiasnd.pl"
+    _add_email_address_value = "zz"+get_random_string(7)+"@ijasdnjiasnd.pl"
     _add_email_address_submit = (By.XPATH, "//button[2]")
     _back_to_email_addresses_list_button = (By.XPATH, "//button")
     _added_email_field = (By.XPATH, "//tr[6]/td[2]/div/span")
@@ -403,7 +403,7 @@ class SettingsPage(BasePage):
     def remove_added_bank_account(self):
         self.click(self._added_bank_account_remove_first_accouunt_button)
         self.accept_alert()
-        sleep(3)
+        sleep(2)
 
     def open_change_DNS_servers_page(self):
         self.click(self._change_DNS_servers_menu)

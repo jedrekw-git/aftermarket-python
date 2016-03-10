@@ -112,7 +112,7 @@ class SmokeTest(unittest.TestCase):
         settings_page.add_other_user()
 
         Assert.contains(u"Operacja wykonana poprawnie.", settings_page.get_page_source())
-        sleep(10)
+        sleep(7)
         account_page.header.open_settings_page()
         settings_page.open_add_other_users_page()
         # WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(settings_page._add_other_user_added_login_field, settings_page._add_other_user_login_value))
@@ -174,7 +174,7 @@ class SmokeTest(unittest.TestCase):
 
         settings_page.remove_added_bank_account()
         Assert.contains(u"Operacja wykonana poprawnie.", settings_page.get_page_source())
-        sleep(10)
+        sleep(7)
 
         Assert.contains("Lista kont bankowych", settings_page.get_page_source())
         Assert.contains(u"Na tej liście znajdują się konta bankowe, na które możesz zlecać wypłaty.", settings_page.get_page_source())
@@ -389,7 +389,7 @@ class SmokeTest(unittest.TestCase):
         login = "alfa"
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.third_domain_text()
         registered_domains_page.select_third_domain()
@@ -414,7 +414,7 @@ class SmokeTest(unittest.TestCase):
         self.not_contains(registered_domains_page._third_domain_text_value, transfer_domain_page.get_page_source())
 
 
-#PRZY TRZECIEJ DOMENIE BLĄD, A POZOSTAŁYCH SIE NIE DA PRZENOSIC CALKIEM, zgłośić?????
+#PRZY TRZECIEJ DOMENIE NA KONCIE DELTA BLĄD, A POZOSTAŁYCH SIE NIE DA PRZENOSIC CALKIEM, zgłośić?????
 
     def test_change_DNS_servers_for_selected_domain_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -1112,7 +1112,7 @@ class SmokeTest(unittest.TestCase):
     def test_add_domain_to_hosting_account_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         hosting_account_list = account_page.header.open_hosting_account_list()
@@ -1146,7 +1146,7 @@ class SmokeTest(unittest.TestCase):
         _wrong_domain_name = get_random_string(7)
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         hosting_account_list = account_page.header.open_hosting_account_list()
         hosting_account_list.add_domains_to_hosting_account()
         hosting_account_list.add_domains_to_hosting_account_stage2(_wrong_domain_name)
@@ -2027,7 +2027,7 @@ class SmokeTest(unittest.TestCase):
     def test_add_domain_to_catalog_already_added_domain_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
         domain_catalog_list = account_page.header.open_domain_catalog_list()
         domain_catalog_list.add_already_existing_domain_to_catalog()
 
