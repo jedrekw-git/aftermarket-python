@@ -33,7 +33,9 @@ from pages.rental_seller_list import RentalSellerList
 from pages.hire_buyer_list import HireBuyerList
 from pages.hire_seller_list import HireSellerList
 from pages.monitor_domains_list import MonitorDomainsList
-
+from pages.domain_catalog_list import DomainCatalogList
+from pages.appraisal_list import AppraisalListPage
+from pages.active_appraisals_list import ActiveAppraisalsListPage
 
 class HeaderRegion(Page):
     _login_menu = (By.XPATH, "//button[2]")
@@ -207,3 +209,15 @@ class HeaderRegion(Page):
     def open_monitor_domains_list(self):
         self.get(self._base_url + "Monitor/List/")
         return MonitorDomainsList(self.get_driver())
+
+    def open_domain_catalog_list(self):
+        self.get(self._base_url + "Catalog/List/")
+        return DomainCatalogList(self.get_driver())
+
+    def open_appraisal_list(self):
+        self.get(self._base_url + "Appraisal/List/")
+        return AppraisalListPage(self.get_driver())
+
+    def open_active_appraisals_list(self):
+        self.get(self._base_url + "Appraisal/Active/")
+        return ActiveAppraisalsListPage(self.get_driver())

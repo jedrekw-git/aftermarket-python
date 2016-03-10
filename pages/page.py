@@ -75,10 +75,16 @@ class Page(object):
         dropdown.select_by_visible_text(text)
 
     def accept_alert(self):
-        if(WebDriverWait(self.get_driver(), 10).until(EC.alert_is_present()))==0:
-            print "no alert"
-        else:
+
+        # if(WebDriverWait(self.get_driver(), 10).until(EC.alert_is_present()))==0:
+        #     return self.get_driver().switch_to_alert().accept()
+        # else:
+        #     print "no alert"
+        try:
+            WebDriverWait(self.get_driver(), 10).until(EC.alert_is_present())
             return self.get_driver().switch_to_alert().accept()
+        except TimeoutException:
+            print "no alert"
 
     def refresh(self):
         self.get_driver().refresh()

@@ -47,6 +47,7 @@ class SettingsPage(BasePage):
     _add_email_address_field = (By.NAME, "email")
     _add_email_address_value = "z"+get_random_string(7)+"@ijasdnjiasnd.pl"
     _add_email_address_submit = (By.XPATH, "//button[2]")
+    _back_to_email_addresses_list_button = (By.XPATH, "//button")
     _added_email_field = (By.XPATH, "//tr[6]/td[2]/div/span")
     _added_email_status_field = (By.XPATH, "//tr[6]/td[4]/div/span")
     _add_email_address_remove_added_email = (By.XPATH, "//div/span/img")
@@ -54,7 +55,7 @@ class SettingsPage(BasePage):
     _add_other_users_menu = (By.XPATH, "//div[4]/div[2]/span[3]/a")
     _add_other_user_button = (By.XPATH, "//button")
     _add_other_user_login_field = (By.NAME, "login")
-    _add_other_user_login_value = "z"+get_random_string(9)
+    _add_other_user_login_value = "zz"+get_random_string(9)
     _add_other_user_password_field = (By.NAME, "password")
     _add_other_user_password_value = get_random_string(9)
     _add_other_user_repeat_password_field = (By.NAME, "password2")
@@ -280,6 +281,9 @@ class SettingsPage(BasePage):
         self.clear_field_and_send_keys(self._add_email_address_value, self._add_email_address_field)
         self.click(self._add_email_address_submit)
 
+    def back_to_email_addresses_list(self):
+        self.click(self._back_to_email_addresses_list_button)
+
     def added_email_address_text(self):
         return self.get_text(self._added_email_field)
 
@@ -405,7 +409,7 @@ class SettingsPage(BasePage):
         self.click(self._change_DNS_servers_menu)
 
     def change_DNS_servers(self):
-        self.select_index_from_dropdown(1, self._change_DNS_servers_dropdown)
+        self.select_index_from_dropdown(2, self._change_DNS_servers_dropdown)
         self.clear_field_and_send_keys(self._change_DNS_servers_DNS3_value, self._change_DNS_servers_DNS3_field)
         self.clear_field_and_send_keys(self._change_DNS_servers_DNS4_value, self._change_DNS_servers_DNS4_field)
         self.click(self._change_DNS_servers_submit_button)
@@ -434,9 +438,9 @@ class SettingsPage(BasePage):
         self.click(self._new_DNS_profile_name_submit)
 
     def new_DNS_entry(self):
-        self.click(self._new_DNS_profile_name)
-        self.click(self._new_DNS_profile_manage_entries)
-        self.click(self._new_DNS_profile_add_new_DNS_entry_button)
+        # self.click(self._new_DNS_profile_name)
+        # self.click(self._new_DNS_profile_manage_entries)
+        # self.click(self._new_DNS_profile_add_new_DNS_entry_button)
         self.clear_field_and_send_keys(self._new_DNS_profile_host_value, self._new_DNS_profile_host_field)
         self.select_index_from_dropdown(1, self._new_DNS_profile_type_dropdown)
         self.clear_field_and_send_keys(self._new_DNS_profile_address_value, self._new_DNS_profile_address_field)

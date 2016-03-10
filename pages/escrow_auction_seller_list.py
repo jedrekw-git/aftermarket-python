@@ -15,7 +15,7 @@ class EscrowAuctionSellerListPage(BasePage):
     _first_auction_domain_name_field = (By.XPATH, "//label/span")
     _first_auction_buyer_login_field = (By.XPATH, "//span/span/a")
     _first_auction_price_field = (By.XPATH, "//div/span/b")
-    _first_auction_delete_button = (By.XPATH, "//div/span/img")
+    _first_auction_delete_button = (By.XPATH, "//td[8]/div/span/img")
     _delete_auction_domain_name_field = (By.XPATH, "//div[3]/div/span")
     _delete_auction_buyer_login_field = (By.XPATH, "//div[3]/div[3]/div/span")
     _submit_button = (By.XPATH, "//button[2]")

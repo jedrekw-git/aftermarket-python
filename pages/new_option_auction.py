@@ -44,7 +44,8 @@ class NewOptionAuctionPage(BasePage):
 
     def new_option_auction_enter_details(self):
         self.click(self._option_name_field)
-        sleep(3)
+        sleep(2)
+        self.click(self._option_name_field)
         self._option_name = self.get_text(self._option_name_field_first_option)
         self.click(self._option_name_field_first_option)
         self.clear_field_and_send_keys(self._price_start_value, self._price_start_field)

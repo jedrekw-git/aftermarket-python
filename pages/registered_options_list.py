@@ -13,6 +13,7 @@ class RegisteredOptionsListPage(BasePage):
     _title = "Registered options"
 
     _first_option_checkbox = (By.XPATH, "//td[3]/div/span/label/span")
+    _second_option_checkbox = (By.XPATH, "//tr[8]/td[3]/div/span/label/span")
     _renew_first_option_button = (By.XPATH, "//button[2]")
     _change_profile_data_button = (By.XPATH, "//div[7]/div/button[2]")
     _stage2_result_field = (By.XPATH, "//td[3]/label/span")
@@ -24,7 +25,7 @@ class RegisteredOptionsListPage(BasePage):
     _transfer_option_login_field = (By.XPATH, "//div[3]/div/input")
     _transfer_list_first_option_field = (By.XPATH, "//td[3]/div/span/label/span")
     _transfer_list_first_option_cancel_button = (By.XPATH, "//td/div/button")
-    _get_option_authinfo_button = (By.XPATH, "//button[3]")
+    _get_option_authinfo_button = (By.XPATH, "//div[7]/div/button[3]")
     _second_stage_send_email_after_oparation_radio = (By.XPATH, "//label/span[2]")
     _second_stage_stop_realization_until_manual_activation_radio = (By.XPATH, "//div[3]/div[3]/div/label[2]/span[2]")
 
@@ -33,6 +34,9 @@ class RegisteredOptionsListPage(BasePage):
 
     def first_option_text(self):
         self._first_option_text_value = self.get_text(self._first_option_checkbox)
+
+    def second_option_text(self):
+        self._second_option_text_value = self.get_text(self._second_option_checkbox)
 
     def change_option_profile_data(self):
         self.click(self._first_option_checkbox)
@@ -76,7 +80,7 @@ class RegisteredOptionsListPage(BasePage):
         self.click(self._transfer_list_first_option_cancel_button)
 
     def get_option_authinfo(self):
-        self.click(self._first_option_checkbox)
+        self.click(self._second_option_checkbox)
         self.click(self._get_option_authinfo_button)
         self.click(self._submit_button)
 

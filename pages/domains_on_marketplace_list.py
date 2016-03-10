@@ -46,7 +46,7 @@ class DomainsOnMarketplaceList(BasePage):
     _filter_extension_com_pl_option = (By.XPATH, "//span[2]/div/div/div[2]/label")
     _filter_submit = (By.XPATH, "//form/div[3]/button")
     _subscribe_results_button = (By.XPATH, "//p/button")
-    _subscribe_results_subuscription_name_field = (By.XPATH, "//input")
+    _subscribe_results_subuscription_name_field = (By.XPATH, "//div/input")
     _subscribe_results_subuscription_name_value = get_random_string(12)
     _delete_first_subscription_button = (By.XPATH, "//div/span/img")
 

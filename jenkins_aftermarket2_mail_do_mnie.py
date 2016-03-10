@@ -15,6 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from time import gmtime, strftime
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+import re
 
 SCREEN_DUMP_LOCATION = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), 'screendumps'
@@ -86,6 +87,10 @@ class SmokeTest(unittest.TestCase):
         add_email_page = settings_page.open_add_email_address_page()
         settings_page.add_email_address()
 
+        Assert.contains(u"Potwierdź adres email", settings_page.get_page_source())
+
+        settings_page.back_to_email_addresses_list()
+
         Assert.equal(settings_page._add_email_address_value, settings_page.added_email_address_text())
         Assert.equal("Niepotwierdzony", settings_page.added_email_status_text())
 
@@ -110,6 +115,12 @@ class SmokeTest(unittest.TestCase):
         add_other_users_page = settings_page.open_add_other_users_page()
         settings_page.add_other_user()
 
+        Assert.contains(u"Operacja wykonana poprawnie.", settings_page.get_page_source())
+        sleep(10)
+        account_page.header.open_settings_page()
+        settings_page.open_add_other_users_page()
+        # WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(settings_page._add_other_user_added_login_field, settings_page._add_other_user_login_value))
+
         Assert.equal(settings_page._add_other_user_login_value, settings_page.added_user_login_text())
         Assert.equal(settings_page._add_other_user_description_value, settings_page.added_user_description_text())
 
@@ -121,17 +132,19 @@ class SmokeTest(unittest.TestCase):
         self.not_contains(settings_page._add_other_user_login_value, settings_page.get_page_source())
         self.not_contains(settings_page._add_other_user_description_value, settings_page.get_page_source())
 
-    def test_change_company_address_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER, PASSWORD)
-        settings_page = account_page.header.open_settings_page()
-        change_company_address_page = settings_page.open_change_company_data_page()
-        settings_page.edit_company_address()
+    # def test_change_company_address_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_home_page()
+    #     account_page = home_page.header.login(USER, PASSWORD)
+    #     settings_page = account_page.header.open_settings_page()
+    #     change_company_address_page = settings_page.open_change_company_data_page()
+    #     settings_page.edit_company_address()
+    #
+    #     Assert.contains("Operacja wykonana poprawnie", settings_page.edit_company_data_operation_successful_text())
+    #     Assert.contains(settings_page.edit_company_data_zip_text(), settings_page._change_company_data_zip_value)
+    #     Assert.equal(settings_page._change_company_data_street_value, settings_page.edit_company_data_street_text())
+    #     Assert.equal(settings_page._change_company_data_city_value, settings_page.edit_company_data_city_text())
 
-        Assert.contains("Operacja wykonana poprawnie", settings_page.edit_company_data_operation_successful_text())
-        Assert.contains(settings_page.edit_company_data_zip_text(), settings_page._change_company_data_zip_value)
-        Assert.equal(settings_page._change_company_data_street_value, settings_page.edit_company_data_street_text())
-        Assert.equal(settings_page._change_company_data_city_value, settings_page.edit_company_data_city_text())
+#NIE DA SIĘ?
 
     def test_change_company_data_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -156,15 +169,16 @@ class SmokeTest(unittest.TestCase):
         bank_accounts_page = settings_page.open_add_bank_account_page()
         settings_page.add_bank_account(number)
 
+        Assert.contains(u"Operacja wykonana poprawnie.", settings_page.get_page_source())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(settings_page._added_bank_account_number, number))
         Assert.contains("Lista kont bankowych", settings_page.get_page_source())
         Assert.contains(u"Na tej liście znajdują się konta bankowe, na które możesz zlecać wypłaty.", settings_page.get_page_source())
         Assert.contains("Oto lista twoich kont bankowych.", settings_page.get_page_source())
-        Assert.equal(number, settings_page.added_bank_account_number_text())
         Assert.equal(settings_page._add_bank_account_account_name_value, settings_page.added_bank_account_name_text())
 
         settings_page.remove_added_bank_account()
-        account_page.header.open_settings_page()
-        settings_page.open_add_bank_account_page()
+        Assert.contains(u"Operacja wykonana poprawnie.", settings_page.get_page_source())
+        sleep(10)
 
         Assert.contains("Lista kont bankowych", settings_page.get_page_source())
         Assert.contains(u"Na tej liście znajdują się konta bankowe, na które możesz zlecać wypłaty.", settings_page.get_page_source())
@@ -186,7 +200,7 @@ class SmokeTest(unittest.TestCase):
         Assert.equal(settings_page._change_DNS_servers_DNS4_value, settings_page.change_DNS_servers_DNS4_text())
         Assert.equal("Operacja wykonana poprawnie", settings_page.change_DNS_servers_operation_successful_text())
 
-# SERWERY 3 i 4 nie zapisują się, zgłoszone.
+# SERWERY 3 i 4 zamieniają się miejscami z 1 i 2 lub losowo, zgłoszone
 
     def test_new_DNS_profile_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -194,6 +208,9 @@ class SmokeTest(unittest.TestCase):
         settings_page = account_page.header.open_settings_page()
         dns_profile_page = settings_page.open_new_DNS_profile_page()
         settings_page.new_DNS_profile()
+
+        Assert.contains(u"Operacja wykonana poprawnie.", settings_page.get_page_source())
+        sleep(7)
         settings_page.new_DNS_entry()
 
         Assert.equal("Operacja wykonana poprawnie", settings_page.new_DNS_profile_successful_operation_text())
@@ -401,7 +418,7 @@ class SmokeTest(unittest.TestCase):
         self.not_contains(registered_domains_page._third_domain_text_value, transfer_domain_page.get_page_source())
 
 
-#SPRAWDZIC BO BYL BLAD BAZY DANYCH, A JUŻ CHYBA NIE MA
+#PRZY TRZECIEJ DOMENIE BLĄD, A POZOSTAŁYCH SIE NIE DA PRZENOSIC CALKIEM, zgłośić?????
 
     def test_change_DNS_servers_for_selected_domain_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -466,24 +483,24 @@ class SmokeTest(unittest.TestCase):
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
-        registered_domains_page.new_dns_entry_for_senected_domain()
+        registered_domains_page.new_dns_entry_for_selected_domain()
 
         self.not_contains(registered_domains_page._add_dns_entry_host_name_value, registered_domains_page.get_page_source())
         self.not_contains(registered_domains_page._add_dns_entry_address_value, registered_domains_page.get_page_source())
 
-        registered_domains_page.new_dns_entry_for_senected_domain_details()
+        registered_domains_page.new_dns_entry_for_selected_domain_details()
 
         Assert.contains("Operacja wykonana poprawnie", registered_domains_page.get_page_source())
 
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.select_first_domain()
-        registered_domains_page.new_dns_entry_for_senected_domain()
+        registered_domains_page.new_dns_entry_for_selected_domain()
 
         Assert.contains(registered_domains_page._add_dns_entry_host_name_value, registered_domains_page.get_page_source())
         Assert.contains(registered_domains_page._add_dns_entry_priority_value, registered_domains_page.get_page_source())
         Assert.contains(registered_domains_page._add_dns_entry_address_value, registered_domains_page.get_page_source())
 
-        registered_domains_page.delete_new_dns_entry_for_senected_domain()
+        registered_domains_page.delete_new_dns_entry_for_selected_domain()
 
         self.not_contains(registered_domains_page._add_dns_entry_host_name_value, registered_domains_page.get_page_source())
         self.not_contains(registered_domains_page._add_dns_entry_address_value, registered_domains_page.get_page_source())
@@ -501,6 +518,8 @@ class SmokeTest(unittest.TestCase):
         self.not_contains(registered_domains_page._new_dns_server_in_domain_ip_value, registered_domains_page.get_page_source())
 
         registered_domains_page.new_dns_server_in_domain_details()
+        Assert.contains(u"Operacja wykonana poprawnie.", registered_domains_page.get_page_source())
+        sleep(7)
 
         Assert.contains(registered_domains_page._new_dns_server_in_domain_name_value+"."+registered_domains_page._first_domain_text_value, registered_domains_page.get_page_source())
         Assert.contains(registered_domains_page._new_dns_server_in_domain_ip_value, registered_domains_page.get_page_source())
@@ -541,7 +560,7 @@ class SmokeTest(unittest.TestCase):
     def test_sell_on_auction_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.third_domain_text()
         registered_domains_page.select_third_domain()
@@ -573,34 +592,38 @@ class SmokeTest(unittest.TestCase):
     def test_sell_on_auction_edit_details_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
-        # registered_domains_page = account_page.header.open_registered_domains_list()
-        # registered_domains_page.third_domain_text()
-        # registered_domains_page.select_third_domain()
-        # registered_domains_page.sell_on_auction()
-        #
-        # Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
-        # Assert.equal(u"Technologia » Komputery", registered_domains_page.sell_on_auction_stage2_category_text())
-        #
-        # registered_domains_page.sell_on_auction_submit()
-        #
-        # WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została wystawiona"))
-        # Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.third_domain_text()
+        registered_domains_page.select_third_domain()
+        registered_domains_page.sell_on_auction()
+
+        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
+        Assert.equal(u"Technologia » Komputery", registered_domains_page.sell_on_auction_stage2_category_text())
+
+        registered_domains_page.sell_on_auction_submit()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została wystawiona"))
+        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
 
         selling_auction_page = account_page.header.open_selling_auction_list()
         selling_auction_page.first_auction_enter_edit_prices()
 
-        # Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
-        # Assert.contains(registered_domains_page._sell_on_auction_price_start_value, selling_auction_page.get_page_source())
+        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(str(registered_domains_page._sell_on_auction_price_start_value), selling_auction_page.get_page_source())
 
         selling_auction_page.edit_auction_prices()
-        sleep(5)
-        # Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        sleep(2)
+        Assert.contains(u"Operacja wykonana poprawnie.", selling_auction_page.get_page_source())
+        sleep(7)
+        selling_auction_page.back_from_results_page()
+
+        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
         Assert.contains(str(selling_auction_page._edit_auction_details_price_start_value), selling_auction_page.get_page_source())
 
         selling_auction_page.first_auction_enter_edit_description()
 
-        # Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
         Assert.contains(str(selling_auction_page._edit_auction_details_price_start_value), selling_auction_page.get_page_source())
 
         selling_auction_page.edit_auction_description()
@@ -608,23 +631,23 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u"Zmiany wykonano poprawnie", selling_auction_page.get_page_source())
         Assert.contains(u"\u017b\u0105dane zmiany zosta\u0142y wykonane poprawnie.", selling_auction_page.get_page_source())
         Assert.contains(u"Mo\u017cesz zobaczy\u0107 swoj\u0105 aukcj\u0119 klikaj\u0105c przycisk poni\u017cej.", selling_auction_page.get_page_source())
-        # selling_auction_page = account_page.header.open_selling_auction_list()
-        # selling_auction_page.delete_first_auction()
-        #
-        # WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._second_stage_text_field, u"Aukcja zostanie anulowana"))
-        # Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.second_stage_domain_text())
-        #
-        # selling_auction_page.delete_auction_submit()
-        #
-        # WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została anulowana"))
-        # Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
-        #
-        # selling_auction_page.back_from_results_page()
-        #
-        # self.not_contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        selling_auction_page = account_page.header.open_selling_auction_list()
+        selling_auction_page.delete_first_auction()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._second_stage_text_field, u"Aukcja zostanie anulowana"))
+        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.second_stage_domain_text())
+
+        selling_auction_page.delete_auction_submit()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została anulowana"))
+        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+
+        selling_auction_page.back_from_results_page()
+
+        self.not_contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
 
 
-#NIE DZIAŁA DODAWANIE AUKCJI - JAK BEDZIE DZIAŁAŁO ODKOMENTOWAC WSZYSTKIE
+#Błąd podczas wykonywania operacji
 
     def test_sell_on_escrow_auction_should_succeed(self):
 
@@ -632,7 +655,7 @@ class SmokeTest(unittest.TestCase):
         price = get_random_integer(2)
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.third_domain_text()
         registered_domains_page.select_third_domain()
@@ -642,10 +665,9 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(price, registered_domains_page.get_page_source())
         Assert.equal(login_value, registered_domains_page.sell_on_escrow_auction_stage2_buyer_login_text())
 
-        registered_domains_page.sell_on_auction_submit()
+        registered_domains_page.sell_on_escrow_auction_stage2()
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Transakcja Escrow została zainicjowana"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._add_escrow_transaction_result_text_field, u"Transakcja escrow została rozpoczęta."))
 
         escrow_auction_page = account_page.header.open_escrow_transactions_seller_list()
 
@@ -661,8 +683,7 @@ class SmokeTest(unittest.TestCase):
 
         escrow_auction_page.delete_auction_submit()
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Transakcja została anulowana"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._add_escrow_transaction_result_text_field, u"Transakcja escrow została anulowana."))
 
     def test_search_selling_escrow_auctions_should_succeed(self):
 
@@ -721,7 +742,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_delete_domain_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.third_domain_text()
         registered_domains_page.select_third_domain()
@@ -732,7 +753,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_transfer_domain_to_the_same_account_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.fourth_domain_text()
         registered_domains_page.select_fourth_domain()
@@ -749,7 +770,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_transfer_domain_to_the_other_account_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.fourth_domain_text()
         registered_domains_page.select_fourth_domain()
@@ -789,7 +810,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_transfer_domain_to_the_other_account_and_renew_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.fourth_domain_text()
         registered_domains_page.select_fourth_domain()
@@ -852,7 +873,8 @@ class SmokeTest(unittest.TestCase):
         profile_list_page = account_page.header.open_profile_for_domain_registration_list()
         profile_list_page.register_new_profile()
 
-        sleep(2)
+        Assert.contains(u"Operacja wykonana poprawnie.", profile_list_page.get_page_source())
+        sleep(7)
         Assert.contains(profile_list_page._profile_name_value, profile_list_page.get_page_source())
 
         profile_list_page.delete_added_profile()
@@ -871,6 +893,8 @@ class SmokeTest(unittest.TestCase):
         expired_options_page.search_for_option(expired_options_page.sixth_option_text)
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(expired_options_page._first_option_value, expired_options_page.sixth_option_text))
+
+#NIE DZIAŁA WYSZUKIWARKA, zgłoszone
 
     def test_register_option_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -924,10 +948,11 @@ class SmokeTest(unittest.TestCase):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
         registered_options_list = account_page.header.open_registered_options_list()
-        registered_options_list.first_option_text()
+        registered_options_list.second_option_text()
         registered_options_list.get_option_authinfo()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_options_list._result_text_field, u"Kod AuthInfo:"))
+        Assert.equal(registered_options_list._second_option_text_value, registered_options_list.result_domain_text())
 
     def test_renew_option_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -962,7 +987,7 @@ class SmokeTest(unittest.TestCase):
         login = "alfa"
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_options_list = account_page.header.open_registered_options_list()
         registered_options_list.first_option_text()
         transfer_option = registered_options_list.transfer_option_from_account()
@@ -996,13 +1021,14 @@ class SmokeTest(unittest.TestCase):
         wrong_login = get_random_string(10)
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_options_list = account_page.header.open_registered_options_list()
         registered_options_list.first_option_text()
         transfer_option = registered_options_list.transfer_option_from_account()
         registered_options_list.transfer_option_enter_login(wrong_login)
         registered_options_list.submit()
 
+        Assert.contains(u"Użytkownik o podanym loginie nie istnieje", registered_options_list.get_page_source())
         Assert.contains(wrong_login, registered_options_list.get_page_source())
 
     def test_transfer_option_to_account_should_succeed(self):
@@ -1010,7 +1036,7 @@ class SmokeTest(unittest.TestCase):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
         registered_options_list = account_page.header.open_registered_options_list()
-        registered_options_list.first_option_text()
+        registered_options_list.second_option_text()
         registered_options_list.get_option_authinfo()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_options_list._result_text_field, u"Kod AuthInfo:"))
@@ -1020,35 +1046,35 @@ class SmokeTest(unittest.TestCase):
         home_page.header.logout()
         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         transfer_option_list = account_page.header.open_transfer_option_to_account_list()
-        transfer_option_list.new_option_transfer(registered_options_list._first_option_text_value, registered_options_list._option_authinfo)
+        transfer_option_list.new_option_transfer(registered_options_list._second_option_text_value, registered_options_list._option_authinfo)
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_options_list._stage2_result_field, u"Opcja zostanie przeniesiona z innego konta"))
-        Assert.equal(registered_options_list._first_option_text_value, registered_options_list.stage2_option_text())
+        Assert.equal(registered_options_list._second_option_text_value, registered_options_list.stage2_option_text())
 
         registered_options_list.submit_and_accept_alert()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_options_list._result_text_field, u"Transfer opcji został zainicjowany"))
-        Assert.equal(registered_options_list._first_option_text_value, registered_options_list.result_domain_text())
+        Assert.equal(registered_options_list._second_option_text_value, registered_options_list.result_domain_text())
 
         account_page.header.open_transfer_option_to_account_list()
 
-        Assert.contains(registered_options_list._first_option_text_value, registered_options_list.get_page_source())
+        Assert.contains(registered_options_list._second_option_text_value, registered_options_list.get_page_source())
         Assert.contains(strftime("%Y-%m-%d", gmtime()), registered_options_list.get_page_source())
         Assert.contains(u"Oczekujący", registered_options_list.get_page_source())
 
         transfer_option_list.remove_first_transfer()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_options_list._stage2_result_field, u"Transfer zostanie anulowany"))
-        Assert.equal(registered_options_list._first_option_text_value, registered_options_list.stage2_option_text())
+        Assert.equal(registered_options_list._second_option_text_value, registered_options_list.stage2_option_text())
 
         registered_options_list.submit_and_accept_alert()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_options_list._result_text_field, u"Transfer został anulowany"))
-        Assert.equal(registered_options_list._first_option_text_value, registered_options_list.result_domain_text())
+        Assert.equal(registered_options_list._second_option_text_value, registered_options_list.result_domain_text())
 
         account_page.header.open_transfer_option_to_account_list()
 
-        self.not_contains(registered_options_list._first_option_text_value, registered_options_list.get_page_source())
+        self.not_contains(registered_options_list._second_option_text_value, registered_options_list.get_page_source())
 
     def test_transfer_option_to_account_option_unavailable_should_succeed(self):
 
@@ -1097,8 +1123,12 @@ class SmokeTest(unittest.TestCase):
         hosting_account_list.add_domains_to_hosting_account()
         hosting_account_list.add_domains_to_hosting_account_stage2(registered_domains_page._first_domain_text_value)
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja wykonana poprawnie"))
-        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+        sleep(10)
+        if u"Nie udało się zmienić serwerów DNS" in hosting_account_list.result_text():
+ 	        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+        else:
+            WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja wykonana poprawnie"))
+            Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
 
         hosting_account_list.back_from_results_page()
 
@@ -1181,6 +1211,7 @@ class SmokeTest(unittest.TestCase):
         domains_on_marketplace_list.delete_offer_stage2()
 
 # BŁĄD "BRAK DOSTEPU DO OBIEKTU"
+# AUTOMATYCZNE WYLOGOWANIE PO add_offer_to_second_domain()
 
     def test_search_domains_on_marketplace_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -1204,7 +1235,7 @@ class SmokeTest(unittest.TestCase):
     def test_subscribe_filtered_domains_on_marketplace_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
         domains_on_marketplace_list.filter_results_length_com_pl()
         domains_on_marketplace_list.subscribe_results()
@@ -1227,13 +1258,15 @@ class SmokeTest(unittest.TestCase):
 
         domains_on_marketplace_list.delete_subscription_stage2()
 
+        Assert.contains(u"Operacja wykonana poprawnie.", domains_on_marketplace_list.get_page_source())
+        sleep(7)
         Assert.contains(u"Brak subskrypcji domen na giełdzie", domains_on_marketplace_list.get_page_source())
         self.not_contains(domains_on_marketplace_list._subscribe_results_subuscription_name_value, domains_on_marketplace_list.get_page_source())
 
     def test_watch_new_domain_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         watched_domains_page = account_page.header.open_watched_domains_list()
         watched_domains_page.watch_new_domain()
 
@@ -1301,7 +1334,7 @@ class SmokeTest(unittest.TestCase):
     def test_new_option_auction_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         new_option_auction_page = account_page.header.open_new_option_auction_page()
         new_option_auction_page.new_option_auction_enter_details()
 
@@ -1336,11 +1369,11 @@ class SmokeTest(unittest.TestCase):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         ended_auctions_list = account_page.header.open_seller_ended_auctions_list()
-        ended_auctions_list.get_twelfth_domain_and_price_text()
-        ended_auctions_list.search_for_domain(ended_auctions_list._twelfth_domain_text)
+        ended_auctions_list.get_second_domain_and_price_text()
+        ended_auctions_list.search_for_domain(ended_auctions_list._second_domain_text)
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_checkbox, ended_auctions_list._twelfth_domain_text))
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_price_field, ended_auctions_list._twelfth_domain_price_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_checkbox, ended_auctions_list._second_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_price_field, ended_auctions_list._second_domain_price_text))
 
     def test_search_buyer_ended_auctions_should_succeed(self):
 
@@ -1358,43 +1391,40 @@ class SmokeTest(unittest.TestCase):
         login = "alfa"
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
-        registered_options_list = account_page.header.open_registered_options_list()
-        registered_options_list.first_option_text()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         escrow_option_transaction_page = account_page.header.open_escrow_option_selling_transaction_list()
-        escrow_option_transaction_page.add_escrow_option_transaction(login, registered_options_list._first_option_text_value)
+        escrow_option_transaction_page.add_escrow_option_transaction(login)
 
-        Assert.equal(registered_options_list._first_option_text_value, escrow_option_transaction_page.stage2_option_text())
+        Assert.equal(escrow_option_transaction_page._first_option_text_value, escrow_option_transaction_page.stage2_option_text())
         Assert.equal(login, escrow_option_transaction_page.stage2_login_text())
         Assert.contains(escrow_option_transaction_page._price_value, escrow_option_transaction_page.get_page_source())
 
+        escrow_option_transaction_page.add_description()
         escrow_option_transaction_page.stage2_submit_and_accept_alert()
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_options_list._result_text_field, u"Transakcja Escrow została zainicjowana"))
-        Assert.equal(registered_options_list._first_option_text_value, registered_options_list.result_domain_text())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_option_transaction_page._added_transaction_result_text_field, u"Transakcja escrow została rozpoczęta."))
 
         account_page.header.open_escrow_option_selling_transaction_list()
 
-        Assert.contains(registered_options_list._first_option_text_value, escrow_option_transaction_page.get_page_source())
+        Assert.contains(escrow_option_transaction_page._first_option_text_value, escrow_option_transaction_page.get_page_source())
         Assert.contains(login, escrow_option_transaction_page.get_page_source())
         Assert.contains("Nowa", escrow_option_transaction_page.get_page_source())
         Assert.contains(escrow_option_transaction_page._price_value, escrow_option_transaction_page.get_page_source())
 
         escrow_option_transaction_page.delete_first_auction()
 
-        Assert.equal(registered_options_list._first_option_text_value, escrow_option_transaction_page.stage2_option_text())
+        Assert.equal(escrow_option_transaction_page._first_option_text_value, escrow_option_transaction_page.stage2_option_text())
         Assert.equal(login, escrow_option_transaction_page.stage2_login_text())
         Assert.contains(escrow_option_transaction_page._price_value, escrow_option_transaction_page.get_page_source())
 
         escrow_option_transaction_page.stage2_submit_and_accept_alert()
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_options_list._result_text_field, u"Transakcja została anulowana"))
-        Assert.equal(registered_options_list._first_option_text_value, registered_options_list.result_domain_text())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_option_transaction_page._added_transaction_result_text_field, u"Transakcja escrow została anulowana."))
 
         account_page.header.open_escrow_option_selling_transaction_list()
         escrow_option_transaction_page.filter_new()
 
-        self.not_contains(registered_options_list._first_option_text_value, escrow_option_transaction_page.get_page_source())
+        self.not_contains(escrow_option_transaction_page._first_option_text_value, escrow_option_transaction_page.get_page_source())
         self.not_contains(login, escrow_option_transaction_page.get_page_source())
         self.not_contains(strftime("%Y-%m-%d", gmtime()), escrow_option_transaction_page.get_page_source())
 
@@ -1412,16 +1442,14 @@ class SmokeTest(unittest.TestCase):
 
     def test_new_escrow_option_transaction_the_same_login_should_succeed(self):
 
-        login = USER_GAMMA
+        login = USER_BETA
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
-        registered_options_list = account_page.header.open_registered_options_list()
-        registered_options_list.first_option_text()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         escrow_option_transaction_page = account_page.header.open_escrow_option_selling_transaction_list()
-        escrow_option_transaction_page.add_escrow_option_transaction(login, registered_options_list._first_option_text_value)
+        escrow_option_transaction_page.add_escrow_option_transaction(login)
 
-        Assert.contains(registered_options_list._first_option_text_value, escrow_option_transaction_page.get_page_source())
+        Assert.contains(escrow_option_transaction_page._first_option_text_value, escrow_option_transaction_page.get_page_source())
         Assert.contains(login, escrow_option_transaction_page.get_page_source())
         Assert.contains(escrow_option_transaction_page._price_value, escrow_option_transaction_page.get_page_source())
         Assert.contains(u"Nie możesz przeprowadzić transakcji sam ze sobą", escrow_option_transaction_page.get_page_source())
@@ -1479,7 +1507,7 @@ class SmokeTest(unittest.TestCase):
     def test_search_rental_seller_transactions_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
         rental_seller_list = account_page.header.open_rental_seller_list()
         rental_seller_list.get_text_second_domain_login_status_and_price()
         rental_seller_list.search_for_domain(rental_seller_list.second_domain_text)
@@ -1522,7 +1550,7 @@ class SmokeTest(unittest.TestCase):
         login= "alfa"
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         rental_seller_list = account_page.header.open_rental_seller_list()
         rental_seller_list.add_rental_transaction(login)
 
@@ -1634,7 +1662,7 @@ class SmokeTest(unittest.TestCase):
     def test_search_hire_seller_transactions_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
         hire_seller_list = account_page.header.open_hire_seller_list()
         hire_seller_list.get_text_second_domain_login_status_price_and_installments()
         hire_seller_list.search_for_domain(hire_seller_list.second_domain_text)
@@ -1683,7 +1711,7 @@ class SmokeTest(unittest.TestCase):
         hire_seller_list = account_page.header.open_hire_seller_list()
         hire_seller_list.add_hire_transaction_stage1()
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._add_hire_transaction_domain_name_first_checkbox, ".pl"))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._add_hire_transaction_domain_name_second_checkbox, ".pl"))
 
         hire_seller_list.add_hire_transaction_stage2(login)
 
@@ -1721,7 +1749,7 @@ class SmokeTest(unittest.TestCase):
         hire_seller_list = account_page.header.open_hire_seller_list()
         hire_seller_list.add_hire_transaction_stage1()
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._add_hire_transaction_domain_name_first_checkbox, ".pl"))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._add_hire_transaction_domain_name_second_checkbox, ".pl"))
 
         hire_seller_list.add_hire_transaction_stage2(login)
 
@@ -1736,7 +1764,7 @@ class SmokeTest(unittest.TestCase):
         hire_seller_list = account_page.header.open_hire_seller_list()
         hire_seller_list.add_hire_transaction_stage1()
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._add_hire_transaction_domain_name_first_checkbox, ".pl"))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hire_seller_list._add_hire_transaction_domain_name_second_checkbox, ".pl"))
 
         hire_seller_list.add_hire_transaction_stage2(login)
 
@@ -1763,6 +1791,8 @@ class SmokeTest(unittest.TestCase):
         blocked_sellers_page = account_page.header.open_blocked_sellers_list()
         blocked_sellers_page.block_seller(seller_name)
 
+        Assert.contains(u"Operacja wykonana poprawnie.", blocked_sellers_page.get_page_source())
+        sleep(7)
         Assert.contains(seller_name, blocked_sellers_page.get_page_source())
         Assert.contains(strftime("%Y-%m-%d", gmtime()), blocked_sellers_page.get_page_source())
 
@@ -1773,6 +1803,8 @@ class SmokeTest(unittest.TestCase):
 
         blocked_sellers_page.delete_first_seller_submit()
 
+        Assert.contains(u"Operacja wykonana poprawnie.", blocked_sellers_page.get_page_source())
+        sleep(7)
         self.not_contains(seller_name, blocked_sellers_page.get_page_source())
         self.not_contains(strftime("%Y-%m-%d", gmtime()), blocked_sellers_page.get_page_source())
 
@@ -1846,7 +1878,7 @@ class SmokeTest(unittest.TestCase):
     def test_subscribe_filtered_domains_to_catch_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         expiring_domains_list = account_page.header.open_expiring_domains_list()
         expiring_domains_list.filter_results_length_and_pl()
         expiring_domains_list.subscribe_results()
@@ -1925,6 +1957,17 @@ class SmokeTest(unittest.TestCase):
 
         self.not_contains(domain_name, monitor_domains_list.get_page_source())
 
+    def test_monitor_new_domain_already_monitored_domain_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        monitor_domains_list = account_page.header.open_monitor_domains_list()
+        monitor_domains_list.get_text_first_domain()
+        monitor_domains_list.monitor_new_domain(monitor_domains_list.first_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(monitor_domains_list._result_text_field, u"Już monitorujesz tę domenę"))
+        Assert.equal(monitor_domains_list.first_domain_text, monitor_domains_list.result_domain_text())
+
     def test_filter_monitored_domains_available_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
@@ -1942,6 +1985,96 @@ class SmokeTest(unittest.TestCase):
         monitor_domains_list.filter_registered()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(monitor_domains_list._first_domain_status_field, u"Zarejestrowana"))
+
+    def test_add_domain_catalog_should_succeed(self):
+
+        catalog_name = "aaaaaaaa"+get_random_string(5)
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        domain_catalog_list = account_page.header.open_domain_catalog_list()
+        domain_catalog_list.add_catalog_stage1(catalog_name)
+
+        Assert.contains(catalog_name, domain_catalog_list.get_page_source())
+
+        domain_catalog_list.add_catalog_stage2()
+
+        sleep(10)
+        if u"Domena nie jest wystawiona na sprzedaż" in domain_catalog_list.result_text():
+            Assert.equal(domain_catalog_list.domain_name, domain_catalog_list.result_domain_text())
+        else:
+            WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domain_catalog_list._result_text_field, u"Domena dodana do katalogu"))
+            Assert.equal(domain_catalog_list.domain_name, domain_catalog_list.result_domain_text())
+
+        domain_catalog_list.back_to_domains_in_catalog()
+
+        Assert.contains(domain_catalog_list.domain_name, domain_catalog_list.get_page_source())
+
+        domain_catalog_list.remove_first_domain_in_catalog()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domain_catalog_list._result_text_field, u"Domena usunięta z katalogu"))
+        Assert.equal(domain_catalog_list.domain_name, domain_catalog_list.result_domain_text())
+
+        domain_catalog_list.back_to_domains_in_catalog()
+
+        self.not_contains(domain_catalog_list.domain_name, domain_catalog_list.get_page_source())
+
+        account_page.header.open_domain_catalog_list()
+
+        domain_catalog_list.remove_first_catalog()
+
+        Assert.contains(u"Operacja wykonana poprawnie.", domain_catalog_list.get_page_source())
+
+        sleep(7)
+        self.not_contains(catalog_name, domain_catalog_list.get_page_source())
+
+    def test_add_domain_to_catalog_already_added_domain_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        domain_catalog_list = account_page.header.open_domain_catalog_list()
+        domain_catalog_list.add_already_existing_domain_to_catalog()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domain_catalog_list._result_text_field, u"Domena już znajduje się w katalogu"))
+        Assert.equal(domain_catalog_list.first_domain_value, domain_catalog_list.result_domain_text())
+
+    def test_search_domain_in_catalog_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        domain_catalog_list = account_page.header.open_domain_catalog_list()
+        domain_catalog_list.search_second_domain_in_catalog()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domain_catalog_list._first_domain_in_catalog_field, domain_catalog_list.second_domain_value))
+
+    def test_search_appraisal_list_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        appraisal_list = account_page.header.open_appraisal_list()
+        appraisal_list.get_fourth_appraisal_domain_time_type_and_status()
+        appraisal_list.search_for_appraisal(appraisal_list.fourth_appraisal_domain)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(appraisal_list._first_appraisal_domain_field, appraisal_list.fourth_appraisal_domain))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(appraisal_list._first_appraisal_time_field, appraisal_list.fourth_appraisal_time))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(appraisal_list._first_appraisal_type_field, appraisal_list.fourth_appraisal_type))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(appraisal_list._first_appraisal_status_field, appraisal_list.fourth_appraisal_status))
+
+#BŁĄD BRAK WYNIKÓW
+
+    def test_search_active_appraisals_list_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        appraisal_list = account_page.header.open_active_appraisals_list()
+        appraisal_list.get_fourth_appraisal_domain_time_and_propositions()
+        appraisal_list.search_for_appraisal(appraisal_list.fourth_appraisal_domain)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(appraisal_list._first_appraisal_domain_field, appraisal_list.fourth_appraisal_domain))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(appraisal_list._first_appraisal_time_field, appraisal_list.fourth_appraisal_time))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(appraisal_list._first_appraisal_propositions_field, appraisal_list.fourth_appraisal_propositions))
+
+#BŁĄD BRAK WYNIKÓW
 
     def test_zz_generate_plot_and_send_email(self):
         self._save_plot()
@@ -2016,7 +2149,7 @@ class SmokeTest(unittest.TestCase):
 
         # The slices will be ordered and plotted counter-clockwise.
         labels = 'Errors', 'Passes'
-        sizes = [err, 78-err]
+        sizes = [err, 113-err]
         colors = ['red', 'gold']
         explode = (0, 0.1)
 

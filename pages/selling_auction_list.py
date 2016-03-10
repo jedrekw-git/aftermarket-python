@@ -12,11 +12,11 @@ from random import randint
 class SellingAuctionListPage(BasePage):
     _title = "Selling Auction"
 
-    _first_auction_delete_button = (By.XPATH, "//td[11]/div/span/img")
+    _first_auction_delete_button = (By.XPATH, "//td[12]/div/span/img")
     _submit_button = (By.XPATH, "//button[2]")
     _back_from_results_page_button = (By.XPATH, "//button")
-    _first_auction_checkbox = (By.XPATH, "//td[3]/div/span/label/span")
-    _first_auction_change_button = (By.XPATH, "//button[4]")
+    _first_auction_checkbox = (By.XPATH, "//td[4]/div/span/label/span")
+    _first_auction_change_button = (By.XPATH, "//button[5]")
     _first_auction_change_prices_button = (By.XPATH, "//td/div[2]/div/div[2]")
     _first_auction_change_description_button = (By.XPATH, "//div[2]/div/div[3]")
     _edit_auction_details_change_minimal_price_radio = (By.XPATH, "//label[2]")
@@ -27,7 +27,7 @@ class SellingAuctionListPage(BasePage):
     _edit_auction_details_price_minimum_value = randint(21, 40)
     _edit_auction_details_price_buynow_field = (By.NAME, "price_buynow")
     _edit_auction_details_price_buynow_value = randint(41, 60)
-    _edit_auction_details_description_field = (By.XPATH, "//div[3]/div/div/div/p")
+    _edit_auction_details_description_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[5]/div[3]/div[1]/div/div")
     _edit_auction_details_description_value = get_random_string(10) + " " + get_random_string(7) + " " + get_random_string(8)
     _finish_auction_button = (By.XPATH, "//div[7]/div/button")
 

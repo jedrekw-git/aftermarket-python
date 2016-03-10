@@ -31,7 +31,7 @@ class HireSellerList(BasePage):
     _submit_button = (By.XPATH, "//button[2]")
     _add_hire_transaction_button = (By.XPATH, "//button")
     _add_hire_transaction_domain_name_field = (By.XPATH, "//div/input")
-    _add_hire_transaction_domain_name_first_checkbox = (By.XPATH, "//label")
+    _add_hire_transaction_domain_name_second_checkbox = (By.XPATH, "//div[2]/label")
     _add_hire_transaction_login_field = (By.XPATH, "//div[3]/div/input")
     _add_hire_transaction_monthly_installment_field = (By.XPATH, "//div[3]/div[3]/div/input")
     _add_hire_transaction_monthly_installment_value = get_random_integer(2)
@@ -73,8 +73,8 @@ class HireSellerList(BasePage):
         self.click(self._add_hire_transaction_domain_name_field)
 
     def add_hire_transaction_stage2(self, login):
-        self._hire_domain_name_text = self.get_text(self._add_hire_transaction_domain_name_first_checkbox)
-        self.click(self._add_hire_transaction_domain_name_first_checkbox)
+        self._hire_domain_name_text = self.get_text(self._add_hire_transaction_domain_name_second_checkbox)
+        self.click(self._add_hire_transaction_domain_name_second_checkbox)
         sleep(5)
         self.clear_field_and_send_keys(login, self._add_hire_transaction_login_field)
         self.clear_field_and_send_keys(self._add_hire_transaction_monthly_installment_value, self._add_hire_transaction_monthly_installment_field)

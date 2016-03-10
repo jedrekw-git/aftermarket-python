@@ -38,6 +38,7 @@ class RegisteredDomainsListPage(BasePage):
     _second_stage_stop_realization_until_manual_activation_radio = (By.XPATH, "//div[3]/div[3]/div/label[2]/span[2]")
     _result_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[2]/span")
     _result_text_field = (By.XPATH, "//td[3]")
+    _add_escrow_transaction_result_text_field = (By.XPATH, "//p")
     _move_button = (By.XPATH, "//div[7]/div/button[2]")
     _move_to_other_account_button = (By.XPATH, "//div[7]/div/div/div[2]/div[4]")
     _move_to_other_account_login_field = (By.NAME, "login")
@@ -70,7 +71,7 @@ class RegisteredDomainsListPage(BasePage):
     _change_dns_profile_dont_sent_results_after_operation_radio = (
         By.XPATH, "/html/body/div[7]/div/div/form/div[3]/div[3]/div/label[2]/span[2]")
     _redirect_button_for_selected_domain = (By.XPATH, "//button[3]")
-    _set_dns_entries_button = (By.XPATH, "//div[2]/div[3]/div[3]")
+    _set_dns_entries_button = (By.XPATH, "//div[2]/div[3]/div[4]")
     _add_dns_entry_button = (By.XPATH, "//button")
     _add_dns_entry_host_name_field = (By.XPATH, "//div[2]/div[3]/div/input")
     _add_dns_entry_host_name_value = get_random_string(8)
@@ -81,13 +82,12 @@ class RegisteredDomainsListPage(BasePage):
     _add_dns_entry_address_value = "www." + get_random_string(10) + ".com"
     _add_dns_entry_host_name_result = (By.XPATH, "//label")
     _delete_first_dns_priofile_button = (By.XPATH, "//button[2]")
-    _dns_servers_in_domain_button = (By.XPATH, "//div[2]/div[3]/div[5]")
+    _dns_servers_in_domain_button = (By.XPATH, "//div[3]/div[6]")
     _new_dns_server_in_domain_add_server_button = (By.XPATH, "//button")
     _new_dns_server_in_domain_name_field = (By.XPATH, "//div/input")
     _new_dns_server_in_domain_name_value = get_random_string(6)
     _new_dns_server_in_domain_ip_field = (By.XPATH, "//div[2]/div[3]/div/input")
-    _new_dns_server_in_domain_ip_value = "192." + get_random_integer(2) + "." + get_random_integer(
-        1) + "." + get_random_integer(1)
+    _new_dns_server_in_domain_ip_value = "192." + get_random_integer(2) + "." + get_random_integer(1) + "." + get_random_integer(1)
     _new_dns_server_in_domain_name_result = (By.XPATH, "//label")
     _delete_first_dns_server = (By.XPATH, "//button[2]")
     _parking_button_first_domain = (By.XPATH, "//button[4]")
@@ -140,6 +140,9 @@ class RegisteredDomainsListPage(BasePage):
     _sell_on_escrow_auction_days_to_pay_index = randint(0, 7)
     _sell_on_escrow_auction_stage2_buyer_login_field = (
         By.XPATH, "/html/body/div[7]/div/div/form/div[3]/div[3]/div[1]/span")
+    _sell_on_escrow_auction_description_button = (By.XPATH, "//label")
+    _sell_on_escrow_auction_description_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[6]/div[3]/div[1]/div/div")
+    _sell_on_escrow_auction_description_value = get_random_string(10) + " " + get_random_string(7) + " " + get_random_string(8)
     _delete_auction_button = (By.XPATH, "//div[7]/div/button[7]")
     _delete_auction_accept_deletion_indicated_domains_checkbox = (
         By.XPATH, "//label/span[2]")
@@ -196,9 +199,11 @@ class RegisteredDomainsListPage(BasePage):
 
     def change_profile_data(self):
         self.click(self._move_button)
+        sleep(2)
         self.click(self._change_profile_data_button)
         self.click(self._submit_button)
         self.click(self._change_profile_data_dont_send_results_radio)
+        sleep(5)
         self.click(self._submit_button)
         self.accept_alert()
 
@@ -255,11 +260,11 @@ class RegisteredDomainsListPage(BasePage):
         self.click(self._change_dns_profile_dont_sent_results_after_operation_radio)
         self.click(self._submit_button)
 
-    def new_dns_entry_for_senected_domain(self):
+    def new_dns_entry_for_selected_domain(self):
         self.click(self._redirect_button_for_selected_domain)
         self.click(self._set_dns_entries_button)
 
-    def new_dns_entry_for_senected_domain_details(self):
+    def new_dns_entry_for_selected_domain_details(self):
         self.click(self._add_dns_entry_button)
         self.clear_field_and_send_keys(self._add_dns_entry_host_name_value, self._add_dns_entry_host_name_field)
         self.select_index_from_dropdown(1, self._add_dns_entry_type_dropdown)
@@ -267,7 +272,7 @@ class RegisteredDomainsListPage(BasePage):
         self.clear_field_and_send_keys(self._add_dns_entry_address_value, self._add_dns_entry_address_field)
         self.click(self._submit_button)
 
-    def delete_new_dns_entry_for_senected_domain(self):
+    def delete_new_dns_entry_for_selected_domain(self):
         self.click(self._add_dns_entry_host_name_result)
         self.click(self._delete_first_dns_priofile_button)
         self.click(self._delete_first_dns_priofile_button)
@@ -346,6 +351,12 @@ class RegisteredDomainsListPage(BasePage):
         self.select_index_from_dropdown(self._sell_on_escrow_auction_days_to_pay_index,
                                         self._sell_on_escrow_auction_days_to_pay_dropdown)
         self.click(self._submit_button)
+
+    def sell_on_escrow_auction_stage2(self):
+        self.click(self._sell_on_escrow_auction_description_button)
+        self.clear_field_and_send_keys(self._sell_on_escrow_auction_description_value, self._sell_on_escrow_auction_description_field)
+        self.click(self._submit_button)
+        self.accept_alert()
 
     def sell_on_escrow_auction_stage2_buyer_login_text(self):
         return self.get_text(self._sell_on_escrow_auction_stage2_buyer_login_field)

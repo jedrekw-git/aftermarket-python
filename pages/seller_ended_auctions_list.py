@@ -12,8 +12,8 @@ from random import randint
 class SellerEndedAuctionsList(BasePage):
     _title = "Seller ended auctions list"
 
-    _twelfth_domain_checkbox = (By.XPATH, "//tr[38]/td[3]/div/span/label/span")
-    _twelfth_domain_price_field = (By.XPATH, "//tr[38]/td[7]/div/span/b/span")
+    _second_domain_checkbox = (By.XPATH, "//tr[9]/td[3]/div/span/label/span")
+    _second_domain_price_field = (By.XPATH, "//tr[9]/td[8]/div/span/b/span")
     _first_domain_checkbox = (By.XPATH, "//td[3]/div/span/label/span")
     _first_domain_price_field = (By.XPATH, "//span/b/span")
     _search_field = (By.NAME, "domain")
@@ -22,9 +22,9 @@ class SellerEndedAuctionsList(BasePage):
     def __init__(self, driver):
         super(SellerEndedAuctionsList, self).__init__(driver, self._title)
 
-    def get_twelfth_domain_and_price_text(self):
-        self._twelfth_domain_text = self.get_text(self._twelfth_domain_checkbox)
-        self._twelfth_domain_price_text = self.get_text(self._twelfth_domain_price_field)
+    def get_second_domain_and_price_text(self):
+        self._second_domain_text = self.get_text(self._second_domain_checkbox)
+        self._second_domain_price_text = self.get_text(self._second_domain_price_field)
 
     def search_for_domain(self, domain_name):
         self.clear_field_and_send_keys(domain_name, self._search_field)

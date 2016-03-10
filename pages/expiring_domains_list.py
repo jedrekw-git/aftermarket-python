@@ -29,7 +29,7 @@ class ExpiringDomainsList(BasePage):
     _filter_extension_pl = (By.XPATH, "//span[2]/div/div/div/label")
     _filter_submit = (By.XPATH, "//form/div[3]/button")
     _subscribe_results_button = (By.XPATH, "//p/button")
-    _subscription_name_field = (By.XPATH, "//input")
+    _subscription_name_field = (By.XPATH, "//div/input")
     _subscription_name_value = get_random_string(10)
     _subscription_submit = (By.XPATH, "//button[2]")
     _subscription_delete_first_button = (By.XPATH, "//div/span/img")
