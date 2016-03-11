@@ -23,7 +23,7 @@ class DomainCatalogList(BasePage):
     _back_to_domains_in_catalog_button = (By.XPATH, "//button")
     _first_domain_in_catalog_field = (By.XPATH, "//td[3]/div/span/label/span")
     _second_domain_in_catalog_field = (By.XPATH, "//tr[6]/td[3]/div/span/label/span")
-    _remove_first_domain_in_catalog_button = (By.XPATH, "//button[3]")
+    _remove_first_domain_in_catalog_button = (By.XPATH, "//div/span/img")
     _remove_first_catalog_button = (By.XPATH, "//span/img")
     _first_catalog_field = (By.XPATH, "//td[2]/div/span")
     _first_catalog_domains_list = (By.XPATH, "//button[2]")
@@ -45,6 +45,7 @@ class DomainCatalogList(BasePage):
     def add_catalog_stage2(self):
         self.click(self._domain_name_dropdown)
         sleep(2)
+        self.click(self._domain_name_dropdown)
         self.domain_name = self.get_text(self._domain_name_option)
         self.click(self._domain_name_option)
         self.click(self._submit_button)
@@ -59,7 +60,6 @@ class DomainCatalogList(BasePage):
         self.click(self._back_to_domains_in_catalog_button)
 
     def remove_first_domain_in_catalog(self):
-        self.click(self._first_domain_in_catalog_field)
         self.click(self._remove_first_domain_in_catalog_button)
         self.accept_alert()
 

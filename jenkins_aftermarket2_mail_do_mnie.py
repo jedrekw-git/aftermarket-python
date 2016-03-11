@@ -579,6 +579,7 @@ class SmokeTest(unittest.TestCase):
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._second_stage_text_field, u"Aukcja zostanie anulowana"))
         Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.second_stage_domain_text())
+        WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable(selling_auction_page._submit_button))
 
         selling_auction_page.delete_auction_submit()
 
@@ -636,6 +637,7 @@ class SmokeTest(unittest.TestCase):
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._second_stage_text_field, u"Aukcja zostanie anulowana"))
         Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.second_stage_domain_text())
+        WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable(selling_auction_page._submit_button))
 
         selling_auction_page.delete_auction_submit()
 
@@ -744,12 +746,12 @@ class SmokeTest(unittest.TestCase):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
-        registered_domains_page.third_domain_text()
-        registered_domains_page.select_third_domain()
+        registered_domains_page.fourth_domain_text()
+        registered_domains_page.select_fourth_domain()
         registered_domains_page.delete_auction()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja wykonana poprawnie"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        Assert.equal(registered_domains_page._fourth_domain_text_value, registered_domains_page.result_domain_text())
 
     def test_transfer_domain_to_the_same_account_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()

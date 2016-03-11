@@ -59,16 +59,22 @@ class ExpiringDomainsList(BasePage):
         self.click(self._filter_button)
         self.clear_field_and_send_keys(4, self._filter_length_from)
         self.clear_field_and_send_keys(4, self._filter_length_to)
+        sleep(2)
         self.click(self._filter_extension_dropdown)
+        sleep(2)
         self.click(self._filter_extension_com_pl)
+        sleep(2)
         self.click(self._filter_submit)
 
     def filter_results_length_and_pl(self):
         self.click(self._filter_button)
         self.clear_field_and_send_keys(self._filter_length_from_value, self._filter_length_from)
         self.clear_field_and_send_keys(self._filter_length_to_value, self._filter_length_to)
+        sleep(2)
         self.click(self._filter_extension_dropdown)
+        sleep(2)
         self.click(self._filter_extension_pl)
+        sleep(2)
         self.click(self._filter_submit)
 
     def subscribe_results(self):

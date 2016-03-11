@@ -30,6 +30,7 @@ class TaskList(BasePage):
     def select_operation_type(self):
         self.select_index_from_dropdown((self._option_index)-1, self._operation_type_dropdown)
         self.click(self._filter_list_submit)
+        sleep(3)
 
     def first_result_text(self):
         return self.get_text(self._first_result)
