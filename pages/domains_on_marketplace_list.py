@@ -99,7 +99,9 @@ class DomainsOnMarketplaceList(BasePage):
         self.clear_field_and_send_keys("12", self._filter_length_from_field)
         self.clear_field_and_send_keys("12", self._filter_length_to_field)
         self.click(self._filter_extension_dropdown)
+        sleep(2)
         self.click(self._filter_extension_com_pl_option)
+        sleep(2)
         self.click(self._filter_submit)
 
     def first_domain_text(self):
@@ -110,7 +112,9 @@ class DomainsOnMarketplaceList(BasePage):
         self.clear_field_and_send_keys(self._filter_length_from_value, self._filter_length_from_field)
         self.clear_field_and_send_keys(self._filter_length_to_value, self._filter_length_to_field)
         self.click(self._filter_extension_dropdown)
+        sleep(2)
         self.click(self._filter_extension_com_pl_option)
+        sleep(2)
         self.click(self._filter_submit)
 
     def subscribe_results(self):

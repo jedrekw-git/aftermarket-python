@@ -26,7 +26,9 @@ class TransferDomainFromAccountList(BasePage):
         return self.get_text(self._stage2_domain_name_field)
 
     def submit_and_accept_alert(self):
+        sleep(2)
         self.click(self._submit_button)
+        sleep(2)
         self.accept_alert()
 
     def cancel_first_domain_transfer(self):

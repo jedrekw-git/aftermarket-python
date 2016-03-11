@@ -395,27 +395,27 @@ class SmokeTest(unittest.TestCase):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
-        registered_domains_page.third_domain_text()
-        registered_domains_page.select_third_domain()
+        registered_domains_page.second_domain_text()
+        registered_domains_page.select_second_domain()
         registered_domains_page.move_domain_from_account(login)
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Transfer został zainicjowany"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
 
         transfer_domain_page = account_page.header.open_transfer_domain_from_account_list()
         transfer_domain_page.cancel_first_domain_transfer()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(transfer_domain_page._stage2_result_field, u"Transfer zostanie anulowany"))
-        Assert.equal(registered_domains_page._third_domain_text_value, transfer_domain_page.stage2_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, transfer_domain_page.stage2_domain_text())
 
         transfer_domain_page.submit_and_accept_alert()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Transfer został anulowany"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
 
         transfer_domain_page = account_page.header.open_transfer_domain_from_account_list()
 
-        self.not_contains(registered_domains_page._third_domain_text_value, transfer_domain_page.get_page_source())
+        self.not_contains(registered_domains_page._second_domain_text_value, transfer_domain_page.get_page_source())
 
 
 #PRZY TRZECIEJ DOMENIE NA KONCIE DELTA BLĄD, A POZOSTAŁYCH SIE NIE DA PRZENOSIC CALKIEM, zgłośić?????
@@ -562,54 +562,54 @@ class SmokeTest(unittest.TestCase):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
-        registered_domains_page.third_domain_text()
-        registered_domains_page.select_third_domain()
+        registered_domains_page.second_domain_text()
+        registered_domains_page.select_second_domain()
         registered_domains_page.sell_on_auction()
 
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
         Assert.equal(u"Technologia » Komputery", registered_domains_page.sell_on_auction_stage2_category_text())
 
         registered_domains_page.sell_on_auction_submit()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została wystawiona"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
 
         selling_auction_page = account_page.header.open_selling_auction_list()
         selling_auction_page.delete_first_auction()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._second_stage_text_field, u"Aukcja zostanie anulowana"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.second_stage_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.second_stage_domain_text())
 
         selling_auction_page.delete_auction_submit()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została anulowana"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
 
         selling_auction_page.back_from_results_page()
 
-        self.not_contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        self.not_contains(registered_domains_page._second_domain_text_value, selling_auction_page.get_page_source())
 
     def test_sell_on_auction_edit_details_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
-        registered_domains_page.third_domain_text()
-        registered_domains_page.select_third_domain()
+        registered_domains_page.second_domain_text()
+        registered_domains_page.select_second_domain()
         registered_domains_page.sell_on_auction()
 
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
         Assert.equal(u"Technologia » Komputery", registered_domains_page.sell_on_auction_stage2_category_text())
 
         registered_domains_page.sell_on_auction_submit()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została wystawiona"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
 
         selling_auction_page = account_page.header.open_selling_auction_list()
         selling_auction_page.first_auction_enter_edit_prices()
 
-        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(registered_domains_page._second_domain_text_value, selling_auction_page.get_page_source())
         Assert.contains(str(registered_domains_page._sell_on_auction_price_start_value), selling_auction_page.get_page_source())
 
         selling_auction_page.edit_auction_prices()
@@ -618,12 +618,12 @@ class SmokeTest(unittest.TestCase):
         sleep(7)
         selling_auction_page.back_from_results_page()
 
-        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(registered_domains_page._second_domain_text_value, selling_auction_page.get_page_source())
         Assert.contains(str(selling_auction_page._edit_auction_details_price_start_value), selling_auction_page.get_page_source())
 
         selling_auction_page.first_auction_enter_edit_description()
 
-        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(registered_domains_page._second_domain_text_value, selling_auction_page.get_page_source())
         Assert.contains(str(selling_auction_page._edit_auction_details_price_start_value), selling_auction_page.get_page_source())
 
         selling_auction_page.edit_auction_description()
@@ -635,16 +635,16 @@ class SmokeTest(unittest.TestCase):
         selling_auction_page.delete_first_auction()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._second_stage_text_field, u"Aukcja zostanie anulowana"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.second_stage_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.second_stage_domain_text())
 
         selling_auction_page.delete_auction_submit()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została anulowana"))
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
 
         selling_auction_page.back_from_results_page()
 
-        self.not_contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        self.not_contains(registered_domains_page._second_domain_text_value, selling_auction_page.get_page_source())
 
 
 #Błąd podczas wykonywania operacji
@@ -657,11 +657,11 @@ class SmokeTest(unittest.TestCase):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
-        registered_domains_page.third_domain_text()
-        registered_domains_page.select_third_domain()
+        registered_domains_page.second_domain_text()
+        registered_domains_page.select_second_domain()
         registered_domains_page.sell_on_escrow_auction(login_value, price)
 
-        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
         Assert.contains(price, registered_domains_page.get_page_source())
         Assert.equal(login_value, registered_domains_page.sell_on_escrow_auction_stage2_buyer_login_text())
 
@@ -671,13 +671,13 @@ class SmokeTest(unittest.TestCase):
 
         escrow_auction_page = account_page.header.open_escrow_transactions_seller_list()
 
-        Assert.equal(registered_domains_page._third_domain_text_value, escrow_auction_page.first_auction_domain_name_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, escrow_auction_page.first_auction_domain_name_text())
         Assert.contains(price, escrow_auction_page.get_page_source())
         Assert.equal(login_value, escrow_auction_page.first_auction_buyer_login_text())
 
         escrow_auction_page.delete_first_escrow_auction()
 
-        Assert.equal(registered_domains_page._third_domain_text_value, escrow_auction_page.delete_auction_domain_name_text())
+        Assert.equal(registered_domains_page._second_domain_text_value, escrow_auction_page.delete_auction_domain_name_text())
         Assert.contains(price, escrow_auction_page.get_page_source())
         Assert.equal(login_value, escrow_auction_page.delete_auction_buyer_login_text())
 
@@ -688,14 +688,14 @@ class SmokeTest(unittest.TestCase):
     def test_search_selling_escrow_auctions_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
         escrow_auction_page = account_page.header.open_escrow_transactions_seller_list()
-        escrow_auction_page.get_text_eighteenth_domain_login_and_price()
-        escrow_auction_page.search_for_auction(escrow_auction_page.eighteenth_domain_text)
+        escrow_auction_page.get_text_second_domain_login_and_price()
+        escrow_auction_page.search_for_auction(escrow_auction_page.second_domain_text)
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_auction_page._first_auction_domain_name_field, escrow_auction_page.eighteenth_domain_text))
-        Assert.equal(escrow_auction_page.eighteenth_domain_login_text, escrow_auction_page.first_auction_buyer_login_text())
-        Assert.equal(escrow_auction_page.eighteenth_domain_price_text, escrow_auction_page.first_auction_price_text())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_auction_page._first_auction_domain_name_field, escrow_auction_page.second_domain_text))
+        Assert.equal(escrow_auction_page.second_domain_login_text, escrow_auction_page.first_auction_buyer_login_text())
+        Assert.equal(escrow_auction_page.second_domain_price_text, escrow_auction_page.first_auction_price_text())
 
     def test_sell_on_escrow_auction_the_same_login_should_succeed(self):
 
@@ -705,11 +705,11 @@ class SmokeTest(unittest.TestCase):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         registered_domains_page = account_page.header.open_registered_domains_list()
-        registered_domains_page.third_domain_text()
-        registered_domains_page.select_third_domain()
+        registered_domains_page.second_domain_text()
+        registered_domains_page.select_second_domain()
         registered_domains_page.sell_on_escrow_auction(login_value, price)
 
-        Assert.contains(registered_domains_page._third_domain_text_value, registered_domains_page.get_page_source())
+        Assert.contains(registered_domains_page._second_domain_text_value, registered_domains_page.get_page_source())
         Assert.contains(price, registered_domains_page.get_page_source())
         Assert.contains(login_value, registered_domains_page.get_page_source())
         Assert.contains(u"Nie możesz przeprowadzić transakcji sam ze sobą", registered_domains_page.get_page_source())
@@ -2041,7 +2041,7 @@ class SmokeTest(unittest.TestCase):
     def test_search_domain_in_catalog_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
         domain_catalog_list = account_page.header.open_domain_catalog_list()
         domain_catalog_list.search_second_domain_in_catalog()
 
