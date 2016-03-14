@@ -115,7 +115,7 @@ class RegisteredDomainsListPage(BasePage):
     _sell_on_auction_end_date_index = randint(1, 29)
     _sell_on_auction_end_time_field = (By.NAME, "end_time")
     _sell_on_auction_end_time_index = randint(1, 22)
-    _sell_on_auction_minimal_price_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[5]/div[3]/div[1]/label")
+    _sell_on_auction_minimal_price_checkbox = (By.XPATH, "//div[5]/div[3]/div/label")
     _sell_on_auction_buy_now_price_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[5]/div[3]/div[2]/label")
     _sell_on_auction_auction_description_checkbox = (
         By.XPATH, "/html/body/div[7]/div/div/form/div[5]/div[3]/div[3]/label")
@@ -322,8 +322,11 @@ class RegisteredDomainsListPage(BasePage):
         self.click(self._sell_on_auction_category_field)
         self.click(self._sell_on_auction_category_technology)
         self.click(self._sell_on_auction_category_technology_computers)
-        self.clear_field_and_send_keys(self._sell_on_auction_price_minimum_value,
-                                       self._sell_on_auction_price_minimum_field)
+        if _element_is_visible(self.find_element(self._sell_on_auction_price_minimum_field)):
+            self.clear_field_and_send_keys(self._sell_on_auction_price_minimum_value, self._sell_on_auction_price_minimum_field)
+        else:
+            self.click(self._sell_on_auction_minimal_price_checkbox)
+            self.clear_field_and_send_keys(self._sell_on_auction_price_minimum_value, self._sell_on_auction_price_minimum_field)
         self.clear_field_and_send_keys(self._sell_on_auction_price_buynow_value,
                                        self._sell_on_auction_price_buynow_field)
         self.clear_field_and_send_keys(self._sell_on_auction_description_value, self._sell_on_auction_description_field)

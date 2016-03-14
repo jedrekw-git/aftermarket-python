@@ -281,7 +281,8 @@ class SmokeTest(unittest.TestCase):
         task_list.get_text_selected_option()
         task_list.select_operation_type()
 
-        Assert.equal(task_list.option_text, task_list.first_result_text())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(task_list._first_result, task_list.option_text))
+        Assert.contains(u"Rodzaj operacji: <b>%s" % task_list.option_text, task_list.get_page_source())
 
     def test_register_domain_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -2025,6 +2026,7 @@ class SmokeTest(unittest.TestCase):
 
         domain_catalog_list.remove_first_catalog()
 
+        sleep(2)
         Assert.contains(u"Operacja wykonana poprawnie.", domain_catalog_list.get_page_source())
 
         sleep(7)

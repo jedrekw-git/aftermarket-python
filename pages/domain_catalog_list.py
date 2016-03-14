@@ -39,6 +39,8 @@ class DomainCatalogList(BasePage):
     def add_catalog_stage1(self, catalog_name):
         self.click(self._add_new_catalog_button)
         self.clear_field_and_send_keys(catalog_name, self._add_new_catalog_name_field)
+        sleep(2)
+        self.click(self._catalog_description_field)
         self.send_keys(self._catalog_description_value, self._catalog_description_field)
         self.click(self._submit_button)
 

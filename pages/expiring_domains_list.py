@@ -65,6 +65,7 @@ class ExpiringDomainsList(BasePage):
         self.click(self._filter_extension_com_pl)
         sleep(2)
         self.click(self._filter_submit)
+        sleep(3)
 
     def filter_results_length_and_pl(self):
         self.click(self._filter_button)
