@@ -100,6 +100,7 @@ class SmokeTest(unittest.TestCase):
         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         settings_page = account_page.header.open_settings_page()
         change_sms_notification_page = settings_page.open_sms_notification_settings_page()
+        settings_page.open_first_number_notifications()
         settings_page.change_sms_notification_settings()
 
 #Brak informacji potwierdzającej
@@ -1124,7 +1125,7 @@ class SmokeTest(unittest.TestCase):
 
         sleep(10)
         if u"Nie udało się zmienić serwerów DNS" in hosting_account_list.result_text():
- 	        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+            Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
         else:
             WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja wykonana poprawnie"))
             Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
@@ -1584,6 +1585,9 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(u"Transakcja dzierżawy została anulowana.", rental_seller_list.get_page_source())
 
+#TRWA WYKONYWANIE OPERACJI - zmienić czekanie na webdriverwait jak naprawią
+
+
     def test_new_rental_seller_transaction_wrong_login_should_succeed(self):
 
         login= get_random_string(10)
@@ -1738,6 +1742,8 @@ class SmokeTest(unittest.TestCase):
         hire_seller_list.cancel_first_hire_transaction_submit()
 
         Assert.contains(u"Transakcja sprzedaży na raty została anulowana.", hire_seller_list.get_page_source())
+
+#TRWA WYKONYWANIE OPERACJI - zmienić czekanie na webdriverwait jak naprawią
 
     def test_new_hire_seller_transaction_wrong_login_should_succeed(self):
 

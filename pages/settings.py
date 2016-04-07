@@ -207,6 +207,8 @@ class SettingsPage(BasePage):
     _sending_notification_settings_domain_available_to_catch_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/div[3]/div[1]/div/div[21]/div[2]/label")
     _sending_notification_settings_submit_button = (By.XPATH, "//button[2]")
     _sms_notification_settings_menu = (By.XPATH, "//div[3]/div[2]/span/a")
+    _sms_notification_settings_first_phone_number_field = (By.XPATH, "//td[2]/div/span")
+    _sms_notification_settings_first_phone_number_notifications_button = (By.XPATH, "//td/div/button")
     _sms_notification_settings_send_only_indicated = (By.XPATH, "//label[2]")
     _sms_notification_settings_auction_ends_soon = (By.XPATH, "//div[3]/div[2]/label")
     _sms_notification_settings_your_offer_was_gazumped = (By.XPATH, "//div[5]/div[2]/label")
@@ -548,6 +550,10 @@ class SettingsPage(BasePage):
 
     def open_sms_notification_settings_page(self):
         self.click(self._sms_notification_settings_menu)
+
+    def open_first_number_notifications(self):
+        self.click(self._sms_notification_settings_first_phone_number_field)
+        self.click(self._sms_notification_settings_first_phone_number_notifications_button)
 
     def change_sms_notification_settings(self):
         self.click(self._sms_notification_settings_send_only_indicated)

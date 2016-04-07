@@ -50,6 +50,7 @@ class DomainCatalogList(BasePage):
         self.click(self._domain_name_dropdown)
         self.domain_name = self.get_text(self._domain_name_option)
         self.click(self._domain_name_option)
+        sleep(3)
         self.click(self._submit_button)
 
     def result_text(self):
