@@ -211,11 +211,10 @@ class SmokeTest(unittest.TestCase):
         filename = self._get_filename_for_plot() + ".png"
         err = len(self._resultForDoCleanups.errors)
         fail = len(self._resultForDoCleanups.failures)
-        succ = len(self._resultForDoCleanups.success)
 
         # The slices will be ordered and plotted counter-clockwise.
         labels = 'Errors', 'Failures', 'Passes'
-        sizes = [err, fail, succ]
+        sizes = [err, fail, 7-err-fail]
         colors = ['red', 'gold', 'green']
         explode = (0.1, 0.1, 0.1)
 
