@@ -104,6 +104,7 @@ class SmokeTest(unittest.TestCase):
         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         settings_page = account_page.header.open_settings_page()
         change_sms_notification_page = settings_page.open_sms_notification_settings_page()
+        settings_page.open_first_number_notifications()
         settings_page.change_sms_notification_settings()
 
 #Brak informacji potwierdzającej
@@ -330,7 +331,8 @@ class SmokeTest(unittest.TestCase):
 
         registered_domains_page.second_stage_checkboxes_and_submit()
 
-        sleep(10)
+        WebDriverWait(self.driver, 30).until_not(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja w toku"))
+
         if u"Operacja zawieszona, oczekuje na aktywowanie" in registered_domains_page.result_text():
             Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
         else:
@@ -355,7 +357,8 @@ class SmokeTest(unittest.TestCase):
         registered_domains_page.select_second_domain()
         registered_domains_page.change_profile_data()
 
-        sleep(10)
+        WebDriverWait(self.driver, 30).until_not(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja w toku"))
+
         if u"Operacja wykonana poprawnie" in registered_domains_page.result_text():
             Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
         else:
@@ -400,7 +403,7 @@ class SmokeTest(unittest.TestCase):
         registered_domains_page.select_second_domain()
         registered_domains_page.move_domain_from_account(login)
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Transfer został zainicjowany"))
+        WebDriverWait(self.driver, 40).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Transfer został zainicjowany"))
         Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
 
         transfer_domain_page = account_page.header.open_transfer_domain_from_account_list()
@@ -418,8 +421,7 @@ class SmokeTest(unittest.TestCase):
 
         self.not_contains(registered_domains_page._second_domain_text_value, transfer_domain_page.get_page_source())
 
-
-#PRZY TRZECIEJ DOMENIE NA KONCIE DELTA BLĄD, A POZOSTAŁYCH SIE NIE DA PRZENOSIC CALKIEM, zgłośić?????
+#Przygotowanie operacji trwa w nieskonczonosc, zgłoszone
 
     def test_change_DNS_servers_for_selected_domain_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -551,7 +553,8 @@ class SmokeTest(unittest.TestCase):
         registered_domains_page.select_first_domain()
         registered_domains_page.change_keyword()
 
-        sleep(10)
+        WebDriverWait(self.driver, 30).until_not(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja w toku"))
+
         if "Domena odnowiona poprawnie" in registered_domains_page.result_text():
             Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page._result_domain_text())
         else:
@@ -863,7 +866,8 @@ class SmokeTest(unittest.TestCase):
         transfer_domain_page = account_page.header.open_transfer_domain_to_account_list()
         transfer_domain_page.transfer_domain(_wrong_domain, _wrong_authinfo)
 
-        sleep(10)
+        WebDriverWait(self.driver, 30).until_not(EC.text_to_be_present_in_element(transfer_domain_page._stage2_result_field, u"Operacja w toku"))
+
         if u"Niepoprawny kod AuthInfo: %s" % _wrong_domain in transfer_domain_page.stage2_result_text():
             Assert.equal(_wrong_domain, transfer_domain_page.stage2_domain_text())
         else:
@@ -954,6 +958,7 @@ class SmokeTest(unittest.TestCase):
         registered_options_list.second_option_text()
         registered_options_list.get_option_authinfo()
 
+        WebDriverWait(self.driver, 30).until_not(EC.text_to_be_present_in_element(registered_options_list._result_text_field, u"Operacja w toku"))
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_options_list._result_text_field, u"Kod AuthInfo:"))
         Assert.equal(registered_options_list._second_option_text_value, registered_options_list.result_domain_text())
 
@@ -969,7 +974,8 @@ class SmokeTest(unittest.TestCase):
 
         registered_options_list.second_stage_checkboxes_and_submit()
 
-        sleep(10)
+        WebDriverWait(self.driver, 30).until_not(EC.text_to_be_present_in_element(registered_options_list._result_text_field, u"Operacja w toku"))
+
         if u"Operacja zawieszona, oczekuje na aktywowanie" in registered_options_list.result_text():
             Assert.equal(registered_options_list._first_option_text_value, registered_options_list.result_domain_text())
         else:
@@ -1126,9 +1132,10 @@ class SmokeTest(unittest.TestCase):
         hosting_account_list.add_domains_to_hosting_account()
         hosting_account_list.add_domains_to_hosting_account_stage2(registered_domains_page._first_domain_text_value)
 
-        sleep(10)
+        WebDriverWait(self.driver, 30).until_not(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja w toku"))
+
         if u"Nie udało się zmienić serwerów DNS" in hosting_account_list.result_text():
- 	        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+            Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
         else:
             WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja wykonana poprawnie"))
             Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
@@ -1163,7 +1170,7 @@ class SmokeTest(unittest.TestCase):
     def test_renew_hosting_account_manually_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         hosting_account_list = account_page.header.open_hosting_account_list()
         hosting_account_list.first_hosting_account_get_text()
         hosting_account_list.renew_first_hosting_account()
@@ -1431,6 +1438,8 @@ class SmokeTest(unittest.TestCase):
         self.not_contains(login, escrow_option_transaction_page.get_page_source())
         self.not_contains(strftime("%Y-%m-%d", gmtime()), escrow_option_transaction_page.get_page_source())
 
+#"Trwa wykonywanie operacji.." wykonuje się w nieskończoność, zgłoszone
+
     def test_search_escrow_option_selling_transactions_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
@@ -1567,6 +1576,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(str(rental_seller_list._add_rental_transaction_preemption_price_value), rental_seller_list.get_page_source())
 
         rental_seller_list.add_rental_transaction_submit()
+        WebDriverWait(self.driver, 40).until_not(EC.text_to_be_present_in_element(rental_seller_list._add_rental_transaction_performing_text_field, "Trwa wykonywanie operacji..."))
         account_page.header.open_rental_seller_list()
 
         Assert.contains(rental_seller_list._rental_domain_name_text, rental_seller_list.get_page_source())
@@ -1587,6 +1597,8 @@ class SmokeTest(unittest.TestCase):
         rental_seller_list.cancel_first_rental_transaction_submit()
 
         Assert.contains(u"Transakcja dzierżawy została anulowana.", rental_seller_list.get_page_source())
+
+#TRWA WYKONYWANIE OPERACJI, zgłoszone
 
     def test_new_rental_seller_transaction_wrong_login_should_succeed(self):
 
@@ -1725,6 +1737,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(str(int(hire_seller_list._add_hire_transaction_monthly_installment_value) * int(hire_seller_list._add_hire_transaction_number_of_installments_value)), hire_seller_list.get_page_source())
 
         hire_seller_list.add_hire_transaction_submit()
+        WebDriverWait(self.driver, 40).until_not(EC.text_to_be_present_in_element(hire_seller_list._add_hire_transaction_performing_text_field, "Trwa wykonywanie operacji..."))
         account_page.header.open_hire_seller_list()
 
         Assert.contains(hire_seller_list._hire_domain_name_text, hire_seller_list.get_page_source())
@@ -1742,6 +1755,8 @@ class SmokeTest(unittest.TestCase):
         hire_seller_list.cancel_first_hire_transaction_submit()
 
         Assert.contains(u"Transakcja sprzedaży na raty została anulowana.", hire_seller_list.get_page_source())
+
+#TRWA WYKONYWANIE OPERACJI, zgłoszone
 
     def test_new_hire_seller_transaction_wrong_login_should_succeed(self):
 
@@ -2002,7 +2017,8 @@ class SmokeTest(unittest.TestCase):
 
         domain_catalog_list.add_catalog_stage2()
 
-        sleep(10)
+        WebDriverWait(self.driver, 30).until_not(EC.text_to_be_present_in_element(domain_catalog_list._result_text_field, u"Operacja w toku"))
+
         if u"Domena nie jest wystawiona na sprzedaż" in domain_catalog_list.result_text():
             Assert.equal(domain_catalog_list.domain_name, domain_catalog_list.result_domain_text())
         else:
