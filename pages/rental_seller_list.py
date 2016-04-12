@@ -45,6 +45,7 @@ class RentalSellerList(BasePage):
     _add_rental_transaction_lessee_has_preemptive_right_checkbox = (By.XPATH, "//div[11]/div[3]/div/label/span[2]")
     _add_rental_transaction_preemption_price_field = (By.XPATH, "//div[12]/div[3]/div/input")
     _add_rental_transaction_preemption_price_value = randint(100, 200)
+    _add_rental_transaction_performing_text_field = (By.XPATH, "//h1")
     _cancel_first_rental_transaction_button = (By.XPATH, "//td[8]/div/span/img")
 
     def __init__(self, driver):

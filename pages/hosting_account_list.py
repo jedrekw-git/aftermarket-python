@@ -26,7 +26,7 @@ class HostingAccountList(BasePage):
     _submit_button = (By.XPATH, "//button[2]")
     _first_hosting_account = (By.XPATH, "//label/b")
     _first_hosting_account_add_domains_button = (By.XPATH, "//td/div/button")
-    _first_hosting_account_renew_button = (By.XPATH, "//button[5]")
+    _first_hosting_account_renew_button = (By.XPATH, "//button[3]")
     _add_domains_button = (By.XPATH, "//button")
     _add_domains_domain_field = (By.NAME, "domain")
     _add_domains_DNS_checkbox = (By.XPATH, "//div[6]/div[3]/div/label/span[3]")

@@ -39,6 +39,7 @@ class HireSellerList(BasePage):
     _add_hire_transaction_currency_index = randint(0, 3)
     _add_hire_transaction_number_of_installments_field = (By.XPATH, "//div[6]/div[3]/div/input")
     _add_hire_transaction_number_of_installments_value = randint(8, 15)
+    _add_hire_transaction_performing_text_field = (By.XPATH, "//h1")
     _cancel_first_hire_transaction_button = (By.XPATH, "//td[9]/div/span/img")
 
     def __init__(self, driver):
