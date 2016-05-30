@@ -22,6 +22,7 @@ class RegisteredOptionsListPage(BasePage):
     _result_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[2]/span")
     _result_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
     _transfer_first_option_button = (By.XPATH, "//button[4]")
+    _transfer_button = (By.XPATH, "//div[7]/div/button[4]")
     _transfer_option_login_field = (By.XPATH, "//div[3]/div/input")
     _transfer_list_first_option_field = (By.XPATH, "//td[3]/div/span/label/span")
     _transfer_list_first_option_cancel_button = (By.XPATH, "//td/div/button")
@@ -63,8 +64,8 @@ class RegisteredOptionsListPage(BasePage):
         return self.get_text(self._result_text_field)
 
     def transfer_option_from_account(self):
-        self.click(self._first_option_checkbox)
-        self.click(self._transfer_first_option_button)
+        self.click(self._second_option_checkbox)
+        self.click(self._transfer_button)
 
     def transfer_option_enter_login(self, login):
         self.clear_field_and_send_keys(login, self._transfer_option_login_field)
