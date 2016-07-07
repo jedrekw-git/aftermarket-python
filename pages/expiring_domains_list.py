@@ -14,7 +14,7 @@ class ExpiringDomainsList(BasePage):
 
     _first_domain_checkbox = (By.XPATH, "//td[4]/div/span/label/span")
     _sixth_domain_checkbox = (By.XPATH, "//tr[23]/td[4]/div/span/label/span")
-    _catch_first_domain_button = (By.XPATH, "//button[2]")
+    _catch_first_domain_button = (By.XPATH, "/html/body/div[7]/div/div/form[2]/div/div[4]/table/tbody/tr[10]/td/div[1]/button[2]")
     _result_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[2]/span")
     _result_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
     _search_field = (By.XPATH, "//input")

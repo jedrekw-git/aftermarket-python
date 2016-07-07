@@ -14,6 +14,7 @@ class RegisteredOptionsListPage(BasePage):
 
     _first_option_checkbox = (By.XPATH, "//td[3]/div/span/label/span")
     _second_option_checkbox = (By.XPATH, "//tr[8]/td[3]/div/span/label/span")
+    _third_option_checkbox = (By.XPATH, "//tr[11]/td[3]/div/span/label/span")
     _renew_first_option_button = (By.XPATH, "//button[2]")
     _change_profile_data_button = (By.XPATH, "//div[7]/div/button[2]")
     _stage2_result_field = (By.XPATH, "//td[3]/label/span")
@@ -38,6 +39,9 @@ class RegisteredOptionsListPage(BasePage):
 
     def second_option_text(self):
         self._second_option_text_value = self.get_text(self._second_option_checkbox)
+
+    def third_option_text(self):
+        self._third_option_text_value = self.get_text(self._third_option_checkbox)
 
     def change_option_profile_data(self):
         self.click(self._first_option_checkbox)
@@ -64,7 +68,7 @@ class RegisteredOptionsListPage(BasePage):
         return self.get_text(self._result_text_field)
 
     def transfer_option_from_account(self):
-        self.click(self._second_option_checkbox)
+        self.click(self._third_option_checkbox)
         self.click(self._transfer_button)
 
     def transfer_option_enter_login(self, login):
@@ -81,7 +85,7 @@ class RegisteredOptionsListPage(BasePage):
         self.click(self._transfer_list_first_option_cancel_button)
 
     def get_option_authinfo(self):
-        self.click(self._second_option_checkbox)
+        self.click(self._third_option_checkbox)
         self.click(self._get_option_authinfo_button)
         self.click(self._submit_button)
 

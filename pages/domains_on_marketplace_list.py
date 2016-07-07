@@ -17,6 +17,7 @@ class DomainsOnMarketplaceList(BasePage):
     _second_domain_checkbox = (By.XPATH, "//tr[9]/td[2]/div/span/label/span")
     _fourth_domain_checkbox = (By.XPATH, "//tr[15]/td[2]/div/span/label/span")
     _fourth_domain_price_field = (By.XPATH, "//tr[15]/td[5]/div/span/b")
+    _offers_tab = (By.XPATH, "/html/body/div[7]/div/div/ul/li[3]")
     _add_offer_to_second_domain_button = (By.XPATH, "//tr[11]/td/div/button")
     _submit_offer_domain_name_value = (By.XPATH, "//div[3]/div/span")
     _submit_offer_price_value = (By.XPATH, "//div[3]/div[3]/div/span")
@@ -53,6 +54,9 @@ class DomainsOnMarketplaceList(BasePage):
 
     def __init__(self, driver):
         super(DomainsOnMarketplaceList, self).__init__(driver, self._title)
+
+    def open_offers_tab(self):
+        self.click(self._offers_tab)
 
     def get_text_second_domain(self):
         self._second_domain_text = self.get_text(self._second_domain_checkbox)
