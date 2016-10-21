@@ -36,13 +36,14 @@ from pages.monitor_domains_list import MonitorDomainsList
 from pages.domain_catalog_list import DomainCatalogList
 from pages.appraisal_list import AppraisalListPage
 from pages.active_appraisals_list import ActiveAppraisalsListPage
+from pages.home import HomePage
 
 class HeaderRegion(Page):
     _login_menu = (By.XPATH, "//button[2]")
     _login_field = (By.NAME, "login")
     _password_field = (By.NAME, "password")
     _login_button = (By.XPATH, "//div[4]/button")
-    _base_url = "http://www.testy.aftermarket2.pl/"
+    _base_url = HomePage._url
     _logout_button = (By.PARTIAL_LINK_TEXT, "Wyloguj")
     _remind_password_button = (By.XPATH, "//div[5]/a")
     _remind_password_login_field = (By.XPATH, "//div[3]/div/input")
@@ -180,6 +181,10 @@ class HeaderRegion(Page):
 
     def open_domains_on_marketplace_list(self):
         self.get(self._base_url + "Market/List/")
+        return DomainsOnMarketplaceList(self.get_driver())
+
+    def open_subscriptions_on_marketplace_list(self):
+        self.get(self._base_url + "Market/Subscriptions/")
         return DomainsOnMarketplaceList(self.get_driver())
 
     def open_task_list(self):

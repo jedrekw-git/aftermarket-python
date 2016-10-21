@@ -8,6 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from random import randint
+from pages.home import HomePage
 
 class RegisteredOptionsListPage(BasePage):
     _title = "Registered options"
@@ -30,6 +31,8 @@ class RegisteredOptionsListPage(BasePage):
     _get_option_authinfo_button = (By.XPATH, "//div[7]/div/button[3]")
     _second_stage_send_email_after_oparation_radio = (By.XPATH, "//label/span[2]")
     _second_stage_stop_realization_until_manual_activation_radio = (By.XPATH, "//div[3]/div[3]/div/label[2]/span[2]")
+    _back_from_results_page = (By.XPATH, "//button")
+    _base_url = HomePage._url
 
     def __init__(self, driver):
         super(RegisteredOptionsListPage, self).__init__(driver, self._title)
@@ -99,4 +102,17 @@ class RegisteredOptionsListPage(BasePage):
         self.click(self._submit_button)
         self.accept_alert()
 
+    def delete_all_option_transfers(self):
+        while True:
+            if "/assets/img/table/row/delete.png" in self.get_page_source():
+                self.click(self._transfer_list_first_option_field)
+                self.click(self._transfer_list_first_option_cancel_button)
+                sleep(3)
+                self.click(self._submit_button)
+                sleep(3)
+                self.accept_alert()
+                WebDriverWait(self.get_driver(), 30).until(EC.text_to_be_present_in_element(self._result_text_field, u"Transfer został anulowany"))
+                self.get(self._base_url + "Intransferfuture/List/")
+            else:
+                break
 

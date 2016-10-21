@@ -41,6 +41,7 @@ class OptionEscrowSellingTransactionList(BasePage):
     _result_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[2]/span")
     _result_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
     _added_transaction_result_text_field = (By.XPATH, "//p")
+    _back_from_results_page = (By.XPATH, "//button")
 
     def __init__(self, driver):
         super(OptionEscrowSellingTransactionList, self).__init__(driver, self._title)
@@ -71,6 +72,17 @@ class OptionEscrowSellingTransactionList(BasePage):
     def stage2_submit_and_accept_alert(self):
         self.click(self._submit_button)
         self.accept_alert()
+
+    def delete_all_auctions(self):
+            while True:
+                if "/assets/img/table/row/delete.png" in self.get_page_source():
+                    self.click(self._delete_first_auction_button)
+                    self.click(self._submit_button)
+                    self.accept_alert()
+                    WebDriverWait(self.get_driver(), 30).until(EC.text_to_be_present_in_element(self._added_transaction_result_text_field, u"Transakcja escrow została anulowana."))
+                    self.click(self._back_from_results_page)
+                else:
+                    break
 
     def delete_first_auction(self):
         self.click(self._delete_first_auction_button)

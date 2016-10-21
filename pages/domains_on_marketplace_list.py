@@ -50,6 +50,7 @@ class DomainsOnMarketplaceList(BasePage):
     _subscribe_results_subuscription_name_field = (By.XPATH, "//div/input")
     _subscribe_results_subuscription_name_value = get_random_string(12)
     _delete_first_subscription_button = (By.XPATH, "//div/span/img")
+    _subscriptions_on_marketplace_header = (By.XPATH, "//h1")
 
 
     def __init__(self, driver):
@@ -133,3 +134,12 @@ class DomainsOnMarketplaceList(BasePage):
 
     def delete_subscription_stage2(self):
         self.click(self._submit_button_stage2)
+
+    def delete_all_subscriptions(self):
+        while True:
+            if "/assets/img/table/row/delete.png" in self.get_page_source():
+                self.click(self._delete_first_subscription_button)
+                self.click(self._submit_button_stage2)
+                WebDriverWait(self.get_driver(), 30).until(EC.text_to_be_present_in_element(self._subscriptions_on_marketplace_header , u"Subskrypcje domen z giełdy"))
+            else:
+                break

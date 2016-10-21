@@ -71,7 +71,7 @@ class RegisteredDomainsListPage(BasePage):
     _change_dns_profile_dont_sent_results_after_operation_radio = (
         By.XPATH, "/html/body/div[7]/div/div/form/div[3]/div[3]/div/label[2]/span[2]")
     _redirect_button_for_selected_domain = (By.XPATH, "//button[3]")
-    _set_dns_entries_button = (By.XPATH, "//div[2]/div[3]/div[4]")
+    _set_dns_entries_button = (By.XPATH, "//div[2]/div[3]/div[3]")
     _add_dns_entry_button = (By.XPATH, "//button")
     _add_dns_entry_host_name_field = (By.XPATH, "//div[2]/div[3]/div/input")
     _add_dns_entry_host_name_value = get_random_string(8)
@@ -82,7 +82,7 @@ class RegisteredDomainsListPage(BasePage):
     _add_dns_entry_address_value = "www." + get_random_string(10) + ".com"
     _add_dns_entry_host_name_result = (By.XPATH, "//label")
     _delete_first_dns_priofile_button = (By.XPATH, "//button[2]")
-    _dns_servers_in_domain_button = (By.XPATH, "//div[3]/div[6]")
+    _dns_servers_in_domain_button = (By.XPATH, "//div[2]/div[3]/div[5]")
     _new_dns_server_in_domain_add_server_button = (By.XPATH, "//button")
     _new_dns_server_in_domain_name_field = (By.XPATH, "//div/input")
     _new_dns_server_in_domain_name_value = get_random_string(6)
@@ -158,7 +158,7 @@ class RegisteredDomainsListPage(BasePage):
     _add_on_marketplace_category_field = (By.XPATH, "//span[2]/input")
     _add_on_marketplace_category_technology = (By.XPATH, "//span[2]/div/div[2]/div[4]")
     _add_on_marketplace_category_technology_computers = (By.XPATH, "//span[2]/div/div[6]/div")
-    _add_on_marketplace_description_field = (By.XPATH, "//div[11]/div[3]/div/div/div")
+    _add_on_marketplace_description_field = (By.XPATH, "//div[12]/div[3]/div/div/div")
     _add_on_marketplace_description_value = get_random_string(10) + " " + get_random_string(15)
     _add_on_marketplace_instalment_schema_dropdown = (By.XPATH, "//div[6]/div[3]/div/span/select")
     _add_on_marketplace_lease_field = (By.XPATH, "//div[7]/div[3]/div/input")

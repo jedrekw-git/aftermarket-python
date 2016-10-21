@@ -21,3 +21,10 @@ class ToPayList(BasePage):
 
     def remove_first_payment(self):
         self.click(self._remove_first_payment_button)
+
+    def remove_all_payments(self):
+        while True:
+            if "/assets/img/table/row/delete.png" in self.get_page_source():
+                self.click(self._remove_first_payment_button)
+            else:
+                break

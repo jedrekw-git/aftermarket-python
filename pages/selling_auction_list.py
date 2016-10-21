@@ -30,6 +30,7 @@ class SellingAuctionListPage(BasePage):
     _edit_auction_details_description_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[5]/div[3]/div[1]/div/div")
     _edit_auction_details_description_value = get_random_string(10) + " " + get_random_string(7) + " " + get_random_string(8)
     _finish_auction_button = (By.XPATH, "//div[7]/div/button")
+    _result_text_field = (By.XPATH, "//td[3]")
 
     def __init__(self, driver):
         super(SellingAuctionListPage, self).__init__(driver, self._title)
@@ -40,6 +41,18 @@ class SellingAuctionListPage(BasePage):
     def delete_auction_submit(self):
         self.click(self._submit_button)
         self.accept_alert()
+
+    def delete_all_auctions(self):
+        while True:
+            if "/assets/img/table/row/delete.png" in self.get_page_source():
+                self.click(self._first_auction_delete_button)
+                sleep(5)
+                self.click(self._submit_button)
+                self.accept_alert()
+                WebDriverWait(self.get_driver(), 30).until(EC.text_to_be_present_in_element(self._result_text_field, u"Aukcja została anulowana"))
+                self.click(self._back_from_results_page_button)
+            else:
+                break
 
     def back_from_results_page(self):
         self.click(self._back_from_results_page_button)

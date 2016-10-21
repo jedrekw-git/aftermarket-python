@@ -35,6 +35,7 @@ class ProfileForDomainRegistrationList(BasePage):
     _result_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
     _back_from_results_page_button = (By.XPATH, "//button")
     _added_profile_name_field = (By.XPATH, "//tr[7]/td[3]/div/span/label")
+    _profiles_header = (By.XPATH, "//h1")
 
     def __init__(self, driver):
         super(ProfileForDomainRegistrationList, self).__init__(driver, self._title)
@@ -55,6 +56,16 @@ class ProfileForDomainRegistrationList(BasePage):
         self.click(self._added_profile_name_field)
         self.click(self._delete_button)
         self.click(self._delete_submit)
+
+    def delete_all_profiles(self):
+        while True:
+            if "/assets/img/table/row/delete.png" in self.get_page_source():
+                self.click(self._added_profile_name_field)
+                self.click(self._delete_button)
+                self.click(self._delete_submit)
+                self.click(self._back_from_results_page_button)
+            else:
+                break
 
     def back_from_results_page(self):
         self.click(self._back_from_results_page_button)

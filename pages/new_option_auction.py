@@ -30,7 +30,7 @@ class NewOptionAuctionPage(BasePage):
     _price_minimum_value = randint(21, 40)
     _price_buynow_field = (By.NAME, "price_buynow")
     _price_buynow_value = randint(41, 60)
-    _description_field = (By.XPATH, "//div[8]/div[3]/div/div/div")
+    _description_field = (By.XPATH, "//div[9]/div[3]/div/div/div")
     _description_value = get_random_string(10) + " " + get_random_string(7) + " " + get_random_string(8)
     _submit_button = (By.XPATH, "//button[2]")
     _realize_immediately_radio = (By.XPATH, "//label/span[2]")
