@@ -1244,8 +1244,7 @@ class SmokeTest(unittest.TestCase):
 
         domains_on_marketplace_list.delete_offer_stage2()
 
-# BŁĄD "BRAK DOSTEPU DO OBIEKTU" juz chyba nie ma
-# AUTOMATYCZNE WYLOGOWANIE PO add_offer_to_second_domain(), zgłoszone
+# AUTOMATYCZNE WYLOGOWANIE PO add_offer_to_second_domain(), zgłoszone, PODOBNO POPRAWIONE
 
     def test_search_domains_on_marketplace_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
