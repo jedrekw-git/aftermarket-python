@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class SettingsPage(BasePage):
     _title = "Settings"
 
-    _change_contact_data_button = (By.XPATH, "/html/body/div[7]/div/div/div[1]/div[2]/span[1]/a")
+    _change_contact_data_button = (By.XPATH, "//div[3]/div[2]/span/a")
     _change_contact_data_name_field = (By.NAME, "name")
     _change_contact_data_name_value = get_random_string(7)+ " " +get_random_string(10)
     _change_contact_data_address_field = (By.NAME, "address")
@@ -20,40 +20,41 @@ class SettingsPage(BasePage):
     _change_contact_data_city_field = (By.NAME, "city")
     _change_contact_data_city_value = get_random_string(7)
     _change_contact_data_country_field = (By.NAME, "country")
-    _change_contact_data_country_index = get_random_integer(2)
+    _change_contact_data_country_index = randint(1,248)
     _change_contact_data_directional_field = (By.NAME, "country3")
     _change_contact_data_directional_index = randint(1, 216)
     _change_contact_data_phone_number_field = (By.NAME, "phone")
     _change_contact_data_phone_number_value = get_random_integer(9)
     _change_contact_data_save_button = (By.XPATH, "//button")
-    _change_notification_settings_button = (By.PARTIAL_LINK_TEXT, u"Wyłącz otrzymywanie powiadomień")
-    _change_notification_settings_send_only_indicated_button = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/div[3]/div[1]/label[2]")
-    _change_notification_settings_about_account_condition_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o stanie konta ')])")
-    _change_notification_settings_about_domain_condition_change_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o zmianie stanu domen ')])")
-    _change_notification_settings_about_option_condition_change_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o zmianie stanu opcji ')])")
-    _change_notification_settings_about_catching_domains_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o przechwytywaniu domen ')])")
-    _change_notification_settings_about_purchase_at_auction_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o kupnie na aukcjach ')])")
-    _change_notification_settings_about_purchase_at_escrow_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o kupnie w transakcji Escrow ')])")
-    _change_notification_settings_about_sale_at_auction_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o sprzedaży na aukcjach ')])")
-    _change_notification_settings_about_sale_at_escrow_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o sprzedaży w transakcji Escrow ')])")
-    _change_notification_settings_about_made_operations_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o wykonanych operacjach ')])")
-    _change_notification_settings_save_button = (By.XPATH, "//button[2]")
+    _change_email_notification_settings_button = (By.XPATH, "//span[2]/a")
+    _change_email_notification_settings_send_only_indicated_button = (By.XPATH, "//label[2]")
+    _change_email_notification_settings_about_account_condition_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o stanie konta ')])")
+    _change_email_notification_settings_about_domain_condition_change_checkbox = (By.XPATH, "//label[17]/b")
+    _change_email_notification_settings_about_option_condition_change_checkbox = (By.XPATH, "//label[26]/b")
+    _change_email_notification_settings_about_catching_domains_checkbox = (By.XPATH, "//label[42]/b")
+    _change_email_notification_settings_about_purchase_at_auction_checkbox = (By.XPATH, "//label[52]/b")
+    _change_email_notification_settings_about_purchase_at_escrow_checkbox = (By.XPATH, "//label[60]/b")
+    _change_email_notification_settings_about_sale_at_auction_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o sprzedaży na aukcjach ')])")
+    _change_email_notification_settings_about_sale_at_escrow_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o sprzedaży w transakcji Escrow ')])")
+    _change_email_notification_settings_about_made_operations_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o wykonanych operacjach ')])")
+    _change_email_notification_settings_save_button = (By.XPATH, "//div[2]/button")
     _change_newsletter_settings_button = (By.PARTIAL_LINK_TEXT, u"Wyłącz otrzymywanie newsletterów")
-    _change_newsletter_settings_overall_checkbox = (By.XPATH, "(//b[contains(text(),'Ogólne newslettery serwisu')])")
+    _change_newsletter_settings_overall_checkbox = (By.XPATH, "//label/b")
     _change_newsletter_settings_according_to_domain_market_checkbox = (By.XPATH, "(//b[contains(text(),'Newslettery związane z giełdą domen')])")
     _change_newsletter_settings_according_to_catching_domains_checkbox = (By.XPATH, "(//b[contains(text(),'Newslettery związane z przechwytywaniem domen')])")
     _change_newsletter_settings_according_to_watched_domains_checkbox = (By.XPATH, "(//b[contains(text(),'Newslettery związane z obserwowanymi domenami')])")
+    _change_newsletter_settings_save_button = (By.XPATH, "//div[2]/button")
     _add_email_address_menu = (By.PARTIAL_LINK_TEXT, u"Zmień lub dodaj adres email")
     _add_email_address_button = (By.XPATH, "//button")
     _add_email_address_field = (By.NAME, "email")
     _add_email_address_value = "zz"+get_random_string(7)+"@ijasdnjiasnd.pl"
-    _add_email_address_submit = (By.XPATH, "//button[2]")
+    _add_email_address_submit = (By.XPATH, "//div[2]/button")
     _add_email_address_header = (By.XPATH, "//h1")
     _back_to_email_addresses_list_button = (By.XPATH, "//button")
-    _added_email_field = (By.XPATH, "//tr[6]/td[2]/div/span")
-    _added_email_status_field = (By.XPATH, "//tr[6]/td[4]/div/span")
-    _add_email_address_remove_added_email = (By.XPATH, "//div/span/img")
-    _add_email_address_remove_added_email_confirm = (By.XPATH, "//button[2]")
+    _added_email_field = (By.XPATH, "//tbody[2]/tr/td[3]/div")
+    _added_email_status_field = (By.XPATH, "//tbody[2]/tr/td[5]/div")
+    _add_email_address_remove_added_email = (By.XPATH, "//td[6]/div/a/img")
+    _add_email_address_remove_added_email_confirm = (By.XPATH, "//div[3]/button")
     _add_other_users_menu = (By.XPATH, "//div[4]/div[2]/span[3]/a")
     _add_other_user_button = (By.XPATH, "//button")
     _add_other_user_login_field = (By.NAME, "login")
@@ -83,13 +84,13 @@ class SettingsPage(BasePage):
     _add_other_user_management_of_mobile_phones_checkbox = (By.XPATH, "(//b[contains(text(),'Zarządzanie telefonami komórkowymi ')])")
     _add_other_user_management_of_logins_checkbox = (By.XPATH, "(//b[contains(text(),'Zarządzanie loginami ')])")
     _add_other_user_management_of_data_exports_checkbox = (By.XPATH, "(//b[contains(text(),'Zarządzanie eksportami danych ')])")
-    _add_other_user_save_button = (By.XPATH, "//button[2]")
-    _add_other_user_added_login_field = (By.XPATH, "//tr[6]/td[2]/div/span")
-    _add_other_user_added_description_field = (By.XPATH, "//tr[6]/td[5]/div/span")
-    _add_other_user_remove_added_user_button = (By.XPATH, "//div/span/img")
-    _add_other_user_remove_added_user_confirm_button = (By.XPATH, "//button[2]")
+    _add_other_user_save_button = (By.XPATH, "//div[2]/button")
+    _add_other_user_added_login_field = (By.XPATH, "//tbody[2]/tr/td[3]/div/label")
+    _add_other_user_added_description_field = (By.XPATH, "//tbody[2]/tr/td[6]/div")
+    _add_other_user_remove_added_user_button = (By.XPATH, "//td[7]/div/a/img")
+    _add_other_user_remove_added_user_confirm_button = (By.XPATH, "//div[3]/button")
     _add_other_user_change_priviledges_button = (By.XPATH, "//tr[8]/td/div/button")
-    _change_company_data_menu = (By.XPATH, "//div[5]/div[2]/span/a")
+    _change_company_data_menu = (By.XPATH, "//a[contains(text(),'Zmień dane swojej firmy')]")
     _change_company_data_company_name_field = (By.NAME, "name")
     _change_company_data_company_name_value = get_random_string(5)+' '+get_random_string(6)
     _change_company_data_street_field = (By.NAME, "address")
@@ -98,32 +99,34 @@ class SettingsPage(BasePage):
     _change_company_data_zip_value = get_random_integer(2)+"-"+get_random_integer(3)
     _change_company_data_city_field = (By.NAME, "city")
     _change_company_data_city_value = get_random_string(8)
-    _change_company_data_save_button = (By.XPATH, "//button[2]")
+    _change_company_address_save_button = (By.XPATH, "//button")
+    _change_company_data_save_button = (By.XPATH, "//div[2]/button")
     _change_company_data_save_stage_2_button = (By.XPATH, "//button")
-    _change_company_data_operation_succcessful = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]")
-    _change_company_data_change_company_name = (By.XPATH, "//div[3]/span/a")
+    _change_company_data_operation_succcessful = (By.XPATH, "//form/div/div")
+    _change_company_data_change_company_name = (By.XPATH, "//div[2]/span/a")
     _change_company_data_change_company_name_stage_2 = (By.XPATH, "//button")
     _change_company_data_country_field = (By.NAME, "country")
     _change_company_data_country_index = get_random_integer(2)
-    _change_company_data_account_type_company_radio = (By.XPATH, "//label[2]/span")
+    _change_company_data_account_type_company_radio = (By.XPATH, "//label[2]")
     _change_company_data_nip_field = (By.XPATH, "//div/input")
     _change_company_data_nip_value = "PL1234567890"
-    _change_company_data_nip_result = (By.XPATH, "/html/body/div[7]/div/div/form/div[6]/div[3]/div[1]/span")
-    _change_company_data_company_name_result = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/div[3]/div[1]/span")
+    _change_company_data_nip_result = (By.XPATH, "//div[6]/div/div[2]/div/span")
+    _change_company_data_company_name_result = (By.XPATH, "//div/span")
     _change_company_data_currency_index = randint(0, 3)
     _change_company_data_currency_dropdown = (By.NAME, "currency")
-    _add_bank_account_menu = (By.XPATH, "//div[7]/div[2]/span/a")
+    _add_bank_account_menu = (By.XPATH, "//a[contains(text(),'Dodaj lub zmień konto bankowe')]")
     _add_bank_account_button = (By.XPATH, "//button")
     _add_bank_account_account_name_field = (By.NAME, "name")
     _add_bank_account_account_name_value = get_random_string(10)
     _add_bank_account_account_number_field = (By.NAME, "account")
     _add_bank_account_receiver_name_field = (By.NAME, "recipient")
     _add_bank_account_receiver_name_value = get_random_string(15)
-    _add_bank_account_submit_button = (By.XPATH, "//button[2]")
-    _added_bank_account_number = (By.XPATH, "//td[2]/div/span")
-    _added_bank_account_name = (By.XPATH, "//td[3]/div/span")
-    _added_bank_account_remove_first_accouunt_button = (By.XPATH, "//span/img")
-    _change_DNS_servers_menu = (By.XPATH, "//div[9]/div[2]/span/a")
+    _add_bank_account_submit_button = (By.XPATH, "//div[2]/button")
+    _added_bank_account_number = (By.XPATH, "//td[3]/div")
+    _added_bank_account_name = (By.XPATH, "//td[4]/div")
+    _added_bank_account_remove_first_accouunt_button = (By.XPATH, "//td[5]/div/a/img")
+    _added_bank_account_remove_first_accouunt_confirm_button = (By.XPATH, "//div[3]/button")
+    _change_DNS_servers_menu = (By.XPATH, "//a[contains(text(),'Zmień domyślne serwery DNS')]")
     _change_DNS_servers_dropdown = (By.NAME, "dns")
     _change_DNS_servers_DNS3_field = (By.NAME, "ns3")
     _change_DNS_servers_DNS3_value = get_random_uuid(2)+"."+get_random_string(8)+".pl"
@@ -131,7 +134,7 @@ class SettingsPage(BasePage):
     _change_DNS_servers_DNS4_value = get_random_uuid(2)+"."+get_random_string(8)+".pl"
     _change_DNS_servers_DNS1_field = (By.NAME, "ns1")
     _change_DNS_servers_DNS2_field = (By.NAME, "ns2")
-    _change_DNS_servers_submit_button = (By.XPATH, "//button[2]")
+    _change_DNS_servers_submit_button = (By.XPATH, "//div[2]/button")
     _change_DNS_servers_operation_successful = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]")
     _new_DNS_profile_menu = (By.XPATH, "//div[9]/div[2]/span[2]/a")
     _new_DNS_profile_button = (By.XPATH, "//button")
@@ -210,19 +213,23 @@ class SettingsPage(BasePage):
     _sending_notification_settings_domain_available_to_lease_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/div[3]/div[1]/div/div[19]/div[2]/label")
     _sending_notification_settings_domain_available_to_catch_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/div[3]/div[1]/div/div[21]/div[2]/label")
     _sending_notification_settings_submit_button = (By.XPATH, "//button[2]")
-    _sms_notification_settings_menu = (By.XPATH, "//div[3]/div[2]/span/a")
-    _sms_notification_settings_first_phone_number_field = (By.XPATH, "//td[2]/div/span")
-    _sms_notification_settings_first_phone_number_notifications_button = (By.XPATH, "//td/div/button")
+    _sms_notification_settings_menu = (By.XPATH, "(//a[contains(text(),'Wyłącz otrzymywanie powiadomień')])[2]")
+    _sms_notification_settings_first_phone_number_field = (By.XPATH, "//td[3]/div")
+    _sms_notification_settings_first_phone_number_notifications_button = (By.XPATH, "//tr[3]/td/div/span")
     _sms_notification_settings_send_only_indicated = (By.XPATH, "//label[2]")
-    _sms_notification_settings_auction_ends_soon = (By.XPATH, "//div[3]/div[2]/label")
-    _sms_notification_settings_your_offer_was_gazumped = (By.XPATH, "//div[5]/div[2]/label")
-    _sms_notification_settings_you_won_an_auction = (By.XPATH, "//div[7]/div[2]/label")
-    _sms_notification_settings_successful_domain_catching = (By.XPATH, "//div[9]/div[2]/label")
-    _sms_notification_settings_catched_domain_auction_has_started = (By.XPATH, "//div[11]/div[2]/label")
-    _sms_notification_settings_payment_date_is_comming = (By.XPATH, "//div[13]/div[2]/label")
-    _sms_notification_settings_payment_date_is_exceeded = (By.XPATH, "//div[15]/div[2]/label")
-    _sms_notification_settings_submit = (By.XPATH, "//button[2]")
+    _sms_notification_settings_auction_ends_soon = (By.XPATH, "//div[2]/div/div/label[2]")
+    _sms_notification_settings_your_offer_was_gazumped = (By.XPATH, "//div[2]/div/div/label[3]")
+    _sms_notification_settings_you_won_an_auction = (By.XPATH, "//label[4]")
+    _sms_notification_settings_successful_domain_catching = (By.XPATH, "//label[5]")
+    _sms_notification_settings_catched_domain_auction_has_started = (By.XPATH, "//label[6]")
+    _sms_notification_settings_payment_date_is_comming = (By.XPATH, "//label[7]")
+    _sms_notification_settings_payment_date_is_exceeded = (By.XPATH, "//label[8]")
+    _change_sms_notification_settings_first_group_button = (By.XPATH, "//div[2]/div/div/label[%s]" %randint(2,3))
+    _change_sms_notification_settings_second_group_button = (By.XPATH, "//label[%s]" %randint(4,9))
+    _sms_notification_settings_submit = (By.XPATH, "//div[2]/button")
     _back_from_results_page_button = (By.XPATH, "//button")
+    _confirmation_result_field = (By.XPATH, "//div/span")
+    _confirmation_result_text = (By.XPATH, "//td[3]")
 
     def __init__(self, driver):
         super(SettingsPage, self).__init__(driver, self._title)
@@ -254,22 +261,25 @@ class SettingsPage(BasePage):
     def change_contact_data_city_field_text(self):
         return self.get_value(self._change_contact_data_city_field)
 
-    def open_change_notification_settings_page(self):
-        self.click(self._change_notification_settings_button)
+    def open_change_email_notification_settings_page(self):
+        self.click(self._change_email_notification_settings_button)
 
-    def change_notification_settings(self):
-        self.click(self._change_notification_settings_send_only_indicated_button)
-        self.click(self._change_notification_settings_about_account_condition_checkbox)
-        self.click(self._change_notification_settings_about_domain_condition_change_checkbox)
-        self.click(self._change_notification_settings_about_option_condition_change_checkbox)
-        self.click(self._change_notification_settings_about_purchase_at_auction_checkbox)
-        self.click(self._change_notification_settings_about_purchase_at_escrow_checkbox)
-        self.click(self._change_notification_settings_about_sale_at_auction_checkbox)
-        self.click(self._change_notification_settings_about_sale_at_escrow_checkbox)
-        self.click(self._change_notification_settings_about_made_operations_checkbox)
+    def change_email_notification_settings(self):
+        self.click(self._change_email_notification_settings_send_only_indicated_button)
+        self.click(self._change_email_notification_settings_about_account_condition_checkbox)
+        self.get_driver().execute_script("window.scrollTo(2700, 320);")
+        self.click(self._change_email_notification_settings_about_domain_condition_change_checkbox)
+        self.click(self._change_email_notification_settings_about_option_condition_change_checkbox)
+        self.get_driver().execute_script("window.scrollTo(2700, 1000);")
+        self.click(self._change_email_notification_settings_about_purchase_at_auction_checkbox)
+        self.get_driver().execute_script("window.scrollTo(2700, 1200);")
+        self.click(self._change_email_notification_settings_about_purchase_at_escrow_checkbox)
+        self.click(self._change_email_notification_settings_about_sale_at_auction_checkbox)
+        self.click(self._change_email_notification_settings_about_sale_at_escrow_checkbox)
+        self.click(self._change_email_notification_settings_about_made_operations_checkbox)
 
-    def save_change_notification_settings(self):
-        self.click(self._change_notification_settings_save_button)
+    def save_change_email_notification_settings(self):
+        self.click(self._change_email_notification_settings_save_button)
 
     def open_change_newsletter_settings_page(self):
         self.click(self._change_newsletter_settings_button)
@@ -278,7 +288,11 @@ class SettingsPage(BasePage):
         self.click(self._change_newsletter_settings_overall_checkbox)
         self.click(self._change_newsletter_settings_according_to_domain_market_checkbox)
         self.click(self._change_newsletter_settings_according_to_catching_domains_checkbox)
+        self.get_driver().execute_script("window.scrollTo(2700, 1000);")
         self.click(self._change_newsletter_settings_according_to_watched_domains_checkbox)
+
+    def save_change_newsletter_settings(self):
+        self.click(self._change_newsletter_settings_save_button)
 
     def open_add_email_address_page(self):
         self.click(self._add_email_address_menu)
@@ -299,16 +313,27 @@ class SettingsPage(BasePage):
 
     def remove_all_email_addresses(self):
         while True:
-            if "/assets/img/table/row/delete.png" in self.get_page_source():
+            if "/assets/img/table/delete.svg" in self.get_page_source():
                 self.click(self._add_email_address_remove_added_email)
                 self.click(self._add_email_address_remove_added_email_confirm)
-                self.accept_alert()
+                WebDriverWait(self.get_driver(), 15).until(EC.text_to_be_present_in_element(self._confirmation_result_text, u"Operacja wykonana poprawnie"))
+                self.click(self._back_to_email_addresses_list_button)
                 WebDriverWait(self.get_driver(), 15).until(EC.text_to_be_present_in_element(self._add_email_address_header, u"Lista adresów email"))
             else:
                 break
 
     def open_add_other_users_page(self):
         self.click(self._add_other_users_menu)
+
+    def remove_all_users(self):
+        while True:
+            if "/assets/img/table/delete.svg" in self.get_page_source():
+                self.click(self._add_other_user_remove_added_user_button)
+                self.click(self._add_other_user_remove_added_user_confirm_button)
+                WebDriverWait(self.get_driver(), 15).until(EC.text_to_be_present_in_element(self._confirmation_result_text, u"Login został usunięty"))
+                self.click(self._back_from_results_page_button)
+            else:
+                break
 
     def add_other_user(self):
         self.click(self._add_other_user_button)
@@ -320,23 +345,25 @@ class SettingsPage(BasePage):
         sleep(2)
 
     def add_other_user_change_priviledges(self):
-        self.click(self._add_other_user_added_login_field)
-        self.click(self._add_other_user_change_priviledges_button)
         self.click(self._add_other_user_can_do_only_few_operations_radio)
         self.click(self._add_other_user_management_of_account_balance_checkbox)
         self.click(self._add_other_user_management_of_domains_to_pay_checkbox)
         self.click(self._add_other_user_management_of_invoices_checkbox)
+        self.get_driver().execute_script("window.scrollTo(2700, 500);")
         self.click(self._add_other_user_management_of_withdrawals_checkbox)
         self.click(self._add_other_user_management_of_bank_accounts_checkbox)
         self.click(self._add_other_user_management_of_domains_checkbox)
+        self.get_driver().execute_script("window.scrollTo(2700, 1000);")
         self.click(self._add_other_user_management_of_domain_transfers_from_account_checkbox)
         self.click(self._add_other_user_management_of_domain_transfers_to_account_checkbox)
         self.click(self._add_other_user_management_of_profiles_for_domain_registration_checkbox)
         self.click(self._add_other_user_management_of_domain_parking_checkbox)
-        self.click(self._add_other_user_management_of_DNS_entries_checkbox)
+        self.get_driver().execute_script("window.scrollTo(2700, 1600);")
+        # self.click(self._add_other_user_management_of_DNS_entries_checkbox)
         self.click(self._add_other_user_management_of_options_checkbox)
         self.click(self._add_other_user_management_of_option_transfers_from_account_checkbox)
         self.click(self._add_other_user_management_of_option_transfers_to_account_checkbox)
+        self.get_driver().execute_script("window.scrollTo(2700, 5000);")
         self.click(self._add_other_user_change_account_settings_checkbox)
         self.click(self._add_other_user_management_of_email_addresses_checkbox)
         self.click(self._add_other_user_management_of_mobile_phones_checkbox)
@@ -350,19 +377,15 @@ class SettingsPage(BasePage):
     def added_user_description_text(self):
         return self.get_text(self._add_other_user_added_description_field)
 
-    def remove_added_user(self):
-        self.click(self._add_other_user_remove_added_user_button)
-        self.click(self._add_other_user_remove_added_user_confirm_button)
-
     def open_change_company_data_page(self):
         self.click(self._change_company_data_menu)
 
     def edit_company_address(self):
-        self.clear_field_and_send_keys(self._change_company_data_company_name_value, self._change_company_data_company_name_field)
+        # self.clear_field_and_send_keys(self._change_company_data_company_name_value, self._change_company_data_company_name_field)
         self.clear_field_and_send_keys(self._change_company_data_street_value, self._change_company_data_street_field)
         self.clear_field_and_send_keys(self._change_company_data_zip_value, self._change_company_data_zip_field)
         self.clear_field_and_send_keys(self._change_company_data_city_value, self._change_company_data_city_field)
-        self.click(self._change_company_data_save_button)
+        self.click(self._change_company_address_save_button)
         sleep(2)
 
     def edit_company_data_operation_successful_text(self):
@@ -380,7 +403,7 @@ class SettingsPage(BasePage):
     def edit_company_data(self):
         self.click(self._change_company_data_change_company_name)
         self.click(self._change_company_data_change_company_name_stage_2)
-        sleep(3)
+        sleep(2)
         self.select_index_from_dropdown(self._change_company_data_country_index, self._change_company_data_country_field)
         self.click(self._change_company_data_account_type_company_radio)
         self.clear_field_and_send_keys(self._change_company_data_nip_value, self._change_company_data_nip_field)
@@ -414,10 +437,15 @@ class SettingsPage(BasePage):
     def added_bank_account_name_text(self):
         return self.get_text(self._added_bank_account_name)
 
-    def remove_added_bank_account(self):
-        self.click(self._added_bank_account_remove_first_accouunt_button)
-        self.accept_alert()
-        sleep(2)
+    def remove_all_bank_accounts(self):
+        while True:
+            if "/assets/img/table/delete.svg" in self.get_page_source():
+                self.click(self._added_bank_account_remove_first_accouunt_button)
+                self.click(self._add_other_user_remove_added_user_confirm_button)
+                WebDriverWait(self.get_driver(), 15).until(EC.text_to_be_present_in_element(self._confirmation_result_text, u"Konto bankowe zostało usunięte"))
+                self.click(self._back_from_results_page_button)
+            else:
+                break
 
     def open_change_DNS_servers_page(self):
         self.click(self._change_DNS_servers_menu)

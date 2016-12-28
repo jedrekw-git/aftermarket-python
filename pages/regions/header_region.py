@@ -39,15 +39,15 @@ from pages.active_appraisals_list import ActiveAppraisalsListPage
 from pages.home import HomePage
 
 class HeaderRegion(Page):
-    _login_menu = (By.XPATH, "//button[2]")
+    _login_menu = (By.XPATH, "//button[3]")
     _login_field = (By.NAME, "login")
     _password_field = (By.NAME, "password")
     _login_button = (By.XPATH, "//div[4]/button")
     _base_url = HomePage._url
     _logout_button = (By.PARTIAL_LINK_TEXT, "Wyloguj")
-    _remind_password_button = (By.XPATH, "//div[5]/a")
-    _remind_password_login_field = (By.XPATH, "//div[3]/div/input")
-    _remind_password_submit = (By.XPATH, "//div[3]/button")
+    _remind_password_button = (By.XPATH, "//div[4]/div/a")
+    _remind_password_login_field = (By.XPATH, "//div[2]/div/input")
+    _remind_password_submit = (By.XPATH, "//div[2]/div/button")
 
     _domain_menu = (By.XPATH, "//a[contains(@onclick,'domains')]")
     _domain_search_button = (By.XPATH, "//div[@id='menu_domains']//input[contains(@src, 'search.png')]")

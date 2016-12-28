@@ -4,7 +4,7 @@ from pages.base import BasePage
 
 class HomePage(BasePage):
     _title = "Strona główna"
-    _url = "http://www.testy.aftermarket2.pl/"
+    _url = "http://devel:miodzio@www.testy.aftermarket2.pl/"
 
     def __init__(self, driver):
         super(HomePage, self).__init__(driver, self._title, self._url)
