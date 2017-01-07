@@ -19,33 +19,41 @@ class RegisteredDomainsListPage(BasePage):
     _title = "Registered domains"
 
     _first_domain_checkbox = (
-        By.XPATH, "/html/body/div[7]/div/div/form[2]/div/div[4]/table/tbody/tr[3]/td[3]/div/span/label/span")
+        By.XPATH, "//td[4]/div/label/span")
     _third_domain_checkbox = (
-        By.XPATH, "/html/body/div[7]/div/div/form[2]/div/div[4]/table/tbody/tr[9]/td[3]/div/span/label/span")
-    _second_domain_checkbox = (By.XPATH, "//tr[6]/td[3]/div/span/label/span")
-    _fourth_domain_checkbox = (By.XPATH, "//tr[12]/td[3]/div/span/label/span")
-    _fifth_domain_checkbox = (By.XPATH, "//tr[15]/td[3]/div/span/label/span")
-    _renew_button = (By.XPATH, "//div[7]/div/button")
-    _renew_automatically_button = (By.XPATH, "//div[7]/div/div/div/div[2]")
-    _renew_automatically_when_money_on_account_radio = (By.XPATH, "//div[3]/div/label")
+        By.XPATH, "//tbody[3]/tr/td[4]/div/label/span")
+    _second_domain_checkbox = (By.XPATH, "//tbody[2]/tr/td[4]/div/label/span")
+    _fourth_domain_checkbox = (By.XPATH, "//tbody[4]/tr/td[4]/div/label/span")
+    _fifth_domain_checkbox = (By.XPATH, "//tbody[5]/tr/td[4]/div/label/span")
+    _renew_button = (By.XPATH, "//div[2]/div[2]/span/a")
+    _renew_automatically_button = (By.XPATH, "//div[2]/div[2]/span/div/a[3]")
+    _renew_automatically_when_money_on_account_radio = (By.XPATH, "//div[2]/div/label")
     _renew_automatically_send_email_after_operation_radio = (
-        By.XPATH, "/html/body/div[7]/div/div/form/div[4]/div[3]/div/label[1]/span[2]")
-    _renew_manually_button = (By.XPATH, "//div[7]/div/div/div/div")
+        By.XPATH, "//div[4]/div/div[2]/div/label/span[2]")
+    _renew_automatically_start_from_dropdown = (By.NAME, "days")
+    _renew_automatically_start_from_option = (By.XPATH, "//option[%s]" %randint(1,10))
+    _renew_manually_button = (By.XPATH, "//div[2]/div[2]/span/div/a[2]")
     _second_stage_domain_name_field = (
-        By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[2]/label/span")
-    _second_stage_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[3]/label/span")
+        By.XPATH, "//td[2]/div/label/span")
+    _second_stage_text_field = (By.XPATH, "//label/div")
     _second_stage_send_email_after_oparation_radio = (By.XPATH, "//label/span[2]")
-    _second_stage_stop_realization_until_manual_activation_radio = (By.XPATH, "//div[3]/div[3]/div/label[2]/span[2]")
-    _result_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[2]/span")
+    _second_stage_stop_realization_until_manual_activation_radio = (By.XPATH, "//div[5]/div/div[2]/div/label[2]/span[2]")
+    _second_stage_stop_realization_until_manual_activation_radio2 = (By.XPATH, "//div[4]/div/div[2]/div/label[2]/span[2]")
+    _second_stage_submit_button = (By.XPATH, "//div[6]/div/div[2]/div[2]/button")
+    _second_stage_submit_confirm_button = (By.XPATH, "//div[3]/button")
+    _result_domain_name_field = (By.XPATH, "//div/span")
     _result_text_field = (By.XPATH, "//td[3]")
     _add_escrow_transaction_result_text_field = (By.XPATH, "//p")
-    _move_button = (By.XPATH, "//div[7]/div/button[2]")
+    _move_button = (By.XPATH, "//div[2]/div[2]/span[2]/a")
     _move_to_other_account_button = (By.XPATH, "//div[7]/div/div/div[2]/div[4]")
     _move_to_other_account_login_field = (By.NAME, "login")
-    _change_profile_data_button = (By.XPATH, "//div[7]/div/div/div[2]/div")
+    _change_profile_data_button = (By.XPATH, "//div[2]/span[2]/div/a[2]")
+    _change_profile_data_profile_dropdown = (By.NAME, "id")
+    _change_profile_data_profile_dropdown_option = (By.XPATH, "//option[%s]"%randint(1,8))
     _change_profile_data_dont_send_results_radio = (
-        By.XPATH, "/html/body/div[7]/div/div/form/div[3]/div[3]/div/label[2]/span[2]")
-    _submit_button = (By.XPATH, "//button[2]")
+        By.XPATH, "//label[2]/span[2]")
+    _change_profile_data_second_stage_submit_button = (By.XPATH, "//button[@type='submit']")
+    _submit_button = (By.XPATH, "//div[2]/button")
     _privacy_settings_button = (By.XPATH, "//div[7]/div/div/div[2]/div[2]")
     _privacy_settings_show_user_data_in_whois = (
         By.XPATH, "/html/body/div[7]/div/div/form/div[2]/div[3]/div[1]/label[1]")
@@ -172,6 +180,10 @@ class RegisteredDomainsListPage(BasePage):
         self.click(self._renew_button)
         self.click(self._renew_automatically_button)
         self.click(self._renew_automatically_when_money_on_account_radio)
+        self.click(self._renew_automatically_start_from_dropdown)
+        self._renew_automatically_start_from_value =  self.get_text(self._renew_automatically_start_from_option)
+        self.click(self._renew_automatically_start_from_dropdown)
+        self.click(self._renew_automatically_start_from_option)
         self.click(self._renew_automatically_send_email_after_operation_radio)
         self.click(self._submit_button)
 
@@ -191,8 +203,8 @@ class RegisteredDomainsListPage(BasePage):
     def second_stage_checkboxes_and_submit(self):
         self.click(self._second_stage_send_email_after_oparation_radio)
         self.click(self._second_stage_stop_realization_until_manual_activation_radio)
-        self.click(self._submit_button)
-        self.accept_alert()
+        self.click(self._second_stage_submit_button)
+        self.click(self._second_stage_submit_confirm_button)
 
     def select_first_domain(self):
         self.click(self._first_domain_checkbox)
@@ -201,11 +213,22 @@ class RegisteredDomainsListPage(BasePage):
         self.click(self._move_button)
         sleep(2)
         self.click(self._change_profile_data_button)
+        self.click(self._change_profile_data_profile_dropdown)
+        self._change_profile_data_profile_dropdown_option_value = self.get_text(self._change_profile_data_profile_dropdown_option)
+        self.click(self._change_profile_data_profile_dropdown)
+        self.click(self._change_profile_data_profile_dropdown_option)
         self.click(self._submit_button)
+
+    def change_profile_data_stage_2(self):
         self.click(self._change_profile_data_dont_send_results_radio)
-        sleep(5)
-        self.click(self._submit_button)
-        self.accept_alert()
+        self.click(self._second_stage_stop_realization_until_manual_activation_radio2)
+        self.click(self._change_profile_data_second_stage_submit_button)
+        while True:
+            try:
+                self.click(self._second_stage_submit_confirm_button)
+                break
+            except:
+                self.click(self._change_profile_data_second_stage_submit_button)
 
     def result_text(self):
         return self.get_text(self._result_text_field)

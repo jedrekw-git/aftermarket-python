@@ -13,11 +13,11 @@ class TaskList(BasePage):
     _title = "Task List"
 
     _option_index = randint(1, 15)
-    _more_filters_button = (By.XPATH, "//button")
+    _more_filters_button = (By.XPATH, "//button[2]")
     _operation_type_dropdown = (By.XPATH, "//select")
     _option_xpath = (By.XPATH, "//option[%s]" % _option_index)
-    _filter_list_submit = (By.XPATH, "//form/div[3]/button")
-    _first_result = (By.XPATH, "//td[3]/div/span")
+    _filter_list_submit = (By.XPATH, "//div[2]/button")
+    _first_result = (By.XPATH, "//td[3]/div")
 
     def __init__(self, driver):
         super(TaskList, self).__init__(driver, self._title)
@@ -28,7 +28,9 @@ class TaskList(BasePage):
         self.option_text = self.get_text(self._option_xpath)
 
     def select_operation_type(self):
-        self.select_index_from_dropdown((self._option_index)-1, self._operation_type_dropdown)
+        self.click(self._operation_type_dropdown)
+        self.click(self._option_xpath)
+        # self.select_index_from_dropdown((self._option_index)-1, self._operation_type_dropdown)
         self.click(self._filter_list_submit)
 
     def first_result_text(self):
