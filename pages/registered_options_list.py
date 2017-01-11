@@ -20,7 +20,8 @@ class RegisteredOptionsListPage(BasePage):
     _change_profile_data_button = (By.XPATH, "//div[7]/div/button[2]")
     _stage2_result_field = (By.XPATH, "//td[3]/label/span")
     _stage2_option_name_field = (By.XPATH, "//td[2]/label/span")
-    _submit_button = (By.XPATH, "//button[2]")
+    _submit_button = (By.XPATH, "//div[2]/button")
+    _confirmation_alert_yes = (By.XPATH, "//div[3]/button")
     _result_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[2]/span")
     _result_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
     _transfer_first_option_button = (By.XPATH, "//button[4]")
@@ -30,7 +31,7 @@ class RegisteredOptionsListPage(BasePage):
     _transfer_list_first_option_cancel_button = (By.XPATH, "//td/div/button")
     _get_option_authinfo_button = (By.XPATH, "//div[7]/div/button[3]")
     _second_stage_send_email_after_oparation_radio = (By.XPATH, "//label/span[2]")
-    _second_stage_stop_realization_until_manual_activation_radio = (By.XPATH, "//div[3]/div[3]/div/label[2]/span[2]")
+    _second_stage_stop_realization_until_manual_activation_radio = (By.XPATH, "//div[4]/div/div[2]/div/label[2]/span[2]")
     _back_from_results_page = (By.XPATH, "//button")
     _base_url = HomePage._url
 
@@ -100,7 +101,7 @@ class RegisteredOptionsListPage(BasePage):
         self.click(self._second_stage_send_email_after_oparation_radio)
         self.click(self._second_stage_stop_realization_until_manual_activation_radio)
         self.click(self._submit_button)
-        self.accept_alert()
+        self.click(self._confirmation_alert_yes)
 
     def delete_all_option_transfers(self):
         while True:

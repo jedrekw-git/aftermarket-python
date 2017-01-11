@@ -12,8 +12,9 @@ from random import randint
 class SellingAuctionListPage(BasePage):
     _title = "Selling Auction"
 
-    _first_auction_delete_button = (By.XPATH, "//td[12]/div/span/img")
-    _submit_button = (By.XPATH, "//button[2]")
+    _first_auction_delete_button = (By.XPATH, "//td[12]/div/a/img")
+    _submit_button = (By.XPATH, "//div[2]/button")
+    _submit_confirm_button = (By.XPATH, "//div[3]/button")
     _back_from_results_page_button = (By.XPATH, "//button")
     _first_auction_checkbox = (By.XPATH, "//td[4]/div/span/label/span")
     _first_auction_change_button = (By.XPATH, "//button[5]")
@@ -35,24 +36,17 @@ class SellingAuctionListPage(BasePage):
     def __init__(self, driver):
         super(SellingAuctionListPage, self).__init__(driver, self._title)
 
-    def delete_first_auction(self):
-        self.click(self._first_auction_delete_button)
-
-    def delete_auction_submit(self):
-        self.click(self._submit_button)
-        self.accept_alert()
-
-    def delete_all_auctions(self):
+    def delete_all_domain_selling_auctions(self):
         while True:
-            if "/assets/img/table/row/delete.png" in self.get_page_source():
+            if u"Brak aukcji" in self.get_page_source():
+                break
+            else:
                 self.click(self._first_auction_delete_button)
-                sleep(5)
+                sleep(3)
                 self.click(self._submit_button)
-                self.accept_alert()
+                self.click(self._submit_confirm_button)
                 WebDriverWait(self.get_driver(), 30).until(EC.text_to_be_present_in_element(self._result_text_field, u"Aukcja została anulowana"))
                 self.click(self._back_from_results_page_button)
-            else:
-                break
 
     def back_from_results_page(self):
         self.click(self._back_from_results_page_button)
