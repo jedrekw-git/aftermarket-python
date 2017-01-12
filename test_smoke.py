@@ -98,10 +98,10 @@ class SmokeTest(unittest.TestCase):
 
     def test_change_SMS_notification_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER, PASSWORD)
         settings_page = account_page.header.open_settings_page()
         change_sms_notification_page = settings_page.open_sms_notification_settings_page()
-        settings_page.open_first_number_notifications()
+        # settings_page.open_first_number_notifications()
         settings_page.change_sms_notification_settings()
 
         WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(settings_page._confirmation_result_field, u"Operacja wykonana poprawnie."))
@@ -545,6 +545,8 @@ class SmokeTest(unittest.TestCase):
 
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
+        selling_auction_page = account_page.header.open_selling_auction_list()
+        selling_auction_page.delete_all_domain_selling_auctions()
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.third_domain_text()
         registered_domains_page.select_third_domain()
@@ -565,103 +567,82 @@ class SmokeTest(unittest.TestCase):
 
         self.not_contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
 
-#     def test_sell_on_auction_edit_details_should_succeed(self):
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER, PASSWORD)
-#         registered_domains_page = account_page.header.open_registered_domains_list()
-#         registered_domains_page.first_domain_text()
-#         registered_domains_page.select_first_domain()
-#         registered_domains_page.sell_on_auction()
-#
-#         Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
-#         Assert.equal(u"Technologia » Komputery", registered_domains_page.sell_on_auction_stage2_category_text())
-#
-#         registered_domains_page.sell_on_auction_submit()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została wystawiona"))
-#         Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
-#
-#         selling_auction_page = account_page.header.open_selling_auction_list()
-#         selling_auction_page.first_auction_enter_edit_prices()
-#
-#         Assert.contains(registered_domains_page._first_domain_text_value, selling_auction_page.get_page_source())
-#         Assert.contains(str(registered_domains_page._sell_on_auction_price_start_value), selling_auction_page.get_page_source())
-#
-#         selling_auction_page.edit_auction_prices()
-#         sleep(2)
-#         Assert.contains(u"Operacja wykonana poprawnie.", selling_auction_page.get_page_source())
-#         sleep(7)
-#         selling_auction_page.back_from_results_page()
-#
-#         Assert.contains(registered_domains_page._first_domain_text_value, selling_auction_page.get_page_source())
-#         Assert.contains(str(selling_auction_page._edit_auction_details_price_start_value), selling_auction_page.get_page_source())
-#
-#         selling_auction_page.first_auction_enter_edit_description()
-#
-#         Assert.contains(registered_domains_page._first_domain_text_value, selling_auction_page.get_page_source())
-#         Assert.contains(str(selling_auction_page._edit_auction_details_price_start_value), selling_auction_page.get_page_source())
-#
-#         selling_auction_page.edit_auction_description()
-#
-#         Assert.contains(u"Zmiany wykonano poprawnie", selling_auction_page.get_page_source())
-#         Assert.contains(u"\u017b\u0105dane zmiany zosta\u0142y wykonane poprawnie.", selling_auction_page.get_page_source())
-#         Assert.contains(u"Mo\u017cesz zobaczy\u0107 swoj\u0105 aukcj\u0119 klikaj\u0105c przycisk poni\u017cej.", selling_auction_page.get_page_source())
-#         selling_auction_page = account_page.header.open_selling_auction_list()
-#         selling_auction_page.delete_first_auction()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._second_stage_text_field, u"Aukcja zostanie anulowana"))
-#         Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.second_stage_domain_text())
-#         WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable(selling_auction_page._submit_button))
-#
-#         selling_auction_page.delete_auction_submit()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została anulowana"))
-#         Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
-#
-#         selling_auction_page.back_from_results_page()
-#
-#         self.not_contains(registered_domains_page._first_domain_text_value, selling_auction_page.get_page_source())
-#
-#
-# #nie da sie usunąc, bo są na liście zakończone aukcje, zgłoszone
-#
-#     def test_sell_on_escrow_auction_should_succeed(self):
-#
-#         login_value = "alfa"
-#         price = get_random_integer(2)
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
-#         registered_domains_page = account_page.header.open_registered_domains_list()
-#         registered_domains_page.third_domain_text()
-#         registered_domains_page.select_third_domain()
-#         registered_domains_page.sell_on_escrow_auction(login_value, price)
-#
-#         Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
-#         Assert.contains(price, registered_domains_page.get_page_source())
-#         Assert.equal(login_value, registered_domains_page.sell_on_escrow_auction_stage2_buyer_login_text())
-#
-#         registered_domains_page.sell_on_escrow_auction_stage2()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._add_escrow_transaction_result_text_field, u"Transakcja escrow została rozpoczęta."))
-#
-#         escrow_auction_page = account_page.header.open_escrow_transactions_seller_list()
-#
-#         Assert.equal(registered_domains_page._third_domain_text_value, escrow_auction_page.first_auction_domain_name_text())
-#         Assert.contains(price, escrow_auction_page.get_page_source())
-#         Assert.equal(login_value, escrow_auction_page.first_auction_buyer_login_text())
-#
-#         escrow_auction_page.delete_first_escrow_auction()
-#
-#         Assert.equal(registered_domains_page._third_domain_text_value, escrow_auction_page.delete_auction_domain_name_text())
-#         Assert.contains(price, escrow_auction_page.get_page_source())
-#         Assert.equal(login_value, escrow_auction_page.delete_auction_buyer_login_text())
-#
-#         escrow_auction_page.delete_auction_submit()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._add_escrow_transaction_result_text_field, u"Transakcja escrow została anulowana."))
-#
+    def test_sell_on_auction_edit_details_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
+        selling_auction_page = account_page.header.open_selling_auction_list()
+        selling_auction_page.delete_all_domain_selling_auctions()
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.third_domain_text()
+        registered_domains_page.select_third_domain()
+        registered_domains_page.sell_on_auction()
+
+        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
+        Assert.equal(registered_domains_page._sell_on_auction_description_value, registered_domains_page.sell_on_auction_stage2_description_text())
+
+        registered_domains_page.sell_on_auction_submit()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została wystawiona z ceną początkową %s"%registered_domains_page._sell_on_auction_price_start_value))
+        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+
+        selling_auction_page = account_page.header.open_selling_auction_list()
+        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(str(registered_domains_page._sell_on_auction_price_start_value), selling_auction_page.get_page_source())
+        selling_auction_page.first_auction_enter_edit_prices()
+
+        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(str(registered_domains_page._sell_on_auction_price_start_value), selling_auction_page.get_page_source())
+
+        selling_auction_page.edit_auction_prices()
+        sleep(2)
+        Assert.contains(u"Operacja wykonana poprawnie.", selling_auction_page.get_page_source())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(selling_auction_page._selling_auctions_header, u"Lista aukcji (sprzedawca)"))
+
+        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(str(selling_auction_page._edit_auction_details_price_start_value), selling_auction_page.get_page_source())
+
+        selling_auction_page.first_auction_enter_edit_description()
+
+        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(str(selling_auction_page._edit_auction_details_price_start_value), selling_auction_page.get_page_source())
+
+        selling_auction_page.edit_auction_description()
+
+        Assert.contains(u"Operacja wykonana poprawnie.", selling_auction_page.get_page_source())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(selling_auction_page._selling_auctions_header, u"Lista aukcji (sprzedawca)"))
+        selling_auction_page.delete_all_domain_selling_auctions()
+
+        self.not_contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+
+    def test_sell_on_escrow_auction_should_succeed(self):
+
+        login_value = "alfa"
+        price = get_random_integer(2)
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.sell_on_escrow_auction(login_value, price)
+
+        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
+        Assert.contains(price, registered_domains_page.get_page_source())
+        Assert.equal(login_value, registered_domains_page.sell_on_escrow_auction_stage2_buyer_login_text())
+
+        registered_domains_page.sell_on_escrow_auction_stage2()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._add_escrow_transaction_result_text_field, u"Transakcja Escrow została rozpoczęta"))
+
+        escrow_auction_page = account_page.header.open_escrow_transactions_seller_list()
+
+        Assert.equal(registered_domains_page._first_domain_text_value, escrow_auction_page.first_auction_domain_name_text())
+        Assert.contains(price, escrow_auction_page.get_page_source())
+        Assert.equal(login_value, escrow_auction_page.first_auction_buyer_login_text())
+
+        escrow_auction_page.delete_all_escrow_auctions()
+
 #     def test_search_selling_escrow_auctions_should_succeed(self):
 #
 #         home_page = HomePage(self.driver).open_home_page()

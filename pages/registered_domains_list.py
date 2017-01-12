@@ -46,7 +46,7 @@ class RegisteredDomainsListPage(BasePage):
     _result_text_field = (By.XPATH, "//td[3]")
     _email_result_text_field = (By.XPATH, "//td[2]/div")
     _email_result_domain_name_field = (By.XPATH, "//div/span")
-    _add_escrow_transaction_result_text_field = (By.XPATH, "//p")
+    _add_escrow_transaction_result_text_field = (By.XPATH, "//div[@id='part-content']/div/div/div/p")
     _move_button = (By.XPATH, "//div[2]/div[2]/span[2]/a")
     _move_to_other_account_button = (By.XPATH, "//div[2]/span[2]/div/a[5]")
     _move_to_other_account_login_field = (By.NAME, "login")
@@ -121,7 +121,7 @@ class RegisteredDomainsListPage(BasePage):
     _sell_button = (By.XPATH, "//div[2]/div[2]/span[4]/a")
     _sell_on_auction_button = (By.XPATH, "//div[2]/span[4]/div/a[3]")
     _add_on_marketplace_button = (By.XPATH, "//div[7]/div/div/div[4]/div")
-    _sell_on_escrow_auction_button = (By.XPATH, "//div/div/div[4]/div[3]")
+    _sell_on_escrow_auction_button = (By.XPATH, "//div[2]/span[4]/div/a[4]")
     _sell_on_auction_first_domain_button = (By.XPATH, "//div[2]/div[6]/div[2]")
     _sell_on_auction_price_start_field = (By.NAME, "price_start")
     _sell_on_auction_price_start_value = randint(1, 20)
@@ -157,9 +157,9 @@ class RegisteredDomainsListPage(BasePage):
     _sell_on_escrow_auction_days_to_pay_dropdown = (By.NAME, "days")
     _sell_on_escrow_auction_days_to_pay_index = randint(0, 7)
     _sell_on_escrow_auction_stage2_buyer_login_field = (
-        By.XPATH, "/html/body/div[7]/div/div/form/div[3]/div[3]/div[1]/span")
+        By.XPATH, "//div[3]/div/div[2]/div/span")
     _sell_on_escrow_auction_description_button = (By.XPATH, "//label")
-    _sell_on_escrow_auction_description_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[6]/div[3]/div[1]/div/div")
+    _sell_on_escrow_auction_description_field = (By.XPATH, "//div/div[2]/div/div/div")
     _sell_on_escrow_auction_description_value = get_random_string(10) + " " + get_random_string(7) + " " + get_random_string(8)
     _delete_auction_button = (By.XPATH, "//div[7]/div/button[7]")
     _delete_auction_accept_deletion_indicated_domains_checkbox = (
@@ -433,7 +433,7 @@ class RegisteredDomainsListPage(BasePage):
         self.click(self._sell_on_escrow_auction_description_button)
         self.clear_field_and_send_keys(self._sell_on_escrow_auction_description_value, self._sell_on_escrow_auction_description_field)
         self.click(self._submit_button)
-        self.accept_alert()
+        self.click(self._second_stage_submit_confirm_button)
 
     def sell_on_escrow_auction_stage2_buyer_login_text(self):
         return self.get_text(self._sell_on_escrow_auction_stage2_buyer_login_field)
