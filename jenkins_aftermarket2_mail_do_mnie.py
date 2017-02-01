@@ -48,6 +48,17 @@ class SmokeTest(unittest.TestCase):
         self.not_contains(settings_page._add_other_user_login_value, settings_page.get_page_source())
         self.not_contains(settings_page._add_other_user_description_value, settings_page.get_page_source())
 
+    def test_renew_domain_automatically_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.renew_domain_automatically()
+
+        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Domena będzie automatycznie odnawiana od %s dni"%registered_domains_page._renew_automatically_start_from_value))
+        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+
     def test_change_dns_profile_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
@@ -108,7 +119,7 @@ class SmokeTest(unittest.TestCase):
         selling_auction_page.delete_all_domain_selling_auctions()
 
         self.not_contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
-    
+
     def test_task_list_filtering_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
