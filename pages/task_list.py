@@ -12,8 +12,8 @@ from random import randint
 class TaskList(BasePage):
     _title = "Task List"
 
-    _option_index = randint(1, 15)
-    _more_filters_button = (By.XPATH, "//button[2]")
+    _option_index = randint(1, 262)
+    _more_filters_button = (By.XPATH, "//span/button")
     _operation_type_dropdown = (By.XPATH, "//select")
     _option_xpath = (By.XPATH, "//option[%s]" % _option_index)
     _filter_list_submit = (By.XPATH, "//div[2]/button")

@@ -14,7 +14,7 @@ class RegisterDomainPage(BasePage):
 
     _domain_name_field = (By.NAME, "domains")
     _domain_name_value = get_random_uuid(10)+".waw.pl"
-    _check_domain_availability_button = (By.XPATH, "//button")
+    _check_domain_availability_button = (By.XPATH, "//div[2]/button")
     _first_domain_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]/table/tbody/tr[1]/td[1]/div/label/input")
     _stop_realization_until_manual_activation_radio = (By.XPATH, "//label[2]/span[2]")
     _register_domain_button = (By.XPATH, "//div[18]/div/div[2]/div[2]/button")
