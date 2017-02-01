@@ -465,7 +465,7 @@ class SmokeTest(unittest.TestCase):
         registered_domains_page.select_first_domain()
         registered_domains_page.change_dns_profile_stage1()
         registered_domains_page.change_DNS_profile_stage2()
-        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Zastosowano szablon wpisów DNS: %s"%registered_domains_page._change_dns_profile_dropdown_option_text))
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Zastosowano szablon wpisów DNS:"))
         Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
 
     def test_new_dns_entry_for_selected_domain_should_succeed(self):

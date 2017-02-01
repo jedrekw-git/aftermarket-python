@@ -401,7 +401,7 @@ class RegisteredDomainsListPage(BasePage):
         if _element_is_visible(self.find_element(self._sell_on_auction_description_field)):
             self.clear_field_and_send_keys(self._sell_on_auction_description_value, self._sell_on_auction_description_field)
         else:
-            self.get_driver().execute_script("window.scrollTo(2700, 1000);")
+            self.get_driver().execute_script("window.scrollTo(2700, 100);")
             self.click(self._sell_on_auction_auction_description_checkbox)
             self.clear_field_and_send_keys(self._sell_on_auction_description_value, self._sell_on_auction_description_field)
         self.click(self._submit_button)

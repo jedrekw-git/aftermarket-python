@@ -30,6 +30,7 @@ class TaskList(BasePage):
     def select_operation_type(self):
         self.click(self._operation_type_dropdown)
         self.click(self._option_xpath)
+        self.get_driver().execute_script("window.scrollTo(2700, 0);")
         # self.select_index_from_dropdown((self._option_index)-1, self._operation_type_dropdown)
         self.click(self._filter_list_submit)
 

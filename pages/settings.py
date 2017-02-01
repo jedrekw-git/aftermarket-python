@@ -353,7 +353,7 @@ class SettingsPage(BasePage):
         self.get_driver().execute_script("window.scrollTo(2700, 500);")
         self.click(self._add_other_user_management_of_withdrawals_checkbox)
         self.click(self._add_other_user_management_of_bank_accounts_checkbox)
-        self.get_driver().execute_script("window.scrollTo(2700, 900);")
+        self.get_driver().execute_script("window.scrollTo(2700, 1000);")
         self.click(self._add_other_user_management_of_domains_checkbox)
         self.get_driver().execute_script("window.scrollTo(2700, 1000);")
         self.click(self._add_other_user_management_of_domain_transfers_from_account_checkbox)
