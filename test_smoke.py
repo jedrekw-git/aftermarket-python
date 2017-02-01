@@ -2082,7 +2082,7 @@ class SmokeTest(unittest.TestCase):
         self.timeout = 30
         if run_locally:
             self.driver = webdriver.Firefox()
-            self.driver.maximize_window()
+            self.driver.set_window_size(1024,768)
             self.driver.implicitly_wait(self.timeout)
             self.errors_and_failures = self.tally()
         else:

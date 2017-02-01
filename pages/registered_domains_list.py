@@ -235,6 +235,7 @@ class RegisteredDomainsListPage(BasePage):
         self._change_profile_data_profile_dropdown_option_value = self.get_text(self._change_profile_data_profile_dropdown_option)
         self.click(self._change_profile_data_profile_dropdown)
         self.click(self._change_profile_data_profile_dropdown_option)
+        sleep(2)
         self.click(self._submit_button)
 
     def change_profile_data_stage_2(self):
@@ -400,6 +401,7 @@ class RegisteredDomainsListPage(BasePage):
         if _element_is_visible(self.find_element(self._sell_on_auction_description_field)):
             self.clear_field_and_send_keys(self._sell_on_auction_description_value, self._sell_on_auction_description_field)
         else:
+            self.get_driver().execute_script("window.scrollTo(2700, 1000);")
             self.click(self._sell_on_auction_auction_description_checkbox)
             self.clear_field_and_send_keys(self._sell_on_auction_description_value, self._sell_on_auction_description_field)
         self.click(self._submit_button)
