@@ -369,7 +369,7 @@ class SettingsPage(BasePage):
         self.click(self._add_other_user_change_account_settings_checkbox)
         self.click(self._add_other_user_management_of_email_addresses_checkbox)
         self.get_driver().execute_script("window.scrollTo(2700, 4500);")
-        self.click(self._add_other_user_management_of_mobile_phones_checkbox)
+        # self.click(self._add_other_user_management_of_mobile_phones_checkbox)
         self.click(self._add_other_user_management_of_logins_checkbox)
         self.click(self._add_other_user_management_of_data_exports_checkbox)
         self.click(self._add_other_user_save_button)
