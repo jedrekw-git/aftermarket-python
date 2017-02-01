@@ -29,6 +29,88 @@ run_locally = True
 class SmokeTest(unittest.TestCase):
     _internal_non_grouped_domain_text = 1
 
+    def test_login_wrong_credentials_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(get_random_string(7), get_random_uuid(6))
+
+        Assert.contains(u"Nieprawidłowy login lub hasło", account_page.get_page_source())
+
+    def test_remind_password_wrong_login_should_succeed(self):
+
+        login = get_random_string(7)
+
+        home_page = HomePage(self.driver).open_home_page()
+        remind_page = home_page.header.remind_password(login)
+
+        Assert.contains(u"Podany login nie istnieje", remind_page.get_page_source())
+
+    def test_change_contact_data_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        change_contact_data_page = settings_page.open_change_contact_data_page()
+        settings_page.fill_change_contact_data_form()
+        settings_page.save_change_contact_data()
+
+        Assert.contains(u"Poniższe dane wskazują osobę, z którą będziemy mogli skontaktować się w sprawach dotyczących twojego konta.", settings_page.get_page_source())
+        Assert.contains("Operacja wykonana poprawnie", settings_page.get_page_source())
+        Assert.contains(settings_page._change_contact_data_name_value, settings_page.change_contact_data_name_field_text())
+        Assert.contains(settings_page._change_contact_data_address_value, settings_page.change_contact_data_address_field_text())
+        Assert.contains(settings_page.change_contact_data_postalcode_field_text(), settings_page._change_contact_data_postalcode_value)
+        Assert.contains(settings_page._change_contact_data_city_value, settings_page.change_contact_data_city_field_text())
+
+    def test_change_notification_settings_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        change_notification_settings_page = settings_page.open_change_email_notification_settings_page()
+        settings_page.change_email_notification_settings()
+        settings_page.save_change_email_notification_settings()
+
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(settings_page._confirmation_result_field, u"Operacja wykonana poprawnie."))
+
+    def test_change_newsletter_settings_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        change_newsletter_settings_page = settings_page.open_change_newsletter_settings_page()
+        settings_page.change_newsletter_settings()
+        settings_page.save_change_newsletter_settings()
+
+        Assert.contains(u"Operacja wykonana poprawnie.", settings_page.get_page_source())
+
+    def test_add_email_address_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        add_email_page = settings_page.open_add_email_address_page()
+        settings_page.remove_all_email_addresses()
+        settings_page.add_email_address()
+
+        Assert.contains(u"Potwierdź adres email", settings_page.get_page_source())
+
+        settings_page.back_to_email_addresses_list()
+
+        Assert.equal(settings_page._add_email_address_value, settings_page.added_email_address_text())
+        Assert.equal("Niepotwierdzony", settings_page.added_email_status_text())
+
+        settings_page.remove_all_email_addresses()
+
+        self.not_contains(settings_page._add_email_address_value, settings_page.get_page_source())
+        self.not_contains("Niepotwierdzony", settings_page.get_page_source())
+
+    def test_change_SMS_notification_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        change_sms_notification_page = settings_page.open_sms_notification_settings_page()
+        # settings_page.open_first_number_notifications()
+        settings_page.change_sms_notification_settings()
+
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(settings_page._confirmation_result_field, u"Operacja wykonana poprawnie."))
+
     def test_add_other_users_to_account_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
@@ -48,6 +130,179 @@ class SmokeTest(unittest.TestCase):
         self.not_contains(settings_page._add_other_user_login_value, settings_page.get_page_source())
         self.not_contains(settings_page._add_other_user_description_value, settings_page.get_page_source())
 
+    def test_change_company_address_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        change_company_address_page = settings_page.open_change_company_data_page()
+        settings_page.edit_company_address()
+
+        Assert.contains("Operacja wykonana poprawnie", settings_page.edit_company_data_operation_successful_text())
+        Assert.contains(settings_page.edit_company_data_zip_text(), settings_page._change_company_data_zip_value)
+        Assert.equal(settings_page._change_company_data_street_value, settings_page.edit_company_data_street_text())
+        Assert.equal(settings_page._change_company_data_city_value, settings_page.edit_company_data_city_text())
+
+    def test_change_company_data_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        change_company_data_page = settings_page.open_change_company_data_page()
+        settings_page.edit_company_data()
+
+        Assert.contains(settings_page.edit_company_data_zip_text(), settings_page._change_company_data_zip_value)
+        Assert.equal(settings_page._change_company_data_street_value, settings_page.edit_company_data_street_text())
+        Assert.equal(settings_page._change_company_data_city_value, settings_page.edit_company_data_city_text())
+        Assert.equal(settings_page._change_company_data_company_name_value, settings_page.edit_company_data_company_name_text())
+        Assert.equal(settings_page._change_company_data_nip_value, settings_page.edit_company_data_nip_text())
+
+    def test_add_new_bank_account_should_succeed(self):
+
+        number = "26105014451000002276470461"
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        bank_accounts_page = settings_page.open_add_bank_account_page()
+        settings_page.remove_all_bank_accounts()
+        settings_page.add_bank_account(number)
+
+        Assert.contains(u"Operacja wykonana poprawnie.", settings_page.get_page_source())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(settings_page._added_bank_account_number, number))
+        Assert.contains("Lista kont bankowych", settings_page.get_page_source())
+        Assert.contains(u"Na tej liście znajdują się konta bankowe, na które możesz zlecać wypłaty.", settings_page.get_page_source())
+        Assert.contains("Oto lista twoich kont bankowych.", settings_page.get_page_source())
+        Assert.equal(settings_page._add_bank_account_account_name_value, settings_page.added_bank_account_name_text())
+
+        settings_page.remove_all_bank_accounts()
+
+        Assert.contains("Lista kont bankowych", settings_page.get_page_source())
+        Assert.contains(u"Na tej liście znajdują się konta bankowe, na które możesz zlecać wypłaty.", settings_page.get_page_source())
+        Assert.contains("Oto lista twoich kont bankowych.", settings_page.get_page_source())
+        Assert.contains(u"Brak zdefiniowanych kont bankowych", settings_page.get_page_source())
+        self.not_contains(number, settings_page.get_page_source())
+        self.not_contains(settings_page._add_bank_account_account_name_value, settings_page.get_page_source())
+
+    def test_change_DNS_servers_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        dns_servers_page = settings_page.open_change_DNS_servers_page()
+        settings_page.change_DNS_servers()
+
+        Assert.equal("ns1.aftermarket.pl", settings_page.change_DNS_servers_DNS1_text())
+        Assert.equal("ns2.aftermarket.pl", settings_page.change_DNS_servers_DNS2_text())
+        Assert.equal(settings_page._change_DNS_servers_DNS3_value, settings_page.change_DNS_servers_DNS3_text())
+        Assert.equal(settings_page._change_DNS_servers_DNS4_value, settings_page.change_DNS_servers_DNS4_text())
+        Assert.equal("Operacja wykonana poprawnie", settings_page.change_DNS_servers_operation_successful_text())
+
+# SERWERY 3 i 4 zamieniają się miejscami z 1 i 2 lub losowo, zgłoszone
+
+    def test_new_DNS_profile_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        dns_profile_page = settings_page.open_new_DNS_template_page()
+        settings_page.delete_all_profiles()
+        settings_page.new_DNS_template()
+
+        settings_page.new_DNS_entry()
+        Assert.equal("Operacja wykonana poprawnie", settings_page.new_DNS_profile_successful_operation_text())
+        Assert.equal(settings_page._new_DNS_profile_name_value, settings_page.new_DNS_profile_successtul_opertation_profile_text())
+        Assert.equal(settings_page._new_DNS_profile_host_value, settings_page.new_DNS_profile_successtul_opertation_host_text())
+        Assert.equal(settings_page._new_DNS_profile_address_value, settings_page.new_DNS_profile_successtul_opertation_address_text())
+
+        settings_page = account_page.header.open_settings_page()
+        dns_profile_page = settings_page.open_new_DNS_template_page()
+
+        Assert.contains(u"Lista szablonów DNS", settings_page.get_page_source())
+        Assert.equal(settings_page._new_DNS_profile_name_value, settings_page.new_DNS_profile_name_text())
+
+        settings_page.delete_all_profiles()
+
+        self.not_contains(settings_page._new_DNS_profile_name_value, settings_page.get_page_source())
+
+    def test_notification_about_ending_auctions_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        notification_page = settings_page.open_notifications_about_ending_auctions_page()
+        settings_page.change_notifications_about_ending_auctions()
+
+        Assert.contains("Operacja wykonana poprawnie", settings_page.get_page_source())
+
+    def test_domain_watching_settings_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        domain_watching_settings__page = settings_page.open_domain_watching_settings_page()
+        settings_page.change_domain_watching_settings()
+
+        Assert.contains("Operacja wykonana poprawnie", settings_page.get_page_source())
+
+    def test_sellers_watching_settings_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        sellers_watching_settings__page = settings_page.open_sellers_watching_settings_page()
+        settings_page.change_sellers_watching_settings()
+
+        Assert.contains("Operacja wykonana poprawnie", settings_page.get_page_source())
+
+    def test_change_seller_profile_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        change_seller_profile__page = settings_page.open_change_seller_profile_page()
+        settings_page.change_seller_profile()
+
+        Assert.contains("Operacja wykonana poprawnie", settings_page.get_page_source())
+        Assert.equal(settings_page._change_seller_profile_description_value, settings_page.change_seller_profile_description_text())
+
+    def test_sending_notification_settings_t55should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        settings_page = account_page.header.open_settings_page()
+        sending_notification_settings_page = settings_page.open_sending_notification_settings_page()
+        settings_page.change_sending_notification_settings()
+
+        Assert.contains("Operacja wykonana poprawnie", settings_page.get_page_source())
+
+    def test_task_list_filtering_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        task_list = account_page.header.open_task_list()
+        task_list.get_text_selected_option()
+        task_list.select_operation_type()
+        try:
+            WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(task_list._first_result, task_list.option_text))
+            Assert.contains(u"Rodzaj operacji: <b>%s" % task_list.option_text, task_list.get_page_source())
+        except WebDriverException:
+            Assert.contains(u"Brak zleconych operacji.", task_list.get_page_source())
+
+    def test_register_domain_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        to_pay_list = account_page.header.open_to_pay_list()
+        to_pay_list.remove_all_payments()
+        register_domain_page = account_page.header.open_register_domain_page()
+        register_domain_page.enter_domain_to_register()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(register_domain_page._domain_status_field, u"Dostępna do rejestracji"))
+
+        register_domain_page.register_domain()
+
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_domain_field, register_domain_page._domain_name_value))
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_text_field, u"Domena zarezerwowana i oczekuje na opłacenie"))
+        to_pay_list = account_page.header.open_to_pay_list()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_title, register_domain_page._domain_name_value))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_type, u"Rejestracja domeny"))
+
+        to_pay_list.remove_all_payments()
+
+        self.not_contains(register_domain_page._domain_name_value, to_pay_list.get_page_source())
+        self.not_contains(u"Rejestracja domeny", to_pay_list.get_page_source())
+
     def test_renew_domain_automatically_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
@@ -58,6 +313,343 @@ class SmokeTest(unittest.TestCase):
 
         WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Domena będzie automatycznie odnawiana od"))
         Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+
+    def test_renew_domain_manually_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        to_pay_list = account_page.header.open_to_pay_list()
+        to_pay_list.remove_all_payments()
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.renew_domain_manually()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._second_stage_text_field, u"Domena zostanie odnowiona"))
+        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.second_stage_domain_text())
+
+        registered_domains_page.second_stage_checkboxes_and_submit()
+
+        sleep(3)
+        if u"Operacja zawieszona, oczekuje na aktywowanie" in registered_domains_page.result_text():
+            Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+        else:
+            WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Domena już była odnowiona w ostatnim okresie: "))
+            Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+
+        to_pay_list = account_page.header.open_to_pay_list()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_title, registered_domains_page._first_domain_text_value))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_type, u"Odnowienie domeny"))
+
+        to_pay_list.remove_first_payment()
+
+        self.not_contains(registered_domains_page._first_domain_text_value, to_pay_list.get_page_source())
+        self.not_contains(u"Odnowienie domeny", to_pay_list.get_page_source())
+
+    def test_change_profile_data_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.second_domain_text()
+        registered_domains_page.select_second_domain()
+        registered_domains_page.change_profile_data()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._second_stage_text_field, u"Profil danych zostanie zmieniony"))
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.second_stage_domain_text())
+
+        registered_domains_page.change_profile_data_stage_2()
+
+        WebDriverWait(self.driver, 30).until_not(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja w toku"))
+        if u"Ustawiono profil danych:" in registered_domains_page.result_text():
+            Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
+        else:
+            WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Domena jest zablokowana"))
+            Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
+
+    def test_privacy_settings_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.privacy_settings_first_stage()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._second_stage_text_field, u"Dane abonenta będą widoczne"))
+        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.second_stage_domain_text())
+
+        registered_domains_page.second_stage_checkboxes_and_submit2()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Dane abonenta zostały ujawnione"))
+        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+
+    def test_get_authinfo_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.get_authinfo()
+
+        try:
+            WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Kod AuthInfo:"))
+            Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+        except WebDriverException:
+            WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Domeny nie można transferować"))
+            Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+
+    def test_move_domain_from_account_should_succeed(self):
+
+        login = "alfa"
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.second_domain_text()
+        registered_domains_page.select_second_domain()
+        registered_domains_page.move_domain_from_account(login)
+
+        WebDriverWait(self.driver, 40).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Transfer domeny został zainicjowany"))
+        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
+
+        transfer_domain_page = account_page.header.open_transfer_domain_from_account_list()
+        transfer_domain_page.cancel_all_domain_transfers_from_account()
+
+        self.not_contains(registered_domains_page._second_domain_text_value, transfer_domain_page.get_page_source())
+
+    def test_change_DNS_servers_for_selected_domain_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.third_domain_text()
+        registered_domains_page.select_third_domain()
+        registered_domains_page.change_dns_servers_for_selected_domain()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Ustawiono serwery DNS:"))
+        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+
+    def test_change_redirection_direct_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.change_redirection_direct()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Przekierowano na adres: %s"%registered_domains_page._change_redirection_url_value))
+        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+
+    def test_change_redirection_hidden_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.change_redirection_hidden()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Przekierowano na adres: %s"%registered_domains_page._change_redirection_url_value))
+        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+
+    def test_change_redirection_ip_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.change_redirection_ip()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Przekierowano na adres: %s"%registered_domains_page._change_redirection_ip_value))
+        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+
+    def test_change_dns_profile_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.change_dns_profile_stage1()
+        registered_domains_page.change_DNS_profile_stage2()
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Zastosowano szablon wpisów DNS:"))
+        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+
+    def test_new_dns_entry_for_selected_domain_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.new_dns_entry_for_selected_domain()
+        registered_domains_page.delete_all_dns_entries_for_selected_domain()
+        registered_domains_page.new_dns_entry_for_selected_domain_details()
+
+        Assert.contains("Operacja wykonana poprawnie", registered_domains_page.get_page_source())
+
+        registered_domains_page.back_from_results_page()
+
+        Assert.contains(registered_domains_page._add_dns_entry_host_name_value, registered_domains_page.get_page_source())
+        Assert.contains(registered_domains_page._add_dns_entry_priority_value, registered_domains_page.get_page_source())
+        Assert.contains(registered_domains_page._add_dns_entry_address_value, registered_domains_page.get_page_source())
+
+        registered_domains_page.delete_all_dns_entries_for_selected_domain()
+
+        self.not_contains(registered_domains_page._add_dns_entry_host_name_value, registered_domains_page.get_page_source())
+        self.not_contains(registered_domains_page._add_dns_entry_address_value, registered_domains_page.get_page_source())
+
+    def test_new_dns_server_in_domain_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.dns_servers_in_domain()
+
+        registered_domains_page.delete_all_dns_servers_in_domain()
+        registered_domains_page.new_dns_server_in_domain_details()
+        Assert.contains(u"Operacja wykonana poprawnie.", registered_domains_page.get_page_source())
+        registered_domains_page.back_from_results_page()
+
+        Assert.contains(registered_domains_page._new_dns_server_in_domain_name_value+"."+registered_domains_page._first_domain_text_value, registered_domains_page.get_page_source())
+        Assert.contains(registered_domains_page._new_dns_server_in_domain_ip_value, registered_domains_page.get_page_source())
+
+        registered_domains_page.delete_all_dns_servers_in_domain()
+
+        self.not_contains(registered_domains_page._new_dns_server_in_domain_name_value+"."+registered_domains_page._first_domain_text_value, registered_domains_page.get_page_source())
+        self.not_contains(registered_domains_page._new_dns_server_in_domain_ip_value, registered_domains_page.get_page_source())
+
+    def test_change_parking_service_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.change_parking_service()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Zmieniono serwis parkingu domeny"))
+        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+
+    def test_change_keyword_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.change_keyword()
+
+        WebDriverWait(self.driver, 30).until_not(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja w toku"))
+
+        if "Domena odnowiona poprawnie" in registered_domains_page.result_text():
+            Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page._result_domain_text())
+        else:
+            WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Domena nie jest zaparkowana"))
+            Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
+
+    def test_sell_on_auction_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        selling_auction_page = account_page.header.open_selling_auction_list()
+        selling_auction_page.delete_all_domain_selling_auctions()
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.third_domain_text()
+        registered_domains_page.select_third_domain()
+        registered_domains_page.sell_on_auction()
+
+        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
+        Assert.equal(registered_domains_page._sell_on_auction_description_value, registered_domains_page.sell_on_auction_stage2_description_text())
+
+        registered_domains_page.sell_on_auction_submit()
+        sleep(2)
+        Assert.contains("Operacja wykonana poprawnie", registered_domains_page.get_page_source())
+        # WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została wystawiona z ceną początkową %s"%registered_domains_page._sell_on_auction_price_start_value))
+        # Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+
+        selling_auction_page = account_page.header.open_selling_auction_list()
+        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(str(registered_domains_page._sell_on_auction_price_start_value), selling_auction_page.get_page_source())
+        selling_auction_page.delete_all_domain_selling_auctions()
+
+        self.not_contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+
+    def test_sell_on_auction_edit_details_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        selling_auction_page = account_page.header.open_selling_auction_list()
+        selling_auction_page.delete_all_domain_selling_auctions()
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.third_domain_text()
+        registered_domains_page.select_third_domain()
+        registered_domains_page.sell_on_auction()
+
+        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
+        Assert.equal(registered_domains_page._sell_on_auction_description_value, registered_domains_page.sell_on_auction_stage2_description_text())
+
+        registered_domains_page.sell_on_auction_submit()
+        sleep(2)
+        Assert.contains("Operacja wykonana poprawnie", registered_domains_page.get_page_source())
+        # WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została wystawiona z ceną początkową %s"%registered_domains_page._sell_on_auction_price_start_value))
+        # Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+
+        selling_auction_page = account_page.header.open_selling_auction_list()
+        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(str(registered_domains_page._sell_on_auction_price_start_value), selling_auction_page.get_page_source())
+        selling_auction_page.first_auction_enter_edit_prices()
+
+        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(str(registered_domains_page._sell_on_auction_price_start_value), selling_auction_page.get_page_source())
+
+        selling_auction_page.edit_auction_prices()
+        sleep(2)
+        Assert.contains(u"Operacja wykonana poprawnie.", selling_auction_page.get_page_source())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(selling_auction_page._selling_auctions_header, u"Lista aukcji (sprzedawca)"))
+
+        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(str(selling_auction_page._edit_auction_details_price_start_value), selling_auction_page.get_page_source())
+
+        selling_auction_page.first_auction_enter_edit_description()
+
+        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Assert.contains(str(selling_auction_page._edit_auction_details_price_start_value), selling_auction_page.get_page_source())
+
+        selling_auction_page.edit_auction_description()
+
+        Assert.contains(u"Operacja wykonana poprawnie.", selling_auction_page.get_page_source())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(selling_auction_page._selling_auctions_header, u"Lista aukcji (sprzedawca)"))
+        selling_auction_page.delete_all_domain_selling_auctions()
+
+        self.not_contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+
+    def test_sell_on_escrow_auction_should_succeed(self):
+
+        login_value = "alfa"
+        price = get_random_integer(2)
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
+        registered_domains_page.sell_on_escrow_auction(login_value, price)
+
+        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.sell_on_auction_stage2_domain_text())
+        Assert.contains(price, registered_domains_page.get_page_source())
+        Assert.equal(login_value, registered_domains_page.sell_on_escrow_auction_stage2_buyer_login_text())
+
+        registered_domains_page.sell_on_escrow_auction_stage2()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._add_escrow_transaction_result_text_field, u"Transakcja Escrow została rozpoczęta"))
+
+        escrow_auction_page = account_page.header.open_escrow_transactions_seller_list()
+
+        Assert.equal(registered_domains_page._first_domain_text_value, escrow_auction_page.first_auction_domain_name_text())
+        Assert.contains(price, escrow_auction_page.get_page_source())
+        Assert.equal(login_value, escrow_auction_page.first_auction_buyer_login_text())
+
+        escrow_auction_page.delete_all_escrow_auctions()
 
     def test_zz_generate_plot_and_send_email(self):
         self._save_plot()

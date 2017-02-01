@@ -311,7 +311,7 @@ class SmokeTest(unittest.TestCase):
         registered_domains_page.select_first_domain()
         registered_domains_page.renew_domain_automatically()
 
-        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Domena będzie automatycznie odnawiana od %s dni"%registered_domains_page._renew_automatically_start_from_value))
+        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Domena będzie automatycznie odnawiana od"))
         Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
 
     def test_renew_domain_manually_should_succeed(self):
