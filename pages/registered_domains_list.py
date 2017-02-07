@@ -120,7 +120,7 @@ class RegisteredDomainsListPage(BasePage):
     _sell_first_domain_button = (By.XPATH, "//button[6]")
     _sell_button = (By.XPATH, "//div[2]/div[2]/span[4]/a")
     _sell_on_auction_button = (By.XPATH, "//div[2]/span[4]/div/a[3]")
-    _add_on_marketplace_button = (By.XPATH, "//div[7]/div/div/div[4]/div")
+    _add_on_marketplace_button = (By.XPATH, "//div[2]/span[4]/div/a[2]")
     _sell_on_escrow_auction_button = (By.XPATH, "//div[2]/span[4]/div/a[4]")
     _sell_on_auction_first_domain_button = (By.XPATH, "//div[2]/div[6]/div[2]")
     _sell_on_auction_price_start_field = (By.NAME, "price_start")
@@ -161,7 +161,8 @@ class RegisteredDomainsListPage(BasePage):
     _sell_on_escrow_auction_description_button = (By.XPATH, "//label")
     _sell_on_escrow_auction_description_field = (By.XPATH, "//div/div[2]/div/div/div")
     _sell_on_escrow_auction_description_value = get_random_string(10) + " " + get_random_string(7) + " " + get_random_string(8)
-    _delete_auction_button = (By.XPATH, "//div[7]/div/button[7]")
+    _settings_button = (By.XPATH, "//div[2]/span[8]/a")
+    _delete_auction_button = (By.XPATH, "//div[2]/span[8]/div/a[5]")
     _delete_auction_accept_deletion_indicated_domains_checkbox = (
         By.XPATH, "//label/span[2]")
     _add_on_marketplace_first_domain_button = (By.XPATH, "//div[2]/div[6]/div")
@@ -171,16 +172,19 @@ class RegisteredDomainsListPage(BasePage):
     _add_on_marketplace_minimum_price_value = get_random_integer(1)
     _add_on_marketplace_currency_dropdown = (By.NAME, "currency")
     _add_on_marketplace_currency_index = randint(0, 3)
-    _add_on_marketplace_category_checkbox = (By.XPATH, "//div[8]/div[3]/div/label")
-    _add_on_marketplace_description_checkbox = (By.XPATH, "//div[3]/div[2]/label")
-    _add_on_marketplace_category_field = (By.XPATH, "//span[2]/input")
-    _add_on_marketplace_category_technology = (By.XPATH, "//span[2]/div/div[2]/div[4]")
-    _add_on_marketplace_category_technology_computers = (By.XPATH, "//span[2]/div/div[6]/div")
-    _add_on_marketplace_description_field = (By.XPATH, "//div[12]/div[3]/div/div/div")
+    _add_on_marketplace_category_checkbox = (By.XPATH, "//div[5]/div/div[2]/div/label")
+    _add_on_marketplace_description_checkbox = (By.XPATH, "//div[2]/div[2]/label")
+    _add_on_marketplace_category_field = (By.XPATH, "//div[6]/div/div[2]/div/input")
+    _add_on_marketplace_category_technology = (By.XPATH, "//div/div/div/div/a[4]")
+    _add_on_marketplace_category_technology_computers = (By.XPATH, "//div/div/div/div[5]/a")
+    _add_on_marketplace_description_field = (By.XPATH, "//div[9]/div/div[2]/div/div/div")
     _add_on_marketplace_description_value = get_random_string(10) + " " + get_random_string(15)
-    _add_on_marketplace_instalment_schema_dropdown = (By.XPATH, "//div[6]/div[3]/div/span/select")
-    _add_on_marketplace_lease_field = (By.XPATH, "//div[7]/div[3]/div/input")
+    _add_on_marketplace_instalment_schema_dropdown = (By.NAME, "hire")
+    _add_on_marketplace_lease_field = (By.NAME, "rental")
     _add_on_marketplace_lease_value = get_random_integer(2)
+    _search_for_auction_field = (By.NAME, "domain")
+    _search_for_auction_button = (By.XPATH, "//span/button")
+    _first_searched_auction_checkbox = (By.XPATH, "//td[4]/div/label/span")
     _back_from_results_page = (By.XPATH, "//button")
     _operation_successful_field = (By.XPATH, "//div/span")
 
@@ -441,6 +445,7 @@ class RegisteredDomainsListPage(BasePage):
         return self.get_text(self._sell_on_escrow_auction_stage2_buyer_login_field)
 
     def delete_auction(self):
+        self.click(self._settings_button)
         self.click(self._delete_auction_button)
         self.click(self._delete_auction_accept_deletion_indicated_domains_checkbox)
         self.click(self._submit_button)
@@ -468,6 +473,9 @@ class RegisteredDomainsListPage(BasePage):
 
     def select_fifth_domain(self):
         self.click(self._fifth_domain_checkbox)
+
+    def select_domain(self, domain_name):
+        self.click((By.PARTIAL_LINK_TEXT, domain_name))
 
     def add_on_marketplace(self):
         self.click(self._sell_button)
@@ -505,3 +513,10 @@ class RegisteredDomainsListPage(BasePage):
         self.click(self._move_to_other_account_settings_random)
         self.click(self._move_to_other_account_dont_send_results_radio)
         self.click(self._submit_button)
+
+    def search_for_auction(self, domain_name):
+        self.clear_field_and_send_keys(domain_name, self._search_for_auction_field)
+        self.click(self._search_for_auction_button)
+
+    def select_first_searched_auction(self):
+        self.click(self._first_searched_auction_checkbox)

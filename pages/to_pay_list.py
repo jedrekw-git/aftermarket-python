@@ -15,6 +15,7 @@ class ToPayList(BasePage):
     _remove_first_payment_button = (By.XPATH, "//td[9]/div/a/img")
     _first_payment_title = (By.XPATH, "//td[4]/div/label/span")
     _first_payment_type = (By.XPATH, "//td[5]/div")
+    _sumbit_first_payment_button = (By.XPATH, "//td[8]/div/img")
 
     def __init__(self, driver):
         super(ToPayList, self).__init__(driver, self._title)
@@ -28,3 +29,6 @@ class ToPayList(BasePage):
                 self.click(self._remove_first_payment_button)
             else:
                 break
+
+    def submit_first_payment(self):
+        self.click(self._sumbit_first_payment_button)

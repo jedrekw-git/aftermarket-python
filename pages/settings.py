@@ -135,7 +135,7 @@ class SettingsPage(BasePage):
     _change_DNS_servers_DNS1_field = (By.NAME, "ns1")
     _change_DNS_servers_DNS2_field = (By.NAME, "ns2")
     _change_DNS_servers_submit_button = (By.XPATH, "//div[2]/button")
-    _change_DNS_servers_operation_successful = (By.XPATH, "/html/body/div[7]/div/div/form/div[1]")
+    _change_DNS_servers_operation_successful = (By.XPATH, "//form/div/div")
     _new_DNS_profile_menu = (By.XPATH, "//a[contains(text(),'Zdefiniuj szablony wpisów DNS')]")
     _new_DNS_profile_button = (By.XPATH, "//button")
     _new_DNS_profile_name_field = (By.NAME, "name")

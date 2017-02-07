@@ -13,15 +13,15 @@ class EscrowAuctionBuyerListPage(BasePage):
     _title = "Escrow Auction Buyer List"
 
     _first_auction_domain_name_field = (By.XPATH, "//label/span")
-    _first_auction_buyer_status_field = (By.XPATH, "//td[3]/div/span")
-    _first_auction_price_field = (By.XPATH, "//div/span/b")
+    _first_auction_buyer_status_field = (By.XPATH, "//td[3]/div")
+    _first_auction_price_field = (By.XPATH, "//td[4]/div/b")
     _submit_button = (By.XPATH, "//button[2]")
     _back_from_results_page_button = (By.XPATH, "//div[3]/div/button")
-    _second_domain_field = (By.XPATH, "//tr[4]/td[2]/div/span/label/span")
-    _second_domain_status_field = (By.XPATH, "//tr[4]/td[3]/div/span")
-    _second_domain_price_field = (By.XPATH, "//tr[4]/td[4]/div/span/b")
+    _second_domain_field = (By.XPATH, "//tbody[2]/tr/td[2]/div/label/span")
+    _second_domain_status_field = (By.XPATH, "//tbody[2]/tr/td[3]/div")
+    _second_domain_price_field = (By.XPATH, "//tbody[2]/tr/td[4]/div/b")
     _search_field = (By.NAME, "domain")
-    _search_button = (By.XPATH, "//div[3]/button")
+    _search_button = (By.XPATH, "//button")
 
     def __init__(self, driver):
         super(EscrowAuctionBuyerListPage, self).__init__(driver, self._title)

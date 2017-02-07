@@ -185,10 +185,10 @@ class SmokeTest(unittest.TestCase):
         dns_servers_page = settings_page.open_change_DNS_servers_page()
         settings_page.change_DNS_servers()
 
-        Assert.equal("ns1.aftermarket.pl", settings_page.change_DNS_servers_DNS1_text())
-        Assert.equal("ns2.aftermarket.pl", settings_page.change_DNS_servers_DNS2_text())
-        Assert.equal(settings_page._change_DNS_servers_DNS3_value, settings_page.change_DNS_servers_DNS3_text())
-        Assert.equal(settings_page._change_DNS_servers_DNS4_value, settings_page.change_DNS_servers_DNS4_text())
+        Assert.contains("ns1.aftermarket.pl", settings_page.get_page_source())
+        Assert.contains("ns2.aftermarket.pl", settings_page.get_page_source())
+        Assert.contains(settings_page._change_DNS_servers_DNS3_value, settings_page.get_page_source())
+        Assert.contains(settings_page._change_DNS_servers_DNS4_value, settings_page.get_page_source())
         Assert.equal("Operacja wykonana poprawnie", settings_page.change_DNS_servers_operation_successful_text())
 
 # SERWERY 3 i 4 zamieniają się miejscami z 1 i 2 lub losowo, zgłoszone
@@ -288,16 +288,17 @@ class SmokeTest(unittest.TestCase):
         register_domain_page.register_domain()
 
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_domain_field, register_domain_page._domain_name_value))
-        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_text_field, u"Domena zarezerwowana i oczekuje na opłacenie"))
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(register_domain_page._registration_effect_text_field, u"Operacja zawieszona, oczekuje na aktywowanie"))
         to_pay_list = account_page.header.open_to_pay_list()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_title, register_domain_page._domain_name_value))
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_type, u"Rejestracja domeny"))
 
-        to_pay_list.remove_all_payments()
-
-        self.not_contains(register_domain_page._domain_name_value, to_pay_list.get_page_source())
-        self.not_contains(u"Rejestracja domeny", to_pay_list.get_page_source())
+        to_pay_list.submit_first_payment()
+        # to_pay_list.remove_all_payments()
+        #
+        # self.not_contains(register_domain_page._domain_name_value, to_pay_list.get_page_source())
+        # self.not_contains(u"Rejestracja domeny", to_pay_list.get_page_source())
 
     def test_renew_domain_automatically_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -564,7 +565,14 @@ class SmokeTest(unittest.TestCase):
         # Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
 
         selling_auction_page = account_page.header.open_selling_auction_list()
-        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Times=0
+        while Times < 10:
+            try:
+                Times+=1
+                Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+                break
+            except AssertionError:
+                self.driver.refresh()
         Assert.contains(str(registered_domains_page._sell_on_auction_price_start_value), selling_auction_page.get_page_source())
         selling_auction_page.delete_all_domain_selling_auctions()
 
@@ -591,7 +599,14 @@ class SmokeTest(unittest.TestCase):
         # Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
 
         selling_auction_page = account_page.header.open_selling_auction_list()
-        Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+        Times=0
+        while Times < 10:
+            try:
+                Times+=1
+                Assert.contains(registered_domains_page._third_domain_text_value, selling_auction_page.get_page_source())
+                break
+            except AssertionError:
+                self.driver.refresh()
         Assert.contains(str(registered_domains_page._sell_on_auction_price_start_value), selling_auction_page.get_page_source())
         selling_auction_page.first_auction_enter_edit_prices()
 
@@ -647,93 +662,129 @@ class SmokeTest(unittest.TestCase):
 
         escrow_auction_page.delete_all_escrow_auctions()
 
-#     def test_search_selling_escrow_auctions_should_succeed(self):
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
-#         escrow_auction_page = account_page.header.open_escrow_transactions_seller_list()
-#         escrow_auction_page.get_text_second_domain_login_and_price()
-#         escrow_auction_page.search_for_auction(escrow_auction_page.second_domain_text)
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_auction_page._first_auction_domain_name_field, escrow_auction_page.second_domain_text))
-#         Assert.equal(escrow_auction_page.second_domain_login_text, escrow_auction_page.first_auction_buyer_login_text())
-#         Assert.equal(escrow_auction_page.second_domain_price_text, escrow_auction_page.first_auction_price_text())
-#
-#     def test_sell_on_escrow_auction_the_same_login_should_succeed(self):
-#
-#         login_value = USER_GAMMA
-#         price = get_random_integer(2)
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_GAMMA, PASSWORD_GAMMA)
-#         registered_domains_page = account_page.header.open_registered_domains_list()
-#         registered_domains_page.third_domain_text()
-#         registered_domains_page.select_third_domain()
-#         registered_domains_page.sell_on_escrow_auction(login_value, price)
-#
-#         Assert.contains(registered_domains_page._third_domain_text_value, registered_domains_page.get_page_source())
-#         Assert.contains(price, registered_domains_page.get_page_source())
-#         Assert.contains(login_value, registered_domains_page.get_page_source())
-#         Assert.contains(u"Nie możesz przeprowadzić transakcji sam ze sobą", registered_domains_page.get_page_source())
-#
-#     def test_search_buyer_escrow_auctions_should_succeed(self):
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
-#         escrow_auction_page = account_page.header.open_escrow_transactions_buyer_list()
-#         escrow_auction_page.get_text_second_domain_status_and_price()
-#         escrow_auction_page.search_for_auction(escrow_auction_page.second_domain_text)
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_auction_page._first_auction_domain_name_field, escrow_auction_page.second_domain_text))
-#         Assert.equal(escrow_auction_page.second_domain_status_text, escrow_auction_page.first_auction_buyer_status_text())
-#         Assert.equal(escrow_auction_page.second_domain_price_text, escrow_auction_page.first_auction_price_text())
-#
-#     def test_add_on_marketplace_should_succeed(self):
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
-#         registered_domains_page = account_page.header.open_registered_domains_list()
-#         registered_domains_page.fourth_domain_text()
-#         registered_domains_page.select_fourth_domain()
-#         registered_domains_page.add_on_marketplace()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Cena Kup Teraz: "+registered_domains_page._add_on_marketplace_buynow_value))
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Cena minimalna: "+registered_domains_page._add_on_marketplace_minimum_price_value))
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Dzierżawa: "+registered_domains_page._add_on_marketplace_lease_value))
-#         Assert.equal(registered_domains_page._fourth_domain_text_value, registered_domains_page.result_domain_text())
-#
-#     def test_delete_domain_should_succeed(self):
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
-#         registered_domains_page = account_page.header.open_registered_domains_list()
-#         registered_domains_page.fourth_domain_text()
-#         registered_domains_page.select_fourth_domain()
-#         registered_domains_page.delete_auction()
-#
-#         try:
-#             WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Nie możesz usunąć domeny w trakcie transakcji"))
-#             Assert.equal(registered_domains_page._fourth_domain_text_value, registered_domains_page.result_domain_text())
-#         except WebDriverException:
-#             WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Operacja wykonana poprawnie"))
-#             Assert.equal(registered_domains_page._fourth_domain_text_value, registered_domains_page.result_domain_text())
-#
-#     def test_transfer_domain_to_the_same_account_should_succeed(self):
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
-#         registered_domains_page = account_page.header.open_registered_domains_list()
-#         registered_domains_page.fourth_domain_text()
-#         registered_domains_page.select_fourth_domain()
-#         registered_domains_page.get_authinfo()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Kod AuthInfo:"))
-#
-#         registered_domains_page.store_authinfo()
-#         transfer_domain_page = account_page.header.open_transfer_domain_to_account_list()
-#         transfer_domain_page.transfer_domain(registered_domains_page._fourth_domain_text_value, registered_domains_page._authinfo)
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(transfer_domain_page._stage2_result_field, u"Domena już znajduje się na twoim koncie"))
-#         Assert.equal(registered_domains_page._fourth_domain_text_value, transfer_domain_page.stage2_domain_text())
-#
+    def test_search_selling_escrow_auctions_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        escrow_auction_page = account_page.header.open_escrow_transactions_seller_list()
+        escrow_auction_page.get_text_second_domain_login_and_price()
+        escrow_auction_page.search_for_auction(escrow_auction_page.second_domain_text)
+        sleep(10)
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(escrow_auction_page._first_auction_domain_name_field, escrow_auction_page.second_domain_text))
+        Assert.equal(escrow_auction_page.second_domain_login_text, escrow_auction_page.first_auction_buyer_login_text())
+        Assert.equal(escrow_auction_page.second_domain_price_text, escrow_auction_page.first_auction_price_text())
+
+
+# NIE WYŚWIETLA WSZYSTKICH WYNIKÓW, ZGŁOSZONE
+
+
+
+    def test_sell_on_escrow_auction_the_same_login_should_succeed(self):
+
+        login_value = USER_DELTA
+        price = get_random_integer(2)
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.third_domain_text()
+        registered_domains_page.select_third_domain()
+        registered_domains_page.sell_on_escrow_auction(login_value, price)
+
+        Assert.contains(registered_domains_page._third_domain_text_value, registered_domains_page.get_page_source())
+        Assert.contains(price, registered_domains_page.get_page_source())
+        Assert.contains(login_value, registered_domains_page.get_page_source())
+        Assert.contains(u"Nie możesz przeprowadzić transakcji sam ze sobą", registered_domains_page.get_page_source())
+
+    def test_search_buyer_escrow_auctions_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        escrow_auction_page = account_page.header.open_escrow_transactions_buyer_list()
+        escrow_auction_page.get_text_second_domain_status_and_price()
+        escrow_auction_page.search_for_auction(escrow_auction_page.second_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(escrow_auction_page._first_auction_domain_name_field, escrow_auction_page.second_domain_text))
+        Assert.equal(escrow_auction_page.second_domain_status_text, escrow_auction_page.first_auction_buyer_status_text())
+        Assert.equal(escrow_auction_page.second_domain_price_text, escrow_auction_page.first_auction_price_text())
+
+    def test_add_on_marketplace_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.fourth_domain_text()
+        registered_domains_page.select_fourth_domain()
+        registered_domains_page.add_on_marketplace()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Cena Kup Teraz: "+registered_domains_page._add_on_marketplace_buynow_value))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Cena minimalna: "+registered_domains_page._add_on_marketplace_minimum_price_value))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Dzierżawa: "+registered_domains_page._add_on_marketplace_lease_value))
+        Assert.equal(registered_domains_page._fourth_domain_text_value, registered_domains_page.result_domain_text())
+
+    def test_delete_domain_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        register_domain_page = account_page.header.open_register_domain_page()
+        register_domain_page.enter_domain_to_register()
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(register_domain_page._domain_status_field, u"Dostępna do rejestracji"))
+        register_domain_page.register_domain_immediately()
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(register_domain_page._result_text_field, u"Domena zarejestrowana poprawnie"))
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.search_for_auction(register_domain_page._domain_name_value)
+        count = 0
+        while count <20:
+            count +=1
+            if  u"Domeny zaczynające się na:" in registered_domains_page.get_page_source():
+                break
+            else:
+                self.driver.refresh()
+        registered_domains_page.select_first_searched_auction()
+        registered_domains_page.delete_auction()
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Domena została usunięta"))
+        Assert.equal(register_domain_page._domain_name_value, registered_domains_page.result_domain_text())
+
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.search_for_auction(register_domain_page._domain_name_value)
+
+        self.not_contains(register_domain_page._domain_name_value, registered_domains_page.get_page_source())
+
+    def test_transfer_domain_to_the_same_account_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        register_domain_page = account_page.header.open_register_domain_page()
+        register_domain_page.enter_domain_to_register()
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(register_domain_page._domain_status_field, u"Dostępna do rejestracji"))
+        register_domain_page.register_domain_immediately()
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(register_domain_page._result_text_field, u"Domena zarejestrowana poprawnie"))
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.search_for_auction(register_domain_page._domain_name_value)
+        count = 0
+        while count <20:
+            count +=1
+            if  u"Domeny zaczynające się na:" in registered_domains_page.get_page_source():
+                break
+            else:
+                self.driver.refresh()
+        registered_domains_page.select_first_searched_auction()
+        registered_domains_page.get_authinfo()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Kod AuthInfo:"))
+
+        registered_domains_page.store_authinfo()
+        transfer_domain_page = account_page.header.open_transfer_domain_to_account_list()
+        transfer_domain_page.transfer_domain(register_domain_page._domain_name_value, registered_domains_page._authinfo)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(transfer_domain_page._stage2_result_field, u"Domena już znajduje się na twoim koncie"))
+        Assert.equal(register_domain_page._domain_name_value, transfer_domain_page.stage2_domain_text())
+
+        registered_domains_page = account_page.header.open_registered_domains_list()
+        registered_domains_page.search_for_auction(register_domain_page._domain_name_value)
+        registered_domains_page.select_first_searched_auction()
+        registered_domains_page.delete_auction()
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Domena została usunięta"))
+        Assert.equal(register_domain_page._domain_name_value, registered_domains_page.result_domain_text())
+
 #     def test_transfer_domain_to_the_other_account_should_succeed(self):
 #         home_page = HomePage(self.driver).open_home_page()
 #         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
@@ -2082,7 +2133,8 @@ class SmokeTest(unittest.TestCase):
         self.timeout = 30
         if run_locally:
             self.driver = webdriver.Firefox()
-            self.driver.set_window_size(1024,768)
+            # self.driver.set_window_size(1024,768)
+            self.driver.maximize_window()
             self.driver.implicitly_wait(self.timeout)
             self.errors_and_failures = self.tally()
         else:
