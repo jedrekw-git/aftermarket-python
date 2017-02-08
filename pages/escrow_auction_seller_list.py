@@ -22,9 +22,9 @@ class EscrowAuctionSellerListPage(BasePage):
     _submit_button = (By.XPATH, "//div[2]/button")
     _submit_confirm_button = (By.XPATH, "//div[3]/button")
     _back_from_results_page_button = (By.XPATH, "//button")
-    _second_domain_field = (By.XPATH, "//tbody[2]/tr/td[2]/div/label/span")
-    _second_domain_login_field = (By.XPATH, "//tbody[2]/tr/td[3]/div/span/a")
-    _second_domain_price_field = (By.XPATH, "//tbody[2]/tr/td[5]/div/b")
+    _first_domain_field = (By.XPATH, "//label/span")
+    _first_domain_login_field = (By.XPATH, "//td[3]/div/span/a")
+    _first_domain_price_field = (By.XPATH, "//td[5]/div/b")
     _search_field = (By.NAME, "domain")
     _search_button = (By.XPATH, "//span/div/button")
 
@@ -54,10 +54,10 @@ class EscrowAuctionSellerListPage(BasePage):
     def back_from_results_page(self):
         self.click(self._back_from_results_page_button)
 
-    def get_text_second_domain_login_and_price(self):
-        self.second_domain_text = self.get_text(self._second_domain_field)
-        self.second_domain_login_text = self.get_text(self._second_domain_login_field)
-        self.second_domain_price_text = self.get_text(self._second_domain_price_field)
+    def get_text_first_domain_login_and_price(self):
+        self.first_domain_text = self.get_text(self._first_domain_field)
+        self.first_domain_login_text = self.get_text(self._first_domain_login_field)
+        self.first_domain_price_text = self.get_text(self._first_domain_price_field)
 
     def search_for_auction(self, domain_name):
         self.clear_field_and_send_keys(domain_name, self._search_field)

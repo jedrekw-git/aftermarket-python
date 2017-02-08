@@ -136,7 +136,7 @@ class SmokeTest(unittest.TestCase):
         settings_page = account_page.header.open_settings_page()
         change_company_address_page = settings_page.open_change_company_data_page()
         settings_page.edit_company_address()
-
+        sleep(30)
         Assert.contains("Operacja wykonana poprawnie", settings_page.edit_company_data_operation_successful_text())
         Assert.contains(settings_page.edit_company_data_zip_text(), settings_page._change_company_data_zip_value)
         Assert.equal(settings_page._change_company_data_street_value, settings_page.edit_company_data_street_text())
@@ -144,7 +144,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_change_company_data_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER, PASSWORD)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         settings_page = account_page.header.open_settings_page()
         change_company_data_page = settings_page.open_change_company_data_page()
         settings_page.edit_company_data()
@@ -497,6 +497,9 @@ class SmokeTest(unittest.TestCase):
         self.not_contains(registered_domains_page._add_dns_entry_host_name_value, registered_domains_page.get_page_source())
         self.not_contains(registered_domains_page._add_dns_entry_address_value, registered_domains_page.get_page_source())
 
+# WRACA DO LISTY ZAREJESTROWANYCH DOMEN, zgłoszone
+
+
     def test_new_dns_server_in_domain_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
@@ -669,14 +672,14 @@ class SmokeTest(unittest.TestCase):
     def test_search_selling_escrow_auctions_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
         escrow_auction_page = account_page.header.open_escrow_transactions_seller_list()
-        escrow_auction_page.get_text_second_domain_login_and_price()
-        escrow_auction_page.search_for_auction(escrow_auction_page.second_domain_text)
-        sleep(10)
-        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(escrow_auction_page._first_auction_domain_name_field, escrow_auction_page.second_domain_text))
-        Assert.equal(escrow_auction_page.second_domain_login_text, escrow_auction_page.first_auction_buyer_login_text())
-        Assert.equal(escrow_auction_page.second_domain_price_text, escrow_auction_page.first_auction_price_text())
+        escrow_auction_page.get_text_first_domain_login_and_price()
+        escrow_auction_page.search_for_auction(escrow_auction_page.first_domain_text)
+
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(escrow_auction_page._first_auction_domain_name_field, escrow_auction_page.first_domain_text))
+        Assert.equal(escrow_auction_page.first_domain_login_text, escrow_auction_page.first_auction_buyer_login_text())
+        Assert.equal(escrow_auction_page.first_domain_price_text, escrow_auction_page.first_auction_price_text())
 
 
 # NIE WYŚWIETLA WSZYSTKICH WYNIKÓW, ZGŁOSZONE
@@ -726,6 +729,8 @@ class SmokeTest(unittest.TestCase):
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Dzierżawa: "+registered_domains_page._add_on_marketplace_lease_value))
         Assert.equal(registered_domains_page._fourth_domain_text_value, registered_domains_page.result_domain_text())
 
+    # BŁĄD BAZY DANYCH, zgłoszone
+
     def test_delete_domain_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
@@ -736,13 +741,7 @@ class SmokeTest(unittest.TestCase):
         WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(register_domain_page._result_text_field, u"Domena zarejestrowana poprawnie"))
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.search_for_auction(register_domain_page._domain_name_value)
-        count = 0
-        while count <20:
-            count +=1
-            if  u"Domeny zaczynające się na:" in registered_domains_page.get_page_source():
-                break
-            else:
-                self.driver.refresh()
+        registered_domains_page.wait_until_domain_is_visible()
         registered_domains_page.select_first_searched_auction()
         registered_domains_page.delete_auction()
         WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Domena została usunięta"))
@@ -763,13 +762,7 @@ class SmokeTest(unittest.TestCase):
         WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(register_domain_page._result_text_field, u"Domena zarejestrowana poprawnie"))
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.search_for_auction(register_domain_page._domain_name_value)
-        count = 0
-        while count <20:
-            count +=1
-            if  u"Domeny zaczynające się na:" in registered_domains_page.get_page_source():
-                break
-            else:
-                self.driver.refresh()
+        registered_domains_page.wait_until_domain_is_visible()
         registered_domains_page.select_first_searched_auction()
         registered_domains_page.get_authinfo()
 

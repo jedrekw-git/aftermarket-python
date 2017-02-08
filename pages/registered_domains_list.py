@@ -166,6 +166,7 @@ class RegisteredDomainsListPage(BasePage):
     _delete_auction_accept_deletion_indicated_domains_checkbox = (
         By.XPATH, "//label/span[2]")
     _add_on_marketplace_first_domain_button = (By.XPATH, "//div[2]/div[6]/div")
+    _add_on_marketplace_domain_available_for_sale_checkbox = (By.XPATH, "//div[3]/div/div[2]/div/label")
     _add_on_marketplace_buynow_field = (By.NAME, 'buynow')
     _add_on_marketplace_buynow_value = get_random_integer(2)
     _add_on_marketplace_minimum_price_field = (By.NAME, "minimum")
@@ -480,6 +481,7 @@ class RegisteredDomainsListPage(BasePage):
     def add_on_marketplace(self):
         self.click(self._sell_button)
         self.click(self._add_on_marketplace_button)
+        self.click(self._add_on_marketplace_domain_available_for_sale_checkbox)
         self.clear_field_and_send_keys(self._add_on_marketplace_buynow_value, self._add_on_marketplace_buynow_field)
         self.select_index_from_dropdown(self._add_on_marketplace_currency_index,
                                         self._add_on_marketplace_currency_dropdown)
@@ -517,6 +519,15 @@ class RegisteredDomainsListPage(BasePage):
     def search_for_auction(self, domain_name):
         self.clear_field_and_send_keys(domain_name, self._search_for_auction_field)
         self.click(self._search_for_auction_button)
+
+    def wait_until_domain_is_visible(self):
+        count = 0
+        while count <20:
+            count +=1
+            if  u"Domeny zaczynające się na:" in self.get_page_source():
+                break
+            else:
+                self.get_driver().refresh()
 
     def select_first_searched_auction(self):
         self.click(self._first_searched_auction_checkbox)
