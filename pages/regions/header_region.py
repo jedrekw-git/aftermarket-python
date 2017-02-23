@@ -44,6 +44,7 @@ class HeaderRegion(Page):
     _password_field = (By.NAME, "password")
     _login_button = (By.XPATH, "//div[4]/button")
     _base_url = HomePage._url
+    _settings_button = (By.XPATH, "//a[2]/div/img")
     _logout_button = (By.PARTIAL_LINK_TEXT, "Wyloguj")
     _remind_password_button = (By.XPATH, "//div[4]/div/a")
     _remind_password_login_field = (By.XPATH, "//div[2]/div/input")
@@ -61,6 +62,7 @@ class HeaderRegion(Page):
         return AccountPage(self.get_driver())
 
     def logout(self):
+        self.click(self._settings_button)
         self.click(self._logout_button)
 
     def remind_password(self, login):

@@ -14,17 +14,21 @@ class TransferDomainToAccountList(BasePage):
 
     _add_new_domain_transfer_button = (By.XPATH, "//button")
     _submit_button = (By.XPATH, "//div[2]/button")
+    _submit_confirm_button = (By.XPATH, "/html/body/div[10]/div/div[3]/button[1]")
+    _transfer_submit_button = (By.XPATH, "//div[12]/div/div[2]/div[2]/button")
     _domain_name_field = (By.NAME, "domain")
     _authinfo_code_field = (By.NAME, "authinfo")
     _renew_1_year_radio = (By.XPATH, "//div[5]/div/div[2]/div/label[2]")
     _renew_without_renewal_radio = (By.XPATH, "//div[5]/div/div[2]/div/label")
     _stage2_result_field = (By.XPATH, "//label/div")
+    _stage3_result_field = (By.XPATH, "//td[3]")
     _stage2_domain_name_field = (By.XPATH, "//td[2]/div/label/span")
     _stage2_change_DNS_servers_radio = (By.XPATH, "//label[2]/span[2]")
     _stage2_change_DNS_servers_dropdown = (By.NAME, "dns")
     _stage2_change_DNS_servers_index = randint(1, 5)
     _delete_first_transfer_domain_name_field = (By.XPATH, "//td[3]/div/span/label/span")
-    _delete_first_transfer_delete_button = (By.XPATH, "//td/div/button")
+    _delete_first_transfer_delete_button = (By.XPATH, "//td[6]/div/a/img")
+    _back_from_results_page_button = (By.XPATH, "//button")
 
     def __init__(self, driver):
         super(TransferDomainToAccountList, self).__init__(driver, self._title)
@@ -49,14 +53,22 @@ class TransferDomainToAccountList(BasePage):
     def stage2_result_text(self):
         return self.get_text(self._stage2_result_field)
 
-    def stage2_change_dns_servers(self):
+    def stage2_change_dns_servers_and_submit(self):
         self.click(self._stage2_change_DNS_servers_radio)
         self.select_index_from_dropdown(self._stage2_change_DNS_servers_index, self._stage2_change_DNS_servers_dropdown)
+        self.click(self._transfer_submit_button)
+        sleep(1)
+        self.click(self._submit_confirm_button)
 
-    def submit_and_accept_alert(self):
-        self.click(self._submit_button)
-        self.accept_alert()
-
-    def cancel_first_domain_transfer(self):
-        self.click(self._delete_first_transfer_domain_name_field)
-        self.click(self._delete_first_transfer_delete_button)
+    def cancel_all_domain_transfers(self):
+        while True:
+            if "/assets/img/table/delete.svg" in self.get_page_source():
+                self.click(self._delete_first_transfer_delete_button)
+                WebDriverWait(self.get_driver(), 30).until(EC.text_to_be_present_in_element(self._stage2_result_field, u"Transfer zostanie anulowany"))
+                self.click(self._submit_button)
+                sleep(1)
+                self.click(self._submit_confirm_button)
+                WebDriverWait(self.get_driver(), 30).until(EC.text_to_be_present_in_element(self._stage3_result_field, u"Transfer domeny został anulowany"))
+                self.click(self._back_from_results_page_button)
+            else:
+                break

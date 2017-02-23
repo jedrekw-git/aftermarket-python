@@ -13,23 +13,25 @@ from pages.home import HomePage
 class RegisteredOptionsListPage(BasePage):
     _title = "Registered options"
 
-    _first_option_checkbox = (By.XPATH, "//td[3]/div/span/label/span")
-    _second_option_checkbox = (By.XPATH, "//tr[8]/td[3]/div/span/label/span")
-    _third_option_checkbox = (By.XPATH, "//tr[11]/td[3]/div/span/label/span")
-    _renew_first_option_button = (By.XPATH, "//button[2]")
-    _change_profile_data_button = (By.XPATH, "//div[7]/div/button[2]")
-    _stage2_result_field = (By.XPATH, "//td[3]/label/span")
-    _stage2_option_name_field = (By.XPATH, "//td[2]/label/span")
+    _first_option_checkbox = (By.XPATH, "//div/label/span")
+    _second_option_checkbox = (By.XPATH, "//tbody[2]/tr/td[3]/div/label/span")
+    _third_option_checkbox = (By.XPATH, "//tbody[3]/tr/td[3]/div/label/span")
+    _renew_first_option_button = (By.XPATH, "//td/div/span[2]")
+    _change_profile_data_button = (By.XPATH, "//tr[3]/td/div/span")
+    _change_profile_data_dropdown = (By.NAME, "id")
+    _change_profile_data_dropdown_index = randint(1,7)
+    _stage2_result_field = (By.XPATH, "//label/div")
+    _stage2_option_name_field = (By.XPATH, "//td[2]/div/label/span")
     _submit_button = (By.XPATH, "//div[2]/button")
     _confirmation_alert_yes = (By.XPATH, "//div[3]/button")
-    _result_domain_name_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[2]/span")
-    _result_text_field = (By.XPATH, "/html/body/div[7]/div/div/form/div[2]/table/tbody/tr[1]/td[3]")
+    _result_domain_name_field = (By.XPATH, "//div/span")
+    _result_text_field = (By.XPATH, "//td[3]")
     _transfer_first_option_button = (By.XPATH, "//button[4]")
-    _transfer_button = (By.XPATH, "//div[7]/div/button[4]")
-    _transfer_option_login_field = (By.XPATH, "//div[3]/div/input")
+    _transfer_button = (By.XPATH, "//tbody[3]/tr[3]/td/div/span[4]")
+    _transfer_option_login_field = (By.NAME, "login")
     _transfer_list_first_option_field = (By.XPATH, "//td[3]/div/span/label/span")
     _transfer_list_first_option_cancel_button = (By.XPATH, "//td/div/button")
-    _get_option_authinfo_button = (By.XPATH, "//div[7]/div/button[3]")
+    _get_option_authinfo_button = (By.XPATH, "//tbody[3]/tr[3]/td/div/span[3]")
     _second_stage_send_email_after_oparation_radio = (By.XPATH, "//label/span[2]")
     _second_stage_stop_realization_until_manual_activation_radio = (By.XPATH, "//div[4]/div/div[2]/div/label[2]/span[2]")
     _back_from_results_page = (By.XPATH, "//button")
@@ -50,6 +52,7 @@ class RegisteredOptionsListPage(BasePage):
     def change_option_profile_data(self):
         self.click(self._first_option_checkbox)
         self.click(self._change_profile_data_button)
+        self.select_index_from_dropdown(self._change_profile_data_dropdown_index, self._change_profile_data_dropdown)
         self.click(self._submit_button)
 
     def renew_option(self):
@@ -98,7 +101,6 @@ class RegisteredOptionsListPage(BasePage):
         self._option_authinfo = self._result_text[14:]
 
     def second_stage_checkboxes_and_submit(self):
-        self.click(self._second_stage_send_email_after_oparation_radio)
         self.click(self._second_stage_stop_realization_until_manual_activation_radio)
         self.click(self._submit_button)
         self.click(self._confirmation_alert_yes)

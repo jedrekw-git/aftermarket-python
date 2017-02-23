@@ -12,10 +12,10 @@ from random import randint
 class ExpiredOptionsList(BasePage):
     _title = "Expired Options List"
 
-    _sixth_option_value = (By.XPATH, "//tr[19]/td[2]/div/span/label/span")
-    _first_option_value = (By.XPATH, "//label/span")
+    _sixth_option_value = (By.XPATH, "//tbody[6]/tr/td[3]/div/label/span")
+    _first_option_value = (By.XPATH, "//div/label/span")
     _search_field = (By.NAME, "domain")
-    _search_button_submit = (By.XPATH, "//div[3]/button")
+    _search_button_submit = (By.XPATH, "//button")
 
     def __init__(self, driver):
         super(ExpiredOptionsList, self).__init__(driver, self._title)
