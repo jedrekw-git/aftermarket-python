@@ -792,7 +792,7 @@ class SmokeTest(unittest.TestCase):
     def setUp(self):
         self.timeout = 30
         if run_locally:
-            self.driver = webdriver.Chrome("/usr/bin/chromedriver")
+            self.driver = webdriver.Chrome("/usr/local/share/chromedriver")
             # fp = webdriver.FirefoxProfile()
             # fp.set_preference("browser.startup.homepage", "about:blank")
             # fp.set_preference("startup.homepage_welcome_url", "about:blank")
