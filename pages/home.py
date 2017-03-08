@@ -1,10 +1,11 @@
 # coding=utf-8
 from pages.base import BasePage
-
+from time import sleep
+from selenium.webdriver.common.by import By
 
 class HomePage(BasePage):
     _title = "Strona główna"
-    _url = "http://devel:miodzio@www.testy.aftermarket2.pl/"
+    _url = "https://devel:miodzio@testy.aftermarket2.pl/"
 
     def __init__(self, driver):
         super(HomePage, self).__init__(driver, self._title, self._url)

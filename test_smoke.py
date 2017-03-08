@@ -2116,10 +2116,11 @@ class SmokeTest(unittest.TestCase):
     def setUp(self):
         self.timeout = 30
         if run_locally:
-            self.driver = webdriver.Firefox()
-            # self.driver.set_window_size(1024,768)
-            self.driver.maximize_window()
-            self.driver.implicitly_wait(self.timeout)
+            self.driver = webdriver.Chrome('C:\BACKUP 2017-01\gecko\chromedriver.exe')
+            # self.driver = webdriver.Firefox()
+            self.driver.set_window_size(1024,768)
+            # self.driver.maximize_window()
+            # self.driver.implicitly_wait(self.timeout)
             self.errors_and_failures = self.tally()
         else:
             self.desired_capabilities['name'] = self.id()
