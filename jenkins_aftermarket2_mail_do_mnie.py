@@ -669,7 +669,8 @@ class SmokeTest(unittest.TestCase):
             # fp.set_preference("toolkit.telemetry.reportingpolicy.firstRun", "false")
             # binary = FirefoxBinary('/__stare/firefox45/firefox')
             # self.driver = webdriver.Firefox(firefox_binary=binary, firefox_profile=fp)
-            self.driver = webdriver.Chrome("/usr/local/share/chromedriver")
+            sr_args = ["--verbose", "--log-path=chromedriver.log"]
+            self.driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", service_args=sr_args )
             self.driver.set_window_size(1024,768)
             # self.driver.implicitly_wait(self.timeout)
             self.errors_and_failures = self.tally()
