@@ -670,7 +670,10 @@ class SmokeTest(unittest.TestCase):
             # binary = FirefoxBinary('/__stare/firefox45/firefox')
             # self.driver = webdriver.Firefox(firefox_binary=binary, firefox_profile=fp)
             sr_args = ["--verbose", "--log-path=chromedriver.log"]
-            self.driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", service_args=sr_args )
+            from selenium.webdriver.chrome.options import Options
+            opts = Options()
+            opts.binary_location = "/usr/bin/chromium-browser"
+            self.driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", service_args=sr_args, chrome_options=opts)
             self.driver.set_window_size(1024,768)
             # self.driver.implicitly_wait(self.timeout)
             self.errors_and_failures = self.tally()
