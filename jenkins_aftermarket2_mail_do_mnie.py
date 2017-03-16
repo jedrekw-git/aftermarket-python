@@ -673,7 +673,7 @@ class SmokeTest(unittest.TestCase):
             from selenium.webdriver.chrome.options import Options
             opts = Options()
             opts.binary_location = "/usr/bin/chromium-browser"
-            self.driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", service_args=sr_args, chrome_options=opts)
+            self.driver = webdriver.Chrome(executable_path="/usr/local/share/chromedriver", service_args=sr_args, chrome_options=opts)
             self.driver.set_window_size(1024,768)
             # self.driver.implicitly_wait(self.timeout)
             self.errors_and_failures = self.tally()
