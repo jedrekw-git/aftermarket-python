@@ -2116,7 +2116,8 @@ class SmokeTest(unittest.TestCase):
     def setUp(self):
         self.timeout = 30
         if run_locally:
-            self.driver = webdriver.Chrome('C:\BACKUP 2017-01\gecko\chromedriver.exe')
+            sr_args = ["--verbose", "--log-path=chromedriver.log"]
+            self.driver = webdriver.Chrome(executable_path='C:\BACKUP 2017-01\gecko\chromedriver.exe',  service_args=sr_args)
             # self.driver = webdriver.Firefox()
             self.driver.set_window_size(1024,768)
             # self.driver.maximize_window()
