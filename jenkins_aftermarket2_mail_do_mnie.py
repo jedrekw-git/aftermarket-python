@@ -677,7 +677,8 @@ class SmokeTest(unittest.TestCase):
             opts.add_argument("--no-default-browser-check") #Overrides default choices
             opts.add_argument("--no-first-run")
             opts.add_argument("--disable-default-apps")
-            self.driver = webdriver.Chrome(executable_path="/usr/lib/chromium-browser/chromedriver", service_args=sr_args, chrome_options=opts)
+            # self.driver = webdriver.Chrome(executable_path="/usr/lib/chromium-browser/chromedriver", service_args=sr_args, chrome_options=opts)
+            self.driver = webdriver.Chrome(service_args=sr_args, chrome_options=opts)
             self.driver.set_window_size(1024,768)
             # self.driver.implicitly_wait(self.timeout)
             self.errors_and_failures = self.tally()
