@@ -672,7 +672,7 @@ class SmokeTest(unittest.TestCase):
             sr_args = ["--verbose", "--log-path=chromedriver.log"]
             from selenium.webdriver.chrome.options import Options
             opts = Options()
-            opts.binary_location = "/usr/lib/chromium-browser"
+            opts.binary_location = "/usr/lib/chromium-browser/chromium-browser"
             opts.add_argument("--no-sandbox") #This make Chromium reachable
             opts.add_argument("--no-default-browser-check") #Overrides default choices
             opts.add_argument("--no-first-run")
