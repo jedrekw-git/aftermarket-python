@@ -37,6 +37,7 @@ from pages.domain_catalog_list import DomainCatalogList
 from pages.appraisal_list import AppraisalListPage
 from pages.active_appraisals_list import ActiveAppraisalsListPage
 from pages.home import HomePage
+from time import sleep
 
 class HeaderRegion(Page):
     _login_menu = (By.XPATH, "//button[3]")
@@ -55,6 +56,7 @@ class HeaderRegion(Page):
 
     def login(self, login, password):
         self.click(self._login_menu)
+        sleep(5)
         self.send_keys(login, self._login_field)
         self.send_keys(password, self._password_field)
         self.click(self._login_button)
