@@ -508,7 +508,7 @@ class SettingsPage(BasePage):
 
     def delete_all_profiles(self):
         while True:
-            if "/assets/img/table/delete.svg" in self.get_page_source():
+            if "https://assets-testy.aftermarket2.pl//img/table/icon/delete.svg" in self.get_page_source():
                 self.click(self._new_DNS_profile_delete_first_profile)
                 self.click(self._new_DNS_profile_delete_first_profile_confirm)
                 WebDriverWait(self.get_driver(), 15).until(EC.text_to_be_present_in_element(self._confirmation_result_text, u"Szablon DNS został usunięty"))

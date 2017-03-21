@@ -29,7 +29,7 @@ class Page(object):
 
     def wait_for_visibility(self, locator, timeout=10):
         return WebDriverWait(self.get_driver(), timeout).until(
-            expected_conditions.visibility_of_element_located(locator)
+            EC.visibility_of_element_located(locator)
         )
 
     def hit_enter(self, element):
