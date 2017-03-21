@@ -39,8 +39,7 @@ class RegisteredDomainsListPage(BasePage):
     _second_stage_send_email_after_oparation_radio = (By.XPATH, "//label/span[2]")
     _second_stage_stop_realization_until_manual_activation_radio = (By.XPATH, "//div[5]/div/div[2]/div/label[2]/span[2]")
     _second_stage_stop_realization_until_manual_activation_radio2 = (By.XPATH, "//div[4]/div/div[2]/div/label[2]/span[2]")
-    _second_stage_submit_button = (By.XPATH, "//div[6]/div/div[2]/div[2]/button")
-    _second_stage_submit_button = (By.XPATH, "//div[6]/div/div[2]/div[2]/button")
+    _second_stage_submit_button = (By.XPATH, "//button[@type='submit']")
     _second_stage_submit_confirm_button = (By.XPATH, "//div[3]/button")
     _result_domain_name_field = (By.XPATH, "//div/span")
     _result_text_field = (By.XPATH, "//td[3]")
@@ -84,7 +83,7 @@ class RegisteredDomainsListPage(BasePage):
     _change_dns_profile_dropdown = (By.XPATH, "//select")
     _change_dns_profile_dont_sent_results_after_operation_radio = (
         By.XPATH, "//label[2]/span[2]")
-    _redirect_button_for_selected_domain = (By.XPATH, "//td/div/span[3]/a")
+    _redirect_button_for_selected_domain = (By.XPATH, "//span[3]/span")
     _set_dns_entries_button = (By.XPATH, "//span[3]/div/a[4]")
     _add_dns_entry_button = (By.XPATH, "//button[2]")
     _add_dns_entry_host_name_field = (By.NAME, "host")
@@ -105,14 +104,17 @@ class RegisteredDomainsListPage(BasePage):
     _new_dns_server_in_domain_ip_field = (By.NAME, "ip1")
     _new_dns_server_in_domain_ip_value = "192." + get_random_integer(2) + "." + get_random_integer(1) + "." + get_random_integer(1)
     _new_dns_server_in_domain_name_result = (By.XPATH, "//label")
-    _delete_first_dns_server = (By.XPATH, "//td/div/span[2]")
+    _delete_first_dns_server = (By.XPATH, "//td/div/a[2]")
     _parking_button_first_domain = (By.XPATH, "//td/div/span[4]/a")
+    _parking_button = (By.XPATH, "//a[contains(text(),'Parkuj')]")
     _change_parking_service_button_first_domain = (By.XPATH, "//span[4]/div/a[2]")
+    _change_parking_service_button = (By.XPATH, "//div[2]/div[2]/span[6]/div/a[2]")
     _change_parking_service_redirect_domains_to_dns_server_checkbox = (
         By.XPATH, "//label/span[2]")
     _change_parking_service_send_email_after_oparation_radio = (
         By.XPATH, "//div[4]/div/div[2]/div/label/span[2]")
     _change_keyword_button_first_domain = (By.XPATH, "//span[4]/div/a[3]")
+    _change_keyword_button = (By.XPATH, "//div[2]/div[2]/span[6]/div/a[3]")
     _change_keyword_field = (By.NAME, "keyword")
     _change_keyword_value = get_random_string(10)
     _change_keyword_send_email_after_operation = (
@@ -133,11 +135,11 @@ class RegisteredDomainsListPage(BasePage):
     _sell_on_auction_end_time_index = randint(1, 22)
     _sell_on_auction_minimal_price_checkbox = (By.XPATH, "//div[5]/div/div[2]/div/label")
     _sell_on_auction_buy_now_price_checkbox = (By.XPATH, "//div[2]/div[2]/label")
-    _sell_on_auction_auction_description_checkbox = (
+    _sell_on_auction_auction_description_label = (
         By.XPATH, "//div[3]/label")
-    _sell_on_auction_category_field = (By.XPATH, "//div[11]/div/div[2]/div/input")
-    _sell_on_auction_category_technology = (By.XPATH, "//div/div/div/div/a[4]")
-    _sell_on_auction_category_technology_computers = (By.XPATH, "//div/div/div/div[5]/a")
+    _sell_on_auction_category_field = (By.XPATH, "(//input[@value=''])[5]")
+    _sell_on_auction_category_technology = (By.LINK_TEXT, "Technologia »")
+    _sell_on_auction_category_technology_computers = (By.LINK_TEXT, "Komputery")
     _sell_on_auction_price_minimum_field = (By.NAME, "price_minimum")
     _sell_on_auction_price_minimum_value = randint(21, 40)
     _sell_on_auction_price_buynow_field = (By.NAME, "price_buynow")
@@ -147,7 +149,7 @@ class RegisteredDomainsListPage(BasePage):
     _sell_on_auction_stage2_domain_name_field = (By.XPATH, "//div/span")
     _sell_on_auction_stage2_description_field = (By.XPATH, "//div[7]/div/div[2]/div/p")
     _sell_on_auction_stage2_stop_until_manual_activation_radio = (By.XPATH, "//label[2]/span[2]")
-    _sell_on_auction_stage2_realize_immediately_radio = (By.CSS_SELECTOR, "label.radio > span.desktop")
+    _sell_on_auction_stage2_realize_immediately_radio = (By.XPATH, '//label[1]/span[2]')
     _sell_on_auction_stage2_dont_send_email_radio = (By.XPATH, "//div[11]/div/div[2]/div/label[2]/span[2]")
     _sell_on_auction_stage2_submit_button = (By.XPATH, "//button[@type='submit']")
     _sell_on_auction_stage2_realize_button = (By.XPATH, "//td[4]/img")
@@ -157,7 +159,7 @@ class RegisteredDomainsListPage(BasePage):
     _sell_on_escrow_auction_days_to_pay_dropdown = (By.NAME, "days")
     _sell_on_escrow_auction_days_to_pay_index = randint(0, 7)
     _sell_on_escrow_auction_stage2_buyer_login_field = (
-        By.XPATH, "//div[3]/div/div[2]/div/span")
+        By.XPATH, "//span/a")
     _sell_on_escrow_auction_description_button = (By.XPATH, "//label")
     _sell_on_escrow_auction_description_field = (By.XPATH, "//div/div[2]/div/div/div")
     _sell_on_escrow_auction_description_value = get_random_string(10) + " " + get_random_string(7) + " " + get_random_string(8)
@@ -276,6 +278,7 @@ class RegisteredDomainsListPage(BasePage):
         self.click(self._change_dns_servers_dropdown)
         self._change_dns_servers_dropdown_option_text = self.get_text(self._change_dns_servers_dropdown_option)
         self.click(self._change_dns_servers_dropdown_option)
+        self.get_driver().execute_script("window.scrollTo(2700, 500);")
         # self.select_index_from_dropdown(self._change_dns_servers_dropdown_index, self._change_dns_servers_dropdown)
         self.click(self._change_dns_servers_dont_send_email_after_operation_radio)
         self.click(self._submit_button)
@@ -328,6 +331,7 @@ class RegisteredDomainsListPage(BasePage):
         self.click(self._add_dns_entry_button)
         self.clear_field_and_send_keys(self._add_dns_entry_host_name_value, self._add_dns_entry_host_name_field)
         self.select_index_from_dropdown(1, self._add_dns_entry_type_dropdown)
+        sleep(2)
         self.clear_field_and_send_keys(self._add_dns_entry_priority_value, self._add_dns_entry_priority_field)
         self.clear_field_and_send_keys(self._add_dns_entry_address_value, self._add_dns_entry_address_field)
         self.click(self._submit_button)
@@ -368,16 +372,16 @@ class RegisteredDomainsListPage(BasePage):
                 self.click(self._back_from_results_page)
 
     def change_parking_service(self):
-        self.click(self._parking_button_first_domain)
-        self.click(self._change_parking_service_button_first_domain)
+        self.click(self._parking_button)
+        self.click(self._change_parking_service_button)
         sleep(2)
         self.click(self._change_parking_service_redirect_domains_to_dns_server_checkbox)
         self.click(self._change_parking_service_send_email_after_oparation_radio)
         self.click(self._submit_button)
 
     def change_keyword(self):
-        self.click(self._parking_button_first_domain)
-        self.click(self._change_keyword_button_first_domain)
+        self.click(self._parking_button)
+        self.click(self._change_keyword_button)
         self.clear_field_and_send_keys(self._change_keyword_value, self._change_keyword_field)
         self.click(self._change_keyword_send_email_after_operation)
         self.click(self._submit_button)
@@ -391,9 +395,9 @@ class RegisteredDomainsListPage(BasePage):
         self.select_index_from_dropdown(self._sell_on_auction_end_time_index, self._sell_on_auction_end_time_field)
         self.click(self._sell_on_auction_minimal_price_checkbox)
         self.click(self._sell_on_auction_buy_now_price_checkbox)
-        self.click(self._sell_on_auction_auction_description_checkbox)
+        self.click(self._sell_on_auction_auction_description_label)
+        self.get_driver().execute_script("window.scrollTo(2700, 620);")
         self.click(self._sell_on_auction_category_field)
-        sleep(2)
         self.click(self._sell_on_auction_category_technology)
         self.click(self._sell_on_auction_category_technology_computers)
         if _element_is_visible(self.find_element(self._sell_on_auction_price_minimum_field)):
@@ -407,7 +411,8 @@ class RegisteredDomainsListPage(BasePage):
             self.clear_field_and_send_keys(self._sell_on_auction_description_value, self._sell_on_auction_description_field)
         else:
             self.get_driver().execute_script("window.scrollTo(2700, 100);")
-            self.click(self._sell_on_auction_auction_description_checkbox)
+            self.click(self._sell_on_auction_auction_description_label)
+            sleep(1)
             self.clear_field_and_send_keys(self._sell_on_auction_description_value, self._sell_on_auction_description_field)
         self.click(self._submit_button)
 
@@ -418,9 +423,10 @@ class RegisteredDomainsListPage(BasePage):
         return self.get_text(self._sell_on_auction_stage2_description_field)
 
     def sell_on_auction_submit(self):
+        self.get_driver().execute_script("window.scrollTo(2700, 720);")
         self.click(self._sell_on_auction_stage2_realize_immediately_radio)
         # self.click(self._sell_on_auction_stage2_stop_until_manual_activation_radio)
-        self.click(self._sell_on_auction_stage2_dont_send_email_radio)
+        # self.click(self._sell_on_auction_stage2_dont_send_email_radio)
         self.click(self._sell_on_auction_stage2_submit_button)
         self.click(self._second_stage_submit_confirm_button)
         if "Operacja zawieszona, oczekuje na aktywowanie" in self.get_page_source():

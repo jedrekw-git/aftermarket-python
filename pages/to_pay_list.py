@@ -12,10 +12,11 @@ from random import randint
 class ToPayList(BasePage):
     _title = "To Pay List"
 
-    _remove_first_payment_button = (By.XPATH, "//td[9]/div/a/img")
+    _remove_first_payment_button = (By.XPATH, "//td[9]/div/img")
     _first_payment_title = (By.XPATH, "//td[4]/div/label/span")
     _first_payment_type = (By.XPATH, "//td[5]/div")
     _sumbit_first_payment_button = (By.XPATH, "//td[8]/div/img")
+    _change_tab_renew_button = (By.XPATH, "//div/div/div/div[3]")
 
     def __init__(self, driver):
         super(ToPayList, self).__init__(driver, self._title)
@@ -25,10 +26,13 @@ class ToPayList(BasePage):
 
     def remove_all_payments(self):
         while True:
-            if "/assets/img/table/delete.svg" in self.get_page_source():
+            if "https://assets-testy.aftermarket2.pl//img/table/icon/delete.svg" in self.get_page_source():
                 self.click(self._remove_first_payment_button)
             else:
                 break
 
     def submit_first_payment(self):
         self.click(self._sumbit_first_payment_button)
+
+    def change_tab_renew(self):
+        self.click(self._change_tab_renew_button)

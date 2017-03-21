@@ -28,7 +28,7 @@ class TransferDomainFromAccountList(BasePage):
 
     def cancel_all_domain_transfers_from_account(self):
         while True:
-            if "/assets/img/table/delete.svg" in self.get_page_source():
+            if "https://assets-testy.aftermarket2.pl//img/table/icon/delete.svg" in self.get_page_source():
                 self.click(self._delete_first_transfer_delete_button)
                 WebDriverWait(self.get_driver(), 30).until(EC.text_to_be_present_in_element(self._stage2_result_field, u"Transfer zostanie anulowany"))
                 self.click(self._submit_button)

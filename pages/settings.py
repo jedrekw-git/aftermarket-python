@@ -30,13 +30,13 @@ class SettingsPage(BasePage):
     _change_email_notification_settings_send_only_indicated_button = (By.XPATH, "//label[2]")
     _change_email_notification_settings_about_account_condition_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o stanie konta ')])")
     _change_email_notification_settings_about_domain_condition_change_checkbox = (By.XPATH, "//label[17]/b")
-    _change_email_notification_settings_about_option_condition_change_checkbox = (By.XPATH, "//label[26]/b")
+    _change_email_notification_settings_about_option_condition_change_checkbox = (By.XPATH, "//label[27]/b")
     _change_email_notification_settings_about_catching_domains_checkbox = (By.XPATH, "//label[42]/b")
-    _change_email_notification_settings_about_purchase_at_auction_checkbox = (By.XPATH, "//label[52]/b")
-    _change_email_notification_settings_about_purchase_at_escrow_checkbox = (By.XPATH, "//label[60]/b")
-    _change_email_notification_settings_about_sale_at_auction_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o sprzedaży na aukcjach ')])")
-    _change_email_notification_settings_about_sale_at_escrow_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o sprzedaży w transakcji Escrow ')])")
-    _change_email_notification_settings_about_made_operations_checkbox = (By.XPATH, "(//b[contains(text(),'Powiadomienia o wykonanych operacjach ')])")
+    _change_email_notification_settings_about_purchase_at_auction_checkbox = (By.XPATH, "//label[56]/b")
+    _change_email_notification_settings_about_purchase_at_escrow_checkbox = (By.XPATH, "//label[64]/b")
+    _change_email_notification_settings_about_sale_at_auction_checkbox = (By.XPATH, "//label[78]/b")
+    _change_email_notification_settings_about_sale_at_escrow_checkbox = (By.XPATH, "//label[86]/b")
+    _change_email_notification_settings_about_made_operations_checkbox = (By.XPATH, "//label[95]/b")
     _change_email_notification_settings_save_button = (By.XPATH, "//div[2]/button")
     _change_newsletter_settings_button = (By.PARTIAL_LINK_TEXT, u"Wyłącz otrzymywanie newsletterów")
     _change_newsletter_settings_overall_checkbox = (By.XPATH, "//label/b")
@@ -44,7 +44,7 @@ class SettingsPage(BasePage):
     _change_newsletter_settings_according_to_catching_domains_checkbox = (By.XPATH, "(//b[contains(text(),'Newslettery związane z przechwytywaniem domen')])")
     _change_newsletter_settings_according_to_watched_domains_checkbox = (By.XPATH, "(//b[contains(text(),'Newslettery związane z obserwowanymi domenami')])")
     _change_newsletter_settings_save_button = (By.XPATH, "//div[2]/button")
-    _add_email_address_menu = (By.PARTIAL_LINK_TEXT, u"Zmień lub dodaj adres email")
+    _add_email_address_menu = (By.PARTIAL_LINK_TEXT, u"Zmień lub dodaj adres e-mail")
     _add_email_address_button = (By.XPATH, "//button")
     _add_email_address_field = (By.NAME, "email")
     _add_email_address_value = "zz"+get_random_string(7)+"@ijasdnjiasnd.pl"
@@ -80,11 +80,12 @@ class SettingsPage(BasePage):
     _add_other_user_management_of_option_transfers_to_account_checkbox = (By.XPATH, "(//b[contains(text(),'Zarządzanie transferami opcji na konto ')])")
     _add_other_user_management_of_option_transfers_from_account_checkbox = (By.XPATH, "(//b[contains(text(),'Zarządzanie transferami opcji z konta ')])")
     _add_other_user_change_account_settings_checkbox = (By.XPATH, "(//b[contains(text(),'Zmiana ustawień konta ')])")
-    _add_other_user_management_of_email_addresses_checkbox = (By.XPATH, "(//b[contains(text(),'Zarządzanie adresami email ')])")
+    _add_other_user_management_of_email_addresses_checkbox = (By.XPATH, "(//b[contains(text(),'Zarządzanie adresami e-mail')])")
     _add_other_user_management_of_mobile_phones_checkbox = (By.XPATH, "(//b[contains(text(),'Zarządzanie telefonami komórkowymi ')])")
     _add_other_user_management_of_logins_checkbox = (By.XPATH, "(//b[contains(text(),'Zarządzanie loginami ')])")
     _add_other_user_management_of_data_exports_checkbox = (By.XPATH, "(//b[contains(text(),'Zarządzanie eksportami danych ')])")
     _add_other_user_save_button = (By.XPATH, "//div[2]/button")
+    _add_other_user_header = (By.XPATH, "//h1")
     _add_other_user_added_login_field = (By.XPATH, "//tbody[2]/tr/td[3]/div/label")
     _add_other_user_added_description_field = (By.XPATH, "//tbody[2]/tr/td[6]/div")
     _add_other_user_remove_added_user_button = (By.XPATH, "//td[7]/div/a/img")
@@ -269,14 +270,16 @@ class SettingsPage(BasePage):
         self.click(self._change_email_notification_settings_about_account_condition_checkbox)
         self.get_driver().execute_script("window.scrollTo(2700, 320);")
         self.click(self._change_email_notification_settings_about_domain_condition_change_checkbox)
+        self.get_driver().execute_script("window.scrollTo(2700, 500);")
         self.click(self._change_email_notification_settings_about_option_condition_change_checkbox)
         self.get_driver().execute_script("window.scrollTo(2700, 1000);")
         self.click(self._change_email_notification_settings_about_purchase_at_auction_checkbox)
         self.get_driver().execute_script("window.scrollTo(2700, 1200);")
         self.click(self._change_email_notification_settings_about_purchase_at_escrow_checkbox)
-        self.get_driver().execute_script("window.scrollTo(2700, 1400);")
+        self.get_driver().execute_script("window.scrollTo(2700, 1800);")
         self.click(self._change_email_notification_settings_about_sale_at_auction_checkbox)
         self.click(self._change_email_notification_settings_about_sale_at_escrow_checkbox)
+        self.get_driver().execute_script("window.scrollTo(2700, 2100);")
         self.click(self._change_email_notification_settings_about_made_operations_checkbox)
 
     def save_change_email_notification_settings(self):
@@ -314,12 +317,12 @@ class SettingsPage(BasePage):
 
     def remove_all_email_addresses(self):
         while True:
-            if "/assets/img/table/delete.svg" in self.get_page_source():
+            if "https://assets-testy.aftermarket2.pl//img/table/icon/delete.svg" in self.get_page_source():
                 self.click(self._add_email_address_remove_added_email)
                 self.click(self._add_email_address_remove_added_email_confirm)
                 WebDriverWait(self.get_driver(), 15).until(EC.text_to_be_present_in_element(self._confirmation_result_text, u"Operacja wykonana poprawnie"))
                 self.click(self._back_to_email_addresses_list_button)
-                WebDriverWait(self.get_driver(), 15).until(EC.text_to_be_present_in_element(self._add_email_address_header, u"Lista adresów email"))
+                WebDriverWait(self.get_driver(), 15).until(EC.text_to_be_present_in_element(self._add_email_address_header, u"Lista adresów e-mail"))
             else:
                 break
 
@@ -328,7 +331,7 @@ class SettingsPage(BasePage):
 
     def remove_all_users(self):
         while True:
-            if "/assets/img/table/delete.svg" in self.get_page_source():
+            if "https://assets-testy.aftermarket2.pl//img/table/icon/delete.svg" in self.get_page_source():
                 self.click(self._add_other_user_remove_added_user_button)
                 self.click(self._add_other_user_remove_added_user_confirm_button)
                 WebDriverWait(self.get_driver(), 15).until(EC.text_to_be_present_in_element(self._confirmation_result_text, u"Login został usunięty"))
@@ -368,7 +371,7 @@ class SettingsPage(BasePage):
         self.get_driver().execute_script("window.scrollTo(2700, 5000);")
         self.click(self._add_other_user_change_account_settings_checkbox)
         self.click(self._add_other_user_management_of_email_addresses_checkbox)
-        self.get_driver().execute_script("window.scrollTo(2700, 4500);")
+        self.get_driver().execute_script("window.scrollTo(2700, 5500);")
         # self.click(self._add_other_user_management_of_mobile_phones_checkbox)
         self.click(self._add_other_user_management_of_logins_checkbox)
         self.click(self._add_other_user_management_of_data_exports_checkbox)
@@ -417,6 +420,7 @@ class SettingsPage(BasePage):
         self.clear_field_and_send_keys(self._change_company_data_city_value, self._change_company_data_city_field)
         self.select_index_from_dropdown(self._change_company_data_currency_index, self._change_company_data_currency_dropdown)
         self.click(self._change_company_data_save_stage_2_button)
+        self.click(self._back_from_results_page_button)
 
     def edit_company_data_company_name_text(self):
         return self.get_text(self._change_company_data_company_name_result)
@@ -442,7 +446,7 @@ class SettingsPage(BasePage):
 
     def remove_all_bank_accounts(self):
         while True:
-            if "/assets/img/table/delete.svg" in self.get_page_source():
+            if "https://assets-testy.aftermarket2.pl//img/table/icon/delete.svg" in self.get_page_source():
                 self.click(self._added_bank_account_remove_first_accouunt_button)
                 self.click(self._add_other_user_remove_added_user_confirm_button)
                 WebDriverWait(self.get_driver(), 15).until(EC.text_to_be_present_in_element(self._confirmation_result_text, u"Operacja wykonana poprawnie"))

@@ -85,7 +85,7 @@ class SmokeTest(unittest.TestCase):
         settings_page.remove_all_email_addresses()
         settings_page.add_email_address()
 
-        Assert.contains(u"Potwierdź adres email", settings_page.get_page_source())
+        Assert.contains(u"Potwierdź adres e-mail", settings_page.get_page_source())
 
         settings_page.back_to_email_addresses_list()
 
@@ -117,6 +117,7 @@ class SmokeTest(unittest.TestCase):
         settings_page.add_other_user_change_priviledges()
 
         WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(settings_page._confirmation_result_field, u"Operacja wykonana poprawnie."))
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(settings_page._add_other_user_header, u"Lista loginów"))
 
         Assert.equal(settings_page._add_other_user_login_value, settings_page.added_user_login_text())
         Assert.equal(settings_page._add_other_user_description_value, settings_page.added_user_description_text())
@@ -190,8 +191,6 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(settings_page._change_DNS_servers_DNS3_value, settings_page.get_page_source())
         Assert.contains(settings_page._change_DNS_servers_DNS4_value, settings_page.get_page_source())
         Assert.equal("Operacja wykonana poprawnie", settings_page.change_DNS_servers_operation_successful_text())
-
-# SERWERY 3 i 4 zamieniają się miejscami z 1 i 2 lub losowo, zgłoszone
 
     def test_new_DNS_profile_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -338,7 +337,9 @@ class SmokeTest(unittest.TestCase):
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_title, registered_domains_page._first_domain_text_value))
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_type, u"Odnowienie domeny"))
 
-        to_pay_list.remove_first_payment()
+        to_pay_list.change_tab_renew()
+        to_pay_list.remove_all_payments()
+        to_pay_list.refresh()
 
         self.not_contains(registered_domains_page._first_domain_text_value, to_pay_list.get_page_source())
         self.not_contains(u"Odnowienie domeny", to_pay_list.get_page_source())
@@ -401,17 +402,17 @@ class SmokeTest(unittest.TestCase):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
         registered_domains_page = account_page.header.open_registered_domains_list()
-        registered_domains_page.second_domain_text()
-        registered_domains_page.select_second_domain()
+        registered_domains_page.first_domain_text()
+        registered_domains_page.select_first_domain()
         registered_domains_page.move_domain_from_account(login)
 
         WebDriverWait(self.driver, 40).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Transfer domeny został zainicjowany"))
-        Assert.equal(registered_domains_page._second_domain_text_value, registered_domains_page.result_domain_text())
+        Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
 
         transfer_domain_page = account_page.header.open_transfer_domain_from_account_list()
         transfer_domain_page.cancel_all_domain_transfers_from_account()
 
-        self.not_contains(registered_domains_page._second_domain_text_value, transfer_domain_page.get_page_source())
+        self.not_contains(registered_domains_page._first_domain_text_value, transfer_domain_page.get_page_source())
 
     def test_change_DNS_servers_for_selected_domain_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -493,7 +494,7 @@ class SmokeTest(unittest.TestCase):
         self.not_contains(registered_domains_page._add_dns_entry_host_name_value, registered_domains_page.get_page_source())
         self.not_contains(registered_domains_page._add_dns_entry_address_value, registered_domains_page.get_page_source())
 
-# WRACA DO LISTY ZAREJESTROWANYCH DOMEN, zgłoszone
+# PRZYCISK POWROTU PO DODANIU WPISU NIE PRZEKIEROWUJE NIGDZIE, zgłoszone
 
 
     def test_new_dns_server_in_domain_should_succeed(self):
@@ -510,12 +511,12 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u"Operacja wykonana poprawnie.", registered_domains_page.get_page_source())
         registered_domains_page.back_from_results_page()
 
-        Assert.contains(registered_domains_page._new_dns_server_in_domain_name_value_co_pl+"."+registered_domains_page._first_domain_text_value, registered_domains_page.get_page_source())
+        Assert.contains(registered_domains_page._new_dns_server_in_domain_name_value+"."+registered_domains_page._first_domain_text_value, registered_domains_page.get_page_source())
         Assert.contains(registered_domains_page._new_dns_server_in_domain_ip_value, registered_domains_page.get_page_source())
 
         registered_domains_page.delete_all_dns_servers_in_domain()
 
-        self.not_contains(registered_domains_page._new_dns_server_in_domain_name_value_co_pl+"."+registered_domains_page._first_domain_text_value, registered_domains_page.get_page_source())
+        self.not_contains(registered_domains_page._new_dns_server_in_domain_name_value+"."+registered_domains_page._first_domain_text_value, registered_domains_page.get_page_source())
         self.not_contains(registered_domains_page._new_dns_server_in_domain_ip_value, registered_domains_page.get_page_source())
 
     def test_change_parking_service_should_succeed(self):
@@ -555,6 +556,7 @@ class SmokeTest(unittest.TestCase):
         selling_auction_page.delete_all_domain_selling_auctions()
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.third_domain_text()
+        sleep(1)
         registered_domains_page.select_third_domain()
         registered_domains_page.sell_on_auction()
 
@@ -563,9 +565,9 @@ class SmokeTest(unittest.TestCase):
 
         registered_domains_page.sell_on_auction_submit()
         sleep(2)
-        Assert.contains("Operacja wykonana poprawnie", registered_domains_page.get_page_source())
-        # WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została wystawiona z ceną początkową %s"%registered_domains_page._sell_on_auction_price_start_value))
-        # Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        # Assert.contains("Operacja wykonana poprawnie", registered_domains_page.get_page_source())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została wystawiona z ceną początkową %s"%registered_domains_page._sell_on_auction_price_start_value))
+        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
 
         selling_auction_page = account_page.header.open_selling_auction_list()
         Times=0
@@ -589,6 +591,7 @@ class SmokeTest(unittest.TestCase):
         selling_auction_page.delete_all_domain_selling_auctions()
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.third_domain_text()
+        sleep(1)
         registered_domains_page.select_third_domain()
         registered_domains_page.sell_on_auction()
 
@@ -597,9 +600,9 @@ class SmokeTest(unittest.TestCase):
 
         registered_domains_page.sell_on_auction_submit()
         sleep(2)
-        Assert.contains("Operacja wykonana poprawnie", registered_domains_page.get_page_source())
-        # WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została wystawiona z ceną początkową %s"%registered_domains_page._sell_on_auction_price_start_value))
-        # Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
+        # Assert.contains("Operacja wykonana poprawnie", registered_domains_page.get_page_source())
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(registered_domains_page._result_text_field, u"Aukcja została wystawiona z ceną początkową %s"%registered_domains_page._sell_on_auction_price_start_value))
+        Assert.equal(registered_domains_page._third_domain_text_value, registered_domains_page.result_domain_text())
 
         selling_auction_page = account_page.header.open_selling_auction_list()
         Times=0
