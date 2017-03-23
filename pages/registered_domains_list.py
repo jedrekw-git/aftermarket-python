@@ -94,8 +94,8 @@ class RegisteredDomainsListPage(BasePage):
     _add_dns_entry_address_field = (By.NAME, "value")
     _add_dns_entry_address_value = "www." + get_random_string(10) + ".com"
     _add_dns_entry_host_name_result = (By.XPATH, "//label")
-    _delete_first_dns_priofile_button = (By.XPATH, "//td[7]/div/a/img")
-    _delete_first_dns_priofile_confirm_button = (By.XPATH, "//div[3]/button")
+    _delete_first_dns_profile_button = (By.XPATH, "//td[7]/div/a/img")
+    _delete_first_dns_profile_confirm_button = (By.XPATH, "//div[3]/button")
     _delete_dns_profile_result_field = (By.XPATH, "//td[3]")
     _dns_servers_in_domain_button = (By.XPATH, "//span[3]/div/a[6]")
     _new_dns_server_in_domain_add_server_button = (By.XPATH, "//button[2]")
@@ -187,6 +187,9 @@ class RegisteredDomainsListPage(BasePage):
     _add_on_marketplace_lease_value = get_random_integer(2)
     _search_for_auction_field = (By.NAME, "domain")
     _search_for_auction_button = (By.XPATH, "//span/button")
+    _extend_search_for_auction = (By.XPATH, "//span[2]/button")
+    _extend_search_for_auction_domain_name_field = (By.XPATH, "//div[2]/div/input")
+    _extend_search_for_auction_search_button = (By.XPATH, "//div[2]/button")
     _first_searched_auction_checkbox = (By.XPATH, "//td[4]/div/label/span")
     _back_from_results_page = (By.XPATH, "//button")
     _operation_successful_field = (By.XPATH, "//div/span")
@@ -344,8 +347,8 @@ class RegisteredDomainsListPage(BasePage):
             if u"Brak wpisów DNS" in self.get_page_source():
                 break
             else:
-                self.click(self._delete_first_dns_priofile_button)
-                self.click(self._delete_first_dns_priofile_confirm_button)
+                self.click(self._delete_first_dns_profile_button)
+                self.click(self._delete_first_dns_profile_confirm_button)
                 WebDriverWait(self.get_driver(), 30).until(EC.text_to_be_present_in_element(self._delete_dns_profile_result_field, u"Usunięto wpis DNS:"))
                 self.click(self._back_from_results_page)
 
@@ -396,7 +399,8 @@ class RegisteredDomainsListPage(BasePage):
         self.click(self._sell_on_auction_minimal_price_checkbox)
         self.click(self._sell_on_auction_buy_now_price_checkbox)
         self.click(self._sell_on_auction_auction_description_label)
-        self.get_driver().execute_script("window.scrollTo(2700, 620);")
+        # self.get_driver().execute_script("window.scrollTo(2700, 500);")
+        self.get_driver().execute_script("return arguments[0].scrollIntoView(false);", self.find_element(self._sell_on_auction_category_field))
         self.click(self._sell_on_auction_category_field)
         self.click(self._sell_on_auction_category_technology)
         self.click(self._sell_on_auction_category_technology_computers)
@@ -487,7 +491,7 @@ class RegisteredDomainsListPage(BasePage):
     def add_on_marketplace(self):
         self.click(self._sell_button)
         self.click(self._add_on_marketplace_button)
-        self.click(self._add_on_marketplace_domain_available_for_sale_checkbox)
+        # self.click(self._add_on_marketplace_domain_available_for_sale_checkbox)
         self.clear_field_and_send_keys(self._add_on_marketplace_buynow_value, self._add_on_marketplace_buynow_field)
         self.select_index_from_dropdown(self._add_on_marketplace_currency_index,
                                         self._add_on_marketplace_currency_dropdown)
@@ -495,6 +499,7 @@ class RegisteredDomainsListPage(BasePage):
                                        self._add_on_marketplace_minimum_price_field)
         self.select_index_from_dropdown(1, self._add_on_marketplace_instalment_schema_dropdown)
         self.clear_field_and_send_keys(self._add_on_marketplace_lease_value, self._add_on_marketplace_lease_field)
+        self.get_driver().execute_script("window.scrollTo(2700, 500);")
         if (_element_is_visible(self.find_element(self._add_on_marketplace_category_field))):
             pass
         else:
@@ -523,8 +528,13 @@ class RegisteredDomainsListPage(BasePage):
         self.click(self._submit_button)
 
     def search_for_auction(self, domain_name):
-        self.clear_field_and_send_keys(domain_name, self._search_for_auction_field)
-        self.click(self._search_for_auction_button)
+        try:
+            self.send_keys(domain_name, self._search_for_auction_field)
+            self.click(self._search_for_auction_button)
+        except:
+            self.click(self._extend_search_for_auction)
+            self.send_keys(domain_name, self._extend_search_for_auction_domain_name_field)
+            self.click(self._extend_search_for_auction_search_button)
 
     def wait_until_domain_is_visible(self):
         count = 0

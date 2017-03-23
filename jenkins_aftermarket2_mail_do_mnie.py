@@ -337,11 +337,11 @@ class SmokeTest(unittest.TestCase):
             Assert.equal(registered_domains_page._first_domain_text_value, registered_domains_page.result_domain_text())
 
         to_pay_list = account_page.header.open_to_pay_list()
+        to_pay_list.change_tab_renew()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_title, registered_domains_page._first_domain_text_value))
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_type, u"Odnowienie domeny"))
 
-        to_pay_list.change_tab_renew()
         to_pay_list.remove_all_payments()
         to_pay_list.refresh()
 
@@ -481,6 +481,7 @@ class SmokeTest(unittest.TestCase):
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
+        sleep(1)
         registered_domains_page.new_dns_entry_for_selected_domain()
         registered_domains_page.delete_all_dns_entries_for_selected_domain()
         registered_domains_page.new_dns_entry_for_selected_domain_details()
@@ -650,7 +651,9 @@ class SmokeTest(unittest.TestCase):
         price = get_random_integer(2)
 
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        escrow_auction_page = account_page.header.open_escrow_transactions_seller_list()
+        escrow_auction_page.delete_all_escrow_auctions()
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.first_domain_text()
         registered_domains_page.select_first_domain()
@@ -753,7 +756,7 @@ class SmokeTest(unittest.TestCase):
         registered_domains_page = account_page.header.open_registered_domains_list()
         registered_domains_page.search_for_auction(register_domain_page._domain_name_value_co_pl)
 
-        self.not_contains(register_domain_page._domain_name_value_co_pl, registered_domains_page.get_page_source())
+        Assert.contains(u"Brak elementów spełniających warunki wyszukiwania", registered_domains_page.get_page_source())
 
     def test_transfer_domain_to_the_same_account_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -924,7 +927,7 @@ class SmokeTest(unittest.TestCase):
         register_option_page = account_page.header.open_register_option_page()
         register_option_page.enter_option_to_register(register_domain_page._domain_name_value_waw_pl)
 
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(register_option_page._stage2_result_field, u"Dostępna do rejestracji"))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(register_option_page._stage2_result_field, u"Dostępna."))
         Assert.equal(register_domain_page._domain_name_value_waw_pl, register_option_page.stage2_domain_text())
 
         register_option_page.submit_and_accept_alert()
@@ -937,12 +940,13 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u"Rejestracja opcji", to_pay_list.get_page_source())
 
         to_pay_list.remove_all_payments()
+        to_pay_list.refresh()
         self.not_contains(register_domain_page._domain_name_value_waw_pl, to_pay_list.get_page_source())
         self.not_contains(u"Rejestracja opcji", to_pay_list.get_page_source())
 
     def test_register_option_unavailable_should_succeed(self):
 
-        _unavailable_option = get_random_uuid(8)+".unavailable.pl"
+        _unavailable_option = get_random_uuid(8)+".unavailabla.pl"
 
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
@@ -951,6 +955,8 @@ class SmokeTest(unittest.TestCase):
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(register_option_page._stage2_result_field, u"Niedostępna"))
         Assert.equal(_unavailable_option, register_option_page.stage2_domain_text())
+
+    # W DRUGIM KROKU NAZWA OPCJI WYŚWIETLA SIĘ BEZ PRZEDROSTKA (SAMO UNAVAILABLA.PL), zgłoszone
 
     def test_change_option_profile_data_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -997,6 +1003,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u"Odnowienie opcji", to_pay_list.get_page_source())
 
         to_pay_list.remove_all_payments()
+        to_pay_list.refresh()
 
         self.not_contains(registered_options_list._first_option_text_value, to_pay_list.get_page_source())
         self.not_contains(u"Odnowienie opcji", to_pay_list.get_page_source())
@@ -1134,6 +1141,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u"Zamówienie serwera", to_pay_list.get_page_source())
 
         to_pay_list.remove_all_payments()
+        to_pay_list.refresh()
 
         self.not_contains(hosting_account_list._new_hosting_account_login_value, to_pay_list.get_page_source())
         self.not_contains(u"Zamówienie serwera", to_pay_list.get_page_source())
@@ -1161,10 +1169,6 @@ class SmokeTest(unittest.TestCase):
 
         self.not_contains(registered_domains_page._first_domain_text_value, hosting_account_list.get_page_source())
         self.not_contains(strftime("%Y-%m-%d", gmtime()), hosting_account_list.get_page_source())
-
-# Przycisk powrotu do "Lista dodanych domen" przekierowuję do "Lista kont hostingowych", zgłoszone
-
-
 
     def test_add_domain_to_hosting_account_wrong_domain_name_should_succeed(self):
 

@@ -42,7 +42,7 @@ class EscrowAuctionSellerListPage(BasePage):
 
     def delete_all_escrow_auctions(self):
         while True:
-            if "/assets/img/table/delete.svg" in self.get_page_source():
+            if "https://assets-testy.aftermarket2.pl//img/table/icon/delete.svg" in self.get_page_source():
                 self.click(self._first_auction_delete_button)
                 self.click(self._submit_button)
                 self.click(self._submit_confirm_button)

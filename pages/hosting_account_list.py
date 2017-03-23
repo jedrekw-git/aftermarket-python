@@ -25,7 +25,7 @@ class HostingAccountList(BasePage):
     _new_hosting_account_result_text_field = (By.XPATH, "//p")
     _submit_button = (By.XPATH, "//button[@type='submit']")
     _first_hosting_account = (By.XPATH, "//label/b")
-    _first_hosting_account_add_domains_button = (By.XPATH, "//tr[3]/td/div/span")
+    _first_hosting_account_add_domains_button = (By.XPATH, "//td/div/a")
     _first_hosting_account_renew_button = (By.XPATH, "//button[3]")
     _add_domains_button = (By.XPATH, "//button[2]")
     _add_domains_domain_field = (By.NAME, "domain")
@@ -48,6 +48,7 @@ class HostingAccountList(BasePage):
         self.select_index_from_dropdown(0, self._new_hosting_account_packet_dropdown)
         self.clear_field_and_send_keys(self._new_hosting_account_login_value, self._new_hosting_account_login_field)
         self.click(self._new_hosting_account_type_your_password_radio)
+        sleep(1)
         self.clear_field_and_send_keys(password, self._new_hosting_account_password1_field)
         self.clear_field_and_send_keys(password, self._new_hosting_account_password2_field)
         self.click(self._submit_button)
@@ -77,7 +78,7 @@ class HostingAccountList(BasePage):
 
     def remove_all_all_domains_from_hosting_account(self):
         while True:
-            if "/assets/img/table/row/delete.png" in self.get_page_source():
+            if "https://assets-testy.aftermarket2.pl//img/table/icon/delete.svg" in self.get_page_source():
                 self.click(self._remove_first_domain_button)
                 self.click(self._remove_first_domain_confirm_submit_button)
                 WebDriverWait(self.get_driver(), 30).until(EC.text_to_be_present_in_element(self._result_text_field, u"Domena została usunięta z konta:"))

@@ -48,6 +48,7 @@ class RegisterDomainPage(BasePage):
         # self.check(self._first_domain_checkbox)
         self.click(self._dns_servers_checkbox)
         self.select_index_from_dropdown(2, self._dns_servers_dropdown)
+        self.get_driver().execute_script("window.scrollTo(2700, 500);")
         self.click(self._register_immediately_radio)
         sleep(1)
         self.click(self._register_domain_button)

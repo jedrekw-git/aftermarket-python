@@ -43,7 +43,7 @@ class SellingAuctionListPage(BasePage):
                 break
             else:
                 self.click(self._first_auction_delete_button)
-                sleep(3)
+                sleep(1)
                 self.click(self._submit_button)
                 self.click(self._submit_confirm_button)
                 WebDriverWait(self.get_driver(), 30).until(EC.text_to_be_present_in_element(self._result_text_field, u"Aukcja została anulowana"))
@@ -59,6 +59,7 @@ class SellingAuctionListPage(BasePage):
 
     def edit_auction_prices(self):
         self.click(self._edit_auction_details_change_minimal_price_radio)
+        self.get_driver().execute_script("window.scrollTo(2700, 500);")
         self.click(self._edit_auction_details_change_buynow_price_radio)
         self.clear_field_and_send_keys(self._edit_auction_details_price_start_value, self._edit_auction_details_price_start_field)
         self.clear_field_and_send_keys(self._edit_auction_details_price_minimum_value,
