@@ -12,12 +12,12 @@ from random import randint
 class SellerEndedAuctionsList(BasePage):
     _title = "Seller ended auctions list"
 
-    _second_domain_checkbox = (By.XPATH, "//tr[9]/td[3]/div/span/label/span")
-    _second_domain_price_field = (By.XPATH, "//tr[9]/td[8]/div/span/b/span")
-    _first_domain_checkbox = (By.XPATH, "//td[3]/div/span/label/span")
-    _first_domain_price_field = (By.XPATH, "//span/b/span")
+    _second_domain_checkbox = (By.XPATH, "//tbody[2]/tr/td[3]/div/label/span")
+    _second_domain_price_field = (By.XPATH, "//tbody[2]/tr/td[7]/div/b/span")
+    _first_domain_checkbox = (By.XPATH, "//td[3]/div/label/span")
+    _first_domain_price_field = (By.XPATH, "//td[7]/div/b/span")
     _search_field = (By.NAME, "domain")
-    _search_button = (By.XPATH, "//div[3]/button")
+    _search_button = (By.XPATH, "//span/div/button")
 
     def __init__(self, driver):
         super(SellerEndedAuctionsList, self).__init__(driver, self._title)

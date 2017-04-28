@@ -13,6 +13,7 @@ class NewOptionAuctionPage(BasePage):
     _title = "New Option Auction"
 
     _option_name_field = (By.NAME, "domain")
+    _choose_option_dropdown = (By.XPATH, "//div[2]/div/a")
     _option_name_field_first_option = (By.XPATH, "//label")
     _price_start_field = (By.NAME, "price_start")
     _price_start_value = randint(1, 20)
@@ -22,30 +23,33 @@ class NewOptionAuctionPage(BasePage):
     _end_date_index = randint(1, 29)
     _end_time_field = (By.NAME, "end_time")
     _end_time_index = randint(1, 22)
-    _minimal_price_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[5]/div[3]/div[1]/label")
-    _buy_now_price_checkbox = (By.XPATH, "/html/body/div[7]/div/div/form/div[5]/div[3]/div[2]/label")
+    _minimal_price_checkbox = (By.XPATH, "//div[5]/div/div[2]/div/label")
+    _buy_now_price_checkbox = (By.XPATH, "//div[2]/div[2]/label")
     _auction_description_checkbox = (
         By.XPATH, "/html/body/div[7]/div/div/form/div[5]/div[3]/div[3]/label")
     _price_minimum_field = (By.NAME, "price_minimum")
     _price_minimum_value = randint(21, 40)
     _price_buynow_field = (By.NAME, "price_buynow")
     _price_buynow_value = randint(41, 60)
-    _description_field = (By.XPATH, "//div[9]/div[3]/div/div/div")
+    _description_field = (By.XPATH, "//div[2]/div/div/div/p")
     _description_value = get_random_string(10) + " " + get_random_string(7) + " " + get_random_string(8)
-    _submit_button = (By.XPATH, "//button[2]")
+    _submit_button = (By.XPATH, "//button[@type='submit']")
+    _submit_confirm_button = (By.XPATH, "//div[3]/button")
     _realize_immediately_radio = (By.XPATH, "//label/span[2]")
-    _result_domain_name_field = (By.XPATH, "//td[2]/span")
-    _result_text_field = (By.XPATH, "//td[3]")
-    _stage2_result_domain_name_field = (By.XPATH, "//td[2]/label/span")
-    _stage2_result_text_field = (By.XPATH, "//td[3]/label/span")
+    _result_domain_name_field = (By.XPATH, "//div/span")
+    _result_text_field = (By.XPATH, "//td[3]/div")
+    _stage2_result_domain_name_field = (By.XPATH, "//div/span")
+    _stage2_result_text_field = (By.XPATH, "//td[3]/div")
 
     def __init__(self, driver):
         super(NewOptionAuctionPage, self).__init__(driver, self._title)
 
     def new_option_auction_enter_details(self):
-        self.click(self._option_name_field)
+        # self.click(self._option_name_field)
+        # sleep(2)
+        # self.click(self._option_name_field)
+        self.click(self._choose_option_dropdown)
         sleep(2)
-        self.click(self._option_name_field)
         self._option_name = self.get_text(self._option_name_field_first_option)
         self.click(self._option_name_field_first_option)
         self.clear_field_and_send_keys(self._price_start_value, self._price_start_field)
@@ -54,18 +58,19 @@ class NewOptionAuctionPage(BasePage):
         self.select_index_from_dropdown(self._end_time_index, self._end_time_field)
         self.click(self._minimal_price_checkbox)
         self.click(self._buy_now_price_checkbox)
-        self.click(self._auction_description_checkbox)
+        # self.click(self._auction_description_checkbox)
         self.clear_field_and_send_keys(self._price_minimum_value,
                                        self._price_minimum_field)
         self.clear_field_and_send_keys(self._price_buynow_value,
                                        self._price_buynow_field)
-        self.clear_field_and_send_keys(self._description_value, self._description_field)
+        # self.clear_field_and_send_keys(self._description_value, self._description_field)
         self.click(self._submit_button)
 
     def new_option_auction_stage_2_submit(self):
-        self.click(self._realize_immediately_radio)
+        self.get_driver().execute_script("window.scrollTo(1100, 800);")
+        # self.click(self._realize_immediately_radio)
         self.click(self._submit_button)
-        self.accept_alert()
+        self.click(self._submit_confirm_button)
 
     def result_domain_text(self):
         return self.get_text(self._result_domain_name_field)

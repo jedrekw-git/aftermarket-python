@@ -190,7 +190,7 @@ class HeaderRegion(Page):
         return DomainsOnMarketplaceList(self.get_driver())
 
     def open_subscriptions_on_marketplace_list(self):
-        self.get(self._base_url + "Market/Subscriptions/")
+        self.get(self._base_url + "Market/Subscription/List/")
         return DomainsOnMarketplaceList(self.get_driver())
 
     def open_task_list(self):

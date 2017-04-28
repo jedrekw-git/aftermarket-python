@@ -22,7 +22,8 @@ class OptionEscrowSellingTransactionList(BasePage):
     _currency_index = randint(0,3)
     _days_to_pay_dropdown = (By.NAME, "days")
     _days_to_pay_index = randint(0,7)
-    _submit_button = (By.XPATH, "//button[2]")
+    _submit_button = (By.XPATH, "//div[2]/button")
+    _submit_confirm_button = (By.XPATH, "//div[3]/button")
     _stage2_option_text_field = (By.XPATH, "//div[3]/div/span")
     _stage2_login_text_field = (By.XPATH, "//div[3]/div[3]/div/span")
     _add_description_button = (By.XPATH, "//label")
@@ -78,7 +79,7 @@ class OptionEscrowSellingTransactionList(BasePage):
                 if "/assets/img/table/row/delete.png" in self.get_page_source():
                     self.click(self._delete_first_auction_button)
                     self.click(self._submit_button)
-                    self.accept_alert()
+                    self.click(self._submit_confirm_button)
                     WebDriverWait(self.get_driver(), 30).until(EC.text_to_be_present_in_element(self._added_transaction_result_text_field, u"Transakcja escrow została anulowana."))
                     self.click(self._back_from_results_page)
                 else:

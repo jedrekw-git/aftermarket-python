@@ -1178,243 +1178,225 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(u"Musisz podać poprawne nazwy domen", hosting_account_list.get_page_source())
 
-#     def test_renew_hosting_account_manually_should_succeed(self):
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
-#         to_pay_list = account_page.header.open_to_pay_list()
-#         to_pay_list.remove_all_payments()
-#         hosting_account_list = account_page.header.open_hosting_account_list()
-#         hosting_account_list.first_hosting_account_get_text()
-#         hosting_account_list.renew_first_hosting_account()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hosting_account_list._stage2_result_text_field, u"Konto hostingowe zostanie przedłużone"))
-#         Assert.equal(hosting_account_list._first_hosting_account_text, hosting_account_list.stage2_result_domain_text())
-#
-#         hosting_account_list.renew_hosting_account_stage2()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hosting_account_list._result_text_field, u"Operacja zawieszona, oczekuje na aktywowanie"))
-#         Assert.equal(hosting_account_list._first_hosting_account_text, hosting_account_list.result_domain_text())
-#
-#         to_pay_list = account_page.header.open_to_pay_list()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_title, hosting_account_list._first_hosting_account_text))
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_type, u"Przedłużenie hostingu"))
-#
-#         to_pay_list.remove_first_payment()
-#
-#         self.not_contains(hosting_account_list._first_hosting_account_text, to_pay_list.get_page_source())
-#         self.not_contains(u"Przedłużenie hostingu", to_pay_list.get_page_source())
-#
-#     def test_add_offer_on_marketplace_should_succeed(self):
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER, PASSWORD)
-#         domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
-#         domains_on_marketplace_list.open_offers_tab()
-#         domains_on_marketplace_list.get_text_second_domain()
-#         domains_on_marketplace_list.add_offer_to_second_domain()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domains_on_marketplace_list._domain_field_stage1, domains_on_marketplace_list._second_domain_text))
-#
-#         domains_on_marketplace_list.get_text_price_buynow()
-#         domains_on_marketplace_list.submit_offer_stage1()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domains_on_marketplace_list._domain_field_stage1, domains_on_marketplace_list._second_domain_text))
-#         Assert.contains(domains_on_marketplace_list.price_buynow, domains_on_marketplace_list.get_page_source())
-#         Assert.contains(domains_on_marketplace_list._price_value, domains_on_marketplace_list.get_page_source())
-#
-#         domains_on_marketplace_list.submit_offer_stage2()
-#
-#         Assert.contains(u"Oferta została złożona", domains_on_marketplace_list.get_page_source())
-#
-#         domains_on_marketplace_list.delete_offer_stage1()
-#
-#         Assert.contains(domains_on_marketplace_list._price_value, domains_on_marketplace_list.get_page_source())
-#         Assert.contains(domains_on_marketplace_list._second_domain_text, domains_on_marketplace_list.get_page_source())
-#
-#         domains_on_marketplace_list.delete_offer_stage2()
-#
-# # AUTOMATYCZNE WYLOGOWANIE PO add_offer_to_second_domain(), zgłoszone, PODOBNO POPRAWIONE
-#
-#     def test_search_domains_on_marketplace_should_succeed(self):
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
-#         domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
-#         domains_on_marketplace_list.get_text_fourth_domain_and_price()
-#         domains_on_marketplace_list.search_for_domain(domains_on_marketplace_list._fourth_domain_text)
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domains_on_marketplace_list._submit_offer_domain_name_value_co_pl, domains_on_marketplace_list._fourth_domain_text))
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domains_on_marketplace_list._submit_offer_price_value, domains_on_marketplace_list._fourth_domain_price_text))
-#
-#     def test_filter_domains_on_marketplace_should_succeed(self):
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
-#         domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
-#         domains_on_marketplace_list.filter_results_12_characters_com_pl()
-#
-#         Assert.true(re.compile(r"^\w{12}\.com\.pl$").match(domains_on_marketplace_list.first_domain_text()))
-#
-#     def test_subscribe_filtered_domains_on_marketplace_should_succeed(self):
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
-#         subscriptions_on_marketplace_list = account_page.header.open_subscriptions_on_marketplace_list()
-#         subscriptions_on_marketplace_list.delete_all_subscriptions()
-#         domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
-#         domains_on_marketplace_list.filter_results_length_com_pl()
-#         domains_on_marketplace_list.subscribe_results()
-#
-#         Assert.contains(u"Długość:", domains_on_marketplace_list.get_page_source())
-#         Assert.contains(str(domains_on_marketplace_list._filter_length_from_value), domains_on_marketplace_list.get_page_source())
-#         Assert.contains(str(domains_on_marketplace_list._filter_length_to_value), domains_on_marketplace_list.get_page_source())
-#
-#         domains_on_marketplace_list.subscribe_results_stage2()
-#
-#         Assert.contains(domains_on_marketplace_list._subscribe_results_subuscription_name_value, domains_on_marketplace_list.get_page_source())
-#         Assert.contains(strftime("%Y-%m-%d", gmtime()), domains_on_marketplace_list.get_page_source())
-#
-#         domains_on_marketplace_list.delete_first_subscription()
-#
-#         Assert.contains(domains_on_marketplace_list._subscribe_results_subuscription_name_value, domains_on_marketplace_list.get_page_source())
-#         Assert.contains(u"Długość:", domains_on_marketplace_list.get_page_source())
-#         Assert.contains(str(domains_on_marketplace_list._filter_length_from_value), domains_on_marketplace_list.get_page_source())
-#         Assert.contains(str(domains_on_marketplace_list._filter_length_to_value), domains_on_marketplace_list.get_page_source())
-#
-#         domains_on_marketplace_list.delete_subscription_stage2()
-#
-#         Assert.contains(u"Operacja wykonana poprawnie.", domains_on_marketplace_list.get_page_source())
-#         sleep(7)
-#         Assert.contains(u"Brak subskrypcji domen na giełdzie", domains_on_marketplace_list.get_page_source())
-#         self.not_contains(domains_on_marketplace_list._subscribe_results_subuscription_name_value, domains_on_marketplace_list.get_page_source())
-#
-#     def test_watch_new_domain_should_succeed(self):
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
-#         watched_domains_page = account_page.header.open_watched_domains_list()
-#         watched_domains_page.watch_new_domain()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(watched_domains_page._result_text_field, u"Operacja wykonana poprawnie"))
-#         Assert.equal(watched_domains_page._domain_name_value_co_pl, watched_domains_page.result_domain_text())
-#
-#         account_page.header.open_watched_domains_list()
-#
-#         Assert.contains(watched_domains_page._domain_name_value_co_pl, watched_domains_page.get_page_source())
-#         Assert.contains(strftime("%Y-%m-%d", gmtime()), watched_domains_page.get_page_source())
-#
-#         watched_domains_page.first_domain_change_watch_settings()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(watched_domains_page._result_text_field, u"Operacja wykonana poprawnie"))
-#         Assert.equal(watched_domains_page._domain_name_value_co_pl, watched_domains_page.result_domain_text())
-#
-#         account_page.header.open_watched_domains_list()
-#         watched_domains_page.delete_first_domain()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(watched_domains_page._result_text_field, u"Operacja wykonana poprawnie"))
-#         Assert.equal(watched_domains_page._domain_name_value_co_pl, watched_domains_page.result_domain_text())
-#
-#         watched_domains_page.back_from_results_page()
-#
-#         self.not_contains(watched_domains_page._domain_name_value_co_pl, watched_domains_page.get_page_source())
-#         self.not_contains(strftime("%Y-%m-%d", gmtime()), watched_domains_page.get_page_source())
-#
-#     def test_watch_new_seller_should_succeed(self):
-#
-#         seller_name = "alfa"
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
-#         watched_sellers_page = account_page.header.open_watched_sellers_list()
-#         watched_sellers_page.watch_new_seller(seller_name)
-#
-#         Assert.contains(seller_name, watched_sellers_page.get_page_source())
-#         Assert.contains(strftime("%Y-%m-%d", gmtime()), watched_sellers_page.get_page_source())
-#
-#         watched_sellers_page.change_first_seller_settings()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(watched_sellers_page._result_text_field, u"Operacja wykonana poprawnie"))
-#
-#         account_page.header.open_watched_sellers_list()
-#         watched_sellers_page.delete_first_seller()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(watched_sellers_page._result_text_field, u"Operacja wykonana poprawnie"))
-#
-#         watched_sellers_page.back_from_results_page()
-#
-#         self.not_contains(seller_name, watched_sellers_page.get_page_source())
-#         self.not_contains(strftime("%Y-%m-%d", gmtime()), watched_sellers_page.get_page_source())
-#
-#     def test_watch_new_seller_the_same_login_should_succeed(self):
-#
-#         seller_name = USER_DELTA
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
-#         watched_sellers_page = account_page.header.open_watched_sellers_list()
-#         watched_sellers_page.watch_new_seller(seller_name)
-#
-#         Assert.contains(u"Nie możesz obserwować samego siebie", watched_sellers_page.get_page_source())
-#
-#     def test_new_option_auction_should_succeed(self):
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
-#         selling_auction_page = account_page.header.open_selling_auction_list()
-#         selling_auction_page.delete_all_auctions()
-#         new_option_auction_page = account_page.header.open_new_option_auction_page()
-#         new_option_auction_page.new_option_auction_enter_details()
-#
-#         Assert.contains(new_option_auction_page._option_name, new_option_auction_page.get_page_source())
-#         Assert.contains(str(new_option_auction_page._price_start_value), new_option_auction_page.get_page_source())
-#         Assert.contains(str(new_option_auction_page._price_minimum_value), new_option_auction_page.get_page_source())
-#         Assert.contains(str(new_option_auction_page._price_buynow_value), new_option_auction_page.get_page_source())
-#         Assert.contains(new_option_auction_page._description_value, new_option_auction_page.get_page_source())
-#
-#         new_option_auction_page.new_option_auction_stage_2_submit()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(new_option_auction_page._result_text_field, u"Aukcja została wystawiona"))
-#         Assert.equal(new_option_auction_page._option_name, new_option_auction_page.result_domain_text())
-#
-#         selling_auction_page = account_page.header.open_selling_auction_list()
-#         selling_auction_page.delete_first_auction()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(new_option_auction_page._stage2_result_text_field, u"Aukcja zostanie anulowana"))
-#         Assert.equal(new_option_auction_page._option_name, new_option_auction_page.stage2_result_domain_text())
-#
-#         selling_auction_page.delete_auction_submit()
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(new_option_auction_page._result_text_field, u"Aukcja została anulowana"))
-#         Assert.equal(new_option_auction_page._option_name, new_option_auction_page.result_domain_text())
-#
-#         selling_auction_page.back_from_results_page()
-#
-#         self.not_contains(new_option_auction_page._option_name, selling_auction_page.get_page_source())
-#
-# #Błąd podczas wykonywania operacji, zgłoszone
-#
-#     def test_search_seller_ended_auctions_should_succeed(self):
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
-#         ended_auctions_list = account_page.header.open_seller_ended_auctions_list()
-#         ended_auctions_list.get_second_domain_and_price_text()
-#         ended_auctions_list.search_for_domain(ended_auctions_list._second_domain_text)
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_checkbox, ended_auctions_list._second_domain_text))
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_price_field, ended_auctions_list._second_domain_price_text))
-#
-#     def test_search_buyer_ended_auctions_should_succeed(self):
-#
-#         home_page = HomePage(self.driver).open_home_page()
-#         account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
-#         ended_auctions_list = account_page.header.open_buyer_ended_auctions_list()
-#         ended_auctions_list.get_second_domain_and_price_text()
-#         ended_auctions_list.search_for_domain(ended_auctions_list._second_domain_text)
-#
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_checkbox, ended_auctions_list._second_domain_text))
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_price_field, ended_auctions_list._second_domain_price_text))
-#
+    def test_renew_hosting_account_manually_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        to_pay_list = account_page.header.open_to_pay_list()
+        to_pay_list.remove_all_payments()
+        hosting_account_list = account_page.header.open_hosting_account_list()
+        hosting_account_list.first_hosting_account_get_text()
+        hosting_account_list.renew_first_hosting_account()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hosting_account_list._stage2_result_text_field, u"Konto hostingowe zostanie przedłużone"))
+        Assert.equal(hosting_account_list._first_hosting_account_text, hosting_account_list.stage2_result_domain_text())
+
+        hosting_account_list.renew_hosting_account_stage2()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(hosting_account_list._result_text_field, u"Operacja zawieszona, oczekuje na aktywowanie"))
+        Assert.equal(hosting_account_list._first_hosting_account_text, hosting_account_list.result_domain_text())
+
+        to_pay_list = account_page.header.open_to_pay_list()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_title, hosting_account_list._first_hosting_account_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(to_pay_list._first_payment_type, u"Przedłużenie hostingu"))
+
+        to_pay_list.remove_all_payments()
+
+        WebDriverWait(self.driver, 5).until_not(EC.text_to_be_present_in_element(to_pay_list._first_payment_title, hosting_account_list._first_hosting_account_text))
+        WebDriverWait(self.driver, 5).until_not(EC.text_to_be_present_in_element(to_pay_list._first_payment_type, u"Przedłużenie hostingu"))
+
+    def test_add_offer_on_marketplace_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
+        domains_on_marketplace_list.open_offers_tab()
+        domains_on_marketplace_list.get_text_second_domain()
+        domains_on_marketplace_list.add_offer_to_second_domain()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domains_on_marketplace_list._domain_field_stage1, domains_on_marketplace_list._second_domain_text))
+
+        domains_on_marketplace_list.get_text_price_buynow()
+        domains_on_marketplace_list.submit_offer_stage1()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domains_on_marketplace_list._domain_field_stage1, domains_on_marketplace_list._second_domain_text))
+        Assert.contains(domains_on_marketplace_list.price_buynow, domains_on_marketplace_list.get_page_source())
+        Assert.contains(domains_on_marketplace_list._price_value, domains_on_marketplace_list.get_page_source())
+
+        domains_on_marketplace_list.submit_offer_stage2()
+
+        Assert.contains(u"Oferta została złożona", domains_on_marketplace_list.get_page_source())
+
+        domains_on_marketplace_list.delete_offer_stage1()
+
+        Assert.contains(domains_on_marketplace_list._price_value, domains_on_marketplace_list.get_page_source())
+        Assert.contains(domains_on_marketplace_list._second_domain_text, domains_on_marketplace_list.get_page_source())
+
+        domains_on_marketplace_list.delete_offer_stage2()
+
+        Assert.contains(u"Negocjacje zostały zamknięte", domains_on_marketplace_list.get_page_source())
+
+        domains_on_marketplace_list.back_to_offers_page()
+
+        self.not_contains(domains_on_marketplace_list._second_domain_text, domains_on_marketplace_list.get_page_source())
+
+# CHROME NIE CHWYTA self._additional_message_field
+
+    def test_search_domains_on_marketplace_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
+        domains_on_marketplace_list.open_auctions_tab()
+        domains_on_marketplace_list.get_text_fourth_domain_and_price()
+        domains_on_marketplace_list.search_for_domain(domains_on_marketplace_list._fourth_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domains_on_marketplace_list._auction_page_domain_name_field, domains_on_marketplace_list._fourth_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(domains_on_marketplace_list._auction_page_price_field, domains_on_marketplace_list._fourth_domain_price_text))
+
+    def test_filter_domains_on_marketplace_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
+        domains_on_marketplace_list.filter_results_5_characters_com_pl()
+
+        Assert.true(re.compile(r"^\w{5}\.com\.pl$").match(domains_on_marketplace_list.first_domain_text()))
+
+    def test_subscribe_filtered_domains_on_marketplace_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        subscriptions_on_marketplace_list = account_page.header.open_subscriptions_on_marketplace_list()
+        subscriptions_on_marketplace_list.delete_all_subscriptions()
+        domains_on_marketplace_list = account_page.header.open_domains_on_marketplace_list()
+        domains_on_marketplace_list.filter_results_length_com_pl()
+        sleep(2)
+        domains_on_marketplace_list.subscribe_results()
+
+        Assert.contains(u"Długość:", domains_on_marketplace_list.get_page_source())
+        Assert.contains(str(domains_on_marketplace_list._filter_length_from_value), domains_on_marketplace_list.get_page_source())
+        Assert.contains(str(domains_on_marketplace_list._filter_length_to_value), domains_on_marketplace_list.get_page_source())
+
+        domains_on_marketplace_list.subscribe_results_stage2()
+
+        Assert.contains(domains_on_marketplace_list._subscribe_results_subuscription_name_value, domains_on_marketplace_list.get_page_source())
+        Assert.contains(strftime("%Y-%m-%d", gmtime()), domains_on_marketplace_list.get_page_source())
+
+        domains_on_marketplace_list.delete_all_subscriptions()
+        Assert.contains(u"Brak subskrypcji domen na giełdzie", domains_on_marketplace_list.get_page_source())
+        self.not_contains(domains_on_marketplace_list._subscribe_results_subuscription_name_value, domains_on_marketplace_list.get_page_source())
+
+    def test_watch_new_domain_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        watched_domains_page = account_page.header.open_watched_domains_list()
+        watched_domains_page.delete_all_domains()
+        watched_domains_page.watch_new_domain()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(watched_domains_page._result_text_field, u"Domena została dodana do obserwacji"))
+        Assert.equal(watched_domains_page._domain_name_value, watched_domains_page.result_domain_text())
+
+        account_page.header.open_watched_domains_list()
+
+        Assert.contains(watched_domains_page._domain_name_value, watched_domains_page.get_page_source())
+        Assert.contains(strftime("%Y-%m-%d", gmtime()), watched_domains_page.get_page_source())
+
+        watched_domains_page.first_domain_change_watch_settings()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(watched_domains_page._result_text_field, u"Ustawienia obserwacji domeny zostały zmienione"))
+        Assert.equal(watched_domains_page._domain_name_value, watched_domains_page.result_domain_text())
+
+        account_page.header.open_watched_domains_list()
+        watched_domains_page.delete_all_domains()
+
+        self.not_contains(watched_domains_page._domain_name_value, watched_domains_page.get_page_source())
+        self.not_contains(strftime("%Y-%m-%d", gmtime()), watched_domains_page.get_page_source())
+
+    def test_watch_new_seller_should_succeed(self):
+
+        seller_name = "alfa"
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        watched_sellers_page = account_page.header.open_watched_sellers_list()
+        watched_sellers_page.delete_all_sellers()
+        watched_sellers_page.watch_new_seller(seller_name)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(watched_sellers_page._watched_sellers_header, u"Lista obserwowanych sprzedawców"))
+        Assert.contains(seller_name, watched_sellers_page.get_page_source())
+        Assert.contains(strftime("%Y-%m-%d", gmtime()), watched_sellers_page.get_page_source())
+
+        watched_sellers_page.change_first_seller_settings()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(watched_sellers_page._result_text_field, u"Ustawienia obserwacji sprzedawcy zostały zmienione"))
+
+        account_page.header.open_watched_sellers_list()
+        watched_sellers_page.delete_all_sellers()
+
+        self.not_contains(seller_name, watched_sellers_page.get_page_source())
+        self.not_contains(strftime("%Y-%m-%d", gmtime()), watched_sellers_page.get_page_source())
+
+    def test_watch_new_seller_the_same_login_should_succeed(self):
+
+        seller_name = USER_DELTA
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        watched_sellers_page = account_page.header.open_watched_sellers_list()
+        watched_sellers_page.watch_new_seller(seller_name)
+
+        Assert.contains(u"Nie możesz obserwować samego siebie", watched_sellers_page.get_page_source())
+
+    def test_new_option_auction_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_DELTA, PASSWORD_DELTA)
+        selling_auction_page = account_page.header.open_selling_auction_list()
+        selling_auction_page.delete_all_domain_selling_auctions()
+        new_option_auction_page = account_page.header.open_new_option_auction_page()
+        new_option_auction_page.new_option_auction_enter_details()
+
+        Assert.contains(new_option_auction_page._option_name, new_option_auction_page.get_page_source())
+        Assert.contains(str(new_option_auction_page._price_start_value), new_option_auction_page.get_page_source())
+        Assert.contains(str(new_option_auction_page._price_minimum_value), new_option_auction_page.get_page_source())
+        Assert.contains(str(new_option_auction_page._price_buynow_value), new_option_auction_page.get_page_source())
+        # Assert.contains(new_option_auction_page._description_value, new_option_auction_page.get_page_source())
+
+        new_option_auction_page.new_option_auction_stage_2_submit()
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(new_option_auction_page._result_text_field, u"Aukcja opcji została wystawiona z ceną początkową "+str(new_option_auction_page._price_start_value)))
+        Assert.equal(new_option_auction_page._option_name, new_option_auction_page.result_domain_text())
+
+        selling_auction_page = account_page.header.open_selling_auction_list()
+        selling_auction_page.delete_all_domain_selling_auctions()
+
+        self.not_contains(new_option_auction_page._option_name, selling_auction_page.get_page_source())
+
+#CHROME NIE CHWYTA self._description_field
+
+    def test_search_seller_ended_auctions_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        ended_auctions_list = account_page.header.open_seller_ended_auctions_list()
+        ended_auctions_list.get_second_domain_and_price_text()
+        ended_auctions_list.search_for_domain(ended_auctions_list._second_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_checkbox, ended_auctions_list._second_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_price_field, ended_auctions_list._second_domain_price_text))
+
+    def test_search_buyer_ended_auctions_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER_BETA, PASSWORD_BETA)
+        ended_auctions_list = account_page.header.open_buyer_ended_auctions_list()
+        ended_auctions_list.get_third_domain_and_price_text()
+        ended_auctions_list.search_for_domain(ended_auctions_list._third_domain_text)
+
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_checkbox, ended_auctions_list._third_domain_text))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(ended_auctions_list._first_domain_price_field, ended_auctions_list._third_domain_price_text))
+
 #     def test_new_escrow_option_transaction_should_succeed(self):
 #
 #         login = "alfa"

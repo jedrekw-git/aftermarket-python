@@ -12,8 +12,8 @@ from random import randint
 class ToPayList(BasePage):
     _title = "To Pay List"
 
-    _remove_first_payment_button = (By.XPATH, "//td[9]/div/img")
-    _first_payment_title = (By.XPATH, "//td[4]/div/label/span")
+    _remove_first_payment_button = (By.XPATH, "//img[contains(@src,'https://assets-testy.aftermarket2.pl//img/table/delete.svg')]")
+    _first_payment_title = (By.XPATH, "//td[4]/div/label")
     _first_payment_type = (By.XPATH, "//td[5]/div")
     _sumbit_first_payment_button = (By.XPATH, "//td[8]/div/img")
     _change_tab_renew_button = (By.XPATH, "//div/div/div/div[3]")
@@ -26,9 +26,9 @@ class ToPayList(BasePage):
 
     def remove_all_payments(self):
         while True:
-            if "https://assets-testy.aftermarket2.pl//img/table/icon/delete.svg" in self.get_page_source():
+            try:
                 self.click(self._remove_first_payment_button)
-            else:
+            except:
                 break
 
     def submit_first_payment(self):
