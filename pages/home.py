@@ -1,11 +1,12 @@
 # coding=utf-8
 from pages.base import BasePage
-from time import sleep
 from selenium.webdriver.common.by import By
+import configparse
 
 class HomePage(BasePage):
     _title = "Strona główna"
-    _url = "https://devel:miodzio@testy.aftermarket2.pl/"
+    # _url = "https://devel:miodzio@testy.aftermarket2.pl/"
+    _url = configparse._url
     _language_dropdown = (By.XPATH, "//li[5]/a")
     _language_polish = (By.XPATH, "//li[5]/div/div/div/a")
 
