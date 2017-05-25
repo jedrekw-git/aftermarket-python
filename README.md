@@ -15,18 +15,22 @@ URL = https://devel:miodzio@testy.aftermarket2.pl/
 
 
 USER = alfa
+
 PASSWORD = testujalfa
 
 
 USER_BETA = beta
+
 PASSWORD_BETA = testujbeta
 
 
 USER_GAMMA = gamma
+
 PASSWORD_GAMMA = testujgamma
 
 
 USER_DELTA = delta
+
 PASSWORD_DELTA = testujdelta
 
 
