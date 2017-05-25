@@ -42,3 +42,7 @@ URL = https://LOGIN:HASLO@ADRES.pl/
 W cześci [UserAccounts] znajdują się dane do logowania do profilu użytkownika, które są potem wykorzystywane w testach np. w linijce
 
 account_page = home_page.header.login(USER, PASSWORD)
+
+Dane są parsowane w pliku configparse.py, który jest umieszczony w głownym katalogu.
+
+Jeśli jest potrzeba można dopisać swoje zmienne do pliku congig.ini i configparse.py, lub operować na zmiennych już parsowanych
