@@ -39,6 +39,6 @@ W części [SiteUrl] zmienna URL reprezentuje adres strony na której operują t
 
 URL = https://LOGIN:HASLO@ADRES.pl/
 
-W cześci user accounts znajdują się dane do logowania do profilu użytkownika, które są potem wykorzystywane w testach np. w linijce
+W cześci [UserAccounts] znajdują się dane do logowania do profilu użytkownika, które są potem wykorzystywane w testach np. w linijce
 
 account_page = home_page.header.login(USER, PASSWORD)
