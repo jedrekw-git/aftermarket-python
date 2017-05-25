@@ -8,19 +8,29 @@ Dane potrzebne do uruchomienia testów powinny znalezć się w pliku config.ini 
 Przykładowa zawartość pliku config.ini:
 
 [SiteUrl]
+
 URL = https://devel:miodzio@testy.aftermarket2.pl/
 
 [UserAccounts]
+
+
 USER = alfa
+
 PASSWORD = testujalfa
 
+
 USER_BETA = beta
+
 PASSWORD_BETA = testujbeta
 
+
 USER_GAMMA = gamma
+
 PASSWORD_GAMMA = testujgamma
 
+
 USER_DELTA = delta
+
 PASSWORD_DELTA = testujdelta
 
 
