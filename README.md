@@ -45,4 +45,4 @@ account_page = home_page.header.login(USER, PASSWORD)
 
 Dane są parsowane w pliku configparse.py, który jest umieszczony w głownym katalogu.
 
-Jeśli jest potrzeba można dopisać swoje zmienne do pliku congig.ini i configparse.py, lub operować na zmiennych już parsowanych
+Jeśli jest potrzeba można dopisać swoje zmienne do pliku config.ini i configparse.py, lub operować na zmiennych już parsowanych
