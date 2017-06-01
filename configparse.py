@@ -5,6 +5,7 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 _url = config['SiteUrl']['URL']
+# _url_controls = config['SiteUrl']['URL_CONTROLS']
 
 _user = config['UserAccounts']['USER']
 _user_password = config['UserAccounts']['PASSWORD']

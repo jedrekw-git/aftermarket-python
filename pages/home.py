@@ -7,6 +7,7 @@ class HomePage(BasePage):
     _title = "Strona główna"
     # _url = "https://devel:miodzio@testy.aftermarket2.pl/"
     _url = configparse._url
+    # _url_controls = configparse._url_controls
     _language_dropdown = (By.XPATH, "//li[5]/a")
     _language_polish = (By.XPATH, "//li[5]/div/div/div/a")
 
@@ -19,3 +20,8 @@ class HomePage(BasePage):
         self.click(self._language_dropdown)
         self.click(self._language_polish)
         return self
+
+    # def open_controls_test_page(self):
+    #     self.get(self._url_controls)
+    #     self.is_the_current_page()
+    #     return self

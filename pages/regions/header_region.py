@@ -40,6 +40,7 @@ from pages.home import HomePage
 from time import sleep
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pages.controls_test_page import ControlsTestPage
 
 class HeaderRegion(Page):
     _login_menu = (By.XPATH, "//button[3]")
@@ -232,3 +233,7 @@ class HeaderRegion(Page):
     def open_active_appraisals_list(self):
         self.get(self._base_url + "Appraisal/Active/")
         return ActiveAppraisalsListPage(self.get_driver())
+
+    def open_controls_test_page(self):
+        self.get(self._base_url + "Test/Controls/")
+        return ControlsTestPage(self.get_driver())
