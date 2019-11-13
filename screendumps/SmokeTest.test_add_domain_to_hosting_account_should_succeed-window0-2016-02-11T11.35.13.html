@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<!--[if IE]>
+<html class="browserOld">
+<![endif]-->
+<!--[if !IE]> -->
+<html xmlns="http://www.w3.org/1999/xhtml" class="browserModern"><!-- <![endif]--><head>
+
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+
+<title>Lista domen na koncie hostingowym</title>
+
+<link href="/assets/img/favicon144x144.png" rel="apple-touch-icon" />
+<link href="/assets/img/favicon.ico" rel="shortcut icon" />
+
+<script src="/assets/lib/jquery-1.11.2.min.js" language="JavaScript"></script>
+<script src="/assets/lib/jquery.floatThead.min.js" language="JavaScript"></script>
+<script src="/assets/lib/jquery.visible.min.js" language="JavaScript"></script>
+<script src="/assets/lib/json2.js" language="JavaScript"></script>
+
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+<script language="JavaScript">
+var assets = "/assets";
+</script>
+
+<!--[if !IE]> -->
+<link href="/assets/css/release.css?modified=1452872636" rel="stylesheet" />
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/msie.css">
+<![endif]--> 
+
+<script src="/assets/js/release.js?modified=1452872639" language="JavaScript"></script>
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+
+</head>
+<body onload="getForm($('#loginForm')).init(); getPanel(document).init();">
+
+<div id="is_mobile"></div>
+<div id="is_tablet"></div>
+<div id="is_desktop"></div>
+
+<div class="d" id="main_background">
+<center>
+<img src="/assets/img/template/background/background2.jpg" />
+</center>
+</div>
+
+<div class="struct" id="main_top">
+<div class="container">
+
+
+<div class="d" id="logo">
+<a href="/"><img width="290" height="70" border="0" src="/assets/img/template/logo.svg" /></a>
+</div>
+
+<div class="narrow m" id="logo2">
+<a href="/"><img border="0" src="/assets/img/template/mobile/arrow_top.png" /></a>
+</div>
+
+<div class="wide m" id="logo3">
+<a href="/"><img border="0" src="/assets/img/template/mobile/logo_top.png" /></a>
+</div>
+
+<div id="account_info">
+
+<div id="account_login">
+Zalogowany: <b>gamma</b>
+| 
+<i class="fa fa-power-off"></i>
+<a href="/User/Logout/"> Wyloguj</a>
+</div>
+
+<div id="account_icons">
+
+<div class="balance">
+<div>
+<span class="d">Saldo:</span>
+<b>
+<span id="ajax_balance_balance">-9.34</span>
+<span id="ajax_balance_currency">EUR</span>
+</b>
+</div>
+<div class="m11">
+<i class="fa fa-plus-circle"></i>
+<a href="/User/Deposit/"> Wpłać<span class="m"> »</span></a>
+<span class="d">
+| 
+<i class="fa fa-minus-circle"></i>
+<a href="/Withdraw/Add/"> Wypłać</a>
+</span>
+</div>
+</div>
+
+<div onclick="Manager.redirect('User_Settings', '', 'replace');" style="background-image: url(/assets/img/template/account/gear.png);" class="icon">
+</div>
+
+<div onclick="Manager.redirect('Negotiation_Redir', '', 'replace');" style="background-image: url(/assets/img/template/account/bell.png);" class="icon">
+<div style="display:none;" id="ajax_negotiations_seller" class="info infoUp">0</div>
+<div style="display:none;" id="ajax_negotiations_buyer" class="info infoDown">0</div>
+</div>
+
+<div onclick="Manager.redirect('Auction_Buyer_List', '', 'replace');" style="background-image: url(/assets/img/template/account/auction.png);" class="icon">
+<div style="display:none;" id="ajax_auctions_losing" class="info infoUp"></div>
+<div style="display:none;" id="ajax_auctions_winning" class="info infoDown"></div>
+</div>
+
+<div onclick="Manager.redirect('Topay_List', '', 'replace');" style="background-image: url(/assets/img/template/account/cart.png);" class="icon">
+<div style="display:none;" id="ajax_balance_active" class="info infoUp">0</div>
+<div style="display:none;" id="ajax_balance_suspended" class="info infoDown">0</div>
+</div>
+
+<br clear="right" />
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<div data-expanded="0" class="struct" id="main_menu">
+<div class="container">
+
+<div onclick="Template.mobileMenu();" class="m" id="menu_bar">
+
+<img width="24" height="24" class="icon m" src="/assets/img/template/mobile/menu_bar.png" />
+
+<div class="m left">
+Menu
+</div>
+
+<div class="m right">
+|
+<a class="nopopup" href="/User/Logout/"><i class="fa fa-power-off"></i> Wyloguj</a>
+</div>
+
+<div class="m right login ellipsis">
+gamma
+</div>
+
+</div>
+
+<div class="clear"></div>
+
+<ul>
+<li>
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Domeny</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Domain/Check/"><i class="fa fa-plus-circle"></i> Rejestruj nowe domeny</a></div>
+<div class="cell"><a href="/Domain/Torenew/"><i class="fa fa-repeat"></i> Odnów wygasające domeny</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Domain/List/"><i class="fa fa-list"></i> Lista zarejestrowanych domen</a></div>
+<div class="cell"><a href="/Domain/OldList/"><i class="fa fa-list-ul"></i> Lista wygasłych domen</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Transfer/Add/"><i class="fa fa-arrow-right"></i> Transferuj domeny na konto</a></div>
+<div class="cell"><a href="/Intransfer/Add/"><i class="fa fa-arrow-left"></i> Przenieś domeny na inne konto</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Transfer/List/"><i class="fa fa-list-ul"></i> Lista transferów na konto</a></div>
+<div class="cell"><a href="/Intransfer/List/"><i class="fa fa-list-ul"></i> Zlecenia przeniesienia domen</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Profile/List/"><i class="fa fa-user"></i> Profile do rejestracji domen</a></div>
+<div class="cell"><a href="/User/Autorenew/"><i class="fa fa-repeat"></i> Automatyczne odnawianie</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/User/NS/"><i class="fa fa-link"></i> Domyślne serwery DNS</a></div>
+<div class="cell"><a href="/DNSSet/List/"><i class="fa fa-list-ul"></i> Profile wpisów DNS</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Domain/Whois/"><i class="fa fa-comment-o"></i> Sprawdź WHOIS domeny</a></div>
+<div class="cell"><a href="/Monitor/List/"><i class="fa fa-clock-o"></i> Monitorowanie WHOIS</a></div>
+</div>
+
+</div>
+</li>
+
+<li>
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Opcje</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Future/Check/"><i class="fa fa-plus-square"></i> Rejestruj nowe opcje</a></div>
+<div class="cell"><a href="/Future/Torenew/"><i class="fa fa-repeat"></i> Odnów wygasające opcje</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Future/List/"><i class="fa fa-list"></i> Lista zarejestrowanych opcji</a></div>
+<div class="cell"><a href="/Future/OldList/"><i class="fa fa-list-ul"></i> Zrealizowane i wygasłe opcje</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Transferfuture/Add/"><i class="fa fa-arrow-right"></i> Transferuj opcje na konto</a></div>
+<div class="cell"><a href="/Intransferfuture/Add/"><i class="fa fa-arrow-left"></i> Przenieś opcje na inne konto</a></div>
+</div>
+<div class="row">
+<div class="cell"><a href="/Transferfuture/List/"><i class="fa fa-list-ul"></i> Lista transferów na konto</a></div>
+<div class="cell"><a href="/Intransferfuture/List/"><i class="fa fa-list-ul"></i> Zlecenia przeniesienia opcji</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Serwery</a>
+
+<div class="rollup rollup1 popup">
+
+<div class="row">
+<div class="cell"><a href="/Hosting/Create/"><i class="fa fa-plus-circle"></i> Nowe konto hostingowe</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Hosting/List/"><i class="fa fa-list"></i> Lista kont hostingowych</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Parking</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Parking/Create/"><i class="fa fa-plus-circle"></i> Powiąż konto parkingowe</a></div>
+<div class="cell"><a href="/Parking/Delete/"><i class="fa fa-times"></i> Odłącz konto parkingowe</a></div>
+</div>
+
+<div class="separator "></div>
+
+<div class="row">
+<div class="cell"><a href="/User/Parking/"><i class="fa fa-wrench"></i> Domyślny serwis parkingu</a></div>
+<div class="cell"><a href="/Parking/User/"><i class="fa fa-line-chart"></i> Statystyki zarobków konta</a></div>
+</div>
+
+</div>
+
+</li>
+
+
+<li class="separator"></li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Kupno</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Market/List/"><i class="fa fa-search"></i> Szukaj domen na giełdzie</a></div>
+<div class="cell"><a href="/Market/Subscriptions/"><i class="fa fa-rss"></i> Subskrybowane wyszukiwania</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Negotiation/Buyer/List/"><i class="fa fa-list"></i> Lista trwających negocjacji</a></div>
+<div class="cell"><a href="/Negotiation/Buyer/Past/"><i class="fa fa-list-ul"></i> Lista zakończonych negocjacji</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Auction/Buyer/List/"><i class="fa fa-list"></i> Lista obserwowanych aukcji</a></div>
+<div class="cell"><a href="/Auction/Buyer/Past/"><i class="fa fa-list-ul"></i> Lista zakończonych aukcji</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Escrow/Buyer/List/"><i class="fa fa-list"></i> Lista transakcji Escrow</a></div>
+<div class="cell"><a href="/Escrowfuture/Buyer/List/"><i class="fa fa-list"></i> Lista transakcji Escrow opcji</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Rental/Buyer/List/"><i class="fa fa-list"></i> Lista transakcji dzierżawy</a></div>
+<div class="cell"><a href="/Hire/Buyer/List/"><i class="fa fa-list"></i> Lista transakcji ratalnych</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Watch/Domain/List/"><i class="fa fa-binoculars"></i> Obserwowane domeny</a></div>
+<div class="cell"><a href="/Watch/User/List/"><i class="fa fa-binoculars"></i> Obserwowani sprzedawcy</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Watch/Domain/"><i class="fa fa-gear"></i> Powiadomienia o domenach</a></div>
+<div class="cell"><a href="/Watch/User/"><i class="fa fa-gear"></i> Powiadomienia sprzedawców</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Sprzedaż</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Negotiation/Seller/List/"><i class="fa fa-list"></i> Lista trwających negocjacji</a></div>
+<div class="cell"><a href="/Negotiation/Seller/Past/"><i class="fa fa-list-ul"></i> Lista zakończonych negocjacji</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Auction/Seller/Add/"><i class="fa fa-plus-circle"></i> Nowa aukcja</a></div>
+<div class="cell"><a href="/Auction/Seller/AddFuture/"><i class="fa fa-plus-square"></i> Nowa aukcja opcji</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Auction/Seller/List/"><i class="fa fa-list"></i> Lista trwających aukcji</a></div>
+<div class="cell"><a href="/Auction/Seller/Past/"><i class="fa fa-list-ul"></i> Lista zakończonych aukcji</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Domain/Torenew/?status=lastminute"><i class="fa fa-plus-circle"></i> Wystaw aukcje Last Minute</a></div>
+</div>
+
+<div class="separator"></div>
+
+<!--
+<div class="row">
+<div class="cell"><a href="/Escrow/Seller/Add/"><i class="fa fa-plus-circle"></i> Nowa transakcja Escrow</a></div>
+<div class="cell"><a href="/Escrowfuture/Seller/Add/"><i class="fa fa-plus-square"></i> Nowa transakcja Escrow opcji</a></div>
+</div>
+-->
+
+<div class="row">
+<div class="cell"><a href="/Escrow/Seller/List/"><i class="fa fa-list"></i> Lista transakcji Escrow</a></div>
+<div class="cell"><a href="/Escrowfuture/Seller/List/"><i class="fa fa-list"></i> Lista transakcji Escrow opcji</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Rental/Seller/List/"><i class="fa fa-list"></i> Lista transakcji dzierżawy</a></div>
+<div class="cell"><a href="/Hire/Seller/List/"><i class="fa fa-list"></i> Lista transakcji ratalnych</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Advert/List/"><i class="fa fa-bullhorn"></i> Reklamowane domeny</a></div>
+<div class="cell"><a href="/Catalog/List/"><i class="fa fa-folder-open-o"></i> Katalogi domen na sprzedaż</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Selling/Banned/List/"><i class="fa fa-shield"></i> Zablokowani kupujący</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Selling/Sold/"><i class="fa fa-list-ul"></i> Sprzedane domeny</a></div>
+<div class="cell"><a href="/Selling/Pending/Pending/"><i class="fa fa-list-ul"></i> Nierozliczone sprzedaże</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Giełda</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Appraisal/Add/"><i class="fa fa-plus-circle"></i> Zleć wycenę domeny</a></div>
+<div class="cell"><a href="/Appraisal/List/"><i class="fa fa-list"></i> Lista zleconych wycen</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Appraisal/Active/"><i class="fa fa-list"></i> Trwające wyceny domen</a></div>
+<div class="cell"><a href="/Appraisal/Past/"><i class="fa fa-list-ul"></i> Zakończone wyceny domen</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Market/LastAuctions/"><i class="fa fa-gift"></i> Zakończone aukcje</a></div>
+<div class="cell"><a href="/Market/LastSold/"><i class="fa fa-gift"></i> Ostatnio sprzedane domeny</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Przechwytywanie</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Deleted/List/"><i class="fa fa-search"></i> Szukaj wygasających domen</a></div>
+<div class="cell"><a href="/Deleted/Subscriptions/"><i class="fa fa-rss"></i> Subskrybowane wyszukiwania</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Catch/Add/"><i class="fa fa-plus-circle"></i> Przechwyć domeny</a></div>
+<div class="cell"><a href="/Catch/List/"><i class="fa fa-list-ul"></i> Zlecone do przechwycenia</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Deletedfuture/List/"><i class="fa fa-search"></i> Szukaj wygasających opcji</a></div>
+<div class="cell"><a href="/Catchfuture/List/"><i class="fa fa-list-ul"></i> Opcje do przechwycenia</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li class="separator"></li>
+
+<li>
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Finanse</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/User/History/"><i class="fa fa-list"></i> Historia operacji na koncie</a></div>
+<div class="cell"><a href="/User/Blocked/"><i class="fa fa-dollar"></i> Saldo i kwota zablokowana</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Topay/List/"><i class="fa fa-list"></i> Lista domen do opłacenia</a></div>
+<div class="cell"><a href="/User/Suspended/"><i class="fa fa-hourglass-half"></i> Ustawienia nowych zamówień</a></div>
+</div>
+
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/User/Deposit/"><i class="fa fa-plus-circle"></i> Wpłać środki na konto</a></div>
+<div class="cell"><a href="/Withdraw/Add/"><i class="fa fa-minus-circle"></i> Wypłać środki z konta</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Withdraw/List/"><i class="fa fa-list-ul"></i> Lista zleconych wypłat</a></div>
+<div class="cell"><a href="/Bank/List/"><i class="fa fa-bank"></i> Lista kont bankowych</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Invoice/List/"><i class="fa fa-list-ul"></i> Lista otrzymanych faktur</a></div>
+<div class="cell"><a href="/User/Invoicing/"><i class="fa fa-file-text-o"></i> Dane do faktur</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Reverse/List/"><i class="fa fa-list-ul"></i> Lista faktur za sprzedaż</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li class="p">
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Ustawienia</a>
+
+<div class="rollup rollup3 popup">
+
+<div class="row">
+<div class="cell"><a href="/User/Password/"><i class="fa fa-key"></i> Zmień hasło</a></div>
+<div class="cell"><a href="/User/LoginLog/"><i class="fa fa-list-ul"></i> Historia logowania na konto</a></div>
+<div class="cell"><a href="/Login/List/"><i class="fa fa-users"></i> Inni użytkownicy konta</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Email/List/"><i class="fa fa-envelope-o"></i> Zmień adres email</a></div>
+<div class="cell"><a href="/Mobile/List/"><i class="fa fa-phone-square"></i> Zmień numer telefonu</a></div>
+<div class="cell"><a href="/User/Contact/"><i class="fa fa-home"></i> Zmień dane kontaktowe</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/User/Email/Settings/"><i class="fa fa-comment-o"></i> Powiadomienia email</a></div>
+<div class="cell"><a href="/User/Mobile/Settings/"><i class="fa fa-comment"></i> Powiadomienia SMS</a></div>
+<div class="cell"><a href="/User/Email/Newsletters/"><i class="fa fa-commenting-o"></i> Newslettery informacyjne</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Task/List/"><i class="fa fa-list-alt"></i> Lista zleconych operacji</a></div>
+<div class="cell"><a href="/Export/List/"><i class="fa fa-file-excel-o"></i> Lista eksportów danych</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li class="p separator"></li>
+<li class="p"><a href="/User/Logout/">Wyloguj</a></li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="struct" id="main_body">
+
+<div class="container">
+
+<div data-history="1" data-panel="Hosting_Domain_List" class="panel">
+<h1 class="ellipsis">Lista domen na koncie hostingowym<div class="topButtons">
+<button onclick="Manager.redirect('Hosting_Domain_Add', 'id=11', 'next'); return false;" class="topButton btn btnBlue" type="button">
+<i class="fa fa-plus"></i>  Dodaj nowe domeny</button>
+</div>
+</h1>
+<form method="post" data-panel="Hosting_Domain_List" data-confirm="" action="/Hosting/Domain/List/?id=11" id="5353e5c336df6c7fd5c4824608d6ccf5" class="standardForm form formNarrow">
+<input type="hidden" value="11" name="id" />
+<div style="" id="5c3f59e436da8c4a7cb6f1abe678ada5" class="formRow row">
+<div class="formRowLabel">Login konta hostingowego: <span style="visibility:hidden" class="formRequired">*</span></div>
+<div class="formRowInfo"></div>
+<div class="formRowBody">
+<div class="field formField">
+<span class="formStatic">gamma</span>
+<input type="hidden" value="gamma" name="login" />
+</div>
+<div class="clear"></div>
+<div class="formRowError"></div>
+</div>
+<div class="clear"></div>
+</div>
+</form>
+<form onsubmit="return getForm(this).submit();" action="/" method="GET" class="tableFilter">
+<div class="table">
+<div class="domainFilter tr">
+<div class="td100"><input type="text" value="" name="domain" class="input" />
+</div>
+<div class="td"><button onclick="getForm(this).submit(); return false;" class="btnSearch btn btnRed" type="submit"><span class="d">Szukaj domen</span><span class="m">Szukaj</span>   <i class="fa fa-angle-right"></i></button></div>
+</div>
+</div>
+<div class="filterDescs">
+<div class="clear"></div>
+</div>
+<div class="filters">
+</div>
+<input type="hidden" value="11" name="id" />
+</form>
+<form action="/app/standalone/table_form.php" method="POST" class="tableForm">
+<input type="hidden" value="" name="panel" />
+<input type="hidden" value="" name="task" />
+<input type="hidden" value="" name="param" />
+<input type="hidden" value="" name="extra" />
+<input type="hidden" value="0" name="save" />
+<div style="">
+<div class="tablePaging rollupContainer tablePagingAbove d">
+<div class="paging">
+<span class="left">
+<a title="Pierwsza strona" onclick="return false;" href="#" class="inactive"><i class="fa fa-angle-double-left"></i></a>
+<a title="Poprzednia strona" onclick="return false;" href="#" class="inactive"><i class="fa fa-angle-left"></i></a>
+</span>
+<span class="center"><span class="center2">
+  <span class="w"> Strona</span> <input type="text" data-count="30" onfocus="this.select();" style="width: 30px" onkeypress="getTable(this).pagingInput(this, event);" value="1" name="page" />
+ z <b>1</b>    
+</span></span>
+<span class="right">
+<a title="Następna strona" onclick="return false;" href="#" class="inactive"><i class="fa fa-angle-right"></i></a>
+<a title="Ostatnia strona" onclick="return false;" href="#" class="inactive"><i class="fa fa-angle-double-right"></i></a>
+</span>
+</div>
+</div>
+<div class="clear"></div>
+<div class="stickyHeaders" style="width: 962px;"><div style="width: 32px" class="th">
+<img width="24" height="24" class="info m" onclick="getTable(this).mobileInfos();" src="/assets/img/table/header/details.png" />
+</div>
+<div style="width: 24px" class="th">
+<label class="tableCheckbox">
+<input type="checkbox" class="checkboxMeta selectAll" onclick="getTable(this).selectAll(this)" />
+<span class="afterCheckbox"></span>
+</label>
+</div>
+<div style="width: 475px" class="th">
+<img vspace="2" hspace="2" align="right" onclick="getTable(this).mobileSort();" class="m" src="/assets/img/table/header/sort.png" />
+Domena<div class="headerSort">
+<img class="up inactive" src="/assets/img/table/sort/up2.png" />
+<img onclick="getTable(this).sort('domain', true); return false;" class="down" src="/assets/img/table/sort/down.png" />
+</div>
+</div>
+<div style="width: 80px" class="th alignRight">
+<img vspace="2" hspace="2" align="right" onclick="getTable(this).mobileSort();" class="m" src="/assets/img/table/header/sort.png" />
+Dysk<div class="headerSort">
+<img onclick="getTable(this).sort('space', false); return false;" class="up" src="/assets/img/table/sort/up.png" />
+<img onclick="getTable(this).sort('space', true); return false;" class="down" src="/assets/img/table/sort/down.png" />
+</div>
+</div>
+<div style="width: 80px" class="th alignRight">
+<img vspace="2" hspace="2" align="right" onclick="getTable(this).mobileSort();" class="m" src="/assets/img/table/header/sort.png" />
+Ruch<div class="headerSort">
+<img onclick="getTable(this).sort('bandwidth', false); return false;" class="up" src="/assets/img/table/sort/up.png" />
+<img onclick="getTable(this).sort('bandwidth', true); return false;" class="down" src="/assets/img/table/sort/down.png" />
+</div>
+</div>
+<div style="width: 150px" class="th">
+<img vspace="2" hspace="2" align="right" onclick="getTable(this).mobileSort();" class="m" src="/assets/img/table/header/sort.png" />
+Dodano<div class="headerSort">
+<img onclick="getTable(this).sort('time', false); return false;" class="up" src="/assets/img/table/sort/up.png" />
+<img onclick="getTable(this).sort('time', true); return false;" class="down" src="/assets/img/table/sort/down.png" />
+</div>
+</div>
+<div style="width: 32px" class="th">
+</div>
+<div class="info" style="display: none;"></div></div>
+<div class="wrapTable">
+<table data-fields="0" data-expanded="0" class="standardTable table fixed">
+<colgroup><col data-width="32" style="width: 36px;" />
+<col data-width="24" style="width: 28px;" />
+<col data-width="*" style="width: 479px;" />
+<col data-width="100" style="width: 112px;" />
+<col data-width="100" style="width: 112px;" />
+<col data-width="150" style="width: 154px;" />
+<col data-width="32" style="width: 39px;" />
+</colgroup>
+<thead>
+<tr class="headers">
+<th class="menu">
+<img width="24" height="24" class="info m" onclick="getTable(this).mobileInfos();" src="/assets/img/table/header/details.png" />
+</th>
+<th nowrap="nowrap" class="header ellipsis">
+<label class="tableCheckbox">
+<input type="checkbox" class="checkboxMeta selectAll" onclick="getTable(this).selectAll(this)" />
+<span class="afterCheckbox"></span>
+</label>
+</th>
+<th style="width: *px" class="header ellipsis">
+<img vspace="2" hspace="2" align="right" onclick="getTable(this).mobileSort();" class="m" src="/assets/img/table/header/sort.png" />
+Domena<div class="headerSort">
+<img class="up inactive" src="/assets/img/table/sort/up2.png" />
+<img onclick="getTable(this).sort('domain', true); return false;" class="down" src="/assets/img/table/sort/down.png" />
+</div>
+</th>
+<th style="width: 100px" class="header ellipsis d alignRight sortRight">
+<img vspace="2" hspace="2" align="right" onclick="getTable(this).mobileSort();" class="m" src="/assets/img/table/header/sort.png" />
+Dysk<div class="headerSort">
+<img onclick="getTable(this).sort('space', false); return false;" class="up" src="/assets/img/table/sort/up.png" />
+<img onclick="getTable(this).sort('space', true); return false;" class="down" src="/assets/img/table/sort/down.png" />
+</div>
+</th>
+<th style="width: 100px" class="header ellipsis d alignRight sortRight">
+<img vspace="2" hspace="2" align="right" onclick="getTable(this).mobileSort();" class="m" src="/assets/img/table/header/sort.png" />
+Ruch<div class="headerSort">
+<img onclick="getTable(this).sort('bandwidth', false); return false;" class="up" src="/assets/img/table/sort/up.png" />
+<img onclick="getTable(this).sort('bandwidth', true); return false;" class="down" src="/assets/img/table/sort/down.png" />
+</div>
+</th>
+<th style="width: 150px" class="header ellipsis w">
+<img vspace="2" hspace="2" align="right" onclick="getTable(this).mobileSort();" class="m" src="/assets/img/table/header/sort.png" />
+Dodano<div class="headerSort">
+<img onclick="getTable(this).sort('time', false); return false;" class="up" src="/assets/img/table/sort/up.png" />
+<img onclick="getTable(this).sort('time', true); return false;" class="down" src="/assets/img/table/sort/down.png" />
+</div>
+</th>
+<th class="header ellipsis d">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="sort m">
+<td class="cell"></td>
+<td class="cell name">
+<span class="link"><img src="/assets/img/table/sort/up2.png" /></span>
+<a class="link" onclick="getTable(this).sort('domain', true); return false;" href="#"><img src="/assets/img/table/sort/down.png" /></a>
+</td>
+<td colspan="5" class="cell desc">
+Domena</td>
+</tr>
+<tr class="sort m">
+<td class="cell"></td>
+<td class="cell name">
+<a class="link" onclick="getTable(this).sort('space', false); return false;" href="#"><img src="/assets/img/table/sort/up.png" /></a>
+<a class="link" onclick="getTable(this).sort('space', true); return false;" href="#"><img src="/assets/img/table/sort/down.png" /></a>
+</td>
+<td colspan="5" class="cell desc">
+Dysk</td>
+</tr>
+<tr class="sort m">
+<td class="cell"></td>
+<td class="cell name">
+<a class="link" onclick="getTable(this).sort('bandwidth', false); return false;" href="#"><img src="/assets/img/table/sort/up.png" /></a>
+<a class="link" onclick="getTable(this).sort('bandwidth', true); return false;" href="#"><img src="/assets/img/table/sort/down.png" /></a>
+</td>
+<td colspan="5" class="cell desc">
+Ruch</td>
+</tr>
+<tr class="sort m">
+<td class="cell"></td>
+<td class="cell name">
+<a class="link" onclick="getTable(this).sort('time', false); return false;" href="#"><img src="/assets/img/table/sort/up.png" /></a>
+<a class="link" onclick="getTable(this).sort('time', true); return false;" href="#"><img src="/assets/img/table/sort/down.png" /></a>
+</td>
+<td colspan="5" class="cell desc">
+Dodano</td>
+</tr>
+<tr data-expanded="0" data-id="testujztestuja.pl" class="row">
+<input type="hidden" value="testujztestuja.pl" name="all[]" />
+<td class="cell menuCell"><img width="24" height="24" onclick="getTableRow(this).mobileButtons();" class="tableImage menu clickable" src="/assets/img/table/row/menu.png" /></td>
+<td nowrap="nowrap" class="cell">
+<div class="cellSizer">
+<span class="cell ellipsis"><label class="tableCheckbox">
+<input type="checkbox" class="checkbox" data-id="testujztestuja.pl" value="testujztestuja.pl" name="id[]" id="chk_24dc61cac7ee551ae14150cd12b72021" />
+<span class="afterCheckbox"></span>
+</label>
+</span>
+</div>
+</td>
+<td class="cell">
+<div class="cellSizer">
+<span class="cell ellipsis"><span class="domain ellipsis">testujztestuja.pl</span>
+</span>
+</div>
+</td>
+<td class="cell d alignRight">
+<div class="cellSizer">
+<span class="cell ellipsis">76.0 kB</span>
+</div>
+</td>
+<td class="cell d alignRight">
+<div class="cellSizer">
+<span class="cell ellipsis">brak</span>
+</div>
+</td>
+<td class="cell d">
+<div class="cellSizer">
+<span class="cell ellipsis"><span class="ellipsis">2016-02-03 05:00:57</span></span>
+</div>
+</td>
+<td class="cell alignCenter d">
+<div class="cellSizer">
+<span class="cell ellipsis"><img width="24" height="24" onclick="if(window.confirm('Czy potwierdzasz usunięcie domeny?'))  Manager.redirect('Hosting_Domain_Delete', 'domain=testujztestuja.pl&amp;id=11', 'next'); return false;" class="rowDelete tableImage" src="/assets/img/table/row/delete.png" />
+</span>
+</div>
+</td>
+</tr>
+<tr class="mobileRow">
+<td colspan="7" class="cell mobileCell m"><div class="info n">
+<div class="label ellipsis">Dodano:</div>
+<div class="desc ellipsis"><span class="ellipsis">2016-02-03 05:00:57</span></div>
+</div>
+<div class="clear"></div>
+<div class="info">
+<div class="label ellipsis">Dysk:</div>
+<div class="desc ellipsis">76.0 kB</div>
+</div>
+<div class="clear"></div>
+<div class="info">
+<div class="label ellipsis">Transfer:</div>
+<div class="desc ellipsis">brak</div>
+</div>
+<div class="clear"></div>
+</td>
+</tr>
+<tr class="buttonRow"><td colspan="7" class="buttons desktop"><div class="buttons">
+<button onclick="buttonGroup(this, '0e601c740642d674789b7123af2b13f5'); return false;" class="rowButton btn" type="button">
+Strona WWW</button>
+<button onclick="buttonGroup(this, 'a7251c6ae9e596d40cd9776947be16cf'); return false;" class="rowButton btn" type="button">
+Poczta email</button>
+<button onclick=" Manager.redirect('Hosting_Panel', 'id=11', 'blank'); return false;" class="rowButton btn" type="button">
+DirectAdmin</button>
+<button onclick="if(window.confirm('Czy potwierdzasz usunięcie domeny?'))  Manager.redirect('Hosting_Domain_Delete', 'domain=testujztestuja.pl&amp;id=11', 'next'); return false;" class="rowButton btn" type="button">
+Usuń</button>
+</div><div class="rel">
+<div class="multiButtons" id="0e601c740642d674789b7123af2b13f5"><div onclick=" Manager.redirect('Hosting_FTP', 'id=11', 'next'); return false;" class="rowButton btnMulti" type="button">
+Dostęp FTP</div>
+<div onclick=" Manager.redirect('Hosting_Panel', 'id=11&amp;domain=testujztestuja.pl&amp;type=files', 'blank'); return false;" class="rowButton btnMulti" type="button">
+Menadżer plików</div>
+<div onclick=" Manager.redirect('Hosting_Panel', 'id=11&amp;domain=testujztestuja.pl&amp;type=installatron', 'blank'); return false;" class="rowButton btnMulti" type="button">
+Instalator skryptów</div>
+<div onclick=" Manager.redirect('Hosting_Panel', 'id=11&amp;domain=testujztestuja.pl&amp;type=redirect', 'blank'); return false;" class="rowButton btnMulti" type="button">
+Przekieruj na inny adres</div>
+<div onclick=" Manager.redirect('Hosting_Panel', 'id=11&amp;domain=testujztestuja.pl&amp;type=php', 'blank'); return false;" class="rowButton btnMulti" type="button">
+Zmień wersję PHP</div>
+</div>
+<div class="multiButtons" id="a7251c6ae9e596d40cd9776947be16cf"><div onclick=" Manager.redirect('Hosting_Panel', 'id=11&amp;domain=testujztestuja.pl&amp;type=email_list', 'blank'); return false;" class="rowButton btnMulti" type="button">
+Konta pocztowe</div>
+<div onclick=" Manager.redirect('Hosting_Panel', 'id=11&amp;domain=testujztestuja.pl&amp;type=email_forwarders', 'blank'); return false;" class="rowButton btnMulti" type="button">
+Przekierowania pocztowe</div>
+<div onclick=" Manager.redirect('Hosting_Panel', 'id=11&amp;domain=testujztestuja.pl&amp;type=email_catchall', 'blank'); return false;" class="rowButton btnMulti" type="button">
+Domyślny adres pocztowy</div>
+<div onclick=" Manager.redirect('Hosting_Panel', 'id=11&amp;domain=testujztestuja.pl&amp;type=email_autoresponder', 'blank'); return false;" class="rowButton btnMulti" type="button">
+Automatyczne odpowiedzi</div>
+<div onclick=" Manager.redirect('Hosting_Panel', 'id=11&amp;domain=testujztestuja.pl&amp;type=email_vacation', 'blank'); return false;" class="rowButton btnMulti" type="button">
+Wiadomości urlopowe</div>
+<div onclick=" Manager.redirect('Hosting_Panel', 'id=11&amp;domain=testujztestuja.pl&amp;type=email_discussion', 'blank'); return false;" class="rowButton btnMulti" type="button">
+Listy dyskusyjne</div>
+<div onclick=" Manager.redirect('Hosting_Panel', 'id=11&amp;domain=testujztestuja.pl&amp;type=email_filters', 'blank'); return false;" class="rowButton btnMulti" type="button">
+Filtry poczty</div>
+<div onclick=" Manager.redirect('Hosting_Panel', 'id=11&amp;domain=testujztestuja.pl&amp;type=email_spam', 'blank'); return false;" class="rowButton btnMulti" type="button">
+Filtry antyspamowe</div>
+<div onclick=" Manager.redirect('Hosting_Panel', 'id=11&amp;domain=testujztestuja.pl&amp;type=webmail', 'blank'); return false;" class="rowButton btnMulti" type="button">
+Interfejs WebMail</div>
+</div>
+</div></td></tr>
+</tbody></table>
+</div>
+<div class="tablePaging rollupContainer tablePagingBelow d">
+<div class="paging">
+<span class="left">
+<a title="Pierwsza strona" onclick="return false;" href="#" class="inactive"><i class="fa fa-angle-double-left"></i></a>
+<a title="Poprzednia strona" onclick="return false;" href="#" class="inactive"><i class="fa fa-angle-left"></i></a>
+</span>
+<span class="center"><span class="center2">
+  <span class="w"> Strona</span> <input type="text" data-count="30" onfocus="this.select();" style="width: 30px" onkeypress="getTable(this).pagingInput(this, event);" value="1" name="page" />
+ z <b>1</b>    
+</span></span>
+<span class="right">
+<a title="Następna strona" onclick="return false;" href="#" class="inactive"><i class="fa fa-angle-right"></i></a>
+<a title="Ostatnia strona" onclick="return false;" href="#" class="inactive"><i class="fa fa-angle-double-right"></i></a>
+</span>
+</div>
+</div>
+<div class="clear"></div>
+<div class="tableButtonsContainer">
+<div class="tableButtons stickyBottom">
+<button onclick="getTable(this).redirPanel('Hosting_Domain_Delete', 'domain', 'id=11'); return false;" class="tableButton btn" type="button">
+Usuń domeny</button>
+<div class="rel">
+</div><div class="info" style="display: none;"></div>
+</div>
+</div>
+</div>
+<p style="display: none !important;" class="tableEmpty">
+Brak elementów spełniających warunki wyszukiwania. <span class="d">Zmień lub usuń warunki wyszukiwania i spróbuj ponownie.</span></p>
+</form>
+<span class="m"><form method="post" data-panel="Hosting_Domain_List" data-confirm="" action="/Hosting/Domain/List/?id=11" id="ae73505b5cd0d2073437e4c5fcd8bcc9" class="standardForm form">
+<input type="hidden" value="gamma" name="login" />
+<input type="hidden" value="11" name="id" />
+<div style="" id="b1e766dc772bd15f28dc09cc14676b97" class="formRow row">
+<div class="formRowBody">
+<button onclick="Manager.redirect('Hosting_Domain_Add', 'id=11', 'null', 'next'); return false;" class="topButton btn btnRed" type="button">
+Dodaj nowe domeny   <i class="fa fa-angle-right"></i></button>
+<div class="clear"></div>
+<div class="formRowError"></div>
+</div>
+<div class="clear"></div>
+</div>
+</form>
+</span></div>
+
+
+</div>
+
+</div>
+
+
+<div class="struct" id="main_stats">
+<div class="container">
+
+<a class="m" href="switch_full.php">Pełna wersja strony »</a>
+
+<ul class="d">
+<li>Zarejestrowane domeny: 316</li>
+<li>Zarejestrowani użytkownicy: 123</li>
+<li>Oferty sprzedaży na giełdzie: 765</li>
+<li>Aukcje na giełdzie: 45</li>
+</ul>
+
+</div>
+</div>
+
+
+
+<div class="struct" id="main_footer">
+</div>
+
+
+
+</body><canvas id="fxdriver-screenshot-canvas" style="display: none;" width="1008" height="700"></canvas></html>

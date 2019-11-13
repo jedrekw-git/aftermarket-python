@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<!--[if IE]>
+<html class="browserOld">
+<![endif]-->
+<!--[if !IE]> -->
+<html xmlns="http://www.w3.org/1999/xhtml" class="browserModern"><!-- <![endif]--><head>
+
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+
+<title>Wynik wykonania operacji</title>
+
+<link href="/assets/img/favicon144x144.png" rel="apple-touch-icon" />
+<link href="/assets/img/favicon.ico" rel="shortcut icon" />
+
+<script src="/assets/lib/jquery-1.11.2.min.js" language="JavaScript"></script>
+<script src="/assets/lib/jquery.floatThead.min.js" language="JavaScript"></script>
+<script src="/assets/lib/jquery.visible.min.js" language="JavaScript"></script>
+<script src="/assets/lib/json2.js" language="JavaScript"></script>
+
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+<script language="JavaScript">
+var assets = "/assets";
+</script>
+
+<!--[if !IE]> -->
+<link href="/assets/css/release.css?modified=1452872636" rel="stylesheet" />
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/msie.css">
+<![endif]--> 
+
+<script src="/assets/js/release.js?modified=1452872639" language="JavaScript"></script>
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+
+</head>
+<body onload="getForm($('#loginForm')).init(); getPanel(document).init();">
+
+<div id="is_mobile"></div>
+<div id="is_tablet"></div>
+<div id="is_desktop"></div>
+
+<div class="d" id="main_background">
+<center>
+<img src="/assets/img/template/background/background2.jpg" />
+</center>
+</div>
+
+<div class="struct" id="main_top">
+<div class="container">
+
+
+<div class="d" id="logo">
+<a href="/"><img width="290" height="70" border="0" src="/assets/img/template/logo.svg" /></a>
+</div>
+
+<div class="narrow m" id="logo2">
+<a href="/"><img border="0" src="/assets/img/template/mobile/arrow_top.png" /></a>
+</div>
+
+<div class="wide m" id="logo3">
+<a href="/"><img border="0" src="/assets/img/template/mobile/logo_top.png" /></a>
+</div>
+
+<div id="account_info">
+
+<div id="account_login">
+Zalogowany: <b>delta</b>
+| 
+<i class="fa fa-power-off"></i>
+<a href="/User/Logout/"> Wyloguj</a>
+</div>
+
+<div id="account_icons">
+
+<div class="balance">
+<div>
+<span class="d">Saldo:</span>
+<b>
+<span id="ajax_balance_balance">105.60</span>
+<span id="ajax_balance_currency">EUR</span>
+</b>
+</div>
+<div class="m11">
+<i class="fa fa-plus-circle"></i>
+<a href="/User/Deposit/"> Wpłać<span class="m"> »</span></a>
+<span class="d">
+| 
+<i class="fa fa-minus-circle"></i>
+<a href="/Withdraw/Add/"> Wypłać</a>
+</span>
+</div>
+</div>
+
+<div onclick="Manager.redirect('User_Settings', '', 'replace');" style="background-image: url(/assets/img/template/account/gear.png);" class="icon">
+</div>
+
+<div onclick="Manager.redirect('Negotiation_Redir', '', 'replace');" style="background-image: url(/assets/img/template/account/bell.png);" class="icon">
+<div style="display:none;" id="ajax_negotiations_seller" class="info infoUp">0</div>
+<div style="display:none;" id="ajax_negotiations_buyer" class="info infoDown">0</div>
+</div>
+
+<div onclick="Manager.redirect('Auction_Buyer_List', '', 'replace');" style="background-image: url(/assets/img/template/account/auction.png);" class="icon">
+<div style="display:none;" id="ajax_auctions_losing" class="info infoUp">0</div>
+<div id="ajax_auctions_winning" class="info infoDown">1</div>
+</div>
+
+<div onclick="Manager.redirect('Topay_List', '', 'replace');" style="background-image: url(/assets/img/template/account/cart.png);" class="icon">
+<div style="display:none;" id="ajax_balance_active" class="info infoUp"></div>
+<div style="display:none;" id="ajax_balance_suspended" class="info infoDown"></div>
+</div>
+
+<br clear="right" />
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<div data-expanded="0" class="struct" id="main_menu">
+<div class="container">
+
+<div onclick="Template.mobileMenu();" class="m" id="menu_bar">
+
+<img width="24" height="24" class="icon m" src="/assets/img/template/mobile/menu_bar.png" />
+
+<div class="m left">
+Menu
+</div>
+
+<div class="m right">
+|
+<a class="nopopup" href="/User/Logout/"><i class="fa fa-power-off"></i> Wyloguj</a>
+</div>
+
+<div class="m right login ellipsis">
+delta
+</div>
+
+</div>
+
+<div class="clear"></div>
+
+<ul>
+<li>
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Domeny</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Domain/Check/"><i class="fa fa-plus-circle"></i> Rejestruj nowe domeny</a></div>
+<div class="cell"><a href="/Domain/Torenew/"><i class="fa fa-repeat"></i> Odnów wygasające domeny</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Domain/List/"><i class="fa fa-list"></i> Lista zarejestrowanych domen</a></div>
+<div class="cell"><a href="/Domain/OldList/"><i class="fa fa-list-ul"></i> Lista wygasłych domen</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Transfer/Add/"><i class="fa fa-arrow-right"></i> Transferuj domeny na konto</a></div>
+<div class="cell"><a href="/Intransfer/Add/"><i class="fa fa-arrow-left"></i> Przenieś domeny na inne konto</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Transfer/List/"><i class="fa fa-list-ul"></i> Lista transferów na konto</a></div>
+<div class="cell"><a href="/Intransfer/List/"><i class="fa fa-list-ul"></i> Zlecenia przeniesienia domen</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Profile/List/"><i class="fa fa-user"></i> Profile do rejestracji domen</a></div>
+<div class="cell"><a href="/User/Autorenew/"><i class="fa fa-repeat"></i> Automatyczne odnawianie</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/User/NS/"><i class="fa fa-link"></i> Domyślne serwery DNS</a></div>
+<div class="cell"><a href="/DNSSet/List/"><i class="fa fa-list-ul"></i> Profile wpisów DNS</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Domain/Whois/"><i class="fa fa-comment-o"></i> Sprawdź WHOIS domeny</a></div>
+<div class="cell"><a href="/Monitor/List/"><i class="fa fa-clock-o"></i> Monitorowanie WHOIS</a></div>
+</div>
+
+</div>
+</li>
+
+<li>
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Opcje</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Future/Check/"><i class="fa fa-plus-square"></i> Rejestruj nowe opcje</a></div>
+<div class="cell"><a href="/Future/Torenew/"><i class="fa fa-repeat"></i> Odnów wygasające opcje</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Future/List/"><i class="fa fa-list"></i> Lista zarejestrowanych opcji</a></div>
+<div class="cell"><a href="/Future/OldList/"><i class="fa fa-list-ul"></i> Zrealizowane i wygasłe opcje</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Transferfuture/Add/"><i class="fa fa-arrow-right"></i> Transferuj opcje na konto</a></div>
+<div class="cell"><a href="/Intransferfuture/Add/"><i class="fa fa-arrow-left"></i> Przenieś opcje na inne konto</a></div>
+</div>
+<div class="row">
+<div class="cell"><a href="/Transferfuture/List/"><i class="fa fa-list-ul"></i> Lista transferów na konto</a></div>
+<div class="cell"><a href="/Intransferfuture/List/"><i class="fa fa-list-ul"></i> Zlecenia przeniesienia opcji</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Serwery</a>
+
+<div class="rollup rollup1 popup">
+
+<div class="row">
+<div class="cell"><a href="/Hosting/Create/"><i class="fa fa-plus-circle"></i> Nowe konto hostingowe</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Hosting/List/"><i class="fa fa-list"></i> Lista kont hostingowych</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Parking</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Parking/Create/"><i class="fa fa-plus-circle"></i> Powiąż konto parkingowe</a></div>
+<div class="cell"><a href="/Parking/Delete/"><i class="fa fa-times"></i> Odłącz konto parkingowe</a></div>
+</div>
+
+<div class="separator "></div>
+
+<div class="row">
+<div class="cell"><a href="/User/Parking/"><i class="fa fa-wrench"></i> Domyślny serwis parkingu</a></div>
+<div class="cell"><a href="/Parking/User/"><i class="fa fa-line-chart"></i> Statystyki zarobków konta</a></div>
+</div>
+
+</div>
+
+</li>
+
+
+<li class="separator"></li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Kupno</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Market/List/"><i class="fa fa-search"></i> Szukaj domen na giełdzie</a></div>
+<div class="cell"><a href="/Market/Subscriptions/"><i class="fa fa-rss"></i> Subskrybowane wyszukiwania</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Negotiation/Buyer/List/"><i class="fa fa-list"></i> Lista trwających negocjacji</a></div>
+<div class="cell"><a href="/Negotiation/Buyer/Past/"><i class="fa fa-list-ul"></i> Lista zakończonych negocjacji</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Auction/Buyer/List/"><i class="fa fa-list"></i> Lista obserwowanych aukcji</a></div>
+<div class="cell"><a href="/Auction/Buyer/Past/"><i class="fa fa-list-ul"></i> Lista zakończonych aukcji</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Escrow/Buyer/List/"><i class="fa fa-list"></i> Lista transakcji Escrow</a></div>
+<div class="cell"><a href="/Escrowfuture/Buyer/List/"><i class="fa fa-list"></i> Lista transakcji Escrow opcji</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Rental/Buyer/List/"><i class="fa fa-list"></i> Lista transakcji dzierżawy</a></div>
+<div class="cell"><a href="/Hire/Buyer/List/"><i class="fa fa-list"></i> Lista transakcji ratalnych</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Watch/Domain/List/"><i class="fa fa-binoculars"></i> Obserwowane domeny</a></div>
+<div class="cell"><a href="/Watch/User/List/"><i class="fa fa-binoculars"></i> Obserwowani sprzedawcy</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Watch/Domain/"><i class="fa fa-gear"></i> Powiadomienia o domenach</a></div>
+<div class="cell"><a href="/Watch/User/"><i class="fa fa-gear"></i> Powiadomienia sprzedawców</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Sprzedaż</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Negotiation/Seller/List/"><i class="fa fa-list"></i> Lista trwających negocjacji</a></div>
+<div class="cell"><a href="/Negotiation/Seller/Past/"><i class="fa fa-list-ul"></i> Lista zakończonych negocjacji</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Auction/Seller/Add/"><i class="fa fa-plus-circle"></i> Nowa aukcja</a></div>
+<div class="cell"><a href="/Auction/Seller/AddFuture/"><i class="fa fa-plus-square"></i> Nowa aukcja opcji</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Auction/Seller/List/"><i class="fa fa-list"></i> Lista trwających aukcji</a></div>
+<div class="cell"><a href="/Auction/Seller/Past/"><i class="fa fa-list-ul"></i> Lista zakończonych aukcji</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Domain/Torenew/?status=lastminute"><i class="fa fa-plus-circle"></i> Wystaw aukcje Last Minute</a></div>
+</div>
+
+<div class="separator"></div>
+
+<!--
+<div class="row">
+<div class="cell"><a href="/Escrow/Seller/Add/"><i class="fa fa-plus-circle"></i> Nowa transakcja Escrow</a></div>
+<div class="cell"><a href="/Escrowfuture/Seller/Add/"><i class="fa fa-plus-square"></i> Nowa transakcja Escrow opcji</a></div>
+</div>
+-->
+
+<div class="row">
+<div class="cell"><a href="/Escrow/Seller/List/"><i class="fa fa-list"></i> Lista transakcji Escrow</a></div>
+<div class="cell"><a href="/Escrowfuture/Seller/List/"><i class="fa fa-list"></i> Lista transakcji Escrow opcji</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Rental/Seller/List/"><i class="fa fa-list"></i> Lista transakcji dzierżawy</a></div>
+<div class="cell"><a href="/Hire/Seller/List/"><i class="fa fa-list"></i> Lista transakcji ratalnych</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Advert/List/"><i class="fa fa-bullhorn"></i> Reklamowane domeny</a></div>
+<div class="cell"><a href="/Catalog/List/"><i class="fa fa-folder-open-o"></i> Katalogi domen na sprzedaż</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Selling/Banned/List/"><i class="fa fa-shield"></i> Zablokowani kupujący</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Selling/Sold/"><i class="fa fa-list-ul"></i> Sprzedane domeny</a></div>
+<div class="cell"><a href="/Selling/Pending/Pending/"><i class="fa fa-list-ul"></i> Nierozliczone sprzedaże</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Giełda</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Appraisal/Add/"><i class="fa fa-plus-circle"></i> Zleć wycenę domeny</a></div>
+<div class="cell"><a href="/Appraisal/List/"><i class="fa fa-list"></i> Lista zleconych wycen</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Appraisal/Active/"><i class="fa fa-list"></i> Trwające wyceny domen</a></div>
+<div class="cell"><a href="/Appraisal/Past/"><i class="fa fa-list-ul"></i> Zakończone wyceny domen</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Market/LastAuctions/"><i class="fa fa-gift"></i> Zakończone aukcje</a></div>
+<div class="cell"><a href="/Market/LastSold/"><i class="fa fa-gift"></i> Ostatnio sprzedane domeny</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Przechwytywanie</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Deleted/List/"><i class="fa fa-search"></i> Szukaj wygasających domen</a></div>
+<div class="cell"><a href="/Deleted/Subscriptions/"><i class="fa fa-rss"></i> Subskrybowane wyszukiwania</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Catch/Add/"><i class="fa fa-plus-circle"></i> Przechwyć domeny</a></div>
+<div class="cell"><a href="/Catch/List/"><i class="fa fa-list-ul"></i> Zlecone do przechwycenia</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Deletedfuture/List/"><i class="fa fa-search"></i> Szukaj wygasających opcji</a></div>
+<div class="cell"><a href="/Catchfuture/List/"><i class="fa fa-list-ul"></i> Opcje do przechwycenia</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li class="separator"></li>
+
+<li>
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Finanse</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/User/History/"><i class="fa fa-list"></i> Historia operacji na koncie</a></div>
+<div class="cell"><a href="/User/Blocked/"><i class="fa fa-dollar"></i> Saldo i kwota zablokowana</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Topay/List/"><i class="fa fa-list"></i> Lista domen do opłacenia</a></div>
+<div class="cell"><a href="/User/Suspended/"><i class="fa fa-hourglass-half"></i> Ustawienia nowych zamówień</a></div>
+</div>
+
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/User/Deposit/"><i class="fa fa-plus-circle"></i> Wpłać środki na konto</a></div>
+<div class="cell"><a href="/Withdraw/Add/"><i class="fa fa-minus-circle"></i> Wypłać środki z konta</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Withdraw/List/"><i class="fa fa-list-ul"></i> Lista zleconych wypłat</a></div>
+<div class="cell"><a href="/Bank/List/"><i class="fa fa-bank"></i> Lista kont bankowych</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Invoice/List/"><i class="fa fa-list-ul"></i> Lista otrzymanych faktur</a></div>
+<div class="cell"><a href="/User/Invoicing/"><i class="fa fa-file-text-o"></i> Dane do faktur</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Reverse/List/"><i class="fa fa-list-ul"></i> Lista faktur za sprzedaż</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li class="p">
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Ustawienia</a>
+
+<div class="rollup rollup3 popup">
+
+<div class="row">
+<div class="cell"><a href="/User/Password/"><i class="fa fa-key"></i> Zmień hasło</a></div>
+<div class="cell"><a href="/User/LoginLog/"><i class="fa fa-list-ul"></i> Historia logowania na konto</a></div>
+<div class="cell"><a href="/Login/List/"><i class="fa fa-users"></i> Inni użytkownicy konta</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Email/List/"><i class="fa fa-envelope-o"></i> Zmień adres email</a></div>
+<div class="cell"><a href="/Mobile/List/"><i class="fa fa-phone-square"></i> Zmień numer telefonu</a></div>
+<div class="cell"><a href="/User/Contact/"><i class="fa fa-home"></i> Zmień dane kontaktowe</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/User/Email/Settings/"><i class="fa fa-comment-o"></i> Powiadomienia email</a></div>
+<div class="cell"><a href="/User/Mobile/Settings/"><i class="fa fa-comment"></i> Powiadomienia SMS</a></div>
+<div class="cell"><a href="/User/Email/Newsletters/"><i class="fa fa-commenting-o"></i> Newslettery informacyjne</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Task/List/"><i class="fa fa-list-alt"></i> Lista zleconych operacji</a></div>
+<div class="cell"><a href="/Export/List/"><i class="fa fa-file-excel-o"></i> Lista eksportów danych</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li class="p separator"></li>
+<li class="p"><a href="/User/Logout/">Wyloguj</a></li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="struct" id="main_body">
+
+<div class="container">
+
+<div data-panel="Domain_NS2" class="panel">
+<h1 class="ellipsis">Wynik wykonania operacji</h1>
+<p class="d" id="83d0bfbd77af13cf77c76f652ad431e8">
+Poniżej znajduje się wynik wykonania zleconych operacji: <b>Zmiana serwerów DNS dla domen</b></p>
+<form method="post" data-panel="Domain_NS2" data-confirm="" action="/Domain/NS2/?md5=dbc11c17d530348d77b533d2086b44dc&amp;return=" id="2b3e523f72d5ff4e48aa5b8aa1c8bb77" class="standardForm form">
+<div class="tableButtonsContainer d">
+<button onclick="Manager.redirect('Domain_List', '', 'return'); return false;" class="btn" type="button">
+<i class="fa fa-angle-left"></i>  Lista zarejestrowanych domen</button>
+<button onclick="return Manager.redirect('Task_Download', 'id=6367', 'replace');" data-role="download" class="btn p"><i class="fa fa-download"></i> Pobierz wyniki operacji</button>
+<button onclick="return Manager.redirect('Task_Download', 'id=6367', 'replace');" data-role="download" class="btn t"><i class="fa fa-download"></i> Pobierz</button>
+<button onclick="return Manager.redirect('Task_Retry', 'id=6367', 'replace');" data-role="repeat" class="btn p"><i class="fa fa-repeat"></i> Ponów błędne operacje</button>
+<button onclick="return Manager.redirect('Task_Retry', 'id=6367', 'replace');" data-role="repeat" class="btn t"><i class="fa fa-repeat"></i> Ponów</button>
+</div>
+<div class="wrapTable">
+<table data-id="dbc11c17d530348d77b533d2086b44dc" id="f9141611a2e7e557653975468456b68d" class="resultTable table fixed">
+<colgroup>
+<col data-width="32" style="width: 36px;" />
+<col data-width="*" style="width: 212px;" />
+<col data-width="3*" style="width: 636px;" />
+<col data-width="32" style="width: 36px;" />
+<col data-width="32" style="width: 39px;" />
+</colgroup>
+<thead>
+<tr class="headers">
+<th style="width:24px" class="header"></th>
+<th class="header">Nazwa domeny</th>
+<th class="header d">Wynik wykonania operacji</th>
+<th style="width:24px" class="header d"></th>
+<th style="width:24px" class="header d"></th>
+</tr>
+</thead>
+<tbody><tr data-id="48862465" class="taskRow row">
+<td width="32" class="taskImage"><img width="24" height="24" class="tableImage" src="/assets/img/task/status/error.png" /></td>
+<td class="taskDomain cell"><span class="domain ellipsis cell">00502eee-c.waw.pl</span>
+</td>
+<td class="taskStatus d">Domena jest zablokowana: 00502eee-c.waw.pl</td>
+<td class="d"><img width="24" height="24" border="0" style="display:none" onclick="getTable(this).iconClick('Task_Resume','id=48862465&amp;md5=dbc11c17d530348d77b533d2086b44dc'); return false;" src="/assets/img/table/icon/play.png" class="tableIcon tableImage clickable unsuspend" /><img width="24" height="24" border="0" style="display:none" onclick="getTable(this).iconClick('Task_Suspend','id=48862465&amp;md5=dbc11c17d530348d77b533d2086b44dc'); return false;" src="/assets/img/table/icon/pause.png" class="tableIcon tableImage clickable suspend" /></td><td class="d"><img width="24" height="24" border="0" style="display:none" onclick="getTable(this).iconClick('Task_Cancel','id=48862465&amp;md5=dbc11c17d530348d77b533d2086b44dc'); return false;" src="/assets/img/table/row/delete.png" class="tableIcon tableImage clickable cancel" /></td></tr>
+<tr style="display:table-row;" class="mobileRow">
+<td colspan="4" class="cell mobileCell m"><div class="info">
+<div class="label ellipsis">Wynik:</div>
+<div class="desc ellipsis status">Domena jest zablokowana: 00502eee-c.waw.pl</div>
+</div>
+<div class="clear"></div>
+</td>
+</tr>
+<tr class="taskRow final p">
+<td class="cell"></td>
+<td nowrap="nowrap" colspan="4" class="cell taskSummary"><i class="fa fa-spinner"></i> W toku: <b>0</b>     <i class="fa fa-hourglass-half"></i> Zawieszone: <b>0</b>     <i class="fa fa-clock-o"></i> Do opłacenia: <b>0</b>     <i class="fa fa-check"></i> Zakończone: <b>0</b>     <i class="fa fa-warning"></i> Ostrzeżenia: <b>0</b>     <i class="fa fa-times"></i> Błędne: <b>1</b>     <i class="fa fa-times-circle"></i> Anulowane: <b>0</b></td>
+
+</tr>
+</tbody></table>
+</div>
+</form>
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="struct" id="main_stats">
+<div class="container">
+
+<a class="m" href="switch_full.php">Pełna wersja strony »</a>
+
+<ul class="d">
+<li>Zarejestrowane domeny: 316</li>
+<li>Zarejestrowani użytkownicy: 123</li>
+<li>Oferty sprzedaży na giełdzie: 765</li>
+<li>Aukcje na giełdzie: 45</li>
+</ul>
+
+</div>
+</div>
+
+
+
+<div class="struct" id="main_footer">
+</div>
+
+
+
+</body><canvas id="fxdriver-screenshot-canvas" style="display: none;" width="1008" height="700"></canvas></html>

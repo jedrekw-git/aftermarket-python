@@ -1,0 +1,1635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/pages/transfer_domain_to_account_list.py" line="24" mnemonic="9" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f94b0a32-c86d-4705-8c93-46b84f875f6e" name="Default" comment="" />
+    <ignored path="aftermarket2-selenium.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_rental_seller_transactions_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_rental_seller_transactions_should_succeed Coverage Results" MODIFIED="1457614715922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_escrow_option_transactions_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_escrow_option_transactions_should_succeed Coverage Results" MODIFIED="1455022604744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_sellers_watching_settings_should_succeed.coverage" NAME="Unittest SmokeTest.test_sellers_watching_settings_should_succeed Coverage Results" MODIFIED="1449583204559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_dns_entry_for_selected_domain_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_dns_entry_for_selected_domain_should_succeed Coverage Results" MODIFIED="1490283402615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_seller_profile_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_seller_profile_should_succeed Coverage Results" MODIFIED="1449583229683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_hire_seller_transaction_wrong_domain_name_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_hire_seller_transaction_wrong_domain_name_should_succeed Coverage Results" MODIFIED="1456155295563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_watch_new_seller_should_succeed.coverage" NAME="Unittest SmokeTest.test_watch_new_seller_should_succeed Coverage Results" MODIFIED="1493304665995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_move_domain_to_other_account.coverage" NAME="Unittest SmokeTest.test_move_domain_to_other_account Coverage Results" MODIFIED="1448376505867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_transfer_option_from_account_wrong_login_should_succeed.coverage" NAME="Unittest SmokeTest.test_transfer_option_from_account_wrong_login_should_succeed Coverage Results" MODIFIED="1490286862282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_newsletter_settings_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_newsletter_settings_should_succeed Coverage Results" MODIFIED="1490102666107" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$testy_kontrolek.coverage" NAME="testy kontrolek Coverage Results" MODIFIED="1496231672822" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_notification_about_ending_auctions_should_succeed.coverage" NAME="Unittest SmokeTest.test_notification_about_ending_auctions_should_succeed Coverage Results" MODIFIED="1485968971393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_hire_seller_transaction_wrong_login_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_hire_seller_transaction_wrong_login_should_succeed Coverage Results" MODIFIED="1456154693731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_get_option_authinfo_should_succeed.coverage" NAME="Unittest SmokeTest.test_get_option_authinfo_should_succeed Coverage Results" MODIFIED="1490283021195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_add_email_address_should_succeed.coverage" NAME="Unittest SmokeTest.test_add_email_address_should_succeed Coverage Results" MODIFIED="1490279384427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_transfer_domain_to_the_same_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_transfer_domain_to_the_same_account_should_succeed Coverage Results" MODIFIED="1490286712521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_transfer_domains_to_the_other_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_transfer_domains_to_the_other_account_should_succeed Coverage Results" MODIFIED="1448369105763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_filter_monitored_domains_available_should_succeed.coverage" NAME="Unittest SmokeTest.test_filter_monitored_domains_available_should_succeed Coverage Results" MODIFIED="1456403009442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$test_smoke.coverage" NAME="test_smoke Coverage Results" MODIFIED="1496231387336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_subscribe_filtered_domains_to_catch_should_succeed.coverage" NAME="Unittest SmokeTest.test_subscribe_filtered_domains_to_catch_should_succeed Coverage Results" MODIFIED="1464617530120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_monitor_new_domain_already_monitored_domain_should_succeed.coverage" NAME="Unittest SmokeTest.test_monitor_new_domain_already_monitored_domain_should_succeed Coverage Results" MODIFIED="1457352201516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_transfer_option_to_the_same_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_transfer_option_to_the_same_account_should_succeed Coverage Results" MODIFIED="1448969824191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_task_list_filtering_should_succeed.coverage" NAME="Unittest SmokeTest.test_task_list_filtering_should_succeed Coverage Results" MODIFIED="1486117979875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_rental_buyer_transactions_should_succeed.coverage" NAME="Unittest SmokeTest.test_rental_buyer_transactions_should_succeed Coverage Results" MODIFIED="1455882873902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_add_offer_on_marketplace_should_succeed.coverage" NAME="Unittest SmokeTest.test_add_offer_on_marketplace_should_succeed Coverage Results" MODIFIED="1493296326336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_domain_in_catalog_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_domain_in_catalog_should_succeed Coverage Results" MODIFIED="1457696739026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_monitor_domains_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_monitor_domains_should_succeed Coverage Results" MODIFIED="1456326603260" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_profile_data_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_profile_data_should_succeed Coverage Results" MODIFIED="1485966646307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_seller_ended_auctions_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_seller_ended_auctions_should_succeed Coverage Results" MODIFIED="1493307836231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_watch_new_domain_should_succeed.coverage" NAME="Unittest SmokeTest.test_watch_new_domain_should_succeed Coverage Results" MODIFIED="1493303862606" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_redirection_direct_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_redirection_direct_should_succeed Coverage Results" MODIFIED="1452516629064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_contact_data_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_contact_data_should_succeed Coverage Results" MODIFIED="1486116701546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_sell_on_auction_should_succeed.coverage" NAME="Unittest SmokeTest.test_sell_on_auction_should_succeed Coverage Results" MODIFIED="1490285902944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_sell_on_auction_edit_details_should_succeed.coverage" NAME="Unittest SmokeTest.test_sell_on_auction_edit_details_should_succeed Coverage Results" MODIFIED="1490285106444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_transfer_domains_to_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_transfer_domains_to_account_should_succeed Coverage Results" MODIFIED="1448294500278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_transfer_option_to_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_transfer_option_to_account_should_succeed Coverage Results" MODIFIED="1467898328417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_rental_seller_transaction_details_should_succeed.coverage" NAME="Unittest SmokeTest.test_rental_seller_transaction_details_should_succeed Coverage Results" MODIFIED="1455889799424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_company_address_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_company_address_should_succeed Coverage Results" MODIFIED="1486577996514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_hire_seller_transaction_the_same_login_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_hire_seller_transaction_the_same_login_should_succeed Coverage Results" MODIFIED="1456155030649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_buyer_ended_auctions_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_buyer_ended_auctions_should_succeed Coverage Results" MODIFIED="1496231596177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_watch_new_seller_the_same_login_should_succeed.coverage" NAME="Unittest SmokeTest.test_watch_new_seller_the_same_login_should_succeed Coverage Results" MODIFIED="1493304727853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_add_on_marketplace_should_succeed.coverage" NAME="Unittest SmokeTest.test_add_on_marketplace_should_succeed Coverage Results" MODIFIED="1490281204618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_redirection_ip_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_redirection_ip_should_succeed Coverage Results" MODIFIED="1450705395691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_add_domain_to_hosting_account_wrong_domain_name_should_succeed.coverage" NAME="Unittest SmokeTest.test_add_domain_to_hosting_account_wrong_domain_name_should_succeed Coverage Results" MODIFIED="1490279356366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_company_address_should_succeed__1_.coverage" NAME="Unittest SmokeTest.test_change_company_address_should_succeed (1) Coverage Results" MODIFIED="1445601299093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_transfer_option_should_succeed.coverage" NAME="Unittest SmokeTest.test_transfer_option_should_succeed Coverage Results" MODIFIED="1450794082949" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_rental_seller_transaction_the_same_login_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_rental_seller_transaction_the_same_login_should_succeed Coverage Results" MODIFIED="1456144442425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_hire_buyer_transaction_details_should_succeed.coverage" NAME="Unittest SmokeTest.test_hire_buyer_transaction_details_should_succeed Coverage Results" MODIFIED="1455888089374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_move_domain_from_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_move_domain_from_account_should_succeed Coverage Results" MODIFIED="1490104956139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_dns_profile_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_dns_profile_should_succeed Coverage Results" MODIFIED="1485960097200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_move_domain_to_other_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_move_domain_to_other_account_should_succeed Coverage Results" MODIFIED="1448376527158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_add_other_users_to_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_add_other_users_to_account_should_succeed Coverage Results" MODIFIED="1490100675719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_option_auction_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_option_auction_should_succeed Coverage Results" MODIFIED="1493307516460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_ended_auctions_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_ended_auctions_should_succeed Coverage Results" MODIFIED="1454945757740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_sell_on_escrow_auction_the_same_login_should_succeed.coverage" NAME="Unittest SmokeTest.test_sell_on_escrow_auction_the_same_login_should_succeed Coverage Results" MODIFIED="1486044495378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_keyword_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_keyword_should_succeed Coverage Results" MODIFIED="1490281281138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_rental_buyer_transaction_details_should_succeed.coverage" NAME="Unittest SmokeTest.test_rental_buyer_transaction_details_should_succeed Coverage Results" MODIFIED="1455883560187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_rental_seller_transaction_add_note_should_succeed.coverage" NAME="Unittest SmokeTest.test_rental_seller_transaction_add_note_should_succeed Coverage Results" MODIFIED="1455890059679" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_add_profile_for_domain_registration_should_succeed.coverage" NAME="Unittest SmokeTest.test_add_profile_for_domain_registration_should_succeed Coverage Results" MODIFIED="1464609344906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_appraisal_list_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_appraisal_list_should_succeed Coverage Results" MODIFIED="1464616586361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittests_in_SmokeTest__1_.coverage" NAME="Unittests in SmokeTest (1) Coverage Results" MODIFIED="1488992038614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_first_monitored_domain_settings_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_first_monitored_domain_settings_should_succeed Coverage Results" MODIFIED="1456400206749" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_monitor_new_domain_should_succeed.coverage" NAME="Unittest SmokeTest.test_monitor_new_domain_should_succeed Coverage Results" MODIFIED="1456751680734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_renew_domain_manually_should_succeed.coverage" NAME="Unittest SmokeTest.test_renew_domain_manually_should_succeed Coverage Results" MODIFIED="1490284722182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_add_new_bank_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_add_new_bank_account_should_succeed Coverage Results" MODIFIED="1490279451739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_domains_to_catch_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_domains_to_catch_should_succeed Coverage Results" MODIFIED="1454413328971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittests_in_SmokeTest.coverage" NAME="Unittests in SmokeTest Coverage Results" MODIFIED="1486729032574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_sending_notification_settings_should_succeed.coverage" NAME="Unittest SmokeTest.test_sending_notification_settings_should_succeed Coverage Results" MODIFIED="1449583256158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_escrow_option_buying_transactions_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_escrow_option_buying_transactions_should_succeed Coverage Results" MODIFIED="1455031446908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_block_seller_should_succeed.coverage" NAME="Unittest SmokeTest.test_block_seller_should_succeed Coverage Results" MODIFIED="1457625208392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_transfer_domains_to_the_same_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_transfer_domains_to_the_same_account_should_succeed Coverage Results" MODIFIED="1448368646795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_renew_option_should_succeed.coverage" NAME="Unittest SmokeTest.test_renew_option_should_succeed Coverage Results" MODIFIED="1490284869940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_filter_domains_on_marketplace_should_succeed.coverage" NAME="Unittest SmokeTest.test_filter_domains_on_marketplace_should_succeed Coverage Results" MODIFIED="1493300819718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_escrow_option_transaction_the_same_login_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_escrow_option_transaction_the_same_login_should_succeed Coverage Results" MODIFIED="1457612060989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_add_domain_to_hosting_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_add_domain_to_hosting_account_should_succeed Coverage Results" MODIFIED="1490279300735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_sell_on_escrow_auction_should_succeed.coverage" NAME="Unittest SmokeTest.test_sell_on_escrow_auction_should_succeed Coverage Results" MODIFIED="1490286400422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_filter_monitored_domains_registered_should_succeed.coverage" NAME="Unittest SmokeTest.test_filter_monitored_domains_registered_should_succeed Coverage Results" MODIFIED="1456403162186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittests_in_SmokeTest__2_.coverage" NAME="Unittests in SmokeTest (2) Coverage Results" MODIFIED="1455197854072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_hire_seller_transactions_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_hire_seller_transactions_should_succeed Coverage Results" MODIFIED="1457614542484" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_remind_password_wrong_login_should_succeed.coverage" NAME="Unittest SmokeTest.test_remind_password_wrong_login_should_succeed Coverage Results" MODIFIED="1453473486345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_add_domain_catalog_should_succeed.coverage" NAME="Unittest SmokeTest.test_add_domain_catalog_should_succeed Coverage Results" MODIFIED="1464605609266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_rental_seller_transaction_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_rental_seller_transaction_should_succeed Coverage Results" MODIFIED="1460384586284" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittests_in_SmokeTest__3_.coverage" NAME="Unittests in SmokeTest (3) Coverage Results" MODIFIED="1455276752753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_hire_buyer_transaction_add_note_should_succeed.coverage" NAME="Unittest SmokeTest.test_hire_buyer_transaction_add_note_should_succeed Coverage Results" MODIFIED="1455888337486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_add_appraisal_should_succeed.coverage" NAME="Unittest SmokeTest.test_add_appraisal_should_succeed Coverage Results" MODIFIED="1457437547393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_company_data_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_company_data_should_succeed Coverage Results" MODIFIED="1490101903366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_option_profile_data_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_option_profile_data_should_succeed Coverage Results" MODIFIED="1490281409064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_hire_seller_transaction_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_hire_seller_transaction_should_succeed Coverage Results" MODIFIED="1460383118987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_expired_options_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_expired_options_should_succeed Coverage Results" MODIFIED="1486653972939" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_register_domain_should_succeed.coverage" NAME="Unittest SmokeTest.test_register_domain_should_succeed Coverage Results" MODIFIED="1490106850168" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_rental_seller_transaction_wrong_login_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_rental_seller_transaction_wrong_login_should_succeed Coverage Results" MODIFIED="1456143577566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_selling_escrow_auctions_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_selling_escrow_auctions_should_succeed Coverage Results" MODIFIED="1486578539924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_get_authinfo_should_succeed.coverage" NAME="Unittest SmokeTest.test_get_authinfo_should_succeed Coverage Results" MODIFIED="1485960455406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_redirection_hidden_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_redirection_hidden_should_succeed Coverage Results" MODIFIED="1464611962373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_DNS_servers_for_selected_domain_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_DNS_servers_for_selected_domain_should_succeed Coverage Results" MODIFIED="1490281251681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_delete_domain_should_succeed.coverage" NAME="Unittest SmokeTest.test_delete_domain_should_succeed Coverage Results" MODIFIED="1490282857557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_DNS_servers_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_DNS_servers_should_succeed Coverage Results" MODIFIED="1490101080476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_hire_seller_transaction_add_note_should_succeed.coverage" NAME="Unittest SmokeTest.test_hire_seller_transaction_add_note_should_succeed Coverage Results" MODIFIED="1455896344354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_SMS_notification_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_SMS_notification_should_succeed Coverage Results" MODIFIED="1460378570726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_parking_service_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_parking_service_should_succeed Coverage Results" MODIFIED="1490104539977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_add_offer_on_marketplace.coverage" NAME="Unittest SmokeTest.test_add_offer_on_marketplace Coverage Results" MODIFIED="1454595967967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_buyer_escrow_auctions_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_buyer_escrow_auctions_should_succeed Coverage Results" MODIFIED="1486046628885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_privacy_settings_should_succeed.coverage" NAME="Unittest SmokeTest.test_privacy_settings_should_succeed Coverage Results" MODIFIED="1449584076936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_transfer_option_to_account_option_unavailable_should_succeed.coverage" NAME="Unittest SmokeTest.test_transfer_option_to_account_option_unavailable_should_succeed Coverage Results" MODIFIED="1486733510453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_rental_seller_transaction_wrong_domain_name_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_rental_seller_transaction_wrong_domain_name_should_succeed Coverage Results" MODIFIED="1456144191349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_hire_buyer_transactions_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_hire_buyer_transactions_should_succeed Coverage Results" MODIFIED="1455887452427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_DNS_profile_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_DNS_profile_should_succeed Coverage Results" MODIFIED="1490097953401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_rental_buyer_transaction_add_note_should_succeed.coverage" NAME="Unittest SmokeTest.test_rental_buyer_transaction_add_note_should_succeed Coverage Results" MODIFIED="1455887049845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_login_wrong_credentials_should_succeed.coverage" NAME="Unittest SmokeTest.test_login_wrong_credentials_should_succeed Coverage Results" MODIFIED="1490614141367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittests_in_test_smoke.coverage" NAME="Unittests in test_smoke Coverage Results" MODIFIED="1485958872376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_dns_server_in_domain_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_dns_server_in_domain_should_succeed Coverage Results" MODIFIED="1490106812944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_hire_seller_transaction_details_should_succeed.coverage" NAME="Unittest SmokeTest.test_hire_seller_transaction_details_should_succeed Coverage Results" MODIFIED="1455896044134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_filter_domains_to_catch_should_succeed.coverage" NAME="Unittest SmokeTest.test_filter_domains_to_catch_should_succeed Coverage Results" MODIFIED="1457956217697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_change_notification_settings_should_succeed.coverage" NAME="Unittest SmokeTest.test_change_notification_settings_should_succeed Coverage Results" MODIFIED="1490104326598" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_transfer_domain_to_the_other_account_wrong_data_should_succeed.coverage" NAME="Unittest SmokeTest.test_transfer_domain_to_the_other_account_wrong_data_should_succeed Coverage Results" MODIFIED="1486653474532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_escrow_auctions_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_escrow_auctions_should_succeed Coverage Results" MODIFIED="1455020600631" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_catch_domain_should_succeed.coverage" NAME="Unittest SmokeTest.test_catch_domain_should_succeed Coverage Results" MODIFIED="1467895773357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_subscribe_filtered_domains_to_catch_should_succeed__1_.coverage" NAME="Unittest SmokeTest.test_subscribe_filtered_domains_to_catch_should_succeed (1) Coverage Results" MODIFIED="1465299672903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_transfer_option_from_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_transfer_option_from_account_should_succeed Coverage Results" MODIFIED="1467897930315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_register_option_unavailable_should_succeed.coverage" NAME="Unittest SmokeTest.test_register_option_unavailable_should_succeed Coverage Results" MODIFIED="1490284539118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_active_appraisals_list_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_active_appraisals_list_should_succeed Coverage Results" MODIFIED="1467897107315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_escrow_option_transaction_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_escrow_option_transaction_should_succeed Coverage Results" MODIFIED="1467896604388" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_transfer_domain_to_the_other_account_and_renew_should_succeed.coverage" NAME="Unittest SmokeTest.test_transfer_domain_to_the_other_account_and_renew_should_succeed Coverage Results" MODIFIED="1490286565641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_renew_hosting_account_manually_should_succeed.coverage" NAME="Unittest SmokeTest.test_renew_hosting_account_manually_should_succeed Coverage Results" MODIFIED="1493214326401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_add_domain_to_catalog_already_added_domain_should_succeed.coverage" NAME="Unittest SmokeTest.test_add_domain_to_catalog_already_added_domain_should_succeed Coverage Results" MODIFIED="1457624256033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_subscribe_filtered_domains_on_marketplace_should_succeed.coverage" NAME="Unittest SmokeTest.test_subscribe_filtered_domains_on_marketplace_should_succeed Coverage Results" MODIFIED="1493303579736" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_register_option_should_succeed.coverage" NAME="Unittest SmokeTest.test_register_option_should_succeed Coverage Results" MODIFIED="1490284042388" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_domains_on_marketplace_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_domains_on_marketplace_should_succeed Coverage Results" MODIFIED="1493298400158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_sending_notification_settings_t55should_succeed.coverage" NAME="Unittest SmokeTest.test_sending_notification_settings_t55should_succeed Coverage Results" MODIFIED="1486117949570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_transfer_domain_to_the_other_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_transfer_domain_to_the_other_account_should_succeed Coverage Results" MODIFIED="1490286646425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_block_seller_wrong_login_should_succeed.coverage" NAME="Unittest SmokeTest.test_block_seller_wrong_login_should_succeed Coverage Results" MODIFIED="1454595691369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittests_in_jenkins_aftermarket2_mail_do_mnie_nowy_raport.coverage" NAME="Unittests in jenkins_aftermarket2_mail_do_mnie_nowy_raport Coverage Results" MODIFIED="1455275545173" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_renew_domain_automatically_should_succeed.coverage" NAME="Unittest SmokeTest.test_renew_domain_automatically_should_succeed Coverage Results" MODIFIED="1485969149949" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_domain_watching_settings_should_succeed.coverage" NAME="Unittest SmokeTest.test_domain_watching_settings_should_succeed Coverage Results" MODIFIED="1449583183078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_search_selling_history_should_succeed.coverage" NAME="Unittest SmokeTest.test_search_selling_history_should_succeed Coverage Results" MODIFIED="1454936591755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/aftermarket2-selenium$Unittest_SmokeTest_test_new_hosting_account_should_succeed.coverage" NAME="Unittest SmokeTest.test_new_hosting_account_should_succeed Coverage Results" MODIFIED="1490283839817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="aftermarket2-selenium" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="test_smoke.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_smoke.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+              <folding>
+                <element signature="e#15#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testy kontrolek.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testy kontrolek.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="30" column="56" selection-start-line="30" selection-start-column="56" selection-end-line="30" selection-end-column="56" />
+              <folding>
+                <element signature="e#15#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/home.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="26" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="buyer_ended_auctions_list.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/buyer_ended_auctions_list.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="configparse.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/configparse.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="seller_ended_auctions_list.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/seller_ended_auctions_list.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header_region.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/regions/header_region.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="238" column="23" selection-start-line="238" selection-start-column="23" selection-end-line="238" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="active_appraisals_list.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/active_appraisals_list.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controls_test_page.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pages/controls_test_page.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.99292034">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="true" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/test_smoke.py" />
+        <option value="$PROJECT_DIR$/config.ini" />
+        <option value="$PROJECT_DIR$/configparse.py" />
+        <option value="$PROJECT_DIR$/pages/home.py" />
+        <option value="$PROJECT_DIR$/pages/regions/header_region.py" />
+        <option value="$PROJECT_DIR$/testy kontrolek.py" />
+        <option value="$PROJECT_DIR$/pages/controls_test_page.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aftermarket2-selenium" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aftermarket2-selenium" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aftermarket2-selenium" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aftermarket2-selenium" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aftermarket2-selenium" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aftermarket2-selenium" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aftermarket2-selenium" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="last_opened_file_path" value="C:/Python27/python.exe" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Python27/Lib/site-packages/_pytest/config.py&#10;element_if&#9;null&#9;null" />
+    <property name="FullScreen" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jj\PycharmProjects\aftermarket2-selenium\pages" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jedrekw\PycharmProjects\aftermarket2-selenium\pages" />
+      <recent name="C:\Users\jedrekw\PycharmProjects\aftermarket2-selenium" />
+      <recent name="C:\Users\jj\PycharmProjects\aftermarket2-selenium\pages" />
+      <recent name="C:\Users\jj\PycharmProjects\aftermarket2-selenium" />
+      <recent name="C:\Users\jj\PycharmProjects\aftermarket2-selenium\pages\regions" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.testy kontrolek">
+    <configuration default="false" name="Unittest SmokeTest.test_new_option_auction_should_succeed" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_smoke.py" />
+      <option name="CLASS_NAME" value="SmokeTest" />
+      <option name="METHOD_NAME" value="test_new_option_auction_should_succeed" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest SmokeTest.test_search_seller_ended_auctions_should_succeed" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_smoke.py" />
+      <option name="CLASS_NAME" value="SmokeTest" />
+      <option name="METHOD_NAME" value="test_search_seller_ended_auctions_should_succeed" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest SmokeTest.test_search_buyer_ended_auctions_should_succeed" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_smoke.py" />
+      <option name="CLASS_NAME" value="SmokeTest" />
+      <option name="METHOD_NAME" value="test_search_buyer_ended_auctions_should_succeed" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="testy kontrolek" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testy kontrolek.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="test_smoke" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_smoke.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Attests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="testToRun" value="" />
+      <option name="keywords" value="" />
+      <option name="params" value="" />
+      <option name="USE_PARAM" value="false" />
+      <option name="USE_KEYWORD" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest SmokeTest.test_renew_domain_manually_should_succeed" type="tests" factoryName="Unittests" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_smoke.py" />
+      <option name="CLASS_NAME" value="SmokeTest" />
+      <option name="METHOD_NAME" value="test_renew_domain_manually_should_succeed" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest SmokeTest.test_sell_on_auction_edit_details_should_succeed" type="tests" factoryName="Unittests" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_smoke.py" />
+      <option name="CLASS_NAME" value="SmokeTest" />
+      <option name="METHOD_NAME" value="test_sell_on_auction_edit_details_should_succeed" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest SmokeTest.test_new_rental_seller_transaction_wrong_domain_name_should_succeed" type="tests" factoryName="Unittests" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_smoke.py" />
+      <option name="CLASS_NAME" value="SmokeTest" />
+      <option name="METHOD_NAME" value="test_new_rental_seller_transaction_wrong_domain_name_should_succeed" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in SmokeTest" type="tests" factoryName="Unittests" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="aftermarket2-selenium" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_smoke.py" />
+      <option name="CLASS_NAME" value="SmokeTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_CLASS" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <list size="9">
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest SmokeTest.test_renew_domain_manually_should_succeed" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest SmokeTest.test_sell_on_auction_edit_details_should_succeed" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest SmokeTest.test_new_rental_seller_transaction_wrong_domain_name_should_succeed" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in SmokeTest" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest SmokeTest.test_new_option_auction_should_succeed" />
+      <item index="5" class="java.lang.String" itemvalue="Python tests.Unittest SmokeTest.test_search_seller_ended_auctions_should_succeed" />
+      <item index="6" class="java.lang.String" itemvalue="Python tests.Unittest SmokeTest.test_search_buyer_ended_auctions_should_succeed" />
+      <item index="7" class="java.lang.String" itemvalue="Python.testy kontrolek" />
+      <item index="8" class="java.lang.String" itemvalue="Python.test_smoke" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.testy kontrolek" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest SmokeTest.test_search_buyer_ended_auctions_should_succeed" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test_smoke" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest SmokeTest.test_search_seller_ended_auctions_should_succeed" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest SmokeTest.test_new_option_auction_should_succeed" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f94b0a32-c86d-4705-8c93-46b84f875f6e" name="Default" comment="" />
+      <created>1442394465182</created>
+      <option name="number" value="Default" />
+      <updated>1442394465182</updated>
+    </task>
+    <task id="LOCAL-00036" summary="nowe testy 25-02">
+      <created>1456412107290</created>
+      <option name="number" value="00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1456412107290</updated>
+    </task>
+    <task id="LOCAL-00037" summary="koniec 10-03">
+      <created>1457621464992</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1457621464992</updated>
+    </task>
+    <task id="LOCAL-00038" summary="koniec 10-03 1">
+      <created>1457625539246</created>
+      <option name="number" value="00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1457625539246</updated>
+    </task>
+    <task id="LOCAL-00039" summary="poprawki 11-03">
+      <created>1457698218752</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1457698218752</updated>
+    </task>
+    <task id="LOCAL-00040" summary="poprawki 11-03 1">
+      <created>1457708583536</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1457708583536</updated>
+    </task>
+    <task id="LOCAL-00041" summary="poprawki 14-03">
+      <created>1457959568249</created>
+      <option name="number" value="00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1457959568249</updated>
+    </task>
+    <task id="LOCAL-00042" summary="nowy firefox 7-04">
+      <created>1460038210343</created>
+      <option name="number" value="00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1460038210343</updated>
+    </task>
+    <task id="LOCAL-00043" summary="nowy firefox 11-04">
+      <created>1460368598697</created>
+      <option name="number" value="00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1460368598697</updated>
+    </task>
+    <task id="LOCAL-00044" summary="poprawki 12-04">
+      <created>1460458590667</created>
+      <option name="number" value="00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1460458590667</updated>
+    </task>
+    <task id="LOCAL-00045" summary="poprawki 12-04 1">
+      <created>1460463365043</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1460463365043</updated>
+    </task>
+    <task id="LOCAL-00046" summary="poprawki 12-04 2">
+      <created>1460467718024</created>
+      <option name="number" value="00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1460467718024</updated>
+    </task>
+    <task id="LOCAL-00047" summary="poprawki 12-04 3">
+      <created>1460468129827</created>
+      <option name="number" value="00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1460468129827</updated>
+    </task>
+    <task id="LOCAL-00048" summary="poprawki 12-04 4">
+      <created>1460468452507</created>
+      <option name="number" value="00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1460468452507</updated>
+    </task>
+    <task id="LOCAL-00049" summary="poprawki 12-04 5">
+      <created>1460469184262</created>
+      <option name="number" value="00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1460469184262</updated>
+    </task>
+    <task id="LOCAL-00050" summary="poprawki">
+      <created>1464618574352</created>
+      <option name="number" value="00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1464618574352</updated>
+    </task>
+    <task id="LOCAL-00051" summary="zmiana maila">
+      <created>1466161813001</created>
+      <option name="number" value="00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1466161813001</updated>
+    </task>
+    <task id="LOCAL-00052" summary="poprawki">
+      <created>1467898469649</created>
+      <option name="number" value="00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1467898469649</updated>
+    </task>
+    <task id="LOCAL-00053" summary="poprawki1">
+      <created>1485964755946</created>
+      <option name="number" value="00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1485964755946</updated>
+    </task>
+    <task id="LOCAL-00054" summary="poprawki2">
+      <created>1485969441386</created>
+      <option name="number" value="00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1485969441386</updated>
+    </task>
+    <task id="LOCAL-00055" summary="poprawki3">
+      <created>1485971342454</created>
+      <option name="number" value="00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1485971342454</updated>
+    </task>
+    <task id="LOCAL-00056" summary="poprawki4">
+      <created>1485971648900</created>
+      <option name="number" value="00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1485971648900</updated>
+    </task>
+    <task id="LOCAL-00057" summary="poprawki5">
+      <created>1485972032535</created>
+      <option name="number" value="00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1485972032535</updated>
+    </task>
+    <task id="LOCAL-00058" summary="poprawki6">
+      <created>1485972412816</created>
+      <option name="number" value="00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1485972412816</updated>
+    </task>
+    <task id="LOCAL-00059" summary="poprawki7">
+      <created>1485972636936</created>
+      <option name="number" value="00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1485972636936</updated>
+    </task>
+    <task id="LOCAL-00060" summary="poprawki8">
+      <created>1485972810297</created>
+      <option name="number" value="00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1485972810297</updated>
+    </task>
+    <task id="LOCAL-00061" summary="poprawki9">
+      <created>1486489009921</created>
+      <option name="number" value="00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1486489009921</updated>
+    </task>
+    <task id="LOCAL-00062" summary="poprawki">
+      <created>1486578938556</created>
+      <option name="number" value="00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1486578938556</updated>
+    </task>
+    <task id="LOCAL-00063" summary="testy">
+      <created>1487850536411</created>
+      <option name="number" value="00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1487850536411</updated>
+    </task>
+    <task id="LOCAL-00064" summary="chromedriver">
+      <created>1488978435341</created>
+      <option name="number" value="00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1488978435341</updated>
+    </task>
+    <task id="LOCAL-00065" summary="chromedriver1">
+      <created>1488979172554</created>
+      <option name="number" value="00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1488979172554</updated>
+    </task>
+    <task id="LOCAL-00066" summary="chromedriver2">
+      <created>1488979694984</created>
+      <option name="number" value="00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1488979694984</updated>
+    </task>
+    <task id="LOCAL-00067" summary="chromedriver3">
+      <created>1489141795353</created>
+      <option name="number" value="00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1489141795353</updated>
+    </task>
+    <task id="LOCAL-00068" summary="chromedriver3">
+      <created>1489142727018</created>
+      <option name="number" value="00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1489142727018</updated>
+    </task>
+    <task id="LOCAL-00069" summary="chromedriver4">
+      <created>1489578301583</created>
+      <option name="number" value="00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1489578301583</updated>
+    </task>
+    <task id="LOCAL-00070" summary="chromedriver5&#10;">
+      <created>1489677132651</created>
+      <option name="number" value="00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1489677132651</updated>
+    </task>
+    <task id="LOCAL-00071" summary="chromedriver6">
+      <created>1489678348869</created>
+      <option name="number" value="00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1489678348869</updated>
+    </task>
+    <task id="LOCAL-00072" summary="chromedriver7&#10;">
+      <created>1489754939073</created>
+      <option name="number" value="00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1489754939073</updated>
+    </task>
+    <task id="LOCAL-00073" summary="chromedriver8">
+      <created>1489764496991</created>
+      <option name="number" value="00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1489764496991</updated>
+    </task>
+    <task id="LOCAL-00074" summary="chromedriver9">
+      <created>1489765013957</created>
+      <option name="number" value="00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1489765013957</updated>
+    </task>
+    <task id="LOCAL-00075" summary="chromedriver10">
+      <created>1489765697381</created>
+      <option name="number" value="00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1489765697381</updated>
+    </task>
+    <task id="LOCAL-00076" summary="chromedriver11">
+      <created>1490093332329</created>
+      <option name="number" value="00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1490093332329</updated>
+    </task>
+    <task id="LOCAL-00077" summary="chromedriver12">
+      <created>1490093715320</created>
+      <option name="number" value="00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1490093715320</updated>
+    </task>
+    <task id="LOCAL-00078" summary="chromedriver12">
+      <created>1490094912172</created>
+      <option name="number" value="00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1490094912172</updated>
+    </task>
+    <task id="LOCAL-00079" summary="chrome">
+      <created>1490098045367</created>
+      <option name="number" value="00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1490098045367</updated>
+    </task>
+    <task id="LOCAL-00080" summary="chrome1">
+      <created>1490114903131</created>
+      <option name="number" value="00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1490114903131</updated>
+    </task>
+    <task id="LOCAL-00081" summary="chrome2">
+      <created>1490286978565</created>
+      <option name="number" value="00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1490286978565</updated>
+    </task>
+    <task id="LOCAL-00082" summary="zmianameila">
+      <created>1490288006903</created>
+      <option name="number" value="00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1490288006903</updated>
+    </task>
+    <task id="LOCAL-00083" summary="chrome jenkins">
+      <created>1490621491551</created>
+      <option name="number" value="00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1490621491551</updated>
+    </task>
+    <task id="LOCAL-00084" summary="noep">
+      <created>1496307898592</created>
+      <option name="number" value="00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1496307898594</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="Unittest_SmokeTest_test_search_buyer_ended_auctions_should_succeed - 2017.05.31 at 13h 53m 24s.xml">
+      <configuration name="Unittest SmokeTest.test_search_buyer_ended_auctions_should_succeed" configurationId="tests" />
+    </history-entry>
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29421222" sideWeight="0.47746244" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32663316" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30536914" sideWeight="0.1118774" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32807216" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3223982" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29421222" sideWeight="0.5225376" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2863585" sideWeight="0.88735634" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3980424" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32663316" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30536914" sideWeight="0.1118774" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30536914" sideWeight="0.88735634" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32626426" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.343295" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3980424" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="poprawki6" />
+    <MESSAGE value="poprawki7" />
+    <MESSAGE value="poprawki8" />
+    <MESSAGE value="poprawki9" />
+    <MESSAGE value="poprawki" />
+    <MESSAGE value="testy" />
+    <MESSAGE value="chromedriver" />
+    <MESSAGE value="chromedriver1" />
+    <MESSAGE value="chromedriver2" />
+    <MESSAGE value="chromedriver3" />
+    <MESSAGE value="chromedriver4" />
+    <MESSAGE value="chromedriver5&#10;" />
+    <MESSAGE value="chromedriver6" />
+    <MESSAGE value="chromedriver7&#10;" />
+    <MESSAGE value="chromedriver8" />
+    <MESSAGE value="chromedriver9" />
+    <MESSAGE value="chromedriver10" />
+    <MESSAGE value="chromedriver11" />
+    <MESSAGE value="chromedriver12" />
+    <MESSAGE value="chrome" />
+    <MESSAGE value="chrome1" />
+    <MESSAGE value="chrome2" />
+    <MESSAGE value="zmianameila" />
+    <MESSAGE value="chrome jenkins" />
+    <MESSAGE value="noep" />
+    <option name="LAST_COMMIT_MESSAGE" value="noep" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/pages/regions/header_region.py</url>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="10" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/pages/regions/header_region.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="163" column="45" selection-start-line="163" selection-start-column="45" selection-end-line="163" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/hire_seller_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/unittest/test/support.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/unittest/case.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="183" column="13" selection-start-line="183" selection-start-column="13" selection-end-line="183" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/expiring_domains_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/appraisal_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/domain_catalog_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="105" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/blocked_sellers_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/selenium/common/exceptions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jenkins_aftermarket2_mail_do_mnie_nowy_raport.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.56">
+          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/task_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="69" selection-start-line="32" selection-start-column="69" selection-end-line="32" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/escrow_auction_buyer_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/unittestzero.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="190" column="0" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/domains_to_catch_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htmltestrunner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="455" column="22" selection-start-line="455" selection-start-column="22" selection-end-line="455" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/unittest/result.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="121" column="18" selection-start-line="121" selection-start-column="18" selection-end-line="121" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/expired_options_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/register_option.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="54" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chromedriver.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-33.55874">
+          <caret line="403" column="27" selection-start-line="403" selection-start-column="27" selection-end-line="403" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/transfer_option_to_account_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.012853471">
+          <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/transfer_domain_from_account_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/profile_for_domain_registration_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/transfer_domain_to_account_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jenkins_aftermarket2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="920" column="42" selection-start-line="920" selection-start-column="42" selection-end-line="920" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/register_domain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="71" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/escrow_auction_seller_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="79" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jenkins_aftermarket2_mail_do_mnie.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1194" column="45" selection-start-line="1194" selection-start-column="0" selection-end-line="1215" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/registered_options_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/registered_domains_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="344" column="8" selection-start-line="344" selection-start-column="8" selection-end-line="344" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="514" column="79" selection-start-line="514" selection-start-column="16" selection-end-line="514" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/hosting_account_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="10.087719">
+          <caret line="47" column="14" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="8" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/to_pay_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/domains_on_marketplace_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="158" column="102" selection-start-line="158" selection-start-column="102" selection-end-line="158" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/watched_domains_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/watched_sellers_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="70" column="42" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/escrow_option_selling_transaction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/selling_auction_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/new_option_auction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/buyer_ended_auctions_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/active_appraisals_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configparse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/seller_ended_auctions_list.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_smoke.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+          <folding>
+            <element signature="e#15#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46478873">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/home.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="26" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testy kontrolek.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="56" selection-start-line="30" selection-start-column="56" selection-end-line="30" selection-end-column="56" />
+          <folding>
+            <element signature="e#15#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/regions/header_region.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="238" column="23" selection-start-line="238" selection-start-column="23" selection-end-line="238" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/controls_test_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.99292034">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

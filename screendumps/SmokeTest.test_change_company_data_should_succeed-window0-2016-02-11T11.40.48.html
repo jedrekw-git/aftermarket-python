@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<!--[if IE]>
+<html class="browserOld">
+<![endif]-->
+<!--[if !IE]> -->
+<html xmlns="http://www.w3.org/1999/xhtml" class="browserModern"><!-- <![endif]--><head>
+
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+
+<title>Zmiana danych do faktur</title>
+
+<link href="/assets/img/favicon144x144.png" rel="apple-touch-icon" />
+<link href="/assets/img/favicon.ico" rel="shortcut icon" />
+
+<script src="/assets/lib/jquery-1.11.2.min.js" language="JavaScript"></script>
+<script src="/assets/lib/jquery.floatThead.min.js" language="JavaScript"></script>
+<script src="/assets/lib/jquery.visible.min.js" language="JavaScript"></script>
+<script src="/assets/lib/json2.js" language="JavaScript"></script>
+
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+<script language="JavaScript">
+var assets = "/assets";
+</script>
+
+<!--[if !IE]> -->
+<link href="/assets/css/release.css?modified=1452872636" rel="stylesheet" />
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<link rel="stylesheet" href="/assets/css/msie.css">
+<![endif]--> 
+
+<script src="/assets/js/release.js?modified=1452872639" language="JavaScript"></script>
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+
+</head>
+<body onload="getForm($('#loginForm')).init(); getPanel(document).init();">
+
+<div id="is_mobile"></div>
+<div id="is_tablet"></div>
+<div id="is_desktop"></div>
+
+<div class="d" id="main_background">
+<center>
+<img src="/assets/img/template/background/background2.jpg" />
+</center>
+</div>
+
+<div class="struct" id="main_top">
+<div class="container">
+
+
+<div class="d" id="logo">
+<a href="/"><img width="290" height="70" border="0" src="/assets/img/template/logo.svg" /></a>
+</div>
+
+<div class="narrow m" id="logo2">
+<a href="/"><img border="0" src="/assets/img/template/mobile/arrow_top.png" /></a>
+</div>
+
+<div class="wide m" id="logo3">
+<a href="/"><img border="0" src="/assets/img/template/mobile/logo_top.png" /></a>
+</div>
+
+<div id="account_info">
+
+<div id="account_login">
+Zalogowany: <b>alfa</b>
+| 
+<i class="fa fa-power-off"></i>
+<a href="/User/Logout/"> Wyloguj</a>
+</div>
+
+<div id="account_icons">
+
+<div class="balance">
+<div>
+<span class="d">Saldo:</span>
+<b>
+<span id="ajax_balance_balance">0</span>
+<span id="ajax_balance_currency">EUR</span>
+</b>
+</div>
+<div class="m11">
+<i class="fa fa-plus-circle"></i>
+<a href="/User/Deposit/"> Wpłać<span class="m"> »</span></a>
+<span class="d">
+| 
+<i class="fa fa-minus-circle"></i>
+<a href="/Withdraw/Add/"> Wypłać</a>
+</span>
+</div>
+</div>
+
+<div onclick="Manager.redirect('User_Settings', '', 'replace');" style="background-image: url(/assets/img/template/account/gear.png);" class="icon">
+</div>
+
+<div onclick="Manager.redirect('Negotiation_Redir', '', 'replace');" style="background-image: url(/assets/img/template/account/bell.png);" class="icon">
+<div style="display:none;" id="ajax_negotiations_seller" class="info infoUp"></div>
+<div style="display:none;" id="ajax_negotiations_buyer" class="info infoDown"></div>
+</div>
+
+<div onclick="Manager.redirect('Auction_Buyer_List', '', 'replace');" style="background-image: url(/assets/img/template/account/auction.png);" class="icon">
+<div style="display:none;" id="ajax_auctions_losing" class="info infoUp"></div>
+<div style="display:none;" id="ajax_auctions_winning" class="info infoDown"></div>
+</div>
+
+<div onclick="Manager.redirect('Topay_List', '', 'replace');" style="background-image: url(/assets/img/template/account/cart.png);" class="icon">
+<div style="display:none;" id="ajax_balance_active" class="info infoUp">0</div>
+<div style="display:none;" id="ajax_balance_suspended" class="info infoDown">0</div>
+</div>
+
+<br clear="right" />
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<div data-expanded="0" class="struct" id="main_menu">
+<div class="container">
+
+<div onclick="Template.mobileMenu();" class="m" id="menu_bar">
+
+<img width="24" height="24" class="icon m" src="/assets/img/template/mobile/menu_bar.png" />
+
+<div class="m left">
+Menu
+</div>
+
+<div class="m right">
+|
+<a class="nopopup" href="/User/Logout/"><i class="fa fa-power-off"></i> Wyloguj</a>
+</div>
+
+<div class="m right login ellipsis">
+alfa
+</div>
+
+</div>
+
+<div class="clear"></div>
+
+<ul>
+<li>
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Domeny</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Domain/Check/"><i class="fa fa-plus-circle"></i> Rejestruj nowe domeny</a></div>
+<div class="cell"><a href="/Domain/Torenew/"><i class="fa fa-repeat"></i> Odnów wygasające domeny</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Domain/List/"><i class="fa fa-list"></i> Lista zarejestrowanych domen</a></div>
+<div class="cell"><a href="/Domain/OldList/"><i class="fa fa-list-ul"></i> Lista wygasłych domen</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Transfer/Add/"><i class="fa fa-arrow-right"></i> Transferuj domeny na konto</a></div>
+<div class="cell"><a href="/Intransfer/Add/"><i class="fa fa-arrow-left"></i> Przenieś domeny na inne konto</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Transfer/List/"><i class="fa fa-list-ul"></i> Lista transferów na konto</a></div>
+<div class="cell"><a href="/Intransfer/List/"><i class="fa fa-list-ul"></i> Zlecenia przeniesienia domen</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Profile/List/"><i class="fa fa-user"></i> Profile do rejestracji domen</a></div>
+<div class="cell"><a href="/User/Autorenew/"><i class="fa fa-repeat"></i> Automatyczne odnawianie</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/User/NS/"><i class="fa fa-link"></i> Domyślne serwery DNS</a></div>
+<div class="cell"><a href="/DNSSet/List/"><i class="fa fa-list-ul"></i> Profile wpisów DNS</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Domain/Whois/"><i class="fa fa-comment-o"></i> Sprawdź WHOIS domeny</a></div>
+<div class="cell"><a href="/Monitor/List/"><i class="fa fa-clock-o"></i> Monitorowanie WHOIS</a></div>
+</div>
+
+</div>
+</li>
+
+<li>
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Opcje</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Future/Check/"><i class="fa fa-plus-square"></i> Rejestruj nowe opcje</a></div>
+<div class="cell"><a href="/Future/Torenew/"><i class="fa fa-repeat"></i> Odnów wygasające opcje</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Future/List/"><i class="fa fa-list"></i> Lista zarejestrowanych opcji</a></div>
+<div class="cell"><a href="/Future/OldList/"><i class="fa fa-list-ul"></i> Zrealizowane i wygasłe opcje</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Transferfuture/Add/"><i class="fa fa-arrow-right"></i> Transferuj opcje na konto</a></div>
+<div class="cell"><a href="/Intransferfuture/Add/"><i class="fa fa-arrow-left"></i> Przenieś opcje na inne konto</a></div>
+</div>
+<div class="row">
+<div class="cell"><a href="/Transferfuture/List/"><i class="fa fa-list-ul"></i> Lista transferów na konto</a></div>
+<div class="cell"><a href="/Intransferfuture/List/"><i class="fa fa-list-ul"></i> Zlecenia przeniesienia opcji</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Serwery</a>
+
+<div class="rollup rollup1 popup">
+
+<div class="row">
+<div class="cell"><a href="/Hosting/Create/"><i class="fa fa-plus-circle"></i> Nowe konto hostingowe</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Hosting/List/"><i class="fa fa-list"></i> Lista kont hostingowych</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Parking</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Parking/Create/"><i class="fa fa-plus-circle"></i> Powiąż konto parkingowe</a></div>
+<div class="cell"><a href="/Parking/Delete/"><i class="fa fa-times"></i> Odłącz konto parkingowe</a></div>
+</div>
+
+<div class="separator "></div>
+
+<div class="row">
+<div class="cell"><a href="/User/Parking/"><i class="fa fa-wrench"></i> Domyślny serwis parkingu</a></div>
+<div class="cell"><a href="/Parking/User/"><i class="fa fa-line-chart"></i> Statystyki zarobków konta</a></div>
+</div>
+
+</div>
+
+</li>
+
+
+<li class="separator"></li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Kupno</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Market/List/"><i class="fa fa-search"></i> Szukaj domen na giełdzie</a></div>
+<div class="cell"><a href="/Market/Subscriptions/"><i class="fa fa-rss"></i> Subskrybowane wyszukiwania</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Negotiation/Buyer/List/"><i class="fa fa-list"></i> Lista trwających negocjacji</a></div>
+<div class="cell"><a href="/Negotiation/Buyer/Past/"><i class="fa fa-list-ul"></i> Lista zakończonych negocjacji</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Auction/Buyer/List/"><i class="fa fa-list"></i> Lista obserwowanych aukcji</a></div>
+<div class="cell"><a href="/Auction/Buyer/Past/"><i class="fa fa-list-ul"></i> Lista zakończonych aukcji</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Escrow/Buyer/List/"><i class="fa fa-list"></i> Lista transakcji Escrow</a></div>
+<div class="cell"><a href="/Escrowfuture/Buyer/List/"><i class="fa fa-list"></i> Lista transakcji Escrow opcji</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Rental/Buyer/List/"><i class="fa fa-list"></i> Lista transakcji dzierżawy</a></div>
+<div class="cell"><a href="/Hire/Buyer/List/"><i class="fa fa-list"></i> Lista transakcji ratalnych</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Watch/Domain/List/"><i class="fa fa-binoculars"></i> Obserwowane domeny</a></div>
+<div class="cell"><a href="/Watch/User/List/"><i class="fa fa-binoculars"></i> Obserwowani sprzedawcy</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Watch/Domain/"><i class="fa fa-gear"></i> Powiadomienia o domenach</a></div>
+<div class="cell"><a href="/Watch/User/"><i class="fa fa-gear"></i> Powiadomienia sprzedawców</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Sprzedaż</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Negotiation/Seller/List/"><i class="fa fa-list"></i> Lista trwających negocjacji</a></div>
+<div class="cell"><a href="/Negotiation/Seller/Past/"><i class="fa fa-list-ul"></i> Lista zakończonych negocjacji</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Auction/Seller/Add/"><i class="fa fa-plus-circle"></i> Nowa aukcja</a></div>
+<div class="cell"><a href="/Auction/Seller/AddFuture/"><i class="fa fa-plus-square"></i> Nowa aukcja opcji</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Auction/Seller/List/"><i class="fa fa-list"></i> Lista trwających aukcji</a></div>
+<div class="cell"><a href="/Auction/Seller/Past/"><i class="fa fa-list-ul"></i> Lista zakończonych aukcji</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Domain/Torenew/?status=lastminute"><i class="fa fa-plus-circle"></i> Wystaw aukcje Last Minute</a></div>
+</div>
+
+<div class="separator"></div>
+
+<!--
+<div class="row">
+<div class="cell"><a href="/Escrow/Seller/Add/"><i class="fa fa-plus-circle"></i> Nowa transakcja Escrow</a></div>
+<div class="cell"><a href="/Escrowfuture/Seller/Add/"><i class="fa fa-plus-square"></i> Nowa transakcja Escrow opcji</a></div>
+</div>
+-->
+
+<div class="row">
+<div class="cell"><a href="/Escrow/Seller/List/"><i class="fa fa-list"></i> Lista transakcji Escrow</a></div>
+<div class="cell"><a href="/Escrowfuture/Seller/List/"><i class="fa fa-list"></i> Lista transakcji Escrow opcji</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Rental/Seller/List/"><i class="fa fa-list"></i> Lista transakcji dzierżawy</a></div>
+<div class="cell"><a href="/Hire/Seller/List/"><i class="fa fa-list"></i> Lista transakcji ratalnych</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Advert/List/"><i class="fa fa-bullhorn"></i> Reklamowane domeny</a></div>
+<div class="cell"><a href="/Catalog/List/"><i class="fa fa-folder-open-o"></i> Katalogi domen na sprzedaż</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Selling/Banned/List/"><i class="fa fa-shield"></i> Zablokowani kupujący</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Selling/Sold/"><i class="fa fa-list-ul"></i> Sprzedane domeny</a></div>
+<div class="cell"><a href="/Selling/Pending/Pending/"><i class="fa fa-list-ul"></i> Nierozliczone sprzedaże</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Giełda</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Appraisal/Add/"><i class="fa fa-plus-circle"></i> Zleć wycenę domeny</a></div>
+<div class="cell"><a href="/Appraisal/List/"><i class="fa fa-list"></i> Lista zleconych wycen</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Appraisal/Active/"><i class="fa fa-list"></i> Trwające wyceny domen</a></div>
+<div class="cell"><a href="/Appraisal/Past/"><i class="fa fa-list-ul"></i> Zakończone wyceny domen</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Market/LastAuctions/"><i class="fa fa-gift"></i> Zakończone aukcje</a></div>
+<div class="cell"><a href="/Market/LastSold/"><i class="fa fa-gift"></i> Ostatnio sprzedane domeny</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li>
+
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Przechwytywanie</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/Deleted/List/"><i class="fa fa-search"></i> Szukaj wygasających domen</a></div>
+<div class="cell"><a href="/Deleted/Subscriptions/"><i class="fa fa-rss"></i> Subskrybowane wyszukiwania</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Catch/Add/"><i class="fa fa-plus-circle"></i> Przechwyć domeny</a></div>
+<div class="cell"><a href="/Catch/List/"><i class="fa fa-list-ul"></i> Zlecone do przechwycenia</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Deletedfuture/List/"><i class="fa fa-search"></i> Szukaj wygasających opcji</a></div>
+<div class="cell"><a href="/Catchfuture/List/"><i class="fa fa-list-ul"></i> Opcje do przechwycenia</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li class="separator"></li>
+
+<li>
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Finanse</a>
+
+<div class="rollup rollup2 popup">
+
+<div class="row">
+<div class="cell"><a href="/User/History/"><i class="fa fa-list"></i> Historia operacji na koncie</a></div>
+<div class="cell"><a href="/User/Blocked/"><i class="fa fa-dollar"></i> Saldo i kwota zablokowana</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Topay/List/"><i class="fa fa-list"></i> Lista domen do opłacenia</a></div>
+<div class="cell"><a href="/User/Suspended/"><i class="fa fa-hourglass-half"></i> Ustawienia nowych zamówień</a></div>
+</div>
+
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/User/Deposit/"><i class="fa fa-plus-circle"></i> Wpłać środki na konto</a></div>
+<div class="cell"><a href="/Withdraw/Add/"><i class="fa fa-minus-circle"></i> Wypłać środki z konta</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Withdraw/List/"><i class="fa fa-list-ul"></i> Lista zleconych wypłat</a></div>
+<div class="cell"><a href="/Bank/List/"><i class="fa fa-bank"></i> Lista kont bankowych</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Invoice/List/"><i class="fa fa-list-ul"></i> Lista otrzymanych faktur</a></div>
+<div class="cell"><a href="/User/Invoicing/"><i class="fa fa-file-text-o"></i> Dane do faktur</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/Reverse/List/"><i class="fa fa-list-ul"></i> Lista faktur za sprzedaż</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li class="p">
+<a class="menu popupTarget" onclick="popup(this, event); return false;" href="#">Ustawienia</a>
+
+<div class="rollup rollup3 popup">
+
+<div class="row">
+<div class="cell"><a href="/User/Password/"><i class="fa fa-key"></i> Zmień hasło</a></div>
+<div class="cell"><a href="/User/LoginLog/"><i class="fa fa-list-ul"></i> Historia logowania na konto</a></div>
+<div class="cell"><a href="/Login/List/"><i class="fa fa-users"></i> Inni użytkownicy konta</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Email/List/"><i class="fa fa-envelope-o"></i> Zmień adres email</a></div>
+<div class="cell"><a href="/Mobile/List/"><i class="fa fa-phone-square"></i> Zmień numer telefonu</a></div>
+<div class="cell"><a href="/User/Contact/"><i class="fa fa-home"></i> Zmień dane kontaktowe</a></div>
+</div>
+
+<div class="row">
+<div class="cell"><a href="/User/Email/Settings/"><i class="fa fa-comment-o"></i> Powiadomienia email</a></div>
+<div class="cell"><a href="/User/Mobile/Settings/"><i class="fa fa-comment"></i> Powiadomienia SMS</a></div>
+<div class="cell"><a href="/User/Email/Newsletters/"><i class="fa fa-commenting-o"></i> Newslettery informacyjne</a></div>
+</div>
+
+<div class="separator"></div>
+
+<div class="row">
+<div class="cell"><a href="/Task/List/"><i class="fa fa-list-alt"></i> Lista zleconych operacji</a></div>
+<div class="cell"><a href="/Export/List/"><i class="fa fa-file-excel-o"></i> Lista eksportów danych</a></div>
+</div>
+
+</div>
+
+</li>
+
+<li class="p separator"></li>
+<li class="p"><a href="/User/Logout/">Wyloguj</a></li>
+</ul>
+
+</div>
+</div>
+
+
+<div class="struct" id="main_body">
+
+<div class="container">
+
+<div data-panel="User_InvoicingReset2" class="panel">
+<h1 class="ellipsis">Zmiana danych do faktur<div class="step">krok 2 z 2</div>
+</h1>
+<p class="d" id="12c94e8a1930dc9966c6fb3750d99fc0">
+Prosimy o uzupełnienie danych do wystawiania faktur i o wybór rodzaju fakturowania.</p>
+<form method="post" data-panel="User_InvoicingReset2" data-confirm="" action="/User/InvoicingReset2/" id="285cc74379d155ec982e22ccd1b6a271" class="standardForm form">
+<input type="hidden" value="company" name="type" />
+<div style="" id="c019e15d37fe16c722af8073f7543627" class="formRow row">
+<div class="formRowLabel">Nazwa firmy: <span class="formRequired">*</span></div>
+<div class="formRowInfo"></div>
+<div class="formRowBody">
+<div data-type="text" class="field formField divide99">
+<input type="text" onchange="getField(this).changed();" onkeyup="getField(this).changed();" data-required="1" value="" data-type="text" data-name="name" name="name" id="af41712c8e9eed1bd0eb82f89ea85157" class="formElement input  widthLarge" />
+</div>
+<div class="clear"></div>
+<div class="formRowError"></div>
+</div>
+<div class="clear"></div>
+</div>
+<div style="" id="734b48a1980acf3d0d8f5c80e77a8b68" class="formRow row">
+<div class="formRowLabel">Adres: <span class="formRequired">*</span></div>
+<div class="formRowInfo"></div>
+<div class="formRowBody">
+<div data-type="text" class="field formField divide99">
+<input type="text" onchange="getField(this).changed();" onkeyup="getField(this).changed();" data-required="1" value="" data-type="text" data-name="address" name="address" id="16a090eea18a428dab747d1cbb29c012" class="formElement input  widthLarge" />
+</div>
+<div class="clear"></div>
+<div class="formRowError"></div>
+</div>
+<div class="clear"></div>
+</div>
+<div style="" id="024ac5e1ec2bba9745a7a35a257fafbb" class="formRow row">
+<div class="formRowLabel">Kod pocztowy i miasto: <span class="formRequired">*</span></div>
+<div class="formRowInfo"></div>
+<div class="formRowBody">
+<div data-type="text" class="field formField divide29">
+<input type="text" onchange="getField(this).changed();" onkeyup="getField(this).changed();" data-required="1" value="" data-type="text" data-name="zip" name="zip" id="1c9487441f3b11eabdc37be702251cff" class="formElement input  widthSmall" />
+</div>
+<div data-type="text" class="field formField divide69">
+<input type="text" onchange="getField(this).changed();" onkeyup="getField(this).changed();" data-required="1" value="" data-type="text" data-name="city" name="city" id="476bea2e35daa821278d71639b7d243d" class="formElement input  widthMedium" />
+</div>
+<div class="clear"></div>
+<div class="formRowError"></div>
+</div>
+<div class="clear"></div>
+</div>
+<div style="" id="db617ef9fa0c90982286556ba4404e1f" class="formRow row">
+<div class="formRowLabel">Kraj: <span style="visibility:hidden" class="formRequired">*</span></div>
+<div class="formRowInfo"></div>
+<div class="formRowBody">
+<div data-type="select" class="field formField divide99">
+<span class="afterSelect">
+<select onchange="getField(this).changed();" disabled="disabled" data-type="select" data-name="country" class="formElement input widthLarge" id="fca2ba9bd0090cab0b823c6d31d164ce" name="country">
+<option value="AF">Afganistan</option>
+<option value="AL">Albania</option>
+<option value="DZ">Algieria</option>
+<option value="AD">Andora</option>
+<option value="AO">Angola</option>
+<option value="AI">Anguilla</option>
+<option value="AQ">Antarktyka</option>
+<option value="AG">Antigua i Barbuda</option>
+<option value="SA">Arabia Saudyjska</option>
+<option value="AR">Argentyna</option>
+<option value="AM">Armenia</option>
+<option value="AW">Aruba</option>
+<option value="AU">Australia</option>
+<option value="AT">Austria</option>
+<option value="AZ">Azerbejdżan</option>
+<option value="BS">Bahamy</option>
+<option value="BH">Bahrajn</option>
+<option value="BD">Bangladesz</option>
+<option value="BB">Barbados</option>
+<option value="BE">Belgia</option>
+<option value="BZ">Belize</option>
+<option value="BJ">Benin</option>
+<option value="BM">Bermudy</option>
+<option value="BT">Bhutan</option>
+<option value="BY">Białoruś</option>
+<option value="BO">Boliwia</option>
+<option value="BQ">Bonaire, Sint Eustatius i Saba</option>
+<option value="BA">Bośnia i Hercegowina</option>
+<option value="BW">Botswana</option>
+<option value="BR">Brazylia</option>
+<option value="BN">Brunei</option>
+<option value="IO">Brytyjskie Terytorium Oceanu Indyjskiego</option>
+<option value="VG">Brytyjskie Wyspy Dziewicze</option>
+<option value="BG">Bułgaria</option>
+<option value="BF">Burkina Faso</option>
+<option value="BI">Burundi</option>
+<option value="CL">Chile</option>
+<option value="CN">Chiny</option>
+<option selected="selected" value="HR">Chorwacja</option>
+<option value="CW">Curaçao</option>
+<option value="CY">Cypr</option>
+<option value="TD">Czad</option>
+<option value="ME">Czarnogóra</option>
+<option value="CZ">Czechy</option>
+<option value="UM">Dalekie Wyspy Mniejsze Stanów Zjednoczonych</option>
+<option value="DK">Dania</option>
+<option value="CD">Demokratyczna Republika Konga</option>
+<option value="DM">Dominika</option>
+<option value="DO">Dominikana</option>
+<option value="DJ">Dżibuti</option>
+<option value="EG">Egipt</option>
+<option value="EC">Ekwador</option>
+<option value="ER">Erytrea</option>
+<option value="EE">Estonia</option>
+<option value="ET">Etiopia</option>
+<option value="FK">Falklandy</option>
+<option value="FJ">Fidżi</option>
+<option value="PH">Filipiny</option>
+<option value="FI">Finlandia</option>
+<option value="FR">Francja</option>
+<option value="TF">Francuskie Terytoria Południowe i Antarktyczne</option>
+<option value="GA">Gabon</option>
+<option value="GM">Gambia</option>
+<option value="GS">Georgia Południowa i Sandwich Południowy</option>
+<option value="GH">Ghana</option>
+<option value="GI">Gibraltar</option>
+<option value="GR">Grecja</option>
+<option value="GD">Grenada</option>
+<option value="GL">Grenlandia</option>
+<option value="GE">Gruzja</option>
+<option value="GU">Guam</option>
+<option value="GG">Guernsey</option>
+<option value="GF">Gujana Francuska</option>
+<option value="GY">Gujana</option>
+<option value="GP">Gwadelupa</option>
+<option value="GT">Gwatemala</option>
+<option value="GW">Gwinea Bissau</option>
+<option value="GQ">Gwinea Równikowa</option>
+<option value="GN">Gwinea</option>
+<option value="HT">Haiti</option>
+<option value="ES">Hiszpania</option>
+<option value="NL">Holandia</option>
+<option value="HN">Honduras</option>
+<option value="HK">Hongkong</option>
+<option value="IN">Indie</option>
+<option value="ID">Indonezja</option>
+<option value="IQ">Irak</option>
+<option value="IR">Iran</option>
+<option value="IE">Irlandia</option>
+<option value="IS">Islandia</option>
+<option value="IL">Izrael</option>
+<option value="JM">Jamajka</option>
+<option value="JP">Japonia</option>
+<option value="YE">Jemen</option>
+<option value="JE">Jersey</option>
+<option value="JO">Jordania</option>
+<option value="KY">Kajmany</option>
+<option value="KH">Kambodża</option>
+<option value="CM">Kamerun</option>
+<option value="CA">Kanada</option>
+<option value="QA">Katar</option>
+<option value="KZ">Kazachstan</option>
+<option value="KE">Kenia</option>
+<option value="KG">Kirgistan</option>
+<option value="KI">Kiribati</option>
+<option value="CO">Kolumbia</option>
+<option value="KM">Komory</option>
+<option value="CG">Kongo</option>
+<option value="KR">Korea Południowa</option>
+<option value="KP">Korea Północna</option>
+<option value="CR">Kostaryka</option>
+<option value="CU">Kuba</option>
+<option value="KW">Kuwejt</option>
+<option value="LA">Laos</option>
+<option value="LS">Lesotho</option>
+<option value="LB">Liban</option>
+<option value="LR">Liberia</option>
+<option value="LY">Libia</option>
+<option value="LI">Liechtenstein</option>
+<option value="LT">Litwa</option>
+<option value="LU">Luksemburg</option>
+<option value="LV">Łotwa</option>
+<option value="MK">Macedonia</option>
+<option value="MG">Madagaskar</option>
+<option value="YT">Majotta</option>
+<option value="MO">Makau</option>
+<option value="MW">Malawi</option>
+<option value="MV">Malediwy</option>
+<option value="MY">Malezja</option>
+<option value="ML">Mali</option>
+<option value="MT">Malta</option>
+<option value="MP">Mariany Północne</option>
+<option value="MA">Maroko</option>
+<option value="MQ">Martynika</option>
+<option value="MR">Mauretania</option>
+<option value="MU">Mauritius</option>
+<option value="MX">Meksyk</option>
+<option value="FM">Mikronezja</option>
+<option value="MM">Mjanma</option>
+<option value="MD">Mołdawia</option>
+<option value="MC">Monako</option>
+<option value="MN">Mongolia</option>
+<option value="MS">Montserrat</option>
+<option value="MZ">Mozambik</option>
+<option value="NA">Namibia</option>
+<option value="NR">Nauru</option>
+<option value="NP">Nepal</option>
+<option value="DE">Niemcy</option>
+<option value="NE">Niger</option>
+<option value="NG">Nigeria</option>
+<option value="NI">Nikaragua</option>
+<option value="NU">Niue</option>
+<option value="NF">Norfolk</option>
+<option value="NO">Norwegia</option>
+<option value="NC">Nowa Kaledonia</option>
+<option value="NZ">Nowa Zelandia</option>
+<option value="OM">Oman</option>
+<option value="PK">Pakistan</option>
+<option value="PW">Palau</option>
+<option value="PS">Palestyna</option>
+<option value="PA">Panama</option>
+<option value="PG">Papua-Nowa Gwinea</option>
+<option value="PY">Paragwaj</option>
+<option value="PE">Peru</option>
+<option value="PN">Pitcairn</option>
+<option value="PF">Polinezja Francuska</option>
+<option value="PL">Polska</option>
+<option value="PR">Portoryko</option>
+<option value="PT">Portugalia</option>
+<option value="ZA">Republika Południowej Afryki</option>
+<option value="CF">Republika Środkowoafrykańska</option>
+<option value="CV">Republika Zielonego Przylądka</option>
+<option value="RE">Reunion</option>
+<option value="RU">Rosja</option>
+<option value="RO">Rumunia</option>
+<option value="RW">Rwanda</option>
+<option value="EH">Sahara Zachodnia</option>
+<option value="KN">Saint Kitts i Nevis</option>
+<option value="LC">Saint Lucia</option>
+<option value="VC">Saint Vincent i Grenadyny</option>
+<option value="BL">Saint-Barthélemy</option>
+<option value="MF">Saint-Martin</option>
+<option value="PM">Saint-Pierre i Miquelon</option>
+<option value="SV">Salwador</option>
+<option value="AS">Samoa Amerykańskie</option>
+<option value="WS">Samoa</option>
+<option value="SM">San Marino</option>
+<option value="SN">Senegal</option>
+<option value="RS">Serbia</option>
+<option value="SC">Seszele</option>
+<option value="SL">Sierra Leone</option>
+<option value="SG">Singapur</option>
+<option value="SX">Sint Maarten</option>
+<option value="SK">Słowacja</option>
+<option value="SI">Słowenia</option>
+<option value="SO">Somalia</option>
+<option value="LK">Sri Lanka</option>
+<option value="US">Stany Zjednoczone</option>
+<option value="SZ">Suazi</option>
+<option value="SD">Sudan</option>
+<option value="SS">Sudan Południowy</option>
+<option value="SR">Surinam</option>
+<option value="SJ">Svalbard i Jan Mayen</option>
+<option value="SY">Syria</option>
+<option value="CH">Szwajcaria</option>
+<option value="SE">Szwecja</option>
+<option value="TJ">Tadżykistan</option>
+<option value="TH">Tajlandia</option>
+<option value="TW">Tajwan</option>
+<option value="TZ">Tanzania</option>
+<option value="TL">Timor Wschodni</option>
+<option value="TG">Togo</option>
+<option value="TK">Tokelau</option>
+<option value="TO">Tonga</option>
+<option value="TT">Trynidad i Tobago</option>
+<option value="TN">Tunezja</option>
+<option value="TR">Turcja</option>
+<option value="TM">Turkmenistan</option>
+<option value="TC">Turks i Caicos</option>
+<option value="TV">Tuvalu</option>
+<option value="UG">Uganda</option>
+<option value="UA">Ukraina</option>
+<option value="UY">Urugwaj</option>
+<option value="UZ">Uzbekistan</option>
+<option value="VU">Vanuatu</option>
+<option value="WF">Wallis i Futuna</option>
+<option value="VA">Watykan</option>
+<option value="VE">Wenezuela</option>
+<option value="HU">Węgry</option>
+<option value="GB">Wielka Brytania</option>
+<option value="VN">Wietnam</option>
+<option value="IT">Włochy</option>
+<option value="CI">Wybrzeże Kości Słoniowej</option>
+<option value="BV">Wyspa Bouveta</option>
+<option value="CX">Wyspa Bożego Narodzenia</option>
+<option value="IM">Wyspa Man</option>
+<option value="SH">Wyspa Świętej Heleny, Wyspa Wniebowstąpienia i Tristan da Cunha</option>
+<option value="AX">Wyspy Alandzkie</option>
+<option value="CK">Wyspy Cooka</option>
+<option value="VI">Wyspy Dziewicze Stanów Zjednoczonych</option>
+<option value="HM">Wyspy Heard i McDonalda</option>
+<option value="CC">Wyspy Kokosowe</option>
+<option value="MH">Wyspy Marshalla</option>
+<option value="FO">Wyspy Owcze</option>
+<option value="SB">Wyspy Salomona</option>
+<option value="ST">Wyspy Świętego Tomasza i Książęca</option>
+<option value="ZM">Zambia</option>
+<option value="ZW">Zimbabwe</option>
+<option value="AE">Zjednoczone Emiraty Arabskie</option>
+</select>
+</span>
+</div>
+<div class="clear"></div>
+<div class="formRowError"></div>
+</div>
+<div class="clear"></div>
+</div>
+<div style="" id="5b7cf4833f3cd6e24a9b990b7a154cf8" class="formRow row">
+<div class="formRowLabel">Waluta rozliczeń: <span class="formRequired">*</span></div>
+<div class="formRowInfo"></div>
+<div class="formRowBody">
+<div data-type="select" class="field formField divide99">
+<span class="afterSelect">
+<select onchange="getField(this).changed();" required="required" data-type="select" data-name="currency" class="formElement input widthSmallest" id="9280b29365bdf749f2ca671de85351c6" name="currency">
+<option value="PLN">PLN</option>
+<option selected="selected" value="EUR">EUR</option>
+<option value="USD">USD</option>
+<option value="GBP">GBP</option>
+</select>
+</span>
+</div>
+<div class="clear"></div>
+<div class="formRowError"></div>
+</div>
+<div class="clear"></div>
+</div>
+<div style="" id="e0543aef4c560bb6cc79a81285db8312" data-id="rowNip" class="formRow row">
+<div class="formRowLabel">NIP / Numer VAT: <span style="visibility:hidden" class="formRequired">*</span></div>
+<div class="formRowInfo"></div>
+<div class="formRowBody">
+<div data-type="text" class="field formField divide99">
+<input type="text" onchange="getField(this).changed();" onkeyup="getField(this).changed();" disabled="disabled" value="PL1234567890" data-type="text" data-name="nip" name="nip" id="8c374c53a54a2744a62e88bdda298411" class="formElement input  widthSmall" />
+</div>
+<div class="clear"></div>
+<div class="formRowError"></div>
+</div>
+<div class="clear"></div>
+</div>
+<div style="" id="ada66ee575cecbd89aac40fe400e3481" class="formRow row">
+<div class="formRowLabel">Fakturowanie: <span style="visibility:hidden" class="formRequired">*</span></div>
+<div class="formRowInfo"></div>
+<div class="formRowBody">
+<div data-type="radio" data-name="vat" id="9fca3bdaba9cd3e1c35c4b364cc8a037" class="field formField formElement">
+<label class="radio">
+<input type="radio" onchange="getField(this).changed();" value="novat" name="vat" />
+<span class="afterRadio"></span>
+Nie jestem płatnikiem VAT.</label>
+<br clear="all" />
+<label class="radio">
+<input type="radio" onchange="getField(this).changed();" checked="checked" value="vateu" name="vat" />
+<span class="afterRadio"></span>
+Jestem płatnikiem VAT z numerem NIP-UE. Chcę otrzymać fakturę unijną bez podatku VAT.</label>
+</div>
+<div class="clear"></div>
+<div class="formRowError"></div>
+</div>
+<div class="clear"></div>
+</div>
+<div style="" id="324c6144c516942a1f42819c8d7885c1" class="formRow row">
+<div class="formRowLabel"></div>
+<div class="formRowInfo"></div>
+<div class="formRowBody">
+<button onclick="return getForm(this).submit();" class="btn btnRed" type="submit">Zapisz nowe dane   <i class="fa fa-angle-right"></i></button>
+<p class="formInfo">
+Po naciśnięciu przycisku operacja zostanie wykonana.</p>
+<div class="clear"></div>
+<div class="formRowError"></div>
+</div>
+<div class="clear"></div>
+</div>
+</form>
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="struct" id="main_stats">
+<div class="container">
+
+<a class="m" href="switch_full.php">Pełna wersja strony »</a>
+
+<ul class="d">
+<li>Zarejestrowane domeny: 316</li>
+<li>Zarejestrowani użytkownicy: 123</li>
+<li>Oferty sprzedaży na giełdzie: 765</li>
+<li>Aukcje na giełdzie: 45</li>
+</ul>
+
+</div>
+</div>
+
+
+
+<div class="struct" id="main_footer">
+</div>
+
+
+
+</body><canvas id="fxdriver-screenshot-canvas" style="display: none;" width="1008" height="727"></canvas></html>
